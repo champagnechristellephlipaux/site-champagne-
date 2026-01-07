@@ -1,4 +1,4 @@
-import { PRODUCTS, FORMATS, PRICE_EUR } from "./shop-config.js";
+// cart-ui.js
 import {
   loadCart,
   addToCart,
@@ -7,182 +7,156 @@ import {
   clearCart,
   cartTotals,
   cartCount,
-  getItemMeta,
   formatEuro
 } from "./cart.js";
+
+import { PRODUCTS, PRICE_EUR } from "./shop-config.js";
 import { startCheckout } from "./checkout.js";
 
-const $ = (sel, root = document) => root.querySelector(sel);
-const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+// Helpers
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
-function openDrawer() {
+// Drawer
+function openCart() {
   const d = $("#cartDrawer");
   if (!d) return;
   d.classList.add("open");
   d.setAttribute("aria-hidden", "false");
 }
 
-function closeDrawer() {
+function closeCart() {
   const d = $("#cartDrawer");
   if (!d) return;
   d.classList.remove("open");
   d.setAttribute("aria-hidden", "true");
 }
 
-function safeText(sel, value) {
-  const el = $(sel);
-  if (el) el.textContent = value;
-}
-
+// Render panier
 function renderCart() {
   const items = loadCart();
-  safeText("#cartCount", String(cartCount(items)));
 
-  const body = $("#cartItems");
+  // compteur (optionnel)
+  const countEl = $("#cartCount");
+  if (countEl) countEl.textContent = cartCount(items);
+
+  const list = $("#cartItems");
   const subtotalEl = $("#cartSubtotal");
-  if (!body || !subtotalEl) return;
+
+  if (!list || !subtotalEl) return;
 
   if (!items.length) {
-    body.innerHTML = `<div class="empty">Votre panier est vide.</div>`;
-    subtotalEl.textContent = "0€";
+    list.innerHTML = `<p class="empty">Votre panier est vide.</p>`;
+    subtotalEl.textContent = "0 €";
     return;
   }
 
-  body.innerHTML = items
-    .map((it, idx) => {
-      const meta = getItemMeta(it);
-      const title = meta.product?.name || it.sku;
-      const fmt = meta.format?.label || it.format;
-      const unit = meta.unitPrice || 0;
-      const line = unit * it.qty;
+  list.innerHTML = "";
 
-      return `
-      <div class="cart-item">
-        <div class="cart-thumb">
-          <img src="${meta.product?.image || ""}" alt="${title}">
-        </div>
+  items.forEach((item, idx) => {
+    const product = PRODUCTS[item.sku];
+    if (!product) return;
 
-        <div class="cart-main">
-          <div class="cart-title">${title}</div>
-          <div class="cart-meta">${fmt}</div>
-          <div class="cart-meta"><b>${formatEuro(unit)}</b> / unité</div>
+    const unit = PRICE_EUR[item.sku]?.[item.format] ?? 0;
+    const line = unit * item.qty;
 
-          <div class="cart-row">
-            <div class="qty small">
-              <button class="qty-btn" type="button" data-ci-minus="${idx}">−</button>
-              <input class="qty-input" type="number" min="1" value="${it.qty}" data-ci-input="${idx}" />
-              <button class="qty-btn" type="button" data-ci-plus="${idx}">+</button>
-            </div>
-            <div class="cart-line">${formatEuro(line)}</div>
-          </div>
-        </div>
-
-        <button class="icon-btn" type="button" data-ci-remove="${idx}" aria-label="Supprimer">✕</button>
+    const row = document.createElement("div");
+    row.className = "cart-row";
+    row.innerHTML = `
+      <div class="cart-row__main">
+        <strong>${product.name}</strong><br>
+        <small>${item.format}</small>
       </div>
+
+      <div class="cart-row__qty">
+        <button data-minus="${idx}">−</button>
+        <input type="number" min="1" value="${item.qty}" data-input="${idx}">
+        <button data-plus="${idx}">+</button>
+      </div>
+
+      <div class="cart-row__price">${formatEuro(line)}</div>
+
+      <button class="cart-row__remove" data-remove="${idx}">✕</button>
     `;
-    })
-    .join("");
+    list.appendChild(row);
+  });
 
   const totals = cartTotals(items);
   subtotalEl.textContent = formatEuro(totals.subtotal);
 }
 
-function currentFormat(sku) {
-  const r = document.querySelector(`input[name="fmt-${sku}"]:checked`);
-  return r ? r.value : "750";
-}
+// Bind produits (boutique)
+function bindProducts() {
+  $$("[data-add-to-cart]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const sku = btn.dataset.sku;
+      const format = btn.dataset.format;
+      const qty = parseInt(btn.dataset.qty || "1", 10);
 
-function updateCardPrices() {
-  ["brut", "rose", "demisec"].forEach((sku) => {
-    const selected =
-      document.querySelector(`input[name="fmt-${sku}"]:checked`)?.value || "750";
-    const price = PRICE_EUR?.[sku]?.[selected] ?? 0;
-    const card = document.querySelector(`[data-sku="${sku}"]`);
-    const priceEl = card?.querySelector(".price");
-    if (priceEl) priceEl.textContent = `${price}€`;
-  });
-}
+      if (!sku || !format) return;
 
-function currentQty(sku) {
-  const el = document.querySelector(`[data-qty-input="${sku}"]`);
-  return Math.max(1, parseInt(el?.value || "1", 10));
-}
-
-function bindProductControls() {
-  document.addEventListener("change", (e) => {
-    if (e.target?.name?.startsWith("fmt-")) updateCardPrices();
-  });
-  updateCardPrices();
-
-  $$('[data-qty-plus]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const sku = btn.getAttribute('data-qty-plus');
-      const input = document.querySelector(`[data-qty-input="${sku}"]`);
-      if (!input) return;
-      input.value = String(parseInt(input.value || '1', 10) + 1);
-    });
-  });
-
-  $$('[data-qty-minus]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const sku = btn.getAttribute('data-qty-minus');
-      const input = document.querySelector(`[data-qty-input="${sku}"]`);
-      if (!input) return;
-      input.value = String(Math.max(1, parseInt(input.value || '1', 10) - 1));
-    });
-  });
-
-  $$('[data-add]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const sku = btn.getAttribute('data-add');
-      if (!sku) return;
-      addToCart(sku, currentFormat(sku), currentQty(sku));
-      openDrawer();
-    });
-  });
-
-  $$('[data-buy-now]').forEach((a) => {
-    a.addEventListener('click', async (e) => {
-      e.preventDefault();
-      const sku = a.getAttribute('data-buy-now');
-      if (!sku) return;
-      addToCart(sku, '750', currentQty(sku));
-      openDrawer();
-      await startCheckout();
+      addToCart(sku, format, qty);
+      renderCart();
+      openCart();
     });
   });
 }
 
-function bindCartControls() {
-  $("#cartOpen")?.addEventListener('click', openDrawer);
-  $$('[data-cart-close]').forEach((el) => el.addEventListener('click', closeDrawer));
+// Bind panier
+function bindCart() {
+  // ouvrir / fermer
+  $("#cartOpen")?.addEventListener("click", openCart);
+  $$("[data-cart-close]").forEach(b => b.addEventListener("click", closeCart));
 
-  $("#cartClear")?.addEventListener('click', () => {
+  // vider
+  $("#cartClear")?.addEventListener("click", () => {
     clearCart();
     renderCart();
   });
 
-  $("#cartCheckout")?.addEventListener('click', async () => {
+  // payer
+  $("#cartCheckout")?.addEventListener("click", async () => {
     await startCheckout();
   });
 
-  const cartItems = $("#cartItems");
-  if (!cartItems) return;
+  const list = $("#cartItems");
+  if (!list) return;
 
-  cartItems.addEventListener('click', (e) => {
+  list.addEventListener("click", e => {
     const t = e.target;
-    const minus = t.getAttribute?.('data-ci-minus');
-    const plus = t.getAttribute?.('data-ci-plus');
-    const rem = t.getAttribute?.('data-ci-remove');
 
-    if (minus != null) {
-      const idx = int(minus);
+    if (t.dataset.plus !== undefined) {
+      const i = parseInt(t.dataset.plus, 10);
+      const items = loadCart();
+      setQty(i, items[i].qty + 1);
+    }
+
+    if (t.dataset.minus !== undefined) {
+      const i = parseInt(t.dataset.minus, 10);
+      const items = loadCart();
+      setQty(i, Math.max(1, items[i].qty - 1));
+    }
+
+    if (t.dataset.remove !== undefined) {
+      removeItem(parseInt(t.dataset.remove, 10));
     }
   });
+
+  list.addEventListener("change", e => {
+    if (e.target.dataset.input !== undefined) {
+      setQty(
+        parseInt(e.target.dataset.input, 10),
+        parseInt(e.target.value || "1", 10)
+      );
+    }
+  });
+
+  window.addEventListener("cart:updated", renderCart);
 }
 
-(function init(){
-  bindProductControls();
-  // NOTE: The rest of controls are implemented in the in-zip original cart-ui
+// INIT
+(function init() {
+  bindProducts();
+  bindCart();
   renderCart();
 })();
