@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mentions légales — Champagne Christelle Phlipaux</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-name">Champagne Christelle Phlipaux</span>
+      </a>
+      <nav class="nav">
+        <a href="index.html#cuvees">Nos cuvées</a>
+        <a href="boutique.html">Boutique</a>
+        <a href="depositaires.html">Dépositaires</a>
+        <a href="index.html#blog">Blog</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <a class="btn primary" href="boutique.html">Acheter</a>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="kicker">Informations</div>
+      <div class="h2">Mentions légales</div>
+
+      <article class="card pad prose reveal">
+        <h3 class="h3">Éditeur du site</h3>
+        <p class="p"><b>SARL Christelle Phlipaux</b><br>
+        4 rue des Villiers, 10110 Channes, France<br>
+        SIRET : 539 870 250 00017</p>
+
+        <h3 class="h3">Responsable de publication</h3>
+        <p class="p">Christelle Phlipaux</p>
+
+        <h3 class="h3">Contact</h3>
+        <p class="p">champagne.christelle.phlipaux@gmail.com</p>
+
+        <h3 class="h3">Hébergement</h3>
+        <p class="p"><b>Netlify, Inc.</b><br>
+        2325 3rd Street, Suite 215<br>
+        San Francisco, California 94107<br>
+        États-Unis</p>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="small">© Champagne Christelle Phlipaux — Tous droits réservés</div>
+      <div class="small">
+        <a href="mentions-legales.html">Mentions légales</a> •
+        <a href="cgv.html">CGV</a> •
+        <a href="politique-confidentialite.html">Confidentialité</a>
+      </div>
+      <div class="small footer-alcool">La vente d’alcool est interdite aux mineurs de moins de 18 ans. L’abus d’alcool est dangereux pour la santé, à consommer avec modération.</div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const els=document.querySelectorAll('.reveal');
+      if(!els.length) return;
+      const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(reduce){ els.forEach(el=>el.classList.add('is-visible')); return; }
+      const io=new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){ entry.target.classList.add('is-visible'); io.unobserve(entry.target); }
+        });
+      },{threshold:0.15, rootMargin:'0px 0px -8% 0px'});
+      els.forEach(el=>io.observe(el));
+    })();
+  </script>
+</body>
+</html>

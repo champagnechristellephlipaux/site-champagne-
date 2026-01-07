@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CGV — Champagne Christelle Phlipaux</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-name">Champagne Christelle Phlipaux</span>
+      </a>
+      <nav class="nav">
+        <a href="index.html#cuvees">Nos cuvées</a>
+        <a href="boutique.html">Boutique</a>
+        <a href="depositaires.html">Dépositaires</a>
+        <a href="index.html#blog">Blog</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <a class="btn primary" href="boutique.html">Acheter</a>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="kicker">Vente en ligne</div>
+      <div class="h2">Conditions Générales de Vente</div>
+
+      <article class="card pad prose reveal">
+        <p class="p">Les présentes Conditions Générales de Vente s’appliquent à toutes les commandes passées sur le site de la <b>SARL Christelle Phlipaux</b>.</p>
+
+        <h3 class="h3">Produits</h3>
+        <p class="p">Les produits proposés à la vente sont des bouteilles de champagne. Les caractéristiques essentielles sont décrites sur le site.</p>
+
+        <h3 class="h3">Prix</h3>
+        <p class="p">Les prix sont indiqués en euros, toutes taxes comprises (TTC). La SARL Christelle Phlipaux se réserve le droit de modifier ses prix à tout moment.</p>
+
+        <h3 class="h3">Commande & paiement</h3>
+        <p class="p">Le paiement est exigible immédiatement à la commande. Les paiements sont effectués via la plateforme sécurisée <b>Stripe</b>.</p>
+
+        <h3 class="h3">Livraison</h3>
+        <p class="p">Livraison <b>uniquement en France métropolitaine</b>. Les délais indiqués sont donnés à titre indicatif.</p>
+
+        <h3 class="h3">Droit de rétractation</h3>
+        <p class="p">Conformément à l’article L221-28 du Code de la consommation, le droit de rétractation ne peut être exercé pour des produits descellés ne pouvant être retournés pour des raisons d’hygiène ou de protection de la santé. Toute bouteille ouverte ou descellée ne pourra donc pas être reprise.</p>
+
+        <h3 class="h3">Responsabilité</h3>
+        <p class="p">La SARL Christelle Phlipaux ne saurait être tenue responsable des dommages résultant d’une mauvaise utilisation des produits vendus.</p>
+
+        <h3 class="h3">Droit applicable</h3>
+        <p class="p">Les présentes CGV sont soumises au droit français.</p>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="small">© Champagne Christelle Phlipaux — Tous droits réservés</div>
+      <div class="small">
+        <a href="mentions-legales.html">Mentions légales</a> •
+        <a href="cgv.html">CGV</a> •
+        <a href="politique-confidentialite.html">Confidentialité</a>
+      </div>
+      <div class="small footer-alcool">La vente d’alcool est interdite aux mineurs de moins de 18 ans. L’abus d’alcool est dangereux pour la santé, à consommer avec modération.</div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const els=document.querySelectorAll('.reveal');
+      if(!els.length) return;
+      const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(reduce){ els.forEach(el=>el.classList.add('is-visible')); return; }
+      const io=new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){ entry.target.classList.add('is-visible'); io.unobserve(entry.target); }
+        });
+      },{threshold:0.15, rootMargin:'0px 0px -8% 0px'});
+      els.forEach(el=>io.observe(el));
+    })();
+  </script>
+</body>
+</html>

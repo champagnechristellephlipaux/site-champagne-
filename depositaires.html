@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dépositaires — Champagne Christelle Phlipaux</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html">
+        <img class="brand-logo" src="assets/logo.png" alt="Logo Champagne Christelle Phlipaux" />
+        <span class="brand-name">Champagne Christelle Phlipaux</span>
+      </a>
+      <nav class="nav">
+        <a href="index.html#cuvees">Nos cuvées</a>
+        <a href="boutique.html">Boutique</a>
+        <a href="depositaires.html" class="active">Dépositaires</a>
+        <a href="index.html#blog">Blog</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <a class="btn primary" href="boutique.html">Acheter</a>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="kicker">Points de vente</div>
+      <div class="h2">Nos dépositaires</div>
+      <p class="p" style="max-width:860px;">
+        Retrouvez nos champagnes chez nos dépositaires. Utilisez la liste à gauche de la carte pour choisir un point de vente,
+        ou zoomez sur votre région.
+      </p>
+
+      <div class="card pad reveal" style="margin-top:18px;">
+        <div class="map-wrap">
+          <iframe
+            src="https://www.google.com/maps/d/u/0/embed?mid=1YzYb4_SptCxIkaa07-NSNqr_hJtf0AdA&ehbc=2E312F"
+            width="100%"
+            height="560"
+            style="border:0;"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Carte des dépositaires Champagne Christelle Phlipaux"></iframe>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;">
+          <a class="btn" href="index.html">Retour à l’accueil</a>
+          <a class="btn primary" target="_blank" rel="noopener" href="https://www.google.com/maps/d/u/0/viewer?mid=1YzYb4_SptCxIkaa07-NSNqr_hJtf0AdA&z=5">Ouvrir en plein écran</a>
+        </div>
+        <p class="p" style="margin-top:10px;opacity:.85;">
+          Liste non exhaustive — contactez-nous si vous cherchez le dépositaire le plus proche.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="small">© Champagne Christelle Phlipaux — Tous droits réservés</div>
+      <div class="small"><a href="index.html#contact">Contact</a> • <a href="boutique.html">Boutique</a></div>
+    
+<div class="small footer-links">
+  <a href="mentions-legales.html">Mentions légales</a> •
+  <a href="cgv.html">CGV</a> •
+  <a href="politique-confidentialite.html">Confidentialité</a>
+</div>
+<div class="small footer-alcool">La vente d’alcool est interdite aux mineurs de moins de 18 ans. L’abus d’alcool est dangereux pour la santé, à consommer avec modération.</div>
+</div>
+  </footer>
+
+  <script>
+    // Reveal on scroll (ultra léger)
+    (function(){
+      const els = document.querySelectorAll('.reveal');
+      if(!els.length) return;
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(reduce){ els.forEach(el => el.classList.add('is-visible')); return; }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+      els.forEach(el => io.observe(el));
+    })();
+  </script>
+</body>
+</html>
