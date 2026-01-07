@@ -1,4 +1,4 @@
-// cart-ui.js
+import { PRICE_EUR } from "./shop-config.js";
 import {
   loadCart,
   addToCart,
@@ -7,156 +7,212 @@ import {
   clearCart,
   cartTotals,
   cartCount,
-  formatEuro
+  getItemMeta,
+  formatEuro,
 } from "./cart.js";
-
-import { PRODUCTS, PRICE_EUR } from "./shop-config.js";
 import { startCheckout } from "./checkout.js";
 
-// Helpers
-const $ = (s, r = document) => r.querySelector(s);
-const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const $ = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-// Drawer
-function openCart() {
+function openDrawer() {
   const d = $("#cartDrawer");
   if (!d) return;
   d.classList.add("open");
   d.setAttribute("aria-hidden", "false");
+  renderCart();
 }
 
-function closeCart() {
+function closeDrawer() {
   const d = $("#cartDrawer");
   if (!d) return;
   d.classList.remove("open");
   d.setAttribute("aria-hidden", "true");
 }
 
-// Render panier
+function safeText(sel, value) {
+  const el = $(sel);
+  if (el) el.textContent = value;
+}
+
 function renderCart() {
   const items = loadCart();
+  safeText("#cartCount", String(cartCount(items)));
 
-  // compteur (optionnel)
-  const countEl = $("#cartCount");
-  if (countEl) countEl.textContent = cartCount(items);
-
-  const list = $("#cartItems");
+  const body = $("#cartItems");
   const subtotalEl = $("#cartSubtotal");
-
-  if (!list || !subtotalEl) return;
+  if (!body || !subtotalEl) return;
 
   if (!items.length) {
-    list.innerHTML = `<p class="empty">Votre panier est vide.</p>`;
-    subtotalEl.textContent = "0 €";
+    body.innerHTML = `<div class="empty">Votre panier est vide.</div>`;
+    subtotalEl.textContent = "0€";
     return;
   }
 
-  list.innerHTML = "";
+  body.innerHTML = items
+    .map((it, idx) => {
+      const meta = getItemMeta(it);
+      const title = meta.product?.name || it.sku;
+      const fmt = meta.format?.label || it.format;
+      const unit = meta.unitPrice || 0;
+      const line = unit * it.qty;
 
-  items.forEach((item, idx) => {
-    const product = PRODUCTS[item.sku];
-    if (!product) return;
+      return `
+        <div class="cart-item">
+          <div class="cart-thumb">
+            <img src="${meta.product?.image || ""}" alt="${title}">
+          </div>
 
-    const unit = PRICE_EUR[item.sku]?.[item.format] ?? 0;
-    const line = unit * item.qty;
+          <div class="cart-main">
+            <div class="cart-title">${title}</div>
+            <div class="cart-meta">${fmt}</div>
+            <div class="cart-meta"><b>${formatEuro(unit)}</b> / unité</div>
 
-    const row = document.createElement("div");
-    row.className = "cart-row";
-    row.innerHTML = `
-      <div class="cart-row__main">
-        <strong>${product.name}</strong><br>
-        <small>${item.format}</small>
-      </div>
+            <div class="cart-row">
+              <div class="qty small">
+                <button class="qty-btn" type="button" data-ci-minus="${idx}">−</button>
+                <input class="qty-input" type="number" min="1" value="${it.qty}" data-ci-input="${idx}" />
+                <button class="qty-btn" type="button" data-ci-plus="${idx}">+</button>
+              </div>
+              <div class="cart-line">${formatEuro(line)}</div>
+            </div>
+          </div>
 
-      <div class="cart-row__qty">
-        <button data-minus="${idx}">−</button>
-        <input type="number" min="1" value="${item.qty}" data-input="${idx}">
-        <button data-plus="${idx}">+</button>
-      </div>
-
-      <div class="cart-row__price">${formatEuro(line)}</div>
-
-      <button class="cart-row__remove" data-remove="${idx}">✕</button>
-    `;
-    list.appendChild(row);
-  });
+          <button class="icon-btn" type="button" data-ci-remove="${idx}" aria-label="Supprimer">✕</button>
+        </div>
+      `;
+    })
+    .join("");
 
   const totals = cartTotals(items);
   subtotalEl.textContent = formatEuro(totals.subtotal);
 }
 
-// Bind produits (boutique)
-function bindProducts() {
-  $$("[data-add-to-cart]").forEach(btn => {
+function currentFormat(sku) {
+  const r = document.querySelector(`input[name="fmt-${sku}"]:checked`);
+  return r ? r.value : "750";
+}
+
+function currentQty(sku) {
+  const el = document.querySelector(`[data-qty-input="${sku}"]`);
+  return Math.max(1, parseInt(el?.value || "1", 10));
+}
+
+function updateCardPrices() {
+  ["brut", "rose", "demisec"].forEach((sku) => {
+    const selected =
+      document.querySelector(`input[name="fmt-${sku}"]:checked`)?.value || "750";
+    const price = PRICE_EUR?.[sku]?.[selected] ?? 0;
+    const card = document.querySelector(`[data-sku="${sku}"]`);
+    const priceEl = card?.querySelector(".price");
+    if (priceEl) priceEl.textContent = `${price}€`;
+  });
+}
+
+function bindProductControls() {
+  document.addEventListener("change", (e) => {
+    if (e.target?.name?.startsWith("fmt-")) updateCardPrices();
+  });
+  updateCardPrices();
+
+  $$("[data-qty-plus]").forEach((btn) => {
     btn.addEventListener("click", () => {
-      const sku = btn.dataset.sku;
-      const format = btn.dataset.format;
-      const qty = parseInt(btn.dataset.qty || "1", 10);
+      const sku = btn.getAttribute("data-qty-plus");
+      const input = document.querySelector(`[data-qty-input="${sku}"]`);
+      if (!input) return;
+      input.value = String(parseInt(input.value || "1", 10) + 1);
+    });
+  });
 
-      if (!sku || !format) return;
+  $$("[data-qty-minus]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const sku = btn.getAttribute("data-qty-minus");
+      const input = document.querySelector(`[data-qty-input="${sku}"]`);
+      if (!input) return;
+      input.value = String(Math.max(1, parseInt(input.value || "1", 10) - 1));
+    });
+  });
 
-      addToCart(sku, format, qty);
+  $$("[data-add]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const sku = btn.getAttribute("data-add");
+      if (!sku) return;
+      addToCart(sku, currentFormat(sku), currentQty(sku));
       renderCart();
-      openCart();
+      openDrawer();
     });
   });
 }
 
-// Bind panier
-function bindCart() {
-  // ouvrir / fermer
-  $("#cartOpen")?.addEventListener("click", openCart);
-  $$("[data-cart-close]").forEach(b => b.addEventListener("click", closeCart));
+function bindCartControls() {
+  $("#cartOpen")?.addEventListener("click", openDrawer);
 
-  // vider
+  $$("[data-cart-close]").forEach((el) =>
+    el.addEventListener("click", closeDrawer)
+  );
+
   $("#cartClear")?.addEventListener("click", () => {
     clearCart();
     renderCart();
   });
 
-  // payer
   $("#cartCheckout")?.addEventListener("click", async () => {
     await startCheckout();
   });
 
-  const list = $("#cartItems");
-  if (!list) return;
+  const cartItems = $("#cartItems");
+  if (!cartItems) return;
 
-  list.addEventListener("click", e => {
+  cartItems.addEventListener("click", (e) => {
     const t = e.target;
+    if (!t?.getAttribute) return;
 
-    if (t.dataset.plus !== undefined) {
-      const i = parseInt(t.dataset.plus, 10);
+    const minus = t.getAttribute("data-ci-minus");
+    const plus = t.getAttribute("data-ci-plus");
+    const rem = t.getAttribute("data-ci-remove");
+
+    if (minus != null) {
+      const idx = parseInt(minus, 10);
       const items = loadCart();
-      setQty(i, items[i].qty + 1);
+      const cur = items[idx]?.qty || 1;
+      setQty(idx, Math.max(1, cur - 1));
+      renderCart();
+      return;
     }
 
-    if (t.dataset.minus !== undefined) {
-      const i = parseInt(t.dataset.minus, 10);
+    if (plus != null) {
+      const idx = parseInt(plus, 10);
       const items = loadCart();
-      setQty(i, Math.max(1, items[i].qty - 1));
+      const cur = items[idx]?.qty || 1;
+      setQty(idx, cur + 1);
+      renderCart();
+      return;
     }
 
-    if (t.dataset.remove !== undefined) {
-      removeItem(parseInt(t.dataset.remove, 10));
+    if (rem != null) {
+      const idx = parseInt(rem, 10);
+      removeItem(idx);
+      renderCart();
     }
   });
 
-  list.addEventListener("change", e => {
-    if (e.target.dataset.input !== undefined) {
-      setQty(
-        parseInt(e.target.dataset.input, 10),
-        parseInt(e.target.value || "1", 10)
-      );
-    }
-  });
+  cartItems.addEventListener("change", (e) => {
+    const t = e.target;
+    const idxStr = t?.getAttribute?.("data-ci-input");
+    if (idxStr == null) return;
 
-  window.addEventListener("cart:updated", renderCart);
+    const idx = parseInt(idxStr, 10);
+    const qty = Math.max(1, parseInt(t.value || "1", 10));
+    setQty(idx, qty);
+    renderCart();
+  });
 }
 
-// INIT
-(function init() {
-  bindProducts();
-  bindCart();
+function init() {
+  bindProductControls();
+  bindCartControls();
+  window.addEventListener("cart:updated", renderCart);
   renderCart();
-})();
+}
+
+init();
