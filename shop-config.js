@@ -28,23 +28,23 @@ export const PRICE_EUR = {
 };
 
 export const STRIPE_PRICE_IDS = {
-  "brut": {
-    "375": "price_1SmWpbD96OJnHwPGXHehtam4",
-    "750": "price_1SmadHD96OJnHwPGFQHOLm93",
+  brut: {
+    "750": "price_1SmWpbD96OJnHwPGXHehtam4",
+    "carton6": "price_1SmadHD96OJnHwPGFQHOLm93",
     "magnum": "price_1SmaZzD96OJnHwPGYFDWuDBn",
-    "carton6": "price_1SmaZKD96OJnHwPGN8q7dO4p"
+    "375": "price_1SmaZKD96OJnHwPGN8q7dO4p",
   },
-  "rose": {
-    "375": "price_1SmXMcD96OJnHwPGCHECQVv4",
-    "750": "price_1SmafvD96OJnHwPG90qFZbGf",
+  rose: {
+    "750": "price_1SmXMcD96OJnHwPGCHECQVv4",
+    "carton6": "price_1SmafvD96OJnHwPG90qFZbGf",
     "magnum": "price_1SmafnD96OJnHwPGRxpCLGmc",
-    "carton6": "price_1SmafdD96OJnHwPGVksA6qXc"
+    "375": "price_1SmafdD96OJnHwPGVksA6qXc",
   },
-  "demisec": {
-    "375": "price_1SmXNeD96OJnHwPG3JeL246S",
-    "750": "price_1SmahXD96OJnHwPGpV81yGC0",
+  demisec: {
+    "750": "price_1SmXNeD96OJnHwPG3JeL246S",
+    "carton6": "price_1SmahXD96OJnHwPGpV81yGC0",
     "magnum": "price_1SmahLD96OJnHwPGyansOXTs",
-    "carton6": "price_1SmahBD96OJnHwPGv9kaNvSK"
+    "375": "price_1SmahBD96OJnHwPGv9kaNvSK",
   }
 };
 
