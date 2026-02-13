@@ -27,10 +27,9 @@ Ajoutez une page mentions légales/CGV si vous voulez (recommandé).
 
 
 === PANIER STRIPE (multi-produits) ===
-Cette version ajoute un panier (37,5cl / 75cl / Magnum / Carton de 6) pour Brut, Rosé, Demi-Sec.
+Cette version ajoute un panier (75cl / Magnum / Carton de 6) pour Brut, Rosé, Demi-Sec.
 
-1) Dans Stripe, crée 3 produits (Brut, Rosé, Demi-sec), chacun avec 4 prix :
-   - 37,5 cl
+1) Dans Stripe, crée 3 produits (Brut, Rosé, Demi-sec), chacun avec 3 prix :
    - 75 cl
    - Magnum 1,5 L
    - Carton 6 × 75 cl
@@ -55,6 +54,6 @@ NB: Les liens buy.stripe.com ne sont plus nécessaires quand le panier est activ
 
 
 === Price IDs Stripe intégrés ===
-Brut: 37,5cl / 75cl / Magnum / Carton6 = price_1SmWpb... / price_1SmadH... / price_1SmaZz... / price_1SmaZK...
-Rosé: 37,5cl / 75cl / Magnum / Carton6 = price_1SmXMc... / price_1Smafv... / price_1Smafn... / price_1Smafd...
-Demi-sec: 37,5cl / 75cl / Magnum / Carton6 = price_1SmXNe... / price_1SmahX... / price_1SmahL... / price_1SmahB...
+Brut: 75cl / Magnum / Carton6 = price_1SuZHH... / price_1SwjyP... / price_1SuZId...
+Rosé: 75cl / Magnum / Carton6 = price_1SmXMc... / price_1Smafn... / price_1Smafv...
+Demi-sec: 75cl / Magnum / Carton6 = price_1SmXNe... / price_1SmahL... / price_1SmahX...

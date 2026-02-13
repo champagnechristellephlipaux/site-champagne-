@@ -880,3 +880,294 @@ details.more h4{
 .totals{ margin-bottom:12px; }
 .totals-row{ display:flex; justify-content:space-between; font-weight:900; margin-bottom:6px; }
 .drawer-actions{ display:flex; gap:10px; }
+
+/* --- Consent overlays (age + cookies) --- */
+#age-gate-overlay, #cookie-banner { font-family: inherit; }
+#age-gate-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  display: none;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(2px);
+}
+#age-gate-overlay.is-open { display: flex; align-items: center; justify-content: center; padding: 18px; }
+.age-gate-card{
+  width: min(560px, 100%);
+  background: rgba(15,18,20,.96);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 18px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.45);
+  overflow: hidden;
+}
+.age-gate-card .age-gate-inner{ padding: 22px; }
+.age-gate-title{ font-weight: 800; letter-spacing: .02em; margin: 0 0 6px 0; font-size: 20px; }
+.age-gate-text{ margin: 0 0 14px 0; color: rgba(255,255,255,.85); line-height: 1.5; }
+.age-gate-actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px; }
+.age-gate-actions .btn{ cursor:pointer; }
+.age-gate-actions .btn.secondary{
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.25);
+  color: #fff;
+}
+.age-gate-actions .btn.secondary:hover{ border-color: rgba(255,255,255,.45); }
+.age-gate-small{
+  margin-top: 12px;
+  font-size: 12px;
+  color: rgba(255,255,255,.7);
+}
+.age-gate-small a{ color: rgba(255,255,255,.9); text-decoration: underline; }
+
+#cookie-banner{
+  position: fixed;
+  left: 14px; right: 14px; bottom: 14px;
+  z-index: 9998;
+  display: none;
+}
+#cookie-banner.is-open{ display:block; }
+.cookie-card{
+  max-width: 980px;
+  margin: 0 auto;
+  background: rgba(15,18,20,.96);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.35);
+  padding: 14px 14px;
+}
+.cookie-row{ display:flex; gap:14px; align-items:flex-start; justify-content: space-between; flex-wrap: wrap; }
+.cookie-text{ max-width: 680px; }
+.cookie-title{ font-weight:800; margin:0 0 4px 0; font-size: 14px; letter-spacing:.02em; }
+.cookie-desc{ margin:0; font-size: 13px; color: rgba(255,255,255,.82); line-height: 1.45; }
+.cookie-desc a{ color: rgba(255,255,255,.92); text-decoration: underline; }
+.cookie-actions{ display:flex; gap:10px; flex-wrap: wrap; }
+.cookie-actions .btn{ padding: 10px 14px; font-size: 13px; cursor:pointer; }
+.cookie-actions .btn.secondary{
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.25);
+  color: #fff;
+}
+.cookie-actions .btn.secondary:hover{ border-color: rgba(255,255,255,.45); }
+
+@media (max-width: 520px){
+  #cookie-banner{ left: 10px; right: 10px; bottom: 10px; }
+  .cookie-card{ padding: 12px; }
+}
+
+
+/* =========================
+   Immersive Experience v1
+   (sensorial, calm, premium)
+   ========================= */
+
+html{ scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+
+/* Subtle grain / texture without images */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  opacity:.35;
+  background:
+    radial-gradient(1px 1px at 20% 10%, rgba(255,255,255,.035) 0 1px, transparent 2px),
+    radial-gradient(1px 1px at 60% 30%, rgba(255,255,255,.028) 0 1px, transparent 2px),
+    radial-gradient(1px 1px at 80% 70%, rgba(255,255,255,.022) 0 1px, transparent 2px),
+    radial-gradient(1px 1px at 30% 80%, rgba(255,255,255,.02) 0 1px, transparent 2px);
+  background-size: 240px 240px, 320px 320px, 420px 420px, 520px 520px;
+}
+
+/* Header refinement */
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  backdrop-filter:saturate(120%) blur(10px);
+  background: linear-gradient(180deg, rgba(6,6,6,.86), rgba(6,6,6,.46));
+  border-bottom:1px solid rgba(255,255,255,.10);
+}
+header .nav{ padding-top:10px; padding-bottom:10px; }
+.brand-logo{ filter: drop-shadow(0 10px 30px rgba(0,0,0,.45)); }
+
+.nav-toggle{
+  display:none;
+  border:1px solid rgba(255,255,255,.22);
+  background: rgba(10,10,10,.42);
+  color: var(--text);
+  border-radius: 14px;
+  padding: 10px 12px;
+  cursor:pointer;
+}
+.nav-toggle:focus-visible{ outline:2px solid rgba(207,211,216,.55); outline-offset:2px; }
+.nav-toggle-icon{ display:inline-grid; gap:4px; }
+.nav-toggle-icon span{
+  display:block;
+  width: 18px; height:2px;
+  background: rgba(255,255,255,.82);
+  border-radius: 2px;
+}
+
+@media (max-width: 900px){
+  .nav{ gap:12px; }
+  .nav-toggle{ display:inline-flex; align-items:center; justify-content:center; }
+  .menu{ display:none; }
+  body.nav-open .menu{
+    display:flex;
+    position:fixed;
+    top:64px;
+    left:14px; right:14px;
+    padding:14px 14px;
+    border-radius: 18px;
+    background: rgba(10,10,10,.92);
+    border: 1px solid rgba(255,255,255,.14);
+    box-shadow: 0 22px 70px rgba(0,0,0,.65);
+    flex-direction: column;
+    gap: 10px;
+  }
+  body.nav-open .menu a{ padding: 10px 10px; border-radius: 12px; }
+  body.nav-open .menu a:hover{ background: rgba(255,255,255,.06); }
+}
+
+/* Page hero (all pages) */
+.page-hero{
+  position:relative;
+  min-height: 58vh;
+  display:flex;
+  align-items:flex-end;
+  overflow:hidden;
+  border-bottom: 1px solid rgba(255,255,255,.10);
+}
+.page-hero-media{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform: scale(1.03);
+  filter: saturate(95%) contrast(105%);
+}
+.page-hero-overlay{
+  position:absolute;
+  inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,.20) 0%, rgba(0,0,0,.74) 65%, rgba(0,0,0,.92) 100%);
+}
+.page-hero-inner{
+  position:relative;
+  padding: 84px 0 46px 0;
+}
+.page-hero-title{
+  margin: 10px 0 10px 0;
+  letter-spacing: .02em;
+}
+.page-hero-sub{
+  margin: 0;
+  max-width: 64ch;
+  color: rgba(255,255,255,.78);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.scroll-cue{
+  margin-top: 14px;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border: 1px solid rgba(255,255,255,.18);
+  color: rgba(255,255,255,.86);
+  background: rgba(10,10,10,.25);
+  animation: cue 2.8s ease-in-out infinite;
+}
+@keyframes cue{
+  0%,100%{ transform: translateY(0); opacity:.85; }
+  50%{ transform: translateY(6px); opacity:.55; }
+}
+@media (prefers-reduced-motion: reduce){
+  .page-hero-media{ transform:none; }
+  .scroll-cue{ animation:none; }
+}
+
+/* Section rhythm */
+.section{ padding: 76px 0; }
+.section .h2{ font-family: 'Cinzel', var(--serif); letter-spacing:.02em; }
+.kicker{
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: rgba(255,255,255,.70);
+}
+.lead{ line-height:1.75; }
+
+/* Cards: more air + calm hover */
+.card{
+  border: 1px solid rgba(255,255,255,.12);
+  background: linear-gradient(180deg, rgba(14,14,14,.72), rgba(10,10,10,.58));
+}
+.card:hover{
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,.18);
+}
+
+/* Reveal */
+.reveal, [data-reveal]{
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 900ms ease, transform 900ms ease;
+  will-change: opacity, transform;
+}
+.reveal.is-visible, [data-reveal].is-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce){
+  .reveal, [data-reveal]{ opacity:1; transform:none; transition:none; }
+}
+
+/* Sensorial quote blocks */
+.quote-block{
+  border-left: 2px solid rgba(207,211,216,.55);
+  padding-left: 16px;
+  margin: 18px 0;
+  color: rgba(255,255,255,.82);
+  font-style: italic;
+}
+
+/* CTA refinement */
+.btn{
+  transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease, background 240ms ease;
+}
+.btn:hover{ transform: translateY(-1px); box-shadow: 0 10px 28px rgba(0,0,0,.32); }
+.btn:active{ transform: translateY(0); }
+
+/* Accessibility: focus */
+a:focus-visible, button:focus-visible{
+  outline: 2px solid rgba(207,211,216,.55);
+  outline-offset: 2px;
+}
+
+/* Reduce harsh dividers */
+.hr{ opacity:.65; }
+
+
+/* --- Cart shipping progress (UX) --- */
+.ship-progress{
+  width: 100%;
+  height: 8px;
+  background: rgba(255,255,255,0.10);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+.ship-progress-bar{
+  height: 100%;
+  width: 0%;
+  background: rgba(255,255,255,0.55);
+  border-radius: 999px;
+  transition: width 300ms ease;
+}
+.ship-progress-text{
+  margin-top: 6px;
+  opacity: 0.85;
+}

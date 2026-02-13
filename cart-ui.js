@@ -9,6 +9,7 @@ import {
   cartCount,
   getItemMeta,
   formatEuro,
+  shippingTotals,
 } from "./cart.js";
 import { startCheckout } from "./checkout.js";
 
@@ -46,6 +47,17 @@ function renderCart() {
   if (!items.length) {
     body.innerHTML = `<div class="empty">Votre panier est vide.</div>`;
     subtotalEl.textContent = "0€";
+
+    // Affichage livraison/progression même panier vide (UX)
+    const shipEl = $("#cartShipping");
+    if (shipEl) shipEl.textContent = "—";
+    const bar = $("#shipProgressBar");
+    const txt = $("#shipProgressText");
+    const note = $("#cartShipNote");
+    if (bar) bar.style.width = "0%";
+    if (txt) txt.textContent = "Ajoutez 6 bouteilles (75 cl) pour obtenir la livraison offerte.";
+    if (note) note.textContent = "Livraison offerte dès 6 bouteilles (75 cl/carton). Magnum : +10€ / magnum.";
+
     return;
   }
 
@@ -86,6 +98,35 @@ function renderCart() {
 
   const totals = cartTotals(items);
   subtotalEl.textContent = formatEuro(totals.subtotal);
+
+  // Livraison (affichage indicatif : la logique finale est appliquée au checkout)
+  const ship = shippingTotals(items);
+  const shipEl = $("#cartShipping");
+  if (shipEl) shipEl.textContent = ship.shippingTotal === 0 ? "Offerte" : formatEuro(ship.shippingTotal);
+
+  const bar = $("#shipProgressBar");
+  const txt = $("#shipProgressText");
+  const note = $("#cartShipNote");
+
+  if (bar && txt) {
+    const target = 6;
+    const progress = Math.min(1, (ship.bottles75 || 0) / target);
+    bar.style.width = `${Math.round(progress * 100)}%`;
+
+    if ((ship.bottles75 || 0) >= target) {
+      txt.textContent = "Livraison offerte atteinte (6 bouteilles ou plus).";
+    } else {
+      const remaining = target - (ship.bottles75 || 0);
+      txt.textContent = `Plus que ${remaining} bouteille(s) (75 cl) pour obtenir la livraison offerte.`;
+    }
+  }
+
+  if (note) {
+    // Mentionner les frais magnum si présent
+    note.textContent = (ship.magnums || 0) > 0
+      ? "Livraison offerte dès 6 bouteilles (75 cl). Magnum : 10€ par magnum."
+      : "Livraison offerte dès 6 bouteilles (75 cl).";
+  }
 }
 
 function currentFormat(sku) {
