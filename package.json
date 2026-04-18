@@ -1,0 +1,28 @@
+{
+  "name": "champagne-christelle-phlipaux",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "netlify dev",
+    "dev:static": "serve -l 8000 .",
+    "lint": "npm run lint:js && npm run lint:html",
+    "lint:js": "eslint \"*.js\" \"netlify/functions/**/*.js\"",
+    "lint:html": "htmlhint --config .htmlhintrc \"*.html\"",
+    "format": "prettier --write \"*.{css,html,js,json,md}\" \"data/**/*.json\" \"netlify/functions/**/*.js\"",
+    "format:check": "prettier --check \"*.{css,html,js,json,md}\" \"data/**/*.json\" \"netlify/functions/**/*.js\"",
+    "check": "npm run lint && npm run format:check",
+    "build": "npm run check"
+  },
+  "dependencies": {
+    "stripe": "^16.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "globals": "^15.0.0",
+    "htmlhint": "^1.1.4",
+    "netlify-cli": "^17.0.0",
+    "prettier": "^3.0.0",
+    "serve": "^14.2.0"
+  }
+}

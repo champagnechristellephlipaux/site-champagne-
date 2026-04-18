@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# Dependencies
+node_modules/
+
+# Local Netlify state
+.netlify/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Delivery archives / old snapshots
+*.zip
+champagne_christelle_phlipaux_maison_terroir_cuvees_v8/

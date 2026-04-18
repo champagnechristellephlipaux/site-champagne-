@@ -1,0 +1,23 @@
+{
+  "updated_at": "2026-04-01",
+  "template": {
+    "id": "review-001",
+    "author": "Prenom ou pseudo",
+    "city": "Ville",
+    "title": "Titre court de l'avis",
+    "body": "Texte de l'avis valide et relu avant publication.",
+    "rating": 5,
+    "cuvee": "Brut Tradition",
+    "context": "Aperitif, cadeau, livraison, visite, evenement...",
+    "date": "2026-04-01",
+    "featured": true,
+    "published": true
+  },
+  "rules": {
+    "rating": "Nombre entier de 1 a 5",
+    "date": "Format YYYY-MM-DD",
+    "featured": "true pour mettre l'avis en avant sur l'accueil et la boutique",
+    "published": "false si l'avis doit rester masque"
+  },
+  "reviews": []
+}

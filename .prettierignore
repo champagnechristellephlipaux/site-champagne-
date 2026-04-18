@@ -1,0 +1,6 @@
+.DS_Store
+*.zip
+assets/
+AGENTS.md/
+champagne_christelle_phlipaux_maison_terroir_cuvees_v8/
+node_modules/
