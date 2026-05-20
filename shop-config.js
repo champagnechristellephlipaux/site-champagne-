@@ -59,16 +59,16 @@ export const PRODUCTS = [
 ];
 
 export const FORMATS = [
-  { key: "750", label: "75 cl", hint: "Format découverte" },
-  { key: "magnum", label: "Magnum 1,5 L", hint: "Format réception" },
-  { key: "carton6", label: "Carton (6 × 75 cl)", hint: "Livraison offerte" },
+  { key: "750", label: "75 cl", hint: "Format de service" },
+  { key: "magnum", label: "Magnum 1,5 L", hint: "Grande table" },
+  { key: "carton6", label: "Carton (6 × 75 cl)", hint: "Expédition incluse" },
 ];
 
 export const CURATED_OFFERS = {
   "trio-decouverte": {
-    name: "Trio Découverte Maison",
+    name: "Trio de la maison",
     summary: "Brut Tradition, Brut Rosé et Demi-Sec en 75 cl",
-    focus: "Pour découvrir le style de la maison dans ses trois lectures",
+    focus: "Pour lire Channes en trois cuvées, sans discours inutile",
     items: [
       { sku: "brut", format: "750", qty: 1 },
       { sku: "rose", format: "750", qty: 1 },
@@ -76,28 +76,28 @@ export const CURATED_OFFERS = {
     ],
   },
   "table-de-fete": {
-    name: "Sélection Table de Fête",
+    name: "Table de fête maison",
     summary: "2 Brut Tradition et 1 Brut Rosé",
-    focus: "Pour recevoir de l'apéritif à la table avec une même ligne",
+    focus: "Pour recevoir avec la ligne droite du Brut et l'éclat du Rosé",
     items: [
       { sku: "brut", format: "750", qty: 2 },
       { sku: "rose", format: "750", qty: 1 },
     ],
   },
   "rose-a-offrir": {
-    name: "Rosé à Offrir",
+    name: "Brut Rosé à offrir",
     summary: "1 bouteille de Brut Rosé 75 cl",
-    focus: "Pour une attention juste, simple et soignée",
+    focus: "Pour remercier avec fruit, tenue et discrétion",
     items: [{ sku: "rose", format: "750", qty: 1 }],
   },
   "magnum-reception": {
     name: "Magnum Réception",
     summary: "1 magnum de Brut Tradition 1,5 L",
-    focus: "Pour une table de 6 à 8 convives et un service plus ample",
+    focus: "Pour servir la ligne de Channes à une grande table",
     items: [{ sku: "brut", format: "magnum", qty: 1 }],
   },
   "douceur-gourmande": {
-    name: "Demi-Sec Gourmand",
+    name: "Demi-Sec gourmand",
     summary: "1 bouteille de Demi-Sec 75 cl",
     focus:
       "Pour le foie gras, les desserts peu sucrés et les accords de contraste",
@@ -106,7 +106,7 @@ export const CURATED_OFFERS = {
   "cadeau-entreprise": {
     name: "Carton Signature Maison",
     summary: "1 carton de 6 Brut Tradition 75 cl",
-    focus: "Pour recevoir sereinement ou garder du Brut à la maison",
+    focus: "Pour garder le Brut de Channes prêt à servir",
     items: [{ sku: "brut", format: "carton6", qty: 1 }],
   },
 };

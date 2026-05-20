@@ -2,10 +2,10 @@ import { STRIPE_PRICE_IDS } from "./shop-config.js";
 import { loadCart } from "./cart.js";
 
 const CONTACT_HELP =
-  " La maison peut reprendre la commande au +33 6 82 20 34 30 ou par mail à champagne.christelle.phlipaux@gmail.com.";
+  "\nVotre panier reste conservé. La maison peut reprendre la commande avec vous : +33 6 82 20 34 30 ou champagne.christelle.phlipaux@gmail.com.";
 
-function notifyCheckoutIssue(message) {
-  const fullMessage = `${message}${CONTACT_HELP}`;
+function notifyCheckoutIssue(message, { showContact = true } = {}) {
+  const fullMessage = `${message}${showContact ? CONTACT_HELP : ""}`;
   window.dispatchEvent(
     new CustomEvent("checkout:issue", {
       detail: { message: fullMessage },
@@ -23,7 +23,7 @@ function parseServerError(raw) {
     const parsed = JSON.parse(raw);
     return parsed?.error || "";
   } catch {
-    return raw.length < 180 ? raw : "";
+    return "";
   }
 }
 
@@ -40,20 +40,20 @@ function validatePriceIds(items) {
 export async function startCheckout() {
   const items = loadCart();
   if (!items.length) {
-    notifyCheckoutIssue(
-      "Votre sélection est vide. Ajoutez une cuvée avant d’ouvrir le paiement sécurisé.",
-    );
+    notifyCheckoutIssue("Choisissez d’abord une cuvée.", {
+      showContact: false,
+    });
     return;
   }
 
   const missing = validatePriceIds(items);
   if (missing.length) {
     console.error(
-      "Price IDs Stripe manquants pour la sélection en cours.",
+      "Price IDs Stripe manquants pour le panier en cours.",
       missing,
     );
     notifyCheckoutIssue(
-      "La page de paiement ne peut pas être préparée pour cette sélection.",
+      "Ce format mérite une confirmation de la maison avant paiement.",
     );
     return;
   }
@@ -75,22 +75,16 @@ export async function startCheckout() {
       console.error(txt);
       const errorMessage = parseServerError(txt);
       notifyCheckoutIssue(
-        errorMessage ||
-          "Le paiement sécurisé ne peut pas être ouvert pour le moment. Merci de réessayer dans quelques instants.",
+        errorMessage || "La page de paiement ne s’ouvre pas pour le moment.",
       );
       return;
     }
 
     const data = await res.json();
     if (data?.url) window.location.href = data.url;
-    else
-      notifyCheckoutIssue(
-        "Le paiement n’a pas pu être initialisé. Relisez votre sélection puis réessayez.",
-      );
+    else notifyCheckoutIssue("Le lien de paiement n’a pas pu être créé.");
   } catch (err) {
     console.error(err);
-    notifyCheckoutIssue(
-      "La connexion au paiement sécurisé est momentanément indisponible. Merci de réessayer dans quelques instants.",
-    );
+    notifyCheckoutIssue("La page de paiement ne répond pas pour l’instant.");
   }
 }

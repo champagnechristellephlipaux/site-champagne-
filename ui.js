@@ -17,7 +17,8 @@
   const NAV_ITEMS = [
     {
       href: "cuvees.html",
-      label: "Les Cuvées",
+      label: "Cuvées",
+      group: "primary",
       matches: [
         "cuvees.html",
         "brut-tradition.html",
@@ -25,11 +26,6 @@
         "demi-sec.html",
       ],
       className: "nav-link--featured",
-    },
-    {
-      href: "cadeaux.html",
-      label: "Offrir",
-      matches: ["cadeaux.html", "evenements.html"],
     },
     {
       href: "maison.html",
@@ -41,18 +37,24 @@
         "visites-degustations.html",
       ],
     },
+    {
+      href: "cadeaux.html",
+      label: "Offrir",
+      matches: ["cadeaux.html", "evenements.html"],
+    },
+    {
+      href: "index.html#contact",
+      label: "Contact",
+      className: "nav-link--subtle nav-link--contact",
+      mobileUtility: true,
+      disableActive: true,
+    },
   ];
 
   const HEADER_ACTIONS = [
     {
-      href: "index.html#contact",
-      label: "Contact",
-      className: "nav-contact-link",
-      disableActive: true,
-    },
-    {
       href: "boutique.html",
-      label: "Commander",
+      label: "Boutique",
       className: "btn primary nav-primary-cta",
       matches: ["boutique.html", "livraison-paiement.html", "merci.html"],
     },
@@ -109,7 +111,7 @@
       '<picture><source srcset="assets/logo-trans.webp" type="image/webp"/><img alt="Logo Champagne Christelle Phlipaux" class="brand-logo" decoding="async" height="204" loading="lazy" src="assets/logo-trans.png" width="242"/></picture>',
       '<div class="brand-text">',
       '<div class="brand-title"><span class="brand-champagne">Champagne</span> <span class="brand-name">Christelle Phlipaux</span></div>',
-      '<div class="brand-sub"><span>Maison de vigneron</span><span>Channes, Côte des Bar</span></div>',
+      '<div class="brand-sub"><span>Viticultrice indépendante</span><span>Channes, Côte des Bar</span></div>',
       "</div>",
       "</a>",
     ].join("");
@@ -130,19 +132,30 @@
 
     const { shell } = parts;
     const hasCart = Boolean(document.querySelector("#cartDrawer"));
-    const links = NAV_ITEMS.map((item) => buildMenuLink(item)).join("");
+    const primaryLinks = NAV_ITEMS.filter((item) => item.group === "primary")
+      .map((item) => buildMenuLink(item))
+      .join("");
+    const secondaryLinks = NAV_ITEMS.filter((item) => item.group !== "primary")
+      .map((item) => buildMenuLink(item))
+      .join("");
+    const mobileUtilityLinks = NAV_ITEMS.filter((item) => item.mobileUtility)
+      .map((item) => buildMenuLink(item, "nav-mobile-utility-link"))
+      .join("");
     const actions = [
-      buildMenuLink(HEADER_ACTIONS[0]),
       hasCart ? buildCartAction() : "",
-      buildMenuLink(HEADER_ACTIONS[1]),
+      buildMenuLink(HEADER_ACTIONS[0]),
     ].join("");
 
     shell.classList.add("nav-shell");
     shell.innerHTML = [
       buildBrand(),
       '<div class="nav-panel" id="siteNavPanel">',
-      `<nav aria-label="Navigation principale" class="menu">${links}</nav>`,
+      '<div class="nav-mobile-priority">',
+      `<nav aria-label="Navigation principale" class="menu menu--primary">${primaryLinks}</nav>`,
       `<div class="nav-actions${hasCart ? " nav-actions--has-cart" : ""}">${actions}</div>`,
+      "</div>",
+      `<nav aria-label="Navigation secondaire" class="menu menu--secondary">${secondaryLinks}</nav>`,
+      `<div class="nav-mobile-utility">${mobileUtilityLinks}</div>`,
       "</div>",
     ].join("");
   }
@@ -341,10 +354,10 @@
       '<div class="brand-sub">Channes — Côte des Bar</div>',
       "</div>",
       "</a>",
-      '<div class="small">Trois cuvées de vigneron, un vignoble à Channes, une cave et un conseil direct depuis la propriété.</div>',
+      '<div class="small">Un vignoble à Channes, une cave sur place, trois cuvées tenues à la propriété.</div>',
       '<div class="footer-trust">',
       "<span>Channes, Côte des Bar</span>",
-      "<span>3 cuvées de vigneron</span>",
+      "<span>3 cuvées suivies</span>",
       "<span>Vente directe</span>",
       "<span>Paiement sécurisé</span>",
       "</div>",
@@ -357,7 +370,7 @@
       '<div><a href="champagne-de-vigneron.html">Champagne de vigneron</a></div>',
       "</div>",
       "<div>",
-      '<div class="footer-heading">Commander & visiter</div>',
+      '<div class="footer-heading">Commander et venir</div>',
       '<div><a href="boutique.html">Boutique</a></div>',
       '<div><a href="livraison-paiement.html">Livraison & paiement</a></div>',
       '<div><a href="depositaires.html">Dépositaires</a></div>',

@@ -1,11 +1,12 @@
 // Netlify Function: create-checkout-session
 // Netlify Function: create-checkout-session
 // Shipping rules (manuel, selon nb de bouteilles)
-// - Livraison offerte dès 6 bouteilles (équivalent 75cl, carton inclus)
+// - Expédition incluse dès 6 bouteilles (équivalent 75cl, carton inclus)
 // - 1 bouteille: 12€ | 2: 10€ | 3: 6€ | 4-5: 10€
 // - Magnum: 10€ par magnum (cumulatif)
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const MAX_ITEM_QTY = 48;
 
 const CARTON_PRICE_IDS = new Set([
   "price_1SuZIdD96OJnHwPGUzPgaC7b", // Brut carton
@@ -38,8 +39,7 @@ function buildShippingOption(amount) {
       shipping_rate_data: {
         type: "fixed_amount",
         fixed_amount: { amount, currency: "eur" },
-        display_name:
-          amount === 0 ? "Expédition offerte" : "Expédition soignée",
+        display_name: amount === 0 ? "Expédition incluse" : "Livraison soignée",
         delivery_estimate: {
           minimum: { unit: "business_day", value: 2 },
           maximum: { unit: "business_day", value: 5 },
@@ -53,7 +53,7 @@ exports.handler = async (event) => {
   try {
     if (event.httpMethod !== "POST") {
       return json(405, {
-        error: "Le paiement doit être ouvert depuis le panier du site.",
+        error: "Ouvrez le paiement depuis le panier.",
       });
     }
 
@@ -62,8 +62,7 @@ exports.handler = async (event) => {
       body = JSON.parse(event.body || "{}");
     } catch {
       return json(400, {
-        error:
-          "La sélection n’a pas pu être lue. Relisez le panier puis réessayez.",
+        error: "Le panier n’a pas pu être lu. Rouvrez-le pour continuer.",
       });
     }
 
@@ -71,8 +70,7 @@ exports.handler = async (event) => {
 
     if (!Array.isArray(line_items) || line_items.length === 0) {
       return json(400, {
-        error:
-          "Votre sélection est vide. Ajoutez une cuvée avant de passer au paiement.",
+        error: "Choisissez une cuvée avant de continuer.",
       });
     }
 
@@ -80,15 +78,18 @@ exports.handler = async (event) => {
 
     for (const item of line_items) {
       const quantity = Number(item?.quantity);
+      if (!item?.price) {
+        return json(400, {
+          error: "Ce format doit être confirmé par la maison avant paiement.",
+        });
+      }
       if (
-        !item?.price ||
         !Number.isInteger(quantity) ||
         quantity < 1 ||
-        quantity > 48
+        quantity > MAX_ITEM_QTY
       ) {
         return json(400, {
-          error:
-            "Un format ou une quantité n’est pas lisible. Relisez la sélection puis réessayez.",
+          error: "Choisissez une quantité entre 1 et 48 par format.",
         });
       }
       normalizedLineItems.push({ price: item.price, quantity });
@@ -96,7 +97,7 @@ exports.handler = async (event) => {
 
     if (!process.env.STRIPE_SECRET_KEY) {
       return json(500, {
-        error: "Le paiement sécurisé n’est pas encore configuré côté serveur.",
+        error: "Le paiement en ligne doit être confirmé par la maison.",
       });
     }
 
@@ -121,7 +122,7 @@ exports.handler = async (event) => {
       // Inconnu : par défaut, ne compte pas dans la livraison
     }
 
-    // Barème 75cl : livraison offerte dès 6 (carton inclus)
+    // Barème 75cl : expédition incluse dès 6 (carton inclus)
     let shipping75Cents = 0;
     if (bottles75 >= 6) shipping75Cents = 0;
     else if (bottles75 === 5 || bottles75 === 4) shipping75Cents = 1000;
@@ -153,16 +154,17 @@ exports.handler = async (event) => {
       locale: "fr",
       customer_creation: "if_required",
       billing_address_collection: "auto",
+      phone_number_collection: { enabled: false },
       shipping_address_collection: { allowed_countries: ["FR"] },
       shipping_options,
       custom_text: {
         shipping_address: {
           message:
-            "Livraison en France métropolitaine. Aucun compte n’est nécessaire pour régler la commande.",
+            "Livraison en France métropolitaine. Aucun compte client ni téléphone n’est demandé.",
         },
         submit: {
           message:
-            "Vous validez le paiement sécurisé après relecture du montant, de l’adresse et de la livraison.",
+            "Dernière vérification : montant, adresse et livraison avant paiement.",
         },
       },
       metadata: {
@@ -175,8 +177,7 @@ exports.handler = async (event) => {
   } catch (err) {
     console.error(err);
     return json(500, {
-      error:
-        "Le paiement sécurisé ne peut pas être ouvert pour le moment. Réessayez dans quelques instants.",
+      error: "La page de paiement ne répond pas pour l’instant.",
     });
   }
 };

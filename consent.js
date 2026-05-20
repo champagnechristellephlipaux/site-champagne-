@@ -89,7 +89,7 @@
                 html: "L’abus d’alcool est dangereux pour la santé, à consommer avec modération. ",
               }),
               el("a", { href: "politique-confidentialite.html" }, [
-                "En savoir plus",
+                "Lire la confidentialité",
               ]),
             ]),
           ]),
@@ -119,7 +119,7 @@
               el("div", { class: "cookie-title" }, ["Cookies"]),
               el("p", {
                 class: "cookie-desc",
-                html: 'Nous utilisons des cookies strictement nécessaires au fonctionnement du site et, avec votre accord, des cookies de mesure d’audience pour améliorer votre expérience. <a href="politique-confidentialite.html">En savoir plus</a>.',
+                html: 'Nous utilisons des cookies strictement nécessaires au fonctionnement du site et, avec votre accord, des cookies de mesure d’audience pour améliorer votre expérience. <a href="politique-confidentialite.html">Lire la confidentialité</a>.',
               }),
             ]),
             el("div", { class: "cookie-actions" }, [

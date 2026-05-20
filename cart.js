@@ -1,6 +1,13 @@
 import { PRODUCTS, FORMATS, PRICE_EUR } from "./shop-config.js";
 
 const CART_KEY = "cp_cart_v1";
+export const MAX_ITEM_QTY = 48;
+
+function normalizeQty(qty) {
+  const parsed = Number.parseInt(qty, 10);
+  if (!Number.isFinite(parsed)) return 1;
+  return Math.min(MAX_ITEM_QTY, Math.max(1, parsed));
+}
 
 export function loadCart() {
   try {
@@ -19,14 +26,15 @@ export function addToCart(sku, formatKey, qty = 1) {
     PRICE_EUR?.[sku] && PRICE_EUR[sku][formatKey] != null ? formatKey : "750";
   const items = loadCart();
   const existing = items.find((i) => i.sku === sku && i.format === safeFormat);
-  if (existing) existing.qty += qty;
-  else items.push({ sku, format: safeFormat, qty });
+  if (existing)
+    existing.qty = normalizeQty(normalizeQty(existing.qty) + normalizeQty(qty));
+  else items.push({ sku, format: safeFormat, qty: normalizeQty(qty) });
   saveCart(items);
 }
 export function setQty(index, qty) {
   const items = loadCart();
   if (!items[index]) return;
-  items[index].qty = Math.max(1, qty | 0);
+  items[index].qty = normalizeQty(qty);
   saveCart(items);
 }
 export function removeItem(index) {
@@ -74,7 +82,7 @@ export function equivalent75clPrice(sku, formatKey) {
 }
 
 // --- Livraison (affichage UX) ---
-// Règles (75cl / cartons) : livraison offerte dès 6 bouteilles (équivalent 75cl)
+// Règles (75cl / cartons) : expédition incluse dès 6 bouteilles (équivalent 75cl)
 // - 1 bouteille : 12€
 // - 2 bouteilles : 10€ (total)
 // - 3 bouteilles : 6€ (total)

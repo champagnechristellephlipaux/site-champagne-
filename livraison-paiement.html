@@ -8,12 +8,9 @@
     <meta content="telephone=no" name="format-detection" />
     <meta content="Champagne Christelle Phlipaux" name="author" />
     <link href="/assets/logo-trans.png" rel="icon" type="image/png" />
-    <title>
-      Livraison &amp; règlement sécurisé | Boutique de la maison | Champagne
-      Christelle Phlipaux
-    </title>
+    <title>Livraison et paiement | Repères avant commande</title>
     <meta
-      content="Repères de livraison, de règlement sécurisé et de contact direct pour commander les cuvées de Champagne Christelle Phlipaux en toute clarté."
+      content="Livraison, paiement sécurisé, préparation des commandes et contact direct : les repères utiles pour commander les cuvées de la maison en confiance."
       name="description"
     />
     <link
@@ -25,11 +22,11 @@
     <meta content="Champagne Christelle Phlipaux" property="og:site_name" />
     <meta content="fr_FR" property="og:locale" />
     <meta
-      content="Livraison &amp; règlement sécurisé | Boutique de la maison | Champagne Christelle Phlipaux"
+      content="Livraison &amp; paiement sécurisé | Boutique de la maison | Champagne Christelle Phlipaux"
       property="og:title"
     />
     <meta
-      content="Repères de livraison, de règlement sécurisé et de contact direct pour commander les cuvées de Champagne Christelle Phlipaux en toute clarté."
+      content="Repères de livraison, de paiement sécurisé et de contact direct pour commander les cuvées de Champagne Christelle Phlipaux en toute clarté."
       property="og:description"
     />
     <meta
@@ -46,11 +43,11 @@
     />
     <meta content="summary_large_image" name="twitter:card" />
     <meta
-      content="Livraison &amp; règlement sécurisé | Boutique de la maison | Champagne Christelle Phlipaux"
+      content="Livraison &amp; paiement sécurisé | Boutique de la maison | Champagne Christelle Phlipaux"
       name="twitter:title"
     />
     <meta
-      content="Repères de livraison, de règlement sécurisé et de contact direct pour commander les cuvées de Champagne Christelle Phlipaux en toute clarté."
+      content="Repères de livraison, de paiement sécurisé et de contact direct pour commander les cuvées de Champagne Christelle Phlipaux en toute clarté."
       name="twitter:description"
     />
     <meta
@@ -131,7 +128,7 @@
               "name": "Quels sont les frais de livraison ?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Le barème dépend du nombre de bouteilles 75 cl et des magnums. La livraison est offerte dès 6 bouteilles 75 cl. Les magnums ont des frais spécifiques."
+                "text": "Le barème dépend du nombre de bouteilles 75 cl et des magnums. L’expédition est incluse dès 6 bouteilles 75 cl. Les magnums ont des frais spécifiques."
               }
             },
             {
@@ -139,7 +136,7 @@
               "name": "Le paiement est-il sécurisé ?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Oui. Le paiement s'effectue via Stripe, sur une page de paiement sécurisée."
+                "text": "Oui. Le paiement s'effectue en ligne sur une page sécurisée."
               }
             },
             {
@@ -147,7 +144,7 @@
               "name": "Faut-il créer un compte pour commander ?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Non. Le règlement peut être finalisé directement, sans création de compte."
+                "text": "Non. Le paiement peut être finalisé directement, sans création de compte."
               }
             },
             {
@@ -165,7 +162,7 @@
     <script defer="" src="consent.js"></script>
     <script defer src="ui.js"></script>
   </head>
-  <body>
+  <body class="page-checkout-info">
     <header>
       <div class="container nav">
         <a class="brand" href="index.html">
@@ -214,34 +211,62 @@
       <div class="container page-hero-inner">
         <div class="page-hero-copy">
           <div class="kicker">Boutique de la maison</div>
-          <h1 class="h1 page-hero-title">Livraison &amp; paiement</h1>
+          <h1 class="h1 page-hero-title">Livraison et paiement en direct</h1>
           <p class="page-hero-sub">
-            Adresse, frais, délai et règlement sécurisé restent lisibles jusqu’à
-            la validation.
+            Frais, délai, adresse et paiement restent lisibles avant validation.
           </p>
           <div class="hero-proof-row">
             <div class="hero-proof">
               <strong>France métropolitaine</strong
               ><span
-                >La livraison est prévue pour la France métropolitaine, avec
-                repères affichés avant validation.</span
+                >Livraison en France métropolitaine, avec repères visibles avant
+                paiement.</span
               >
             </div>
             <div class="hero-proof">
               <strong>Franco clair</strong
               ><span
-                >La livraison est offerte dès 6 bouteilles de 75 cl, hors
+                >Expédition incluse dès 6 bouteilles de 75 cl, hors
                 magnums.</span
               >
             </div>
             <div class="hero-proof">
               <strong>Paiement sécurisé</strong
-              ><span
-                >Le règlement est opéré via Stripe, sur une page dédiée et
-                sécurisée.</span
-              >
+              ><span>Paiement en ligne, sur une page sécurisée.</span>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+    <section class="section checkout-steps-section" style="padding-top: 0">
+      <div class="container">
+        <div class="kicker">Étapes</div>
+        <h2 class="h2">Trois repères avant paiement</h2>
+        <p class="p checkout-flow-intro">
+          Le panier reste lisible. Aucun compte client n’est demandé.
+        </p>
+        <div class="checkout-steps-grid" style="margin-top: 22px">
+          <article class="card pad checkout-step-card reveal">
+            <div class="badge">01</div>
+            <strong>Vérifier le panier</strong>
+            <p>
+              Cuvées, formats, quantités et total restent visibles avant de
+              continuer.
+            </p>
+          </article>
+          <article class="card pad checkout-step-card reveal">
+            <div class="badge">02</div>
+            <strong>Indiquer l’adresse</strong>
+            <p>
+              Adresse de livraison en France métropolitaine, sans création de
+              compte.
+            </p>
+          </article>
+          <article class="card pad checkout-step-card reveal">
+            <div class="badge">03</div>
+            <strong>Payer en sécurité</strong>
+            <p>Montant, adresse et livraison sont confirmés avant paiement.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -252,67 +277,63 @@
             <div class="badge">Livraison</div>
             <strong>France métropolitaine</strong>
             <p>
-              Les commandes sont livrées en France métropolitaine uniquement,
-              avec des délais indicatifs de 2 à 5 jours ouvrés selon la période.
+              Livraison en France métropolitaine, sous 2 à 5 jours ouvrés selon
+              la période.
             </p>
           </article>
           <article class="card pad support-card reveal">
-            <div class="badge">Règlement</div>
-            <strong>Règlement sécurisé via Stripe</strong>
+            <div class="badge">Paiement</div>
+            <strong>Paiement sécurisé</strong>
             <p>
-              Le règlement s’effectue sur une page sécurisée Stripe. Les frais
-              de livraison sont présentés avant confirmation du règlement.
+              Le paiement se fait en ligne. Les frais restent visibles avant
+              validation.
             </p>
           </article>
           <article class="card pad support-card reveal">
             <div class="badge">Conseil direct</div>
             <strong>Besoin d’un conseil avant de valider ?</strong>
             <p>
-              Un doute entre deux cuvées, un cadeau ou une commande plus
-              importante ? La maison reste joignable au
+              Un doute sur une cuvée, un cadeau ou une quantité ? La maison
+              reste joignable au
               <a href="tel:+33682203430">+33 6 82 20 34 30</a> ou par
               <a href="mailto:champagne.christelle.phlipaux@gmail.com">mail</a>
-              pour vous orienter rapidement.
+              .
             </p>
           </article>
         </div>
         <div class="trust-panel reveal" style="margin-top: 22px">
           <div class="trust-panel-head">
             <div class="kicker">Repères de confiance</div>
-            <h2 class="h3">Ce qui accompagne la commande jusqu’au règlement</h2>
+            <h2 class="h2">Repères de confiance avant paiement</h2>
             <p class="p">
-              La maison garde les informations essentielles visibles et reste
-              joignable si une quantité, un format ou une livraison doit être
-              confirmée.
+              Les informations utiles restent visibles. La maison reste
+              joignable si un format ou une livraison doit être confirmé.
             </p>
           </div>
           <div class="trust-panel-grid">
             <div class="trust-point">
               <strong>Maison indépendante</strong>
-              <span
-                >Commande directe depuis Channes, avec un interlocuteur réel si
-                besoin.</span
-              >
+              <span>Commande directe depuis Channes, sans intermédiaire.</span>
             </div>
             <div class="trust-point">
               <strong>Paiement sécurisé</strong>
               <span
-                >Le règlement s’effectue via Stripe après relecture du panier et
-                des frais.</span
+                >Montant, adresse et livraison restent confirmés avant
+                paiement.</span
               >
             </div>
             <div class="trust-point">
               <strong>Expédition soignée</strong>
               <span
-                >Préparation à la maison et délais indicatifs de 2 à 5 jours
-                ouvrés en France métropolitaine.</span
+                >Préparation à la maison, livraison sous 2 à 5 jours
+                ouvrés.</span
               >
             </div>
             <div class="trust-point">
-              <strong>Contact accessible</strong>
+              <strong>Service maison</strong>
               <span
-                >Téléphone, mail et adresse restent lisibles pour éviter toute
-                hésitation inutile.</span
+                >La maison peut confirmer un format ou une quantité avant
+                commande.</span
               >
             </div>
           </div>
@@ -328,63 +349,29 @@
     </main>
     <section class="section" style="padding-top: 0">
       <div class="container">
-        <div class="kicker">Étapes</div>
-        <h2 class="h2">Trois étapes, sans création de compte</h2>
-        <div class="checkout-steps-grid" style="margin-top: 22px">
-          <article class="card pad checkout-step-card reveal">
-            <div class="badge">1</div>
-            <strong>Sélection relue</strong>
-            <p>
-              Le panier garde les cuvées, formats, quantités, livraison estimée
-              et total visibles avant l’ouverture du paiement.
-            </p>
-          </article>
-          <article class="card pad checkout-step-card reveal">
-            <div class="badge">2</div>
-            <strong>Adresse &amp; livraison</strong>
-            <p>
-              Stripe recueille l’adresse en France métropolitaine et affiche les
-              frais avant validation, sans compte client à créer.
-            </p>
-          </article>
-          <article class="card pad checkout-step-card reveal">
-            <div class="badge">3</div>
-            <strong>Paiement sécurisé</strong>
-            <p>
-              Le règlement se fait sur Stripe après relecture du montant. La
-              confirmation arrive ensuite par email.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-    <section class="section" style="padding-top: 0">
-      <div class="container">
         <div class="kicker">Barème</div>
         <h2 class="h2">Frais de livraison annoncés clairement</h2>
         <div class="support-grid" style="margin-top: 22px">
           <article class="card pad support-card reveal">
             <div class="badge">75 cl</div>
-            <strong>Barème bouteille standard</strong>
+            <strong>Barème 75 cl</strong>
             <p>
-              1 bouteille: 12€<br />2 bouteilles: 10€<br />3 bouteilles: 6€<br />4
-              ou 5 bouteilles: 10€<br />6 bouteilles 75 cl ou plus: offerte
+              1 bouteille : 12€<br />2 bouteilles : 10€<br />3 bouteilles :
+              6€<br />4 ou 5 bouteilles : 10€<br />6 bouteilles 75 cl ou plus :
+              incluse
             </p>
           </article>
           <article class="card pad support-card reveal">
             <div class="badge">Magnum</div>
             <strong>Frais spécifiques</strong>
-            <p>
-              Les magnums ont un barème distinct: 10€ par magnum. Ce montant
-              s’ajoute au calcul éventuel des 75 cl quand la commande est mixte.
-            </p>
+            <p>Les magnums gardent un tarif propre : 10€ par magnum.</p>
           </article>
           <article class="card pad support-card reveal">
             <div class="badge">Rappel</div>
             <strong>Ce qui reste visible avant validation</strong>
             <p>
-              Le panier affiche le sous-total, la livraison estimée et le total
-              estimatif. Le montant final est relu sur Stripe avant validation.
+              Le panier affiche sous-total, livraison estimée et total avant
+              validation.
             </p>
           </article>
         </div>
@@ -393,33 +380,30 @@
     <section class="section" style="padding-top: 0">
       <div class="container">
         <div class="kicker">Avant validation</div>
-        <h2 class="h2">Ce qui réduit les hésitations avant la commande</h2>
+        <h2 class="h2">Commander avec des repères clairs</h2>
         <div class="support-grid" style="margin-top: 22px">
           <article class="card pad support-card reveal">
             <div class="badge">Lisibilité</div>
-            <strong>Une commande sans angle mort</strong>
+            <strong>Une commande facile à suivre</strong>
             <p>
-              Les cuvées, les formats, le panier, la livraison et le règlement
-              sont présentés clairement pour que la commande reste facile à
-              suivre jusqu’au bout, sur téléphone comme sur ordinateur.
+              Cuvées, formats, livraison et total restent faciles à suivre sur
+              téléphone comme sur ordinateur.
             </p>
           </article>
           <article class="card pad support-card reveal">
             <div class="badge">Conseil humain</div>
             <strong>Une maison joignable avant validation</strong>
             <p>
-              Si vous hésitez sur la quantité, le format ou l’accord, la maison
-              reste disponible pour éviter une erreur et rendre la commande plus
-              sûre.
+              Si vous hésitez sur la quantité ou l’accord, la maison peut
+              confirmer le choix.
             </p>
           </article>
           <article class="card pad support-card reveal">
-            <div class="badge">Checkout invité</div>
+            <div class="badge">Sans compte</div>
             <strong>Une validation directe, sans détour</strong>
             <p>
-              Le règlement ne demande pas de création de compte. Vous passez de
-              la sélection au paiement sécurisé en gardant les informations
-              utiles visibles.
+              Aucun compte client n’est demandé. Les informations utiles restent
+              visibles.
             </p>
           </article>
         </div>
@@ -427,18 +411,18 @@
     </section>
     <section class="section" id="faq" style="padding-top: 0">
       <div class="container">
-        <h2 class="h2">FAQ</h2>
+        <h2 class="h2">Questions utiles avant commande</h2>
         <ul class="faq">
           <li>
             <b>Où livrez-vous ?</b><br />En France métropolitaine uniquement.
           </li>
           <li>
-            <b>Le paiement est-il sécurisé ?</b><br />Oui. Le règlement
-            s’effectue via Stripe, sur une page de paiement sécurisée.
+            <b>Le paiement est-il sécurisé ?</b><br />Oui. Le paiement
+            s’effectue en ligne sur une page sécurisée.
           </li>
           <li>
             <b>Faut-il créer un compte pour commander ?</b><br />Non. Le
-            règlement peut être finalisé directement, sans création de compte.
+            paiement peut être finalisé directement, sans création de compte.
           </li>
           <li>
             <b>Peut-on commander pour offrir ?</b><br />Oui. Vous pouvez faire
