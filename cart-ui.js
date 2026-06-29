@@ -22,19 +22,22 @@ const prefersDirectScroll =
   window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
 
 const FORMAT_NOTES = {
+  "coffret-decouverte": {
+    coffret3: "Coffret • 3 bouteilles, livraison offerte",
+  },
   brut: {
-    750: "75 cl • apéritif, dîner, première commande",
-    magnum: "Magnum • grande table, service plus ample",
-    carton6: "Carton de 6 • réserve maison, expédition incluse",
+    750: "75 cl • première commande, repas",
+    magnum: "Magnum • grande table",
+    carton6: "Carton de 6 • livraison offerte",
   },
   rose: {
-    750: "75 cl • cadeau, apéritif, table d’été",
-    carton6: "Carton de 6 • cadeaux ou réception, expédition incluse",
+    750: "75 cl • cadeau, apéritif",
+    carton6: "Carton de 6 • cadeaux ou réception",
   },
   demisec: {
-    750: "75 cl • foie gras, fruits, découverte",
-    magnum: "Magnum • brunch ou grande table",
-    carton6: "Carton de 6 • plusieurs accords, expédition incluse",
+    750: "75 cl • foie gras, fruits",
+    magnum: "Magnum • grande table gourmande",
+    carton6: "Carton de 6 • livraison offerte",
   },
 };
 
@@ -47,18 +50,22 @@ function bottleLabel(count) {
 function purchaseUnitLabel(format, qty) {
   if (format === "magnum") return `${qty} ${qty > 1 ? "magnums" : "magnum"}`;
   if (format === "carton6") return `${qty} ${qty > 1 ? "cartons" : "carton"}`;
+  if (format === "coffret3")
+    return `${qty} ${qty > 1 ? "coffrets" : "coffret"}`;
   return bottleLabel(qty);
 }
 
 function singlePurchaseLabel(format) {
   if (format === "magnum") return "ce magnum";
   if (format === "carton6") return "ce carton";
+  if (format === "coffret3") return "ce coffret";
   return "cette cuvée";
 }
 
 function selectedFormatLabel(format) {
   if (format === "magnum") return "Magnum 1,5 L";
   if (format === "carton6") return "Carton de 6";
+  if (format === "coffret3") return "Coffret 3 bouteilles";
   return "Bouteille 75 cl";
 }
 
@@ -241,9 +248,21 @@ function updateSelectionNotes() {
   });
 }
 
+function syncDrawerAssurance() {
+  $$(".drawer-assurance").forEach((node) => {
+    node.innerHTML = `
+      <span>Expédition depuis notre domaine</span>
+      <span>Emballage renforcé</span>
+      <span>Suivi de commande</span>
+      <span>Contact direct</span>
+    `;
+  });
+}
+
 function renderCart() {
   const items = loadCart();
   setCheckoutIssue();
+  syncDrawerAssurance();
   safeText("#cartCount", String(cartCount(items)));
   syncCartTriggers(items);
 
@@ -287,9 +306,10 @@ function renderCart() {
     if (bar) bar.style.width = "0%";
     if (txt)
       txt.textContent =
-        "Expédition incluse dès 6 bouteilles de 75 cl ou un carton complet.";
+        "Livraison offerte sur le coffret découverte ou dès 6 bouteilles de 75 cl.";
     if (note)
-      note.textContent = "Magnums : tarif dédié, visible avant paiement.";
+      note.textContent =
+        "Coffret découverte : livraison offerte. Magnums : tarif dédié.";
 
     return;
   }
@@ -366,7 +386,7 @@ function renderCart() {
   const shipEl = $("#cartShipping");
   if (shipEl)
     shipEl.textContent =
-      ship.shippingTotal === 0 ? "Incluse" : formatEuro(ship.shippingTotal);
+      ship.shippingTotal === 0 ? "Offerte" : formatEuro(ship.shippingTotal);
 
   const bar = $("#shipProgressBar");
   const txt = $("#shipProgressText");
@@ -375,24 +395,38 @@ function renderCart() {
   if (bar && txt) {
     const target = 6;
     const progress = Math.min(1, (ship.bottles75 || 0) / target);
-    bar.style.width = `${Math.round(progress * 100)}%`;
+    const hasOnlyFreeDiscovery =
+      (ship.freeDiscoveryBoxes || 0) > 0 &&
+      (ship.bottles75 || 0) === 0 &&
+      (ship.magnums || 0) === 0;
+    bar.style.width = `${Math.round((hasOnlyFreeDiscovery ? 1 : progress) * 100)}%`;
 
-    if ((ship.bottles75 || 0) >= target) {
+    if (hasOnlyFreeDiscovery) {
+      txt.textContent = "Livraison offerte sur le coffret découverte.";
+    } else if ((ship.bottles75 || 0) >= target) {
       txt.textContent =
         (ship.magnums || 0) > 0
-          ? "75 cl : expédition incluse. Magnums : tarif dédié."
-          : "Expédition incluse pour ce panier.";
+          ? "75 cl : livraison offerte. Magnums : tarif dédié."
+          : "Livraison offerte atteinte pour ce panier.";
     } else {
       const remaining = target - (ship.bottles75 || 0);
-      txt.textContent = `Encore ${bottleLabel(remaining)} de 75 cl pour l’expédition incluse.`;
+      txt.textContent = `Plus que ${bottleLabel(remaining)} avant la livraison offerte.`;
     }
   }
 
   if (note) {
-    note.textContent =
-      (ship.magnums || 0) > 0
-        ? "Carton complet : expédition incluse. Magnum : 10€ par unité."
-        : "Expédition incluse dès 6 bouteilles de 75 cl ou un carton complet.";
+    if ((ship.freeDiscoveryBoxes || 0) > 0 && (ship.bottles75 || 0) > 0) {
+      note.textContent =
+        "Coffret découverte : livraison offerte. Autres bouteilles : barème habituel.";
+    } else if ((ship.freeDiscoveryBoxes || 0) > 0) {
+      note.textContent =
+        "Livraison offerte uniquement sur le coffret découverte.";
+    } else {
+      note.textContent =
+        (ship.magnums || 0) > 0
+          ? "Carton complet : livraison offerte. Magnum : 10€ par unité."
+          : "Livraison offerte dès 6 bouteilles de 75 cl ou un carton complet.";
+    }
   }
 }
 
@@ -410,8 +444,13 @@ function updateAddButtonLabel(sku, selected, qty, price) {
   const button = document.querySelector(`[data-add="${sku}"]`);
   if (!button) return;
   const total = formatEuro(price * qty);
-  const label =
-    qty > 1
+  const isMobileShop =
+    window.matchMedia && window.matchMedia("(max-width: 720px)").matches;
+  const label = isMobileShop
+    ? qty > 1
+      ? `Ajouter x${qty} • ${total}`
+      : `Ajouter • ${total}`
+    : qty > 1
       ? `Ajouter ${purchaseUnitLabel(selected, qty)} • ${total}`
       : `Ajouter ${singlePurchaseLabel(selected)} • ${total}`;
   button.textContent = label;
@@ -419,7 +458,7 @@ function updateAddButtonLabel(sku, selected, qty, price) {
 }
 
 function updateCardPrices() {
-  ["brut", "rose", "demisec"].forEach((sku) => {
+  ["coffret-decouverte", "brut", "rose", "demisec"].forEach((sku) => {
     const selected =
       document.querySelector(`input[name="fmt-${sku}"]:checked`)?.value ||
       "750";
@@ -433,7 +472,10 @@ function updateCardPrices() {
     if (priceEl) priceEl.textContent = formatEuro(price);
     if (formatEl) formatEl.textContent = selectedFormatLabel(selected);
     if (equivalentEl) {
-      equivalentEl.textContent = `Soit ${formatEuro(equivalent75clPrice(sku, selected))} / 75 cl équivalent`;
+      equivalentEl.textContent =
+        selected === "coffret3"
+          ? "3 bouteilles de 75 cl · livraison offerte"
+          : `Soit ${formatEuro(equivalent75clPrice(sku, selected))} / 75 cl équivalent`;
     }
     if (estimateEl) {
       const estimate = estimateSelectionTotal(sku, selected, qty);
@@ -494,13 +536,14 @@ function bindProductControls() {
 }
 
 function bindCartControls() {
-  const buttons = new Set([
-    ...$$("[data-cart-open]"),
-    ...$$("[id='cartOpen']"),
-    ...$$("[id='floatingCartOpen']"),
-  ]);
-
-  buttons.forEach((button) => button.addEventListener("click", openDrawer));
+  document.addEventListener("click", (event) => {
+    const trigger = event.target?.closest?.(
+      "[data-cart-open], #cartOpen, #floatingCartOpen",
+    );
+    if (!trigger || !$("#cartDrawer")) return;
+    event.preventDefault();
+    openDrawer();
+  });
 
   $$("[data-cart-close]").forEach((el) =>
     el.addEventListener("click", closeDrawer),

@@ -7,6 +7,9 @@
 // Où les trouver ? Stripe > Produits > (produit) > Prix > ID (price_...)
 
 export const PRICE_EUR = {
+  "coffret-decouverte": {
+    coffret3: 75,
+  },
   brut: {
     750: 22.5,
     magnum: 49,
@@ -24,6 +27,9 @@ export const PRICE_EUR = {
 };
 
 export const STRIPE_PRICE_IDS = {
+  "coffret-decouverte": {
+    coffret3: "price_1TmbcPD96OJnHwPGeEMqIjYX",
+  },
   brut: {
     750: "price_1SuZHHD96OJnHwPGwtcGoAWf",
     magnum: "price_1SwjyPD96OJnHwPGvyvJuQEZ",
@@ -42,38 +48,44 @@ export const STRIPE_PRICE_IDS = {
 
 export const PRODUCTS = [
   {
+    sku: "coffret-decouverte",
+    name: "Coffret découverte",
+    image: "assets/coffret-decouverte-champagne-christelle-phlipaux.webp",
+  },
+  {
     sku: "brut",
     name: "Brut Tradition",
-    image: "assets/brut.png",
+    image: "assets/brut.webp",
   },
   {
     sku: "rose",
     name: "Brut Rosé",
-    image: "assets/rose.png",
+    image: "assets/rose.webp",
   },
   {
     sku: "demisec",
     name: "Demi-Sec",
-    image: "assets/demisec.png",
+    image: "assets/demisec.webp",
   },
 ];
 
 export const FORMATS = [
+  {
+    key: "coffret3",
+    label: "Coffret 3 × 75 cl",
+    hint: "Brut Tradition, Brut Rosé, Demi-Sec · livraison offerte",
+  },
   { key: "750", label: "75 cl", hint: "Format de service" },
   { key: "magnum", label: "Magnum 1,5 L", hint: "Grande table" },
-  { key: "carton6", label: "Carton (6 × 75 cl)", hint: "Expédition incluse" },
+  { key: "carton6", label: "Carton (6 × 75 cl)", hint: "Livraison offerte" },
 ];
 
 export const CURATED_OFFERS = {
   "trio-decouverte": {
-    name: "Trio de la maison",
+    name: "Coffret découverte",
     summary: "Brut Tradition, Brut Rosé et Demi-Sec en 75 cl",
-    focus: "Pour lire Channes en trois cuvées, sans discours inutile",
-    items: [
-      { sku: "brut", format: "750", qty: 1 },
-      { sku: "rose", format: "750", qty: 1 },
-      { sku: "demisec", format: "750", qty: 1 },
-    ],
+    focus: "Trois cuvées pour découvrir la maison, livraison offerte",
+    items: [{ sku: "coffret-decouverte", format: "coffret3", qty: 1 }],
   },
   "table-de-fete": {
     name: "Table de fête maison",

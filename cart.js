@@ -76,13 +76,14 @@ export function cartCount(items) {
 export function equivalent75clPrice(sku, formatKey) {
   const unit = PRICE_EUR?.[sku]?.[formatKey] ?? 0;
   if (!unit) return 0;
+  if (formatKey === "coffret3") return unit / 3;
   if (formatKey === "magnum") return unit / 2;
   if (formatKey === "carton6") return unit / 6;
   return unit;
 }
 
 // --- Livraison (affichage UX) ---
-// Règles (75cl / cartons) : expédition incluse dès 6 bouteilles (équivalent 75cl)
+// Règles (75cl / cartons) : livraison offerte dès 6 bouteilles (équivalent 75cl)
 // - 1 bouteille : 12€
 // - 2 bouteilles : 10€ (total)
 // - 3 bouteilles : 6€ (total)
@@ -100,6 +101,15 @@ export function bottles75clEquivalent(items) {
   return count;
 }
 
+export function freeDiscoveryBoxCount(items) {
+  return items.reduce((acc, it) => {
+    if (it.sku === "coffret-decouverte" && it.format === "coffret3") {
+      return acc + Number(it.qty || 0);
+    }
+    return acc;
+  }, 0);
+}
+
 export function magnumCount(items) {
   return items.reduce(
     (acc, it) => acc + (it.format === "magnum" ? Number(it.qty || 0) : 0),
@@ -110,6 +120,7 @@ export function magnumCount(items) {
 export function shippingTotals(items) {
   const b75 = bottles75clEquivalent(items);
   const mags = magnumCount(items);
+  const discoveryBoxes = freeDiscoveryBoxCount(items);
 
   let shipping75 = 0;
   if (b75 >= 6) shipping75 = 0;
@@ -127,6 +138,7 @@ export function shippingTotals(items) {
     shippingTotal: shipping75 + shippingMag,
     bottles75: b75,
     magnums: mags,
+    freeDiscoveryBoxes: discoveryBoxes,
   };
 }
 

@@ -1,0 +1,206 @@
+<!doctype html>
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <meta content="#17120e" name="theme-color" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="Champagne Christelle Phlipaux" name="author" />
+    <link href="/assets/logo-trans.png" rel="icon" type="image/png" />
+    <title>Paiement sécurisé | Champagne Christelle Phlipaux</title>
+    <meta
+      content="Validation sécurisée de votre commande Champagne Christelle Phlipaux : panier, livraison en France et paiement Stripe."
+      name="description"
+    />
+    <link href="/checkout.html" rel="canonical" />
+    <meta content="noindex,nofollow,noarchive" name="robots" />
+    <link href="style.css" rel="stylesheet" />
+    <script defer="" src="consent.js"></script>
+    <script defer="" src="ui.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script
+      defer=""
+      src="assets/js/checkout-elements.js"
+      type="module"
+    ></script>
+  </head>
+  <body class="page-checkout-elements">
+    <header>
+      <div class="container nav">
+        <a class="brand" href="index.html">
+          <picture
+            ><source srcset="assets/logo-trans.webp" type="image/webp" />
+            <img
+              alt="Logo Champagne Christelle Phlipaux"
+              class="brand-logo"
+              decoding="async"
+              height="204"
+              loading="lazy"
+              src="assets/logo-trans.png"
+              width="242"
+          /></picture>
+          <div class="brand-text">
+            <div class="brand-title">
+              <span class="brand-champagne">Champagne</span>
+              <span class="brand-name">Christelle Phlipaux</span>
+            </div>
+            <div class="brand-sub">Paiement sécurisé</div>
+          </div>
+        </a>
+        <nav aria-label="Navigation principale" class="menu">
+          <a href="boutique.html">Boutique</a>
+          <a href="livraison-paiement.html">Livraison</a>
+          <a href="cgv.html">CGV</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section checkout-elements-shell">
+      <div class="container">
+        <div class="checkout-elements-head">
+          <div>
+            <div class="kicker">Commande</div>
+            <h1 class="h1">Finaliser votre commande</h1>
+            <p class="checkout-head-note">
+              Votre commande reste reliée à la maison : une question sur
+              l’adresse, le cadeau ou la quantité peut encore être posée avant
+              validation.
+            </p>
+          </div>
+          <a class="btn secondary" href="boutique.html">Modifier le panier</a>
+        </div>
+
+        <div
+          class="checkout-alert"
+          data-checkout-error=""
+          hidden=""
+          role="alert"
+        ></div>
+
+        <div class="checkout-elements-layout">
+          <aside
+            aria-label="Récapitulatif de commande"
+            class="checkout-summary"
+          >
+            <div class="checkout-panel">
+              <div class="checkout-panel-head">
+                <div>
+                  <div class="checkout-eyebrow">Panier</div>
+                  <h2>Votre sélection</h2>
+                </div>
+                <span data-checkout-count="">0 article</span>
+              </div>
+
+              <div class="checkout-items" data-checkout-items=""></div>
+
+              <div class="checkout-totals">
+                <div>
+                  <span>Cuvées</span>
+                  <strong data-checkout-subtotal="">0€</strong>
+                </div>
+                <div>
+                  <span>Livraison estimée</span>
+                  <strong data-checkout-shipping="">—</strong>
+                </div>
+                <div class="checkout-total-line">
+                  <span>Total estimé</span>
+                  <strong data-checkout-total="">0€</strong>
+                </div>
+              </div>
+              <p class="checkout-note" data-checkout-shipping-note="">
+                Le total final est confirmé par Stripe avant paiement.
+              </p>
+            </div>
+
+            <div class="checkout-reassurance">
+              <span>Expédition depuis notre domaine</span>
+              <span>Emballage renforcé</span>
+              <span>Suivi de commande</span>
+              <span>Contact direct avec la maison</span>
+            </div>
+            <div class="checkout-human-contact">
+              <strong>Besoin d’un dernier repère ?</strong>
+              <a href="tel:+33682203430">Appeler la maison</a>
+            </div>
+          </aside>
+
+          <section
+            aria-label="Coordonnées et paiement"
+            class="checkout-payment"
+          >
+            <form class="checkout-form" data-checkout-form="">
+              <div class="checkout-panel">
+                <div class="checkout-panel-head">
+                  <div>
+                    <div class="checkout-eyebrow">Coordonnées</div>
+                    <h2>Contact</h2>
+                  </div>
+                </div>
+                <div
+                  class="stripe-element-box"
+                  id="contact-details-element"
+                ></div>
+              </div>
+
+              <div class="checkout-panel">
+                <div class="checkout-panel-head">
+                  <div>
+                    <div class="checkout-eyebrow">Livraison</div>
+                    <h2>Adresse</h2>
+                  </div>
+                </div>
+                <div class="stripe-element-box" id="address-element"></div>
+                <p class="checkout-note">
+                  Livraison en France métropolitaine. Le téléphone facilite le
+                  suivi du transport.
+                </p>
+              </div>
+
+              <div class="checkout-panel">
+                <div class="checkout-panel-head">
+                  <div>
+                    <div class="checkout-eyebrow">Paiement</div>
+                    <h2>Carte bancaire</h2>
+                  </div>
+                  <strong class="checkout-stripe-total" data-stripe-total=""
+                    >—</strong
+                  >
+                </div>
+                <div class="stripe-element-box" id="payment-element"></div>
+              </div>
+
+              <button
+                aria-busy="false"
+                class="btn primary checkout-pay-button"
+                data-checkout-submit=""
+                disabled=""
+                type="submit"
+              >
+                Préparation du paiement…
+              </button>
+              <p class="checkout-note">
+                Paiement traité par Stripe. Les informations bancaires ne sont
+                jamais enregistrées sur le site.
+              </p>
+            </form>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container footer-meta">
+        <div class="small footer-links">
+          <a href="mentions-legales.html">Mentions légales</a> •
+          <a href="cgv.html">CGV</a> •
+          <a href="politique-confidentialite.html">Confidentialité</a>
+        </div>
+        <div class="small footer-alcool">
+          La vente d’alcool est interdite aux mineurs de moins de 18 ans. L’abus
+          d’alcool est dangereux pour la santé, à consommer avec modération.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

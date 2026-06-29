@@ -1,23 +1,31 @@
 {
-  "updated_at": "2026-04-01",
+  "updated_at": "2026-06-18",
   "template": {
     "id": "review-001",
+    "status": "published",
     "author": "Prenom ou pseudo",
     "city": "Ville",
+    "email": "email prive, jamais affiche publiquement",
     "title": "Titre court de l'avis",
     "body": "Texte de l'avis valide et relu avant publication.",
     "rating": 5,
     "cuvee": "Brut Tradition",
     "context": "Aperitif, cadeau, livraison, visite, evenement...",
-    "date": "2026-04-01",
+    "createdAt": "2026-06-18T00:00:00.000Z",
+    "publishedAt": "2026-06-18T00:00:00.000Z",
+    "date": "2026-06-18",
     "featured": true,
-    "published": true
+    "verifiedOrder": false,
+    "stripeSessionId": "",
+    "photos": []
   },
   "rules": {
     "rating": "Nombre entier de 1 a 5",
-    "date": "Format YYYY-MM-DD",
+    "status": "pending, published ou hidden",
+    "date": "Format YYYY-MM-DD pour les avis publics statiques",
     "featured": "true pour mettre l'avis en avant sur l'accueil et la boutique",
-    "published": "false si l'avis doit rester masque"
+    "email": "stocke uniquement pour moderation, jamais renvoye par l'API publique",
+    "photos": "reserve pour une future evolution avec photos clients"
   },
   "reviews": []
 }

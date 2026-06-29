@@ -11,7 +11,7 @@
     <title>Merci pour votre commande | Champagne Christelle Phlipaux</title>
     <link href="style.css" rel="stylesheet" />
     <meta
-      content="Merci – votre paiement a bien été pris en compte. La maison reste disponible pour toute question."
+      content="Vérification de votre commande Champagne Christelle Phlipaux après paiement Stripe."
       name="description"
     />
     <link href="/merci.html" rel="canonical" />
@@ -24,7 +24,7 @@
       property="og:title"
     />
     <meta
-      content="Merci – votre paiement a bien été pris en compte. La maison reste disponible pour toute question."
+      content="Vérification de votre commande Champagne Christelle Phlipaux après paiement Stripe."
       property="og:description"
     />
     <meta content="/merci.html" property="og:url" />
@@ -39,7 +39,7 @@
       name="twitter:title"
     />
     <meta
-      content="Merci – votre paiement a bien été pris en compte. La maison reste disponible pour toute question."
+      content="Vérification de votre commande Champagne Christelle Phlipaux après paiement Stripe."
       name="twitter:description"
     />
     <meta content="/assets/hero-vignoble.jpg" name="twitter:image" />
@@ -92,7 +92,8 @@
       }
     </script>
     <script defer="" src="consent.js"></script>
-    <script defer src="ui.js"></script>
+    <script defer="" src="ui.js"></script>
+    <script defer="" src="assets/js/merci-checkout.js" type="module"></script>
   </head>
   <body>
     <header>
@@ -124,30 +125,44 @@
         </nav>
       </div>
     </header>
-    <main class="section">
+    <main class="section merci-checkout-shell">
       <div class="container">
-        <div class="kicker">Commande</div>
-        <h1 class="h1">Merci pour votre commande</h1>
-        <p class="p" style="max-width: 780px">
-          Votre paiement a été confirmé. Vous recevrez un email de confirmation
-          et la maison prépare la suite avec soin.
-        </p>
-        <div class="notice" style="max-width: 780px">
-          <b>Suivi de livraison :</b> dès l’expédition, la maison vous envoie un
-          email avec votre <b>numéro de suivi Colissimo Vin</b> et le lien
-          associé. Pensez à vérifier vos indésirables. Pour toute question,
-          contactez-nous à <b>champagne.christelle.phlipaux@gmail.com</b>.
-        </div>
-        <p class="p" style="max-width: 780px; margin-top: 18px">
-          Après réception, vous pouvez aussi partager votre retour sur une
-          cuvée, la livraison ou l’accompagnement de la maison.
-        </p>
-        <div
-          style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px"
-        >
-          <a class="btn primary" href="index.html">Revenir à l’accueil</a>
-          <a class="btn" href="boutique.html">Revoir les cuvées</a>
-          <a class="btn" href="avis-clients.html">Laisser un avis</a>
+        <div class="merci-checkout-card">
+          <div class="kicker" data-merci-kicker="">Commande</div>
+          <h1 class="h1" data-merci-title="">Vérification de votre paiement</h1>
+          <p class="p" data-merci-copy="">
+            Nous vérifions la confirmation Stripe avant de finaliser la
+            commande.
+          </p>
+
+          <div
+            class="merci-order-summary"
+            data-order-summary=""
+            hidden=""
+          ></div>
+
+          <div class="notice" data-merci-success="" hidden="">
+            <b>Suivi de livraison :</b> dès l’expédition, la maison vous envoie
+            un email avec votre <b>numéro de suivi Colissimo Vin</b> et le lien
+            associé. Pensez à vérifier vos indésirables. Pour toute question,
+            contactez-nous à <b>champagne.christelle.phlipaux@gmail.com</b>.
+          </div>
+
+          <div class="notice notice-soft" data-merci-open="" hidden="">
+            Si vous avez fermé la fenêtre de paiement trop tôt, vous pouvez
+            reprendre depuis la boutique. Le panier n’est vidé qu’après paiement
+            confirmé.
+          </div>
+
+          <p class="p" style="margin-top: 18px">
+            Après réception, vous pourrez aussi partager votre retour sur une
+            cuvée, la livraison ou l’accompagnement de la maison.
+          </p>
+          <div class="merci-actions">
+            <a class="btn primary" href="boutique.html">Retour boutique</a>
+            <a class="btn" href="index.html">Accueil</a>
+            <a class="btn" href="avis-clients.html">Laisser un avis</a>
+          </div>
         </div>
       </div>
     </main>

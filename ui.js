@@ -56,7 +56,12 @@
       href: "boutique.html",
       label: "Boutique",
       className: "btn primary nav-primary-cta",
-      matches: ["boutique.html", "livraison-paiement.html", "merci.html"],
+      matches: [
+        "boutique.html",
+        "checkout.html",
+        "livraison-paiement.html",
+        "merci.html",
+      ],
     },
   ];
 

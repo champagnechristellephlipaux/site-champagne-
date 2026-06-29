@@ -46,6 +46,18 @@ export async function startCheckout() {
     return;
   }
 
+  window.location.href = "checkout.html";
+}
+
+export async function startHostedCheckout() {
+  const items = loadCart();
+  if (!items.length) {
+    notifyCheckoutIssue("Choisissez d’abord une cuvée.", {
+      showContact: false,
+    });
+    return;
+  }
+
   const missing = validatePriceIds(items);
   if (missing.length) {
     console.error(

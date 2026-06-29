@@ -1,0 +1,122 @@
+<!doctype html>
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <meta content="#17120e" name="theme-color" />
+    <meta content="noindex,nofollow,noarchive" name="robots" />
+    <link href="/assets/logo-trans.png" rel="icon" type="image/png" />
+    <title>Administration des avis | Champagne Christelle Phlipaux</title>
+    <meta
+      content="Interface privée de modération des avis clients."
+      name="description"
+    />
+    <link href="style.css" rel="stylesheet" />
+    <script defer="" src="admin-reviews.js"></script>
+  </head>
+  <body class="page-admin-reviews">
+    <header>
+      <div class="container nav">
+        <a class="brand" href="index.html">
+          <picture
+            ><source srcset="assets/logo-trans.webp" type="image/webp" />
+            <img
+              alt="Logo Champagne Christelle Phlipaux"
+              class="brand-logo"
+              decoding="async"
+              height="204"
+              loading="lazy"
+              src="assets/logo-trans.png"
+              width="242"
+          /></picture>
+          <div class="brand-text">
+            <div class="brand-title">
+              <span class="brand-champagne">Champagne</span>
+              <span class="brand-name">Christelle Phlipaux</span>
+            </div>
+            <div class="brand-sub">Administration privée</div>
+          </div>
+        </a>
+        <nav aria-label="Navigation administration" class="menu">
+          <a href="avis-clients.html">Voir la page avis</a>
+          <a class="btn primary" href="boutique.html">Boutique</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section admin-review-shell">
+      <div class="container">
+        <div class="kicker">Modération</div>
+        <h1 class="h1">Avis clients</h1>
+        <p class="p" style="max-width: 780px">
+          Les avis déposés sur le site arrivent ici en attente. Rien n’est
+          publié tant qu’un avis n’a pas été validé manuellement.
+        </p>
+
+        <form class="admin-login card pad" data-admin-login="">
+          <label class="field">
+            <span class="field-label">Clé d’administration</span>
+            <input
+              autocomplete="current-password"
+              class="field-input"
+              name="token"
+              placeholder="Clé configurée dans Netlify"
+              required=""
+              type="password"
+            />
+          </label>
+          <div class="form-actions">
+            <button class="btn primary" type="submit">Charger les avis</button>
+            <button class="btn secondary" data-admin-refresh="" type="button">
+              Actualiser
+            </button>
+          </div>
+          <p class="review-note">
+            La clé doit correspondre à la variable Netlify
+            <code>REVIEWS_ADMIN_TOKEN</code>.
+          </p>
+        </form>
+
+        <div
+          class="review-form-status"
+          data-admin-status=""
+          hidden=""
+          role="status"
+        ></div>
+
+        <div class="admin-stats" data-admin-stats=""></div>
+
+        <section class="admin-review-section">
+          <div class="admin-section-head">
+            <div>
+              <div class="kicker">À relire</div>
+              <h2 class="h2">Avis en attente</h2>
+            </div>
+          </div>
+          <div class="admin-review-list" data-admin-pending=""></div>
+        </section>
+
+        <section class="admin-review-section">
+          <div class="admin-section-head">
+            <div>
+              <div class="kicker">En ligne</div>
+              <h2 class="h2">Avis publiés</h2>
+            </div>
+          </div>
+          <div class="admin-review-list" data-admin-published=""></div>
+        </section>
+
+        <section class="admin-review-section">
+          <div class="admin-section-head">
+            <div>
+              <div class="kicker">Non affichés</div>
+              <h2 class="h2">Avis masqués</h2>
+            </div>
+          </div>
+          <div class="admin-review-list" data-admin-hidden=""></div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

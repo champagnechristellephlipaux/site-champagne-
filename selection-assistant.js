@@ -62,6 +62,7 @@
       offerId = "table-de-fete";
     } else if (state.format === "selection") {
       offerId = "trio-decouverte";
+      offerLabel = "Choisir le coffret";
     } else if (state.format === "magnum" && winner === "brut") {
       offerId = "magnum-reception";
     } else if (winner === "rose") {

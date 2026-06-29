@@ -8,10 +8,10 @@
     <meta content="telephone=no" name="format-detection" />
     <meta content="Champagne Christelle Phlipaux" name="author" />
     <link href="/assets/logo-trans.png" rel="icon" type="image/png" />
-    <title>Boutique Christelle Phlipaux | Cuvées en vente directe</title>
+    <title>Boutique Christelle Phlipaux | Coffret découverte et cuvées</title>
     <link href="style.css" rel="stylesheet" />
     <meta
-      content="Commander les cuvées de la maison depuis Channes : Brut Tradition, Brut Rosé, Demi-Sec, formats lisibles, conseil direct et livraison en France."
+      content="Commander les cuvées de la maison depuis Channes : coffret découverte 3 bouteilles à 75€ livraison offerte, Brut Tradition, Brut Rosé, Demi-Sec et conseil direct."
       name="description"
     />
     <link
@@ -27,7 +27,7 @@
       property="og:title"
     />
     <meta
-      content="Commander les cuvées Champagne Christelle Phlipaux en vente directe à Channes : Brut Tradition, Brut Rosé, Demi-Sec, formats clairs et livraison en France."
+      content="Commander le coffret découverte 3 bouteilles à 75€ livraison offerte, ou choisir les cuvées Champagne Christelle Phlipaux en vente directe à Channes."
       property="og:description"
     />
     <meta
@@ -48,7 +48,7 @@
       name="twitter:title"
     />
     <meta
-      content="Commander les cuvées Champagne Christelle Phlipaux en vente directe à Channes : Brut Tradition, Brut Rosé, Demi-Sec, formats clairs et livraison en France."
+      content="Commander le coffret découverte 3 bouteilles à 75€ livraison offerte, ou choisir les cuvées Champagne Christelle Phlipaux en vente directe à Channes."
       name="twitter:description"
     />
     <meta
@@ -109,25 +109,31 @@
         "@type": "CollectionPage",
         "name": "Boutique officielle | Champagne Christelle Phlipaux",
         "url": "https://champagnechristellephlipaux.netlify.app/boutique.html",
-        "description": "Boutique de champagne en ligne de la maison Christelle Phlipaux : trois cuvées, des formats clairs, une vente directe depuis Channes et une livraison en France.",
+        "description": "Boutique de champagne en ligne de la maison Christelle Phlipaux : coffret découverte 3 bouteilles à 75€ livraison offerte, trois cuvées, des formats clairs et une vente directe depuis Channes.",
         "mainEntity": {
           "@type": "ItemList",
           "itemListElement": [
             {
               "@type": "ListItem",
               "position": 1,
+              "url": "https://champagnechristellephlipaux.netlify.app/boutique.html#coffret-decouverte",
+              "name": "Coffret découverte"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
               "url": "https://champagnechristellephlipaux.netlify.app/brut-tradition.html",
               "name": "Brut Tradition"
             },
             {
               "@type": "ListItem",
-              "position": 2,
+              "position": 3,
               "url": "https://champagnechristellephlipaux.netlify.app/brut-rose.html",
               "name": "Brut Rosé"
             },
             {
               "@type": "ListItem",
-              "position": 3,
+              "position": 4,
               "url": "https://champagnechristellephlipaux.netlify.app/demi-sec.html",
               "name": "Demi-Sec"
             }
@@ -266,6 +272,35 @@
                 }
               ]
             }
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+              "@type": "Product",
+              "name": "Coffret découverte Champagne Christelle Phlipaux",
+              "sku": "coffret-decouverte",
+              "url": "https://champagnechristellephlipaux.netlify.app/boutique.html#coffret-decouverte",
+              "category": "Coffret découverte champagne",
+              "brand": {
+                "@type": "Brand",
+                "name": "Champagne Christelle Phlipaux"
+              },
+              "image": [
+                "https://champagnechristellephlipaux.netlify.app/assets/coffret-decouverte-champagne-christelle-phlipaux.png"
+              ],
+              "description": "Coffret découverte réunissant Brut Tradition, Brut Rosé et Demi-Sec en 75 cl, avec livraison offerte sur ce coffret.",
+              "offers": [
+                {
+                  "@type": "Offer",
+                  "name": "Coffret découverte 3 x 75 cl",
+                  "priceCurrency": "EUR",
+                  "price": "75.00",
+                  "url": "https://champagnechristellephlipaux.netlify.app/boutique.html#coffret-decouverte",
+                  "availability": "https://schema.org/InStock"
+                }
+              ]
+            }
           }
         ]
       }
@@ -313,18 +348,26 @@
         <div class="page-hero-overlay"></div>
         <div class="container page-hero-inner">
           <div class="page-hero-copy">
-            <div class="kicker">Boutique de la maison</div>
-            <h1 class="h1 page-hero-title">Boutique des cuvées</h1>
+            <div class="kicker">Commande directe</div>
+            <h1 class="h1 page-hero-title">Choisir vos cuvées</h1>
             <p class="page-hero-sub">
-              Brut Tradition, Brut Rosé, Demi-Sec : choisissez le style, le
-              format, puis ajoutez au panier.
+              Le coffret découverte réunit les trois cuvées à 75€, avec
+              livraison offerte. Les formats classiques restent disponibles si
+              vous savez déjà quoi choisir.
             </p>
             <div class="hero-cta shop-hero-actions">
-              <a class="btn primary" href="#produits">Choisir une cuvée</a>
+              <a class="btn primary" href="#coffret-decouverte"
+                >Voir le coffret</a
+              >
             </div>
             <nav aria-label="Accès direct aux cuvées" class="shop-hero-choice">
+              <a href="#coffret-decouverte">
+                <span>Découverte</span>
+                <strong>Coffret</strong>
+                <em>75€ livré</em>
+              </a>
               <a href="#brut">
-                <span>Le repère</span>
+                <span>Découvrir</span>
                 <strong>Brut</strong>
                 <em>Dès 22,50€</em>
               </a>
@@ -334,14 +377,18 @@
                 <em>Dès 25€</em>
               </a>
               <a href="#demisec">
-                <span>Pour accorder</span>
+                <span>Accord doux</span>
                 <strong>Demi-Sec</strong>
                 <em>Dès 22,50€</em>
               </a>
             </nav>
             <div class="shop-hero-proof" role="list">
-              <span role="listitem">Vente directe à Channes</span>
-              <span role="listitem">Expédition dès 6 bouteilles</span>
+              <span role="listitem"
+                >Coffret découverte : livraison offerte</span
+              >
+              <span role="listitem">Maison à Channes</span>
+              <span role="listitem">Préparation et emballage soignés</span>
+              <span role="listitem">Paiement sécurisé</span>
             </div>
           </div>
         </div>
@@ -350,20 +397,164 @@
         <div class="container">
           <div class="shop-products-head">
             <div>
-              <div class="kicker">Cuvées disponibles</div>
-              <h2 class="h2">Les cuvées à commander</h2>
+              <div class="kicker">Choisir puis commander</div>
+              <h2 class="h2">Sélectionnez votre coffret ou votre cuvée</h2>
+              <p class="shop-human-copy">
+                Pour une première commande, le coffret découverte donne une
+                lecture simple des trois cuvées. La maison peut aussi vous
+                conseiller avant validation.
+              </p>
             </div>
             <div
-              aria-label="Choisir une cuvée selon votre envie"
+              aria-label="Choisir une cuvée selon votre usage"
               class="shop-intent-strip"
             >
-              <span>Selon votre envie</span>
-              <a href="#brut">Découvrir</a>
-              <a href="#rose">Offrir fruité</a>
-              <a href="#brut">À table</a>
-              <a href="#demisec">Moment doux</a>
+              <span>Selon l’usage</span>
+              <a href="#coffret-decouverte">Découverte livrée</a>
+              <a href="#brut">Première commande</a>
+              <a href="#rose">Cadeau fruité</a>
+              <a href="#brut">Repas</a>
+              <a href="#demisec">Accord doux</a>
             </div>
           </div>
+          <!-- COFFRET DECOUVERTE -->
+          <article
+            aria-labelledby="product-title-coffret-decouverte"
+            class="card product product--coffret product--featured reveal"
+            data-sku="coffret-decouverte"
+            id="coffret-decouverte"
+          >
+            <div class="product-media">
+              <figure class="product-media-scene" aria-hidden="true"></figure>
+              <div class="product-media-mark" aria-hidden="true">
+                Découverte · livraison offerte
+              </div>
+              <picture>
+                <source
+                  srcset="
+                    assets/coffret-decouverte-champagne-christelle-phlipaux.webp
+                  "
+                  type="image/webp"
+                />
+                <img
+                  alt="Coffret découverte Champagne Christelle Phlipaux avec Brut Tradition, Brut Rosé et Demi-Sec"
+                  decoding="async"
+                  height="1067"
+                  loading="eager"
+                  src="assets/coffret-decouverte-champagne-christelle-phlipaux.png"
+                  width="1600"
+                />
+              </picture>
+            </div>
+            <div class="product-body">
+              <div class="product-badge-row">
+                <div class="badge">Nouveau coffret</div>
+                <div class="product-note">3 × 75 cl · Livraison offerte</div>
+              </div>
+              <div class="product-title">
+                <div class="product-title-copy">
+                  <span class="product-role">Découvrir la maison</span>
+                  <h3 id="product-title-coffret-decouverte">
+                    Coffret découverte
+                  </h3>
+                </div>
+                <div class="product-price-card">
+                  <span data-format-current="">Coffret 3 bouteilles</span>
+                  <div class="price" data-price="">75€</div>
+                  <small data-price-equivalent="">
+                    3 bouteilles de 75 cl · livraison offerte
+                  </small>
+                </div>
+              </div>
+              <p class="desc product-desire">
+                Brut Tradition, Brut Rosé et Demi-Sec réunis pour goûter la
+                ligne de la maison en une première commande simple.
+              </p>
+              <div class="product-trust">
+                <span>Brut, Rosé, Demi-Sec</span>
+                <span>Livraison offerte sur ce coffret</span>
+                <span>Préparé à Channes</span>
+              </div>
+              <div class="variants">
+                <div class="variant-row">
+                  <div class="variant-label">Format</div>
+                  <div
+                    aria-label="Format du Coffret découverte"
+                    class="segmented segmented--single"
+                    role="radiogroup"
+                  >
+                    <label class="seg"
+                      ><input
+                        checked=""
+                        name="fmt-coffret-decouverte"
+                        type="radio"
+                        value="coffret3"
+                      /><span
+                        ><span class="seg-copy"
+                          ><strong>3 bouteilles 75 cl</strong
+                          ><small
+                            >Brut Tradition, Brut Rosé, Demi-Sec</small
+                          ></span
+                        ><em>75€</em></span
+                      ></label
+                    >
+                  </div>
+                </div>
+                <div class="variant-purchase">
+                  <div class="variant-row variant-row--qty">
+                    <div class="variant-label">Quantité</div>
+                    <div class="qty">
+                      <button
+                        aria-label="Retirer un coffret découverte"
+                        class="qty-btn"
+                        data-qty-minus="coffret-decouverte"
+                        type="button"
+                      >
+                        −
+                      </button>
+                      <input
+                        aria-label="Quantité de coffrets découverte"
+                        class="qty-input"
+                        data-qty-input="coffret-decouverte"
+                        inputmode="numeric"
+                        min="1"
+                        pattern="[0-9]*"
+                        type="number"
+                        value="1"
+                      />
+                      <button
+                        aria-label="Ajouter un coffret découverte"
+                        class="qty-btn"
+                        data-qty-plus="coffret-decouverte"
+                        type="button"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    class="product-selection-note small"
+                    data-selection-note="coffret-decouverte"
+                  >
+                    Coffret • 3 bouteilles, livraison offerte
+                  </div>
+                  <div class="variant-actions">
+                    <button
+                      class="btn primary"
+                      data-add="coffret-decouverte"
+                      type="button"
+                    >
+                      Ajouter ce coffret • 75€
+                    </button>
+                    <a class="btn secondary" href="cuvees.html#comparer"
+                      >Comparer les cuvées</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+          <div class="shop-product-gap" aria-hidden="true"></div>
           <!-- BRUT -->
           <article
             aria-labelledby="product-title-brut"
@@ -372,24 +563,23 @@
             id="brut"
           >
             <div class="product-media">
-              <figure class="product-media-scene">
-                <figcaption>
-                  Le Brut tient d’abord par la fraîcheur de cave, la netteté du
-                  fruit et une vraie tenue à table.
-                </figcaption>
-              </figure>
+              <figure class="product-media-scene" aria-hidden="true"></figure>
               <div class="product-media-mark" aria-hidden="true">
-                Channes · Côte des Bar
+                Découverte · repas
               </div>
               <picture
-                ><source srcset="assets/brut.webp" type="image/webp" />
+                ><source
+                  srcset="
+                    assets/brut-boutique-centree-champagne-christelle-phlipaux.webp
+                  "
+                  type="image/webp" />
                 <img
                   alt="Bouteille de Champagne Brut Tradition"
                   decoding="async"
-                  height="2048"
+                  height="1396"
                   loading="eager"
-                  src="assets/brut.png"
-                  width="1365"
+                  src="assets/brut-boutique-centree-champagne-christelle-phlipaux.png"
+                  width="820"
               /></picture>
             </div>
             <div class="product-body">
@@ -399,7 +589,7 @@
               </div>
               <div class="product-title">
                 <div class="product-title-copy">
-                  <span class="product-role">Découvrir la maison</span>
+                  <span class="product-role">Choix le plus direct</span>
                   <h3 id="product-title-brut">Brut Tradition</h3>
                 </div>
                 <div class="product-price-card">
@@ -411,12 +601,13 @@
                 </div>
               </div>
               <p class="desc product-desire">
-                Une cuvée fraîche et nette, le choix évident pour découvrir
-                Channes ou ouvrir un dîner avec justesse.
+                Frais, net, facile à situer : pour découvrir la maison ou ouvrir
+                un repas.
               </p>
               <div class="product-trust">
-                <span>Depuis la maison</span>
-                <span>Expédition incluse sur carton de 6</span>
+                <span>Préparé à Channes</span>
+                <span>Paiement sécurisé</span>
+                <span>Livraison offerte dès 6</span>
               </div>
               <div class="variants">
                 <div class="variant-row">
@@ -435,9 +626,7 @@
                       /><span
                         ><span class="seg-copy"
                           ><strong>Bouteille 75 cl</strong
-                          ><small
-                            >Apéritif, dîner, première commande</small
-                          ></span
+                          ><small>Première commande, repas</small></span
                         ><em>22,50€</em></span
                       ></label
                     ><label class="seg"
@@ -460,7 +649,7 @@
                         ><span class="seg-copy"
                           ><strong>Carton de 6</strong
                           ><small
-                            >6 bouteilles de 75 cl, expédition incluse</small
+                            >6 bouteilles de 75 cl, livraison offerte</small
                           ></span
                         ><em>135€</em></span
                       ></label
@@ -526,24 +715,23 @@
             id="rose"
           >
             <div class="product-media">
-              <figure class="product-media-scene">
-                <figcaption>
-                  Le Rosé apporte plus d’élan et de lumière, sans perdre la
-                  netteté d’un vrai brut.
-                </figcaption>
-              </figure>
+              <figure class="product-media-scene" aria-hidden="true"></figure>
               <div class="product-media-mark" aria-hidden="true">
-                Rosé d’assemblage
+                Cadeau · table
               </div>
               <picture
-                ><source srcset="assets/rose.webp" type="image/webp" />
+                ><source
+                  srcset="
+                    assets/rose-boutique-centree-champagne-christelle-phlipaux.webp
+                  "
+                  type="image/webp" />
                 <img
                   alt="Bouteille de Champagne Brut Rosé"
                   decoding="async"
-                  height="2048"
+                  height="1396"
                   loading="lazy"
-                  src="assets/rose.png"
-                  width="1365"
+                  src="assets/rose-boutique-centree-champagne-christelle-phlipaux.png"
+                  width="820"
               /></picture>
             </div>
             <div class="product-body">
@@ -553,7 +741,7 @@
               </div>
               <div class="product-title">
                 <div class="product-title-copy">
-                  <span class="product-role">Offrir ou ouvrir à table</span>
+                  <span class="product-role">Cadeau, apéritif, table</span>
                   <h3 id="product-title-rose">Brut Rosé</h3>
                 </div>
                 <div class="product-price-card">
@@ -565,12 +753,13 @@
                 </div>
               </div>
               <p class="desc product-desire">
-                Fruit rouge fin, robe délicate : une cuvée à offrir ou à ouvrir
-                quand la table appelle plus d’éclat.
+                Fruit délicat, robe lumineuse : pour offrir ou donner plus
+                d’éclat à la table.
               </p>
               <div class="product-trust">
-                <span>Depuis la maison</span>
-                <span>Livraison en France métropolitaine</span>
+                <span>Préparé à Channes</span>
+                <span>Paiement sécurisé</span>
+                <span>Livraison France</span>
               </div>
               <div class="variants">
                 <div class="variant-row">
@@ -600,10 +789,7 @@
                       /><span
                         ><span class="seg-copy"
                           ><strong>Carton de 6</strong
-                          ><small
-                            >6 bouteilles de 75 cl pour offrir ou
-                            recevoir</small
-                          ></span
+                          ><small>Cadeaux ou réception</small></span
                         ><em>150€</em></span
                       ></label
                     >
@@ -668,24 +854,23 @@
             id="demisec"
           >
             <div class="product-media">
-              <figure class="product-media-scene">
-                <figcaption>
-                  Le Demi-Sec trouve sa place quand le repas demande une lecture
-                  plus ample et plus gourmande.
-                </figcaption>
-              </figure>
+              <figure class="product-media-scene" aria-hidden="true"></figure>
               <div class="product-media-mark" aria-hidden="true">
-                Accords de contraste
+                Gourmand · doux
               </div>
               <picture
-                ><source srcset="assets/demisec.webp" type="image/webp" />
+                ><source
+                  srcset="
+                    assets/demisec-boutique-centree-champagne-christelle-phlipaux.webp
+                  "
+                  type="image/webp" />
                 <img
                   alt="Bouteille de Champagne Demi-Sec"
                   decoding="async"
-                  height="2048"
+                  height="1396"
                   loading="lazy"
-                  src="assets/demisec.png"
-                  width="1365"
+                  src="assets/demisec-boutique-centree-champagne-christelle-phlipaux.png"
+                  width="820"
               /></picture>
             </div>
             <div class="product-body">
@@ -695,7 +880,7 @@
               </div>
               <div class="product-title">
                 <div class="product-title-copy">
-                  <span class="product-role">Accords gourmands</span>
+                  <span class="product-role">Accords doux et gourmands</span>
                   <h3 id="product-title-demisec">Demi-Sec</h3>
                 </div>
                 <div class="product-price-card">
@@ -707,12 +892,13 @@
                 </div>
               </div>
               <p class="desc product-desire">
-                Douceur tenue, finale fraîche : pour foie gras, fruits et
-                accords gourmands sans lourdeur.
+                Douceur tenue, finale fraîche : pour foie gras, fruits ou
+                dessert peu sucré.
               </p>
               <div class="product-trust">
-                <span>Depuis la maison</span>
-                <span>Expédition incluse sur carton de 6</span>
+                <span>Préparé à Channes</span>
+                <span>Paiement sécurisé</span>
+                <span>Livraison offerte dès 6</span>
               </div>
               <div class="variants">
                 <div class="variant-row">
@@ -742,9 +928,7 @@
                       /><span
                         ><span class="seg-copy"
                           ><strong>Magnum 1,5 L</strong
-                          ><small
-                            >Brunch, grande table, service gourmand</small
-                          ></span
+                          ><small>Grande table gourmande</small></span
                         ><em>49€</em></span
                       ></label
                     ><label class="seg"
@@ -756,7 +940,7 @@
                         ><span class="seg-copy"
                           ><strong>Carton de 6</strong
                           ><small
-                            >6 bouteilles de 75 cl, expédition incluse</small
+                            >6 bouteilles de 75 cl, livraison offerte</small
                           ></span
                         ><em>135€</em></span
                       ></label
@@ -823,55 +1007,53 @@
         <div class="container">
           <div class="shop-service-panel reveal">
             <div class="shop-service-copy">
-              <div class="kicker">Commande directe</div>
-              <h2 class="h2">Commander en confiance, sans détour</h2>
+              <div class="kicker">Après le choix</div>
+              <h2 class="h2">Panier clair, commande suivie</h2>
               <p>
-                Le panier garde les formats, les quantités, la livraison et le
-                total estimé lisibles avant paiement.
+                Formats, quantités, livraison et total restent visibles avant
+                paiement.
               </p>
             </div>
             <div class="shop-service-grid">
               <div class="shop-service-card">
-                <strong>Livraison claire</strong>
+                <strong>Depuis notre domaine</strong>
                 <p>
-                  Incluse dès 6 bouteilles de 75 cl. Sous ce seuil, le montant
-                  reste indiqué dans le panier avant validation.
+                  Les commandes sont préparées à Channes, dans le même fil que
+                  la vigne, la cave et le conseil.
+                </p>
+              </div>
+              <div class="shop-service-card">
+                <strong>Emballage renforcé</strong>
+                <p>
+                  Calage adapté aux bouteilles pour une expédition plus sûre.
                 </p>
               </div>
               <div class="shop-service-card" id="paiement">
-                <strong>Paiement sécurisé</strong>
+                <strong>Suivi de commande</strong>
                 <p>
-                  Le paiement intervient après vérification du panier, de
-                  l’adresse et de la livraison.
+                  Le délai, l’adresse, le montant et le suivi restent vérifiés
+                  avant et après paiement.
                 </p>
               </div>
               <div class="shop-service-card" id="contact">
-                <strong>Conseil maison</strong>
+                <strong>Contact direct</strong>
                 <p>
-                  Pour un cadeau, une table ou un doute de format, la maison
-                  reste joignable avant commande.
+                  Un doute sur la cuvée ou le format ? La maison répond avant
+                  commande.
                   <a href="tel:+33682203430">+33 6 82 20 34 30</a>
                 </p>
               </div>
             </div>
             <div class="shop-service-actions">
-              <a class="btn primary" href="#produits">Retour aux cuvées</a>
+              <a class="btn primary" href="#produits">Revenir aux cuvées</a>
               <a class="btn secondary" href="livraison-paiement.html"
-                >Livraison &amp; paiement</a
+                >Voir livraison</a
               >
               <a
                 class="btn secondary"
                 href="mailto:champagne.christelle.phlipaux@gmail.com"
-                >Écrire à la maison</a
+                >Demander conseil</a
               >
-            </div>
-            <div class="shop-service-note small">
-              Avis clients et retours d’expérience :
-              <a href="avis-clients.html">consulter la page dédiée</a>. Pour un
-              conseil personnalisé :
-              <a href="mailto:champagne.christelle.phlipaux@gmail.com"
-                >champagne.christelle.phlipaux@gmail.com</a
-              >.
             </div>
           </div>
           <div class="notice shop-legal-notice">
@@ -1000,12 +1182,13 @@
               Le total sera confirmé avant paiement.
             </div>
             <div class="ship-note small muted" id="cartShipNote">
-              Expédition incluse dès 6 bouteilles. Magnums : tarif dédié.
+              Coffret découverte : livraison offerte. Dès 6 bouteilles : offert
+              hors magnums.
             </div>
             <div
               class="ship-progress"
               id="shipProgress"
-              aria-label="Progression expédition incluse"
+              aria-label="Progression livraison offerte"
             >
               <div class="ship-progress-bar" id="shipProgressBar"></div>
             </div>
