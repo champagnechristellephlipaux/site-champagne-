@@ -120,15 +120,7 @@
               "name": "Où livrez-vous ?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "La boutique livre en France métropolitaine."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Quels sont les frais de livraison ?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Le barème dépend du nombre de bouteilles 75 cl et des magnums. La livraison est offerte sur le coffret découverte, ainsi que dès 6 bouteilles 75 cl. Les magnums ont des frais spécifiques."
+                "text": "En France métropolitaine uniquement."
               }
             },
             {
@@ -136,7 +128,7 @@
               "name": "Le paiement est-il sécurisé ?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Oui. Le paiement s'effectue en ligne sur une page sécurisée."
+                "text": "Oui. Le paiement s’effectue en ligne sur une page sécurisée."
               }
             },
             {
@@ -149,10 +141,18 @@
             },
             {
               "@type": "Question",
-              "name": "Que faire en cas de question avant commande ?",
+              "name": "Peut-on commander pour offrir ?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Vous pouvez nous écrire, nous appeler ou passer par les formulaires de demande du site pour être conseillé avant achat."
+                "text": "Oui. Vous pouvez faire livrer directement au destinataire et demander conseil avant de choisir la cuvée."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Que faire avant une commande événementielle ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Passez par la page Événements ou par notre formulaire de demande pour que nous puissions vous orienter."
               }
             }
           ]
@@ -163,6 +163,7 @@
     <script defer src="ui.js"></script>
   </head>
   <body class="page-checkout-info">
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
     <header>
       <div class="container nav">
         <a class="brand" href="index.html">
@@ -270,7 +271,7 @@
         </div>
       </div>
     </section>
-    <main class="section" style="padding-top: 0">
+    <main class="section" id="contenu" style="padding-top: 0">
       <div class="container">
         <div class="support-grid">
           <article class="card pad support-card reveal">

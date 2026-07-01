@@ -119,7 +119,7 @@
               "name": "Peut-on laisser un avis sur une cuvée ?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Oui. Vous pouvez partager votre retour sur une cuvée, la livraison, un cadeau, une visite ou un événement."
+                "text": "Oui, mais aussi sur la livraison, un cadeau, une visite ou un événement."
               }
             },
             {
@@ -127,15 +127,15 @@
               "name": "Les avis sont-ils publiés automatiquement ?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Non. Les retours sont relus avant une éventuelle publication, afin de préserver la qualité éditoriale du site."
+                "text": "Non. Ils sont relus avant une éventuelle mise en ligne."
               }
             },
             {
               "@type": "Question",
-              "name": "Que faut-il indiquer dans un avis ?",
+              "name": "Doit-on utiliser son nom complet ?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Vous pouvez évoquer la cuvée choisie, l'occasion, le service, la livraison ou l'expérience avec la maison."
+                "text": "Non. Un prénom ou un pseudo suffit pour transmettre votre retour."
               }
             }
           ]
@@ -148,6 +148,7 @@
     <script defer="" src="review-submit.js"></script>
   </head>
   <body>
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
     <header>
       <div class="container nav">
         <a class="brand" href="index.html">
@@ -226,7 +227,7 @@
         </div>
       </div>
     </section>
-    <main class="section" style="padding-top: 0">
+    <main class="section" id="contenu" style="padding-top: 0">
       <div class="container">
         <div class="kicker">Publication ouverte</div>
         <h2 class="h2">Avis publiés au fil des commandes</h2>
@@ -407,6 +408,7 @@
                 >
                   <label class="rating-option"
                     ><input
+                      aria-label="1 étoile sur 5"
                       name="note"
                       required=""
                       type="radio"
@@ -414,28 +416,36 @@
                     /><span class="rating-pill">1★</span></label
                   >
                   <label class="rating-option"
-                    ><input name="note" type="radio" value="2" /><span
-                      class="rating-pill"
-                      >2★</span
-                    ></label
+                    ><input
+                      aria-label="2 étoiles sur 5"
+                      name="note"
+                      type="radio"
+                      value="2"
+                    /><span class="rating-pill">2★</span></label
                   >
                   <label class="rating-option"
-                    ><input name="note" type="radio" value="3" /><span
-                      class="rating-pill"
-                      >3★</span
-                    ></label
+                    ><input
+                      aria-label="3 étoiles sur 5"
+                      name="note"
+                      type="radio"
+                      value="3"
+                    /><span class="rating-pill">3★</span></label
                   >
                   <label class="rating-option"
-                    ><input name="note" type="radio" value="4" /><span
-                      class="rating-pill"
-                      >4★</span
-                    ></label
+                    ><input
+                      aria-label="4 étoiles sur 5"
+                      name="note"
+                      type="radio"
+                      value="4"
+                    /><span class="rating-pill">4★</span></label
                   >
                   <label class="rating-option"
-                    ><input name="note" type="radio" value="5" /><span
-                      class="rating-pill"
-                      >5★</span
-                    ></label
+                    ><input
+                      aria-label="5 étoiles sur 5"
+                      name="note"
+                      type="radio"
+                      value="5"
+                    /><span class="rating-pill">5★</span></label
                   >
                 </div>
               </div>

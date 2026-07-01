@@ -128,6 +128,7 @@
     <script defer src="ui.js"></script>
   </head>
   <body>
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
     <header>
       <div class="container nav">
         <a class="brand" href="index.html">
@@ -150,7 +151,7 @@
             <div class="brand-sub">Channes — Côte des Bar</div>
           </div>
         </a>
-        <nav class="menu">
+        <nav aria-label="Navigation principale" class="menu">
           <a href="cuvees.html">Nos Cuvées</a>
           <a href="maison.html">La maison</a>
           <a href="cadeaux.html">Offrir</a>
@@ -159,102 +160,108 @@
         </nav>
       </div>
     </header>
-    <section class="page-hero">
-      <picture
-        ><source srcset="assets/blog-champagne.webp" type="image/webp" />
-        <img
-          alt="Vignoble et cave en Champagne"
-          class="page-hero-media"
-          decoding="async"
-          loading="eager"
-          src="assets/blog-champagne.jpg"
-      /></picture>
-      <div class="page-hero-overlay"></div>
-      <div class="container page-hero-inner">
-        <div class="kicker">Savoir-faire de la maison</div>
-        <h1 class="h1 page-hero-title">
-          De la vigne à la cave, la cuvée prend sa ligne
-        </h1>
-        <p class="page-hero-sub">
-          Un fruit juste, une cave attentive, une bulle tenue: le savoir-faire
-          reste sobre, mais il se sent dans le verre.
-        </p>
-      </div>
-    </section>
-    <section class="section" style="padding-top: 0">
-      <div class="container">
-        <article class="card pad prose reveal">
-          <div class="prose-hero">
-            <picture
-              ><img
-                alt="Cuves inox dans la cave de vinification"
-                decoding="async"
-                height="1012"
-                loading="lazy"
-                src="assets/cuves-inox-vinification-champagne.jpg"
-                width="1800"
-            /></picture>
-          </div>
-          <div class="badge">Savoir‑faire</div>
-          <div class="hr"></div>
-          <p class="small muted">
-            Article de la maison Champagne Christelle Phlipaux
+    <main id="contenu">
+      <section class="page-hero">
+        <picture
+          ><source srcset="assets/blog-champagne.webp" type="image/webp" />
+          <img
+            alt="Vignoble et cave en Champagne"
+            class="page-hero-media"
+            decoding="async"
+            loading="eager"
+            src="assets/blog-champagne.jpg"
+        /></picture>
+        <div class="page-hero-overlay"></div>
+        <div class="container page-hero-inner">
+          <div class="kicker">Savoir-faire de la maison</div>
+          <h1 class="h1 page-hero-title">
+            De la vigne à la cave, la cuvée prend sa ligne
+          </h1>
+          <p class="page-hero-sub">
+            Un fruit juste, une cave attentive, une bulle tenue: le savoir-faire
+            reste sobre, mais il se sent dans le verre.
           </p>
-          <h2 class="h2" style="margin-top: 0">
-            Ce qui donne de la tenue au vin
-          </h2>
-          <p class="p">
-            Le savoir-faire de la maison n’a pas besoin de grands mots. Il
-            consiste à préserver ce que Channes donne au fruit, puis à laisser
-            la cave installer la bulle, la texture et l’allonge.
-          </p>
-          <div class="divider"></div>
-          <h2 class="h2">Le lieu avant la méthode</h2>
-          <p class="p">
-            Le vin commence par le lieu : la lumière, le relief, la maturité du
-            raisin. À Channes, cette matière doit rester lisible une fois la
-            bouteille ouverte.
-          </p>
-          <h3 class="h3">Une vigne tenue sans brutalité</h3>
-          <p class="p">
-            La maison cherche une conduite cohérente de la vigne :
-            <b>zéro désherbant</b>, <b>zéro insecticide</b>, des traitements
-            raisonnés. L’idée n’est pas de promettre trop, mais de travailler
-            avec plus d’attention.
-          </p>
-          <h3 class="h3">Le fruit au bon moment</h3>
-          <p class="p">
-            Vendanger juste, presser proprement, laisser le jus prendre sa
-            première forme : c’est là que se préparent la fraîcheur, le fruit et
-            l’équilibre que l’on retrouvera plus tard dans la cuvée.
-          </p>
-          <h2 class="h2">L’assemblage garde la ligne</h2>
-          <p class="p">
-            L’assemblage ne sert pas à masquer. Il met en place la matière du
-            <b>Pinot Noir</b>, l’élan du <b>Chardonnay</b> et la signature que
-            l’on doit reconnaître d’une cuvée à l’autre.
-          </p>
-          <h3 class="h3">Le temps de cave affine la bulle</h3>
-          <p class="p">
-            La prise de mousse apporte la bulle; le repos en cave lui donne sa
-            finesse. Pour <b>Brut Tradition</b>, ce temps dure au minimum
-            <b>15 mois</b>, afin de garder une texture nette et une finale
-            droite.
-          </p>
-          <div class="notice">
-            <b>À retenir :</b> le savoir-faire n’est pas une démonstration. Il
-            doit rendre la cuvée plus lisible, plus tenue, plus juste à table.
-          </div>
-          <div class="hero-cta" style="margin-top: 18px">
-            <a class="btn" href="terroir.html">Relier ce travail au terroir</a>
-            <a class="btn secondary" href="cuvees.html">Comparer les cuvées</a>
-            <a class="btn secondary" href="boutique.html"
-              >Choisir un format en boutique</a
-            >
-          </div>
-        </article>
-      </div>
-    </section>
+        </div>
+      </section>
+      <section class="section" style="padding-top: 0">
+        <div class="container">
+          <article class="card pad prose reveal">
+            <div class="prose-hero">
+              <picture
+                ><img
+                  alt="Cuves inox dans la cave de vinification"
+                  decoding="async"
+                  height="1012"
+                  loading="lazy"
+                  src="assets/cuves-inox-vinification-champagne.jpg"
+                  width="1800"
+              /></picture>
+            </div>
+            <div class="badge">Savoir‑faire</div>
+            <div class="hr"></div>
+            <p class="small muted">
+              Article de la maison Champagne Christelle Phlipaux
+            </p>
+            <h2 class="h2" style="margin-top: 0">
+              Ce qui donne de la tenue au vin
+            </h2>
+            <p class="p">
+              Le savoir-faire de la maison n’a pas besoin de grands mots. Il
+              consiste à préserver ce que Channes donne au fruit, puis à laisser
+              la cave installer la bulle, la texture et l’allonge.
+            </p>
+            <div class="divider"></div>
+            <h2 class="h2">Le lieu avant la méthode</h2>
+            <p class="p">
+              Le vin commence par le lieu : la lumière, le relief, la maturité
+              du raisin. À Channes, cette matière doit rester lisible une fois
+              la bouteille ouverte.
+            </p>
+            <h3 class="h3">Une vigne tenue sans brutalité</h3>
+            <p class="p">
+              La maison cherche une conduite cohérente de la vigne :
+              <b>zéro désherbant</b>, <b>zéro insecticide</b>, des traitements
+              raisonnés. L’idée n’est pas de promettre trop, mais de travailler
+              avec plus d’attention.
+            </p>
+            <h3 class="h3">Le fruit au bon moment</h3>
+            <p class="p">
+              Vendanger juste, presser proprement, laisser le jus prendre sa
+              première forme : c’est là que se préparent la fraîcheur, le fruit
+              et l’équilibre que l’on retrouvera plus tard dans la cuvée.
+            </p>
+            <h2 class="h2">L’assemblage garde la ligne</h2>
+            <p class="p">
+              L’assemblage ne sert pas à masquer. Il met en place la matière du
+              <b>Pinot Noir</b>, l’élan du <b>Chardonnay</b> et la signature que
+              l’on doit reconnaître d’une cuvée à l’autre.
+            </p>
+            <h3 class="h3">Le temps de cave affine la bulle</h3>
+            <p class="p">
+              La prise de mousse apporte la bulle; le repos en cave lui donne sa
+              finesse. Pour <b>Brut Tradition</b>, ce temps dure au minimum
+              <b>15 mois</b>, afin de garder une texture nette et une finale
+              droite.
+            </p>
+            <div class="notice">
+              <b>À retenir :</b> le savoir-faire n’est pas une démonstration. Il
+              doit rendre la cuvée plus lisible, plus tenue, plus juste à table.
+            </div>
+            <div class="hero-cta" style="margin-top: 18px">
+              <a class="btn" href="terroir.html"
+                >Relier ce travail au terroir</a
+              >
+              <a class="btn secondary" href="cuvees.html"
+                >Comparer les cuvées</a
+              >
+              <a class="btn secondary" href="boutique.html"
+                >Choisir un format en boutique</a
+              >
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
     <footer>
       <div class="container footer-grid">
         <div>

@@ -8,7 +8,7 @@
     <meta content="telephone=no" name="format-detection" />
     <meta content="Champagne Christelle Phlipaux" name="author" />
     <link href="/assets/logo-trans.png" rel="icon" type="image/png" />
-    <title>Mariages et événements | Cuvées de la maison</title>
+    <title>Mariages et événements | Champagne Christelle Phlipaux</title>
     <meta
       content="Mariage, réception, entreprise : choisir les cuvées, prévoir les quantités et garder un service élégant, avec un conseil direct de la maison."
       name="description"
@@ -146,6 +146,7 @@
     <script defer src="ui.js"></script>
   </head>
   <body>
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
     <header>
       <div class="container nav">
         <a class="brand" href="index.html">
@@ -168,7 +169,7 @@
             <div class="brand-sub">Channes — Côte des Bar</div>
           </div>
         </a>
-        <nav class="menu">
+        <nav aria-label="Navigation principale" class="menu">
           <a href="cuvees.html">Nos Cuvées</a>
           <a href="maison.html">La maison</a>
           <a href="cadeaux.html">Offrir</a>
@@ -177,189 +178,198 @@
         </nav>
       </div>
     </header>
-    <section class="page-hero">
-      <picture
-        ><source srcset="assets/blog-champagne.webp" type="image/webp" />
-        <img
-          alt="Vignoble et cave en Champagne"
-          class="page-hero-media"
-          decoding="async"
-          loading="eager"
-          src="assets/blog-champagne.jpg"
-      /></picture>
-      <div class="page-hero-overlay"></div>
-      <div class="container page-hero-inner">
-        <div class="kicker">Champagne Christelle Phlipaux</div>
-        <h1 class="h1 page-hero-title">Cuvées pour mariages et événements</h1>
-        <p class="page-hero-sub">
-          Moments de vie, réceptions, cadeaux d’entreprise.
-        </p>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container">
-        <h2 class="h2">Mariages, réceptions, entreprises : choisir juste</h2>
-        <p class="p">
-          L’essentiel tient en trois repères : une cuvée fiable, le bon format,
-          et des quantités claires.
-        </p>
-        <ul class="more-list">
-          <li>Conseil sur les quantités.</li>
-          <li>Repères de service.</li>
-          <li>Commandes pour mariages, réceptions et entreprises.</li>
-        </ul>
-        <div class="hero-cta" style="margin-top: 14px">
-          <a class="btn" href="boutique.html">Choisir les cuvées</a
-          ><a class="btn" href="index.html#contact">Préparer la demande</a>
+    <main id="contenu">
+      <section class="page-hero">
+        <picture
+          ><source srcset="assets/blog-champagne.webp" type="image/webp" />
+          <img
+            alt="Vignoble et cave en Champagne"
+            class="page-hero-media"
+            decoding="async"
+            loading="eager"
+            src="assets/blog-champagne.jpg"
+        /></picture>
+        <div class="page-hero-overlay"></div>
+        <div class="container page-hero-inner">
+          <div class="kicker">Champagne Christelle Phlipaux</div>
+          <h1 class="h1 page-hero-title">Cuvées pour mariages et événements</h1>
+          <p class="page-hero-sub">
+            Moments de vie, réceptions, cadeaux d’entreprise.
+          </p>
         </div>
-      </div>
-    </section>
-    <section class="section" id="brief" style="padding-top: 0">
-      <div class="container">
-        <div class="contact-split">
-          <article class="card pad reveal">
-            <div class="kicker">Projet événementiel</div>
-            <h2 class="h2">Préparer une demande claire et rapide</h2>
-            <p class="p">
-              Quelques repères suffisent pour recevoir une réponse utile sur la
-              cuvée, les quantités et le format.
-            </p>
-            <div class="info-stack" style="margin-top: 18px">
-              <div class="info-item">
-                <strong>Ce qui nous aide</strong>
-                <p>
-                  Date, nombre d’invités, type de service et éventuel budget.
-                </p>
-              </div>
-              <div class="info-item">
-                <strong>Réponse</strong>
-                <p>
-                  La maison revient vers vous avec une recommandation claire.
-                </p>
-              </div>
-            </div>
-          </article>
-          <form
-            action="/merci-contact.html"
-            class="card pad contact-form reveal"
-            data-netlify="true"
-            method="POST"
-            name="demande-evenement"
-            netlify-honeypot="bot-field"
-          >
-            <input name="form-name" type="hidden" value="demande-evenement" />
-            <p class="form-honeypot">
-              <label
-                >Ne pas remplir ce champ <input name="bot-field" type="text"
-              /></label>
-            </p>
-            <div class="kicker">Formulaire</div>
-            <h2 class="h2">Votre demande événement</h2>
-            <div class="form-grid">
-              <label class="field">
-                <span class="field-label">Nom</span>
-                <input
-                  class="field-input"
-                  name="nom"
-                  placeholder="Votre nom"
-                  required=""
-                  type="text"
-                />
-              </label>
-              <label class="field">
-                <span class="field-label">Email</span>
-                <input
-                  class="field-input"
-                  name="email"
-                  placeholder="nom@email.fr"
-                  required=""
-                  type="email"
-                />
-              </label>
-              <label class="field">
-                <span class="field-label">Téléphone</span>
-                <input
-                  class="field-input"
-                  name="telephone"
-                  placeholder="+33 ..."
-                  type="tel"
-                />
-              </label>
-              <label class="field">
-                <span class="field-label">Type d’événement</span>
-                <select class="field-select" name="type_evenement" required="">
-                  <option value="">Choisir</option>
-                  <option value="mariage">Mariage</option>
-                  <option value="reception">Réception</option>
-                  <option value="entreprise">Entreprise</option>
-                  <option value="cadeau">Cadeau client ou équipe</option>
-                  <option value="autre">Autre</option>
-                </select>
-              </label>
-              <label class="field">
-                <span class="field-label">Date ou période</span>
-                <input
-                  class="field-input"
-                  name="date_evenement"
-                  placeholder="Juin 2026"
-                  type="text"
-                />
-              </label>
-              <label class="field">
-                <span class="field-label">Nombre de personnes</span>
-                <input
-                  class="field-input"
-                  min="1"
-                  name="nombre_personnes"
-                  placeholder="80"
-                  type="number"
-                />
-              </label>
-              <label class="field field--full">
-                <span class="field-label">Message</span>
-                <textarea
-                  class="field-textarea"
-                  name="message"
-                  placeholder="Précisez le type de service, le lieu, votre besoin ou vos questions."
-                ></textarea>
-              </label>
-            </div>
-            <div class="form-actions">
-              <button class="btn primary" type="submit">
-                Envoyer la demande
-              </button>
-              <a class="btn" href="boutique.html">Choisir en boutique</a>
-            </div>
-            <p class="form-legal">
-              Les informations transmises servent uniquement à traiter votre
-              demande et à vous recontacter dans ce cadre. Voir notre
-              <a href="politique-confidentialite.html"
-                >politique de confidentialité</a
-              >.
-            </p>
-          </form>
+      </section>
+      <section class="section">
+        <div class="container">
+          <h2 class="h2">Mariages, réceptions, entreprises : choisir juste</h2>
+          <p class="p">
+            L’essentiel tient en trois repères : une cuvée fiable, le bon
+            format, et des quantités claires.
+          </p>
+          <ul class="more-list">
+            <li>Conseil sur les quantités.</li>
+            <li>Repères de service.</li>
+            <li>Commandes pour mariages, réceptions et entreprises.</li>
+          </ul>
+          <div class="hero-cta" style="margin-top: 14px">
+            <a class="btn" href="boutique.html">Choisir les cuvées</a
+            ><a class="btn" href="index.html#contact">Préparer la demande</a>
+          </div>
         </div>
-      </div>
-    </section>
-    <section class="section" style="padding-top: 0">
-      <div class="container">
-        <h2 class="h2">Questions utiles pour un événement</h2>
-        <ul class="faq">
-          <li>
-            <b>Pouvez-vous conseiller les quantités pour un mariage ?</b
-            ><br />Oui. Indiquez le nombre d’invités et le type de service.
-          </li>
-          <li>
-            <b>Travaillez-vous avec des restaurants ?</b><br />Oui, via nos
-            dépositaires et partenaires.
-          </li>
-          <li>
-            <b>Proposez-vous des commandes d’entreprise ?</b><br />Oui, pour
-            cadeaux, remerciements et événements.
-          </li>
-        </ul>
-      </div>
-    </section>
+      </section>
+      <section class="section" id="brief" style="padding-top: 0">
+        <div class="container">
+          <div class="contact-split">
+            <article class="card pad reveal">
+              <div class="kicker">Projet événementiel</div>
+              <h2 class="h2">Préparer une demande claire et rapide</h2>
+              <p class="p">
+                Quelques repères suffisent pour recevoir une réponse utile sur
+                la cuvée, les quantités et le format.
+              </p>
+              <div class="info-stack" style="margin-top: 18px">
+                <div class="info-item">
+                  <strong>Ce qui nous aide</strong>
+                  <p>
+                    Date, nombre d’invités, type de service et éventuel budget.
+                  </p>
+                </div>
+                <div class="info-item">
+                  <strong>Réponse</strong>
+                  <p>
+                    La maison revient vers vous avec une recommandation claire.
+                  </p>
+                </div>
+              </div>
+            </article>
+            <form
+              action="/merci-contact.html"
+              class="card pad contact-form reveal"
+              data-netlify="true"
+              method="POST"
+              name="demande-evenement"
+              netlify-honeypot="bot-field"
+            >
+              <input name="form-name" type="hidden" value="demande-evenement" />
+              <p class="form-honeypot">
+                <label
+                  >Ne pas remplir ce champ <input name="bot-field" type="text"
+                /></label>
+              </p>
+              <div class="kicker">Formulaire</div>
+              <h2 class="h2">Votre demande événement</h2>
+              <div class="form-grid">
+                <label class="field">
+                  <span class="field-label">Nom</span>
+                  <input
+                    autocomplete="name"
+                    class="field-input"
+                    name="nom"
+                    placeholder="Votre nom"
+                    required=""
+                    type="text"
+                  />
+                </label>
+                <label class="field">
+                  <span class="field-label">Email</span>
+                  <input
+                    autocomplete="email"
+                    class="field-input"
+                    name="email"
+                    placeholder="nom@email.fr"
+                    required=""
+                    type="email"
+                  />
+                </label>
+                <label class="field">
+                  <span class="field-label">Téléphone</span>
+                  <input
+                    autocomplete="tel"
+                    class="field-input"
+                    name="telephone"
+                    placeholder="+33 ..."
+                    type="tel"
+                  />
+                </label>
+                <label class="field">
+                  <span class="field-label">Type d’événement</span>
+                  <select
+                    class="field-select"
+                    name="type_evenement"
+                    required=""
+                  >
+                    <option value="">Choisir</option>
+                    <option value="mariage">Mariage</option>
+                    <option value="reception">Réception</option>
+                    <option value="entreprise">Entreprise</option>
+                    <option value="cadeau">Cadeau client ou équipe</option>
+                    <option value="autre">Autre</option>
+                  </select>
+                </label>
+                <label class="field">
+                  <span class="field-label">Date ou période</span>
+                  <input
+                    class="field-input"
+                    name="date_evenement"
+                    placeholder="Juin 2026"
+                    type="text"
+                  />
+                </label>
+                <label class="field">
+                  <span class="field-label">Nombre de personnes</span>
+                  <input
+                    class="field-input"
+                    min="1"
+                    name="nombre_personnes"
+                    placeholder="80"
+                    type="number"
+                  />
+                </label>
+                <label class="field field--full">
+                  <span class="field-label">Message</span>
+                  <textarea
+                    class="field-textarea"
+                    name="message"
+                    placeholder="Précisez le type de service, le lieu, votre besoin ou vos questions."
+                  ></textarea>
+                </label>
+              </div>
+              <div class="form-actions">
+                <button class="btn primary" type="submit">
+                  Envoyer la demande
+                </button>
+                <a class="btn" href="boutique.html">Choisir en boutique</a>
+              </div>
+              <p class="form-legal">
+                Les informations transmises servent uniquement à traiter votre
+                demande et à vous recontacter dans ce cadre. Voir notre
+                <a href="politique-confidentialite.html"
+                  >politique de confidentialité</a
+                >.
+              </p>
+            </form>
+          </div>
+        </div>
+      </section>
+      <section class="section" style="padding-top: 0">
+        <div class="container">
+          <h2 class="h2">Questions utiles pour un événement</h2>
+          <ul class="faq">
+            <li>
+              <b>Pouvez-vous conseiller les quantités pour un mariage ?</b
+              ><br />Oui. Indiquez le nombre d’invités et le type de service.
+            </li>
+            <li>
+              <b>Travaillez-vous avec des restaurants ?</b><br />Oui, via nos
+              dépositaires et partenaires.
+            </li>
+            <li>
+              <b>Proposez-vous des commandes d’entreprise ?</b><br />Oui, pour
+              cadeaux, remerciements et événements.
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
     <footer>
       <div class="container footer-grid">
         <div>

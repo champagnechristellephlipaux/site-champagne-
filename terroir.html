@@ -118,6 +118,7 @@
     <script defer src="ui.js"></script>
   </head>
   <body>
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
     <header>
       <div class="container nav">
         <a class="brand" href="index.html">
@@ -126,7 +127,7 @@
             class="brand-logo"
             decoding="async"
             height="512"
-            loading="lazy"
+            loading="eager"
             src="assets/logo-trans.png"
             width="512"
           />
@@ -138,7 +139,7 @@
             <div class="brand-sub">Channes — Côte des Bar</div>
           </div>
         </a>
-        <nav class="menu">
+        <nav aria-label="Navigation principale" class="menu">
           <a href="cuvees.html">Nos Cuvées</a>
           <a href="maison.html">La maison</a>
           <a href="cadeaux.html">Offrir</a>
@@ -147,228 +148,235 @@
         </nav>
       </div>
     </header>
-    <section class="page-hero">
-      <picture
-        ><source srcset="assets/vignoble-channes.webp" type="image/webp" />
-        <img
-          alt="Vignes de Champagne à Channes dans la Côte des Bar"
-          class="page-hero-media"
-          decoding="async"
-          loading="eager"
-          src="assets/vignoble-channes.jpg"
-      /></picture>
-      <div class="page-hero-overlay"></div>
-      <div class="container page-hero-inner">
-        <div class="page-hero-copy">
-          <div class="kicker">Terroir de la maison</div>
-          <h1 class="h1 page-hero-title" style="margin-top: 0">
-            Le terroir de Channes, en Côte des Bar
-          </h1>
-          <p class="page-hero-sub">
-            À Channes, le fruit gagne en maturité sans perdre la fraîcheur. Ce
-            relief discret donne aux cuvées leur tenue.
-          </p>
-          <div class="hero-proof-row">
-            <div class="hero-proof">
-              <strong>Côte des Bar</strong
-              ><span
-                >Un paysage de reliefs, de lumière et de sols qui marque le
-                fruit.</span
-              >
-            </div>
-            <div class="hero-proof">
-              <strong>Pinot Noir & Chardonnay</strong
-              ><span
-                >L’un donne l’assise, l’autre garde l’élan et la netteté.</span
-              >
-            </div>
-            <div class="hero-proof">
-              <strong>Trois cuvées</strong
-              ><span
-                >Le même sol se lit autrement dans Brut Tradition, Rosé et
-                Demi-Sec.</span
-              >
+    <main id="contenu">
+      <section class="page-hero">
+        <picture
+          ><source srcset="assets/vignoble-channes.webp" type="image/webp" />
+          <img
+            alt="Vignes de Champagne à Channes dans la Côte des Bar"
+            class="page-hero-media"
+            decoding="async"
+            fetchpriority="high"
+            height="1080"
+            loading="eager"
+            src="assets/vignoble-channes.jpg"
+            width="1920"
+        /></picture>
+        <div class="page-hero-overlay"></div>
+        <div class="container page-hero-inner">
+          <div class="page-hero-copy">
+            <div class="kicker">Terroir de la maison</div>
+            <h1 class="h1 page-hero-title" style="margin-top: 0">
+              Le terroir de Channes, en Côte des Bar
+            </h1>
+            <p class="page-hero-sub">
+              À Channes, le fruit gagne en maturité sans perdre la fraîcheur. Ce
+              relief discret donne aux cuvées leur tenue.
+            </p>
+            <div class="hero-proof-row">
+              <div class="hero-proof">
+                <strong>Côte des Bar</strong
+                ><span
+                  >Un paysage de reliefs, de lumière et de sols qui marque le
+                  fruit.</span
+                >
+              </div>
+              <div class="hero-proof">
+                <strong>Pinot Noir & Chardonnay</strong
+                ><span
+                  >L’un donne l’assise, l’autre garde l’élan et la
+                  netteté.</span
+                >
+              </div>
+              <div class="hero-proof">
+                <strong>Trois cuvées</strong
+                ><span
+                  >Le même sol se lit autrement dans Brut Tradition, Rosé et
+                  Demi-Sec.</span
+                >
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section class="section" style="padding-top: 0">
-      <div class="container">
-        <div
-          class="brand-proof-grid brand-proof-grid--shop reveal"
-          style="margin-bottom: 22px"
-        >
-          <a class="commerce-point" href="maison.html">
-            <span class="commerce-point-label">La maison</span>
-            <strong
-              >Le lieu prend sens quand il rejoint la cave et le conseil de la
-              maison.</strong
-            >
-          </a>
-          <a class="commerce-point" href="cuvees.html">
-            <span class="commerce-point-label">Les cuvées</span>
-            <strong
-              >Brut Tradition, Brut Rosé et Demi-Sec traduisent ce socle selon
-              trois usages nets.</strong
-            >
-          </a>
-          <a class="commerce-point" href="boutique.html">
-            <span class="commerce-point-label">Choisir</span>
-            <strong
-              >Comprendre Channes rend le choix des cuvées moins
-              abstrait.</strong
-            >
-          </a>
-        </div>
-        <div class="story-stage reveal">
-          <div class="story-copy">
-            <div class="kicker">Terroir</div>
-            <h2 class="h2">Le fruit, la fraîcheur, la tenue</h2>
-            <p class="editorial-lead">
-              La Côte des Bar apporte la maturité, la cave refuse la lourdeur.
-            </p>
-            <p class="p">
-              Ce qui compte ici n’est pas un discours de sol ou de climat. C’est
-              ce que le verre garde : un fruit lisible, une bulle tenue, une
-              fraîcheur qui évite la lourdeur.
-            </p>
+      </section>
+      <section class="section" style="padding-top: 0">
+        <div class="container">
+          <div
+            class="brand-proof-grid brand-proof-grid--shop reveal"
+            style="margin-bottom: 22px"
+          >
+            <a class="commerce-point" href="maison.html">
+              <span class="commerce-point-label">La maison</span>
+              <strong
+                >Le lieu prend sens quand il rejoint la cave et le conseil de la
+                maison.</strong
+              >
+            </a>
+            <a class="commerce-point" href="cuvees.html">
+              <span class="commerce-point-label">Les cuvées</span>
+              <strong
+                >Brut Tradition, Brut Rosé et Demi-Sec traduisent ce socle selon
+                trois usages nets.</strong
+              >
+            </a>
+            <a class="commerce-point" href="boutique.html">
+              <span class="commerce-point-label">Choisir</span>
+              <strong
+                >Comprendre Channes rend le choix des cuvées moins
+                abstrait.</strong
+              >
+            </a>
           </div>
-          <figure class="story-photo reveal">
-            <picture>
+          <div class="story-stage reveal">
+            <div class="story-copy">
+              <div class="kicker">Terroir</div>
+              <h2 class="h2">Le fruit, la fraîcheur, la tenue</h2>
+              <p class="editorial-lead">
+                La Côte des Bar apporte la maturité, la cave refuse la lourdeur.
+              </p>
+              <p class="p">
+                Ce qui compte ici n’est pas un discours de sol ou de climat.
+                C’est ce que le verre garde : un fruit lisible, une bulle tenue,
+                une fraîcheur qui évite la lourdeur.
+              </p>
+            </div>
+            <figure class="story-photo reveal">
+              <picture>
+                <img
+                  alt="Pinot noir dans la Côte des Bar"
+                  decoding="async"
+                  height="1080"
+                  loading="lazy"
+                  src="assets/pinot-noir-matiere.jpg"
+                  width="1920"
+                />
+              </picture>
+              <figcaption class="story-caption">
+                Le lieu ne sert pas de décor : il décide déjà de la fraîcheur,
+                de la matière et de la tenue.
+              </figcaption>
+            </figure>
+          </div>
+          <div class="house-anchors">
+            <div class="house-anchor reveal">
+              <strong>Sols et reliefs</strong>
+              <p>Ils donnent un fruit présent, sans faire perdre la tension.</p>
+            </div>
+            <div class="house-anchor reveal">
+              <strong>Pinot Noir et Chardonnay</strong>
+              <p>Le Pinot Noir donne la matière, le Chardonnay garde l’élan.</p>
+            </div>
+            <div class="house-anchor reveal">
+              <strong>Travail de la vigne</strong>
+              <p>
+                La précision se décide avant la cave, quand le raisin garde son
+                équilibre.
+              </p>
+            </div>
+          </div>
+          <div class="story-visual-grid">
+            <figure class="story-visual-card reveal">
               <img
-                alt="Pinot noir dans la Côte des Bar"
+                alt="Panneau de Channes en Côte des Bar"
+                decoding="async"
+                height="1100"
+                loading="lazy"
+                src="assets/channes-cote-des-bar.jpg"
+                width="1600"
+              />
+              <figcaption>
+                Channes n’est pas un nom posé sur l’étiquette : c’est le point
+                de départ du style.
+              </figcaption>
+            </figure>
+            <figure class="story-visual-card reveal">
+              <img
+                alt="Raisins de Champagne à maturité"
                 decoding="async"
                 height="1080"
                 loading="lazy"
-                src="assets/pinot-noir-matiere.jpg"
+                src="assets/raisins-matiere.jpg"
                 width="1920"
               />
-            </picture>
-            <figcaption class="story-caption">
-              Le lieu ne sert pas de décor : il décide déjà de la fraîcheur, de
-              la matière et de la tenue.
-            </figcaption>
-          </figure>
-        </div>
-        <div class="house-anchors">
-          <div class="house-anchor reveal">
-            <strong>Sols et reliefs</strong>
-            <p>Ils donnent un fruit présent, sans faire perdre la tension.</p>
-          </div>
-          <div class="house-anchor reveal">
-            <strong>Pinot Noir et Chardonnay</strong>
-            <p>Le Pinot Noir donne la matière, le Chardonnay garde l’élan.</p>
-          </div>
-          <div class="house-anchor reveal">
-            <strong>Travail de la vigne</strong>
-            <p>
-              La précision se décide avant la cave, quand le raisin garde son
-              équilibre.
-            </p>
+              <figcaption>
+                La fraîcheur se joue déjà dans la maturité du fruit.
+              </figcaption>
+            </figure>
           </div>
         </div>
-        <div class="story-visual-grid">
-          <figure class="story-visual-card reveal">
-            <img
-              alt="Panneau de Channes en Côte des Bar"
-              decoding="async"
-              height="1100"
-              loading="lazy"
-              src="assets/channes-cote-des-bar.jpg"
-              width="1600"
-            />
-            <figcaption>
-              Channes n’est pas un nom posé sur l’étiquette : c’est le point de
-              départ du style.
-            </figcaption>
-          </figure>
-          <figure class="story-visual-card reveal">
-            <img
-              alt="Raisins de Champagne à maturité"
-              decoding="async"
-              height="1080"
-              loading="lazy"
-              src="assets/raisins-matiere.jpg"
-              width="1920"
-            />
-            <figcaption>
-              La fraîcheur se joue déjà dans la maturité du fruit.
-            </figcaption>
-          </figure>
+      </section>
+      <section class="section" style="padding-top: 0">
+        <div class="container">
+          <div class="story-columns reveal">
+            <article class="story-panel">
+              <div class="badge">Terroir • Vignoble • Cépages</div>
+              <h2 class="h2">Une maturité qui garde de l’allonge</h2>
+              <p class="p">
+                L’exposition et le relief donnent un fruit présent. La cave
+                garde ensuite l’allonge, pour que le vin tienne la table sans
+                peser.
+              </p>
+              <h3 class="h3">Deux cépages, une seule ligne</h3>
+              <p class="p">
+                Le <b>Pinot Noir</b> porte la matière et le fruit, le
+                <b>Chardonnay</b> apporte la finesse et la tension. Ensemble,
+                ils donnent une lecture plus nette des cuvées.
+              </p>
+              <h3 class="h3">Du lieu jusqu’au choix de la cuvée</h3>
+              <p class="p">
+                Brut Tradition, Brut Rosé et Demi-Sec ne racontent pas trois
+                maisons différentes. Ils donnent trois façons de lire le même
+                socle.
+              </p>
+              <div class="hero-cta">
+                <a class="btn gold" href="cuvees.html">Comparer les cuvées</a>
+                <a class="btn" href="boutique.html"
+                  >Choisir une cuvée en boutique</a
+                >
+                <a class="btn" href="index.html#contact">Contact</a>
+              </div>
+            </article>
+            <aside class="story-rail">
+              <div class="story-rail-card">
+                <strong>Comprendre la méthode</strong>
+                <p>
+                  Relier le lieu, l’assemblage et ce que l’on ressent vraiment
+                  dans le verre.
+                </p>
+                <a href="blog-creation.html"
+                  >Comprendre comment naît un champagne</a
+                >
+                <a href="blog-composition.html"
+                  >Comprendre la composition et l’assemblage</a
+                >
+                <a href="blog-actualites.html">Lire la Champagne aujourd’hui</a>
+              </div>
+              <div class="story-rail-card">
+                <strong>Relier le terroir aux cuvées</strong>
+                <p>
+                  Le même socle de Channes prend une lecture différente dans
+                  chaque cuvée.
+                </p>
+                <a href="cuvees.html">Comparer nos cuvées</a>
+                <a href="champagne-de-vigneron.html"
+                  >Comprendre l’approche de viticultrice</a
+                >
+              </div>
+              <div class="story-rail-card">
+                <strong>Venir en parler sur place</strong>
+                <p>
+                  Le lieu rend souvent le terroir plus concret qu’un texte,
+                  surtout quand il s’agit ensuite de choisir une cuvée.
+                </p>
+                <a href="visites-degustations.html"
+                  >Prendre rendez-vous à la propriété</a
+                >
+              </div>
+            </aside>
+          </div>
         </div>
-      </div>
-    </section>
-    <section class="section" style="padding-top: 0">
-      <div class="container">
-        <div class="story-columns reveal">
-          <article class="story-panel">
-            <div class="badge">Terroir • Vignoble • Cépages</div>
-            <h2 class="h2">Une maturité qui garde de l’allonge</h2>
-            <p class="p">
-              L’exposition et le relief donnent un fruit présent. La cave garde
-              ensuite l’allonge, pour que le vin tienne la table sans peser.
-            </p>
-            <h3 class="h3">Deux cépages, une seule ligne</h3>
-            <p class="p">
-              Le <b>Pinot Noir</b> porte la matière et le fruit, le
-              <b>Chardonnay</b> apporte la finesse et la tension. Ensemble, ils
-              donnent une lecture plus nette des cuvées.
-            </p>
-            <h3 class="h3">Du lieu jusqu’au choix de la cuvée</h3>
-            <p class="p">
-              Brut Tradition, Brut Rosé et Demi-Sec ne racontent pas trois
-              maisons différentes. Ils donnent trois façons de lire le même
-              socle.
-            </p>
-            <div class="hero-cta">
-              <a class="btn gold" href="cuvees.html">Comparer les cuvées</a>
-              <a class="btn" href="boutique.html"
-                >Choisir une cuvée en boutique</a
-              >
-              <a class="btn" href="index.html#contact">Contact</a>
-            </div>
-          </article>
-          <aside class="story-rail">
-            <div class="story-rail-card">
-              <strong>Comprendre la méthode</strong>
-              <p>
-                Relier le lieu, l’assemblage et ce que l’on ressent vraiment
-                dans le verre.
-              </p>
-              <a href="blog-creation.html"
-                >Comprendre comment naît un champagne</a
-              >
-              <a href="blog-composition.html"
-                >Comprendre la composition et l’assemblage</a
-              >
-              <a href="blog-actualites.html">Lire la Champagne aujourd’hui</a>
-            </div>
-            <div class="story-rail-card">
-              <strong>Relier le terroir aux cuvées</strong>
-              <p>
-                Le même socle de Channes prend une lecture différente dans
-                chaque cuvée.
-              </p>
-              <a href="cuvees.html">Comparer nos cuvées</a>
-              <a href="champagne-de-vigneron.html"
-                >Comprendre l’approche de viticultrice</a
-              >
-            </div>
-            <div class="story-rail-card">
-              <strong>Venir en parler sur place</strong>
-              <p>
-                Le lieu rend souvent le terroir plus concret qu’un texte,
-                surtout quand il s’agit ensuite de choisir une cuvée.
-              </p>
-              <a href="visites-degustations.html"
-                >Prendre rendez-vous à la propriété</a
-              >
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
+      </section>
+    </main>
     <footer>
       <div class="container footer-grid">
         <div>

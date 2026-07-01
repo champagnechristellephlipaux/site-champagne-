@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Netlify Dev (site complet + fonctions)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 8888
+    },
+    {
+      "name": "Serveur statique (HTML/CSS/JS seul)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev:static"],
+      "port": 8000
+    }
+  ]
+}
