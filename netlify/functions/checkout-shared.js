@@ -271,8 +271,10 @@ function cartSignature(items) {
 }
 
 function lineItemsForStripe(items) {
+  const useConfiguredPriceIds = process.env.STRIPE_USE_PRICE_IDS === "true";
+
   return items.map((item) => ({
-    ...(item.price
+    ...(useConfiguredPriceIds && item.price
       ? { price: item.price }
       : {
           price_data: {

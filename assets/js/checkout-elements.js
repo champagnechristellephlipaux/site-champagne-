@@ -63,6 +63,30 @@ function escapeHtml(value) {
     .replace(/'/g, "&#39;");
 }
 
+function setTermsDisabled(disabled) {
+  const terms = $("[data-checkout-terms]");
+  if (terms) terms.disabled = disabled;
+}
+
+function setPaymentFieldsMessage(message) {
+  ["#contact-details-element", "#address-element", "#payment-element"].forEach(
+    (selector) => {
+      const node = $(selector);
+      if (!node) return;
+      node.innerHTML = `<div class="stripe-element-status">${escapeHtml(message)}</div>`;
+    },
+  );
+}
+
+function clearPaymentFieldsMessage() {
+  ["#contact-details-element", "#address-element", "#payment-element"].forEach(
+    (selector) => {
+      const node = $(selector);
+      if (node) node.innerHTML = "";
+    },
+  );
+}
+
 function formatCount(count) {
   return `${count} ${count > 1 ? "articles" : "article"}`;
 }
@@ -318,6 +342,8 @@ async function init() {
   }
 
   renderLocalCart(items);
+  setTermsDisabled(true);
+  setPaymentFieldsMessage("Chargement sécurisé Stripe…");
   setButtonState("Préparation du paiement…");
 
   try {
@@ -336,12 +362,18 @@ async function init() {
     });
 
     state.checkout.on("change", syncStripeSession);
+    clearPaymentFieldsMessage();
     mountElements();
     syncStripeSession();
+    setTermsDisabled(false);
     setButtonState();
   } catch (error) {
     console.debug("Initialisation du paiement indisponible.", error.message);
     state.canConfirm = false;
+    setTermsDisabled(true);
+    setPaymentFieldsMessage(
+      "Paiement Stripe indisponible pour le moment. Aucun débit n’a été lancé.",
+    );
     showError(
       error.message ||
         "La page de paiement ne répond pas pour l’instant. Votre panier reste conservé.",

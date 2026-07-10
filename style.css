@@ -21244,6 +21244,14 @@ body.nav-open .nav-mobile-utility .nav-mobile-utility-link {
   min-height: 44px;
 }
 
+.stripe-element-status {
+  padding: 14px 0;
+  color: var(--v2-ink-soft, #6f6256);
+  font-family: var(--font-ui);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
 .checkout-pay-button {
   width: 100%;
   min-height: 54px;
