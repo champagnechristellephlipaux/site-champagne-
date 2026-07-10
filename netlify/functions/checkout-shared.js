@@ -1,7 +1,7 @@
 const crypto = require("crypto");
 
 const MAX_ITEM_QTY = 48;
-const DEFAULT_SITE_URL = "https://champagne-christelle-phlipaux.com";
+const DEFAULT_SITE_URL = "https://www.champagne-christelle-phlipaux.com";
 const TERMS_VERSION = "2026-06-30";
 
 const CATALOG = {

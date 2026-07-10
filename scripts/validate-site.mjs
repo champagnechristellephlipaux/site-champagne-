@@ -74,7 +74,7 @@ for (const [file, html] of pages) {
   );
   if (canonical?.[1]?.startsWith("http")) {
     assert.ok(
-      canonical[1].startsWith("https://champagne-christelle-phlipaux.com/"),
+      canonical[1].startsWith("https://www.champagne-christelle-phlipaux.com/"),
       `${file} utilise un domaine canonique inattendu`,
     );
   }

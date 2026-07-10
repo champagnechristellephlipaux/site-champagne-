@@ -1,1 +1,17 @@
-/  /index.html  200
+# Anciennes URLs WordPress conservées pour protéger le référencement.
+/portfolio/brut-tradition/ /brut-tradition.html 301
+/portfolio/brut-tradition-magnum/ /brut-tradition.html 301
+/portfolio/demi-bouteille-brut-tradition/ /brut-tradition.html 301
+/portfolio/brut-rose/ /brut-rose.html 301
+/portfolio/demi-sec/ /demi-sec.html 301
+/christelle-test/ /maison.html 301
+/infos/ /livraison-paiement.html 301
+/r-g-p-d-politique-de-confidentialite/ /politique-confidentialite.html 301
+/politique-de-cookies-ue/ /politique-confidentialite.html 301
+/testimonial-category/particulier/ /avis-clients.html 301
+/test/ /index.html 301
+
+# Domaine canonique recommandé : www.
+https://champagne-christelle-phlipaux.com/* https://www.champagne-christelle-phlipaux.com/:splat 301!
+
+/ /index.html 200
