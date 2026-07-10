@@ -40,10 +40,9 @@
     />
     <script defer="" src="consent.js"></script>
     <script defer="" src="ui.js?v=20260701d"></script>
-    <script src="https://js.stripe.com/v3/"></script>
     <script
       defer=""
-      src="assets/js/checkout-elements.js?v=20260710a"
+      src="assets/js/checkout-redirect.js?v=20260710b"
       type="module"
     ></script>
   </head>
@@ -83,11 +82,10 @@
         <div class="checkout-elements-head">
           <div>
             <div class="kicker">Commande</div>
-            <h1 class="h1">Finaliser votre commande</h1>
+            <h1 class="h1">Ouverture du paiement sécurisé</h1>
             <p class="checkout-head-note">
-              Vérifiez votre sélection, indiquez votre adresse puis payez par
-              carte. Pour une question sur la livraison ou la quantité,
-              Christelle reste joignable avant validation.
+              Vous allez être redirigé vers Stripe pour renseigner vos
+              coordonnées, votre adresse de livraison et régler par carte.
             </p>
           </div>
           <a class="btn secondary" href="boutique.html">Modifier le panier</a>
@@ -155,14 +153,15 @@
               <div class="checkout-panel">
                 <div class="checkout-panel-head">
                   <div>
-                    <div class="checkout-eyebrow">Coordonnées</div>
+                    <div class="checkout-eyebrow">Stripe</div>
                     <h2>Contact</h2>
                   </div>
                 </div>
-                <div
-                  class="stripe-element-box"
-                  id="contact-details-element"
-                ></div>
+                <div class="stripe-element-box" id="contact-details-element">
+                  <div class="stripe-element-status">
+                    Préparation de la page de paiement Stripe…
+                  </div>
+                </div>
               </div>
 
               <div class="checkout-panel">
@@ -172,7 +171,11 @@
                     <h2>Adresse</h2>
                   </div>
                 </div>
-                <div class="stripe-element-box" id="address-element"></div>
+                <div class="stripe-element-box" id="address-element">
+                  <div class="stripe-element-status">
+                    L’adresse sera saisie directement sur Stripe.
+                  </div>
+                </div>
                 <p class="checkout-note">
                   Livraison en France métropolitaine. Le téléphone facilite le
                   suivi du transport.
@@ -189,7 +192,11 @@
                     >—</strong
                   >
                 </div>
-                <div class="stripe-element-box" id="payment-element"></div>
+                <div class="stripe-element-box" id="payment-element">
+                  <div class="stripe-element-status">
+                    Le paiement sera sécurisé et traité par Stripe.
+                  </div>
+                </div>
               </div>
 
               <label class="checkout-terms">
@@ -200,7 +207,7 @@
                   type="checkbox"
                 />
                 <span>
-                  J’ai lu et j’accepte les
+                  En continuant, je confirme avoir lu et accepté les
                   <a href="cgv.html" target="_blank" rel="noopener"
                     >conditions générales de vente</a
                   >. Je confirme être majeur et comprends que la validation
@@ -215,7 +222,7 @@
                 disabled=""
                 type="submit"
               >
-                Préparation du paiement…
+                Ouverture de Stripe…
               </button>
               <p class="checkout-note">
                 Paiement traité par Stripe. Les informations bancaires ne sont

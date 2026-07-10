@@ -238,7 +238,9 @@ function sanitizeOrigin(value) {
     const host = url.hostname;
     const isLocal = host === "localhost" || host === "127.0.0.1";
     const isNetlify = host.endsWith(".netlify.app");
-    const isKnownDomain = host === "champagne-christelle-phlipaux.com";
+    const isKnownDomain =
+      host === "champagne-christelle-phlipaux.com" ||
+      host === "www.champagne-christelle-phlipaux.com";
     if (isLocal || isNetlify || isKnownDomain) {
       return url.origin;
     }

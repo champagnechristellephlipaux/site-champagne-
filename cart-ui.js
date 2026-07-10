@@ -14,7 +14,7 @@ import {
   equivalent75clPrice,
   estimateSelectionTotal,
 } from "./cart.js?v=20260630b";
-import { startCheckout } from "./checkout.js?v=20260630b";
+import { startCheckout } from "./checkout.js?v=20260710b";
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
