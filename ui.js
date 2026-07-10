@@ -38,6 +38,11 @@
       ],
     },
     {
+      href: "depositaires.html",
+      label: "Dépositaires",
+      matches: ["depositaires.html"],
+    },
+    {
       href: "cadeaux.html",
       label: "Offrir",
       matches: ["cadeaux.html", "evenements.html"],
