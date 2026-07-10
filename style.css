@@ -1,27 +1,43 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
+@import url("assets/css/design-tokens.css?v=20260701c");
+
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("assets/fonts/cormorant-garamond-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("assets/fonts/manrope-latin.woff2") format("woff2");
+}
 
 :root {
-  --font-ui: "Manrope", "Segoe UI", sans-serif;
-  --font-body: "Cormorant Garamond", Georgia, serif;
-  --font-display: "Cormorant Garamond", Georgia, serif;
-  --font-signature: "Cormorant Garamond", Georgia, serif;
+  --font-ui: var(--font-family-ui);
+  --font-body: var(--font-family-body);
+  --font-display: var(--font-family-display);
+  --font-signature: var(--font-family-display);
 
-  --bg: #16120f;
-  --bg-elevated: #1d1813;
-  --bg-soft: #262019;
+  --bg: var(--color-background);
+  --bg-elevated: var(--color-background-elevated);
+  --bg-soft: var(--color-background-soft);
   --panel: rgba(30, 24, 18, 0.64);
   --panel-strong: rgba(20, 16, 12, 0.88);
-  --text: #f6efe6;
-  --text-soft: rgba(244, 236, 226, 0.88);
-  --text-muted: rgba(223, 212, 198, 0.64);
+  --text: var(--color-text-primary);
+  --text-soft: var(--color-text-secondary);
+  --text-muted: var(--color-text-muted);
   --line: rgba(232, 219, 203, 0.09);
   --line-strong: rgba(232, 219, 203, 0.14);
   --accent: #d8d2c9;
   --accent-strong: #f4f0e8;
   --accent-soft: rgba(216, 210, 201, 0.1);
-  --success: #a7d1a8;
-  --danger: #efb1b1;
-  --shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
+  --success: var(--color-success);
+  --danger: var(--color-danger);
+  --shadow: var(--shadow-card);
   --surface-card:
     linear-gradient(
       180deg,
@@ -36,10 +52,10 @@
       rgba(255, 255, 255, 0.008)
     ),
     rgba(21, 17, 13, 0.74);
-  --radius-xl: 24px;
-  --radius-lg: 18px;
-  --radius-md: 12px;
-  --radius-sm: 12px;
+  --radius-xl: var(--panel-radius);
+  --radius-lg: var(--card-radius);
+  --radius-md: var(--media-radius);
+  --radius-sm: var(--chip-radius);
   --max: 1200px;
   --header-height: 92px;
 }
@@ -4374,7 +4390,11 @@ footer,
       rgba(10, 9, 8, 0.52) 54%,
       rgba(10, 9, 8, 0.76)
     ),
-    url("assets/maison-cave.jpg") center 42% / cover no-repeat;
+    image-set(
+        url("assets/maison-cave.webp") type("image/webp"),
+        url("assets/maison-cave.jpg") type("image/jpeg")
+      )
+      center 42% / cover no-repeat;
 }
 
 .page-cuvee--rose .page-hero {
@@ -4385,7 +4405,11 @@ footer,
       rgba(10, 9, 8, 0.5) 54%,
       rgba(10, 9, 8, 0.74)
     ),
-    url("assets/pinot-noir-matiere.jpg") center 44% / cover no-repeat;
+    image-set(
+        url("assets/pinot-noir-matiere.webp") type("image/webp"),
+        url("assets/pinot-noir-matiere.jpg") type("image/jpeg")
+      )
+      center 44% / cover no-repeat;
 }
 
 .page-cuvee--demisec .page-hero {
@@ -4396,7 +4420,11 @@ footer,
       rgba(10, 9, 8, 0.52) 56%,
       rgba(10, 9, 8, 0.76)
     ),
-    url("assets/raisins-matiere.jpg") center 46% / cover no-repeat;
+    image-set(
+        url("assets/raisins-matiere.webp") type("image/webp"),
+        url("assets/raisins-matiere.jpg") type("image/jpeg")
+      )
+      center 46% / cover no-repeat;
 }
 
 .page-boutique .shop-top-trust {
@@ -5751,6 +5779,40 @@ footer,
   .review-consent {
     grid-template-columns: auto minmax(0, 1fr);
   }
+}
+
+/* Validation contractuelle, calme et lisible avant le paiement. */
+.checkout-terms {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding: 16px 18px;
+  border: 1px solid rgba(205, 166, 115, 0.24);
+  border-radius: 12px;
+  background: rgba(31, 25, 20, 0.9);
+  color: rgba(246, 239, 230, 0.9);
+  font-family: var(--font-ui);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.checkout-terms input {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: #8b673f;
+}
+
+.checkout-terms a {
+  color: #d8b98d;
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+.checkout-terms:focus-within {
+  outline: 2px solid rgba(216, 185, 141, 0.46);
+  outline-offset: 2px;
 }
 
 .reveal,
@@ -13430,7 +13492,7 @@ body.is-scrolled .topbar {
   }
 }
 
-@media (max-width: 920px) {
+@media (max-width: 1180px) {
   :root {
     --header-height: 80px;
   }
@@ -17743,9 +17805,9 @@ summary {
 
 /* CTA system pass: clearer hierarchy without discount or template effects. */
 :root {
-  --cta-radius: 16px;
-  --cta-min-h: 50px;
-  --cta-pad-x: 20px;
+  --cta-radius: var(--button-radius);
+  --cta-min-h: var(--button-height);
+  --cta-pad-x: var(--button-padding-inline);
   --cta-primary-bg: linear-gradient(180deg, #f4efe5 0%, #d9cebd 100%);
   --cta-primary-bg-hover: linear-gradient(180deg, #fbf6ec 0%, #e3d7c6 100%);
   --cta-primary-text: #17110d;
@@ -18104,11 +18166,11 @@ summary {
 
 /* Surface system pass: calmer cards and coherent premium blocks. */
 :root {
-  --surface-radius-xl: 28px;
-  --surface-radius-lg: 22px;
-  --surface-radius-md: 16px;
-  --surface-line: rgba(232, 219, 203, 0.105);
-  --surface-line-strong: rgba(232, 219, 203, 0.16);
+  --surface-radius-xl: var(--panel-radius);
+  --surface-radius-lg: var(--card-radius);
+  --surface-radius-md: var(--media-radius);
+  --surface-line: var(--color-border);
+  --surface-line-strong: var(--color-border-strong);
   --surface-bg-calm:
     linear-gradient(
       180deg,
@@ -18130,8 +18192,8 @@ summary {
       rgba(255, 255, 255, 0.012)
     ),
     rgba(15, 12, 10, 0.58);
-  --surface-shadow: 0 14px 34px rgba(0, 0, 0, 0.1);
-  --surface-shadow-soft: 0 8px 22px rgba(0, 0, 0, 0.06);
+  --surface-shadow: var(--shadow-card);
+  --surface-shadow-soft: var(--shadow-soft);
 }
 
 .card,
@@ -18301,9 +18363,9 @@ summary {
 
 @media (max-width: 720px) {
   :root {
-    --surface-radius-xl: 22px;
-    --surface-radius-lg: 18px;
-    --surface-radius-md: 14px;
+    --surface-radius-xl: var(--panel-radius);
+    --surface-radius-lg: var(--card-radius);
+    --surface-radius-md: var(--media-radius);
     --surface-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
     --surface-shadow-soft: none;
   }
@@ -18651,8 +18713,8 @@ a:focus-visible {
 
 /* Global visual coherence pass: one calmer premium system across mobile and desktop. */
 :root {
-  --system-edge: rgba(236, 225, 211, 0.13);
-  --system-edge-strong: rgba(236, 225, 211, 0.21);
+  --system-edge: var(--color-border);
+  --system-edge-strong: var(--color-border-strong);
   --system-card-bg:
     linear-gradient(
       180deg,
@@ -18672,9 +18734,9 @@ a:focus-visible {
       rgba(255, 255, 255, 0.006)
     ),
     rgba(15, 12, 10, 0.42);
-  --system-radius-xl: 26px;
-  --system-radius-lg: 20px;
-  --system-radius-md: 15px;
+  --system-radius-xl: var(--panel-radius);
+  --system-radius-lg: var(--card-radius);
+  --system-radius-md: var(--media-radius);
 }
 
 .card,
@@ -18853,9 +18915,9 @@ body.nav-open .nav-mobile-utility .nav-mobile-utility-link {
 
 @media (max-width: 720px) {
   :root {
-    --system-radius-xl: 22px;
-    --system-radius-lg: 18px;
-    --system-radius-md: 14px;
+    --system-radius-xl: var(--panel-radius);
+    --system-radius-lg: var(--card-radius);
+    --system-radius-md: var(--media-radius);
   }
 
   .section {
@@ -21831,11 +21893,11 @@ body.nav-open .nav-mobile-utility .nav-mobile-utility-link {
 
 /* Professional commerce finish: restrained, legible and consistent. */
 :root {
-  --commerce-surface: rgba(25, 20, 16, 0.94);
-  --commerce-surface-soft: rgba(255, 255, 255, 0.025);
-  --commerce-line: rgba(236, 225, 211, 0.14);
-  --commerce-line-strong: rgba(236, 225, 211, 0.24);
-  --commerce-shadow: 0 24px 54px rgba(0, 0, 0, 0.24);
+  --commerce-surface: var(--color-surface);
+  --commerce-surface-soft: var(--color-surface-soft);
+  --commerce-line: var(--color-border);
+  --commerce-line-strong: var(--color-border-strong);
+  --commerce-shadow: var(--shadow-commerce);
 }
 
 header,
@@ -21851,14 +21913,14 @@ body.is-scrolled .topbar {
 
 .menu a:not(.btn),
 .topbar .nav a:not(.btn) {
-  border-radius: 6px;
+  border-radius: var(--chip-radius);
 }
 
 .menu .btn.primary,
 .nav-primary-cta,
 .nav-cart-link,
 .cart-btn {
-  border-radius: 8px;
+  border-radius: var(--button-radius);
 }
 
 .page-home .home-hero-copy-panel {
@@ -21866,7 +21928,7 @@ body.is-scrolled .topbar {
   max-width: 45rem;
   padding: clamp(24px, 2.8vw, 36px);
   border-color: var(--commerce-line);
-  border-radius: 12px;
+  border-radius: var(--panel-radius);
   background: rgba(13, 10, 8, 0.78);
   box-shadow: var(--commerce-shadow);
 }
@@ -21939,7 +22001,7 @@ body.is-scrolled .topbar {
 
 .page-home .home-hero-copy-panel .hero-cta-primary {
   min-height: 52px;
-  border-radius: 8px;
+  border-radius: var(--button-radius);
 }
 
 .page-home .home-hero-copy-panel .hero-cta-secondary {
@@ -21957,7 +22019,7 @@ body.is-scrolled .topbar {
 .page-home .home-hero-media,
 .page-home .home-hero-dossier,
 .page-home .home-hero-dossier-item {
-  border-radius: 12px;
+  border-radius: var(--panel-radius);
 }
 
 .page-home .home-discovery-section {
@@ -21970,7 +22032,7 @@ body.is-scrolled .topbar {
 
 .page-home .home-discovery-media img {
   border-color: var(--commerce-line);
-  border-radius: 10px;
+  border-radius: var(--card-radius);
   box-shadow: var(--commerce-shadow);
 }
 
@@ -22000,13 +22062,13 @@ body.is-scrolled .topbar {
 .page-home .home-discovery-copy .btn,
 .page-home .home-offer-actions .btn,
 .page-home .home-section-actions .btn {
-  border-radius: 8px;
+  border-radius: var(--button-radius);
 }
 
 .page-home .home-offer-card {
   gap: 14px;
   border-color: var(--commerce-line);
-  border-radius: 10px;
+  border-radius: var(--card-radius);
   background: rgba(19, 15, 12, 0.76);
   box-shadow: 0 18px 38px rgba(0, 0, 0, 0.14);
 }
@@ -22018,7 +22080,7 @@ body.is-scrolled .topbar {
 .page-home .home-offer-visual {
   overflow: hidden;
   border-color: rgba(236, 225, 211, 0.12);
-  border-radius: 8px;
+  border-radius: var(--media-radius);
   background: #100d0b;
 }
 
@@ -22033,7 +22095,7 @@ body.is-scrolled .topbar {
 
 .page-home .home-simple-panel {
   border-color: var(--commerce-line);
-  border-radius: 10px;
+  border-radius: var(--card-radius);
   background: rgba(19, 15, 12, 0.58);
 }
 
@@ -22045,14 +22107,14 @@ body.is-scrolled .topbar {
 
 .page-boutique .page-hero-copy {
   border-color: var(--commerce-line);
-  border-radius: 12px;
+  border-radius: var(--panel-radius);
   background: rgba(12, 10, 8, 0.74);
 }
 
 .page-boutique .shop-hero-choice a,
 .page-boutique .shop-hero-proof span,
 .page-boutique .shop-intent-strip a {
-  border-radius: 8px;
+  border-radius: var(--button-radius);
   background: rgba(20, 16, 13, 0.8);
 }
 
@@ -22065,7 +22127,7 @@ body.is-scrolled .topbar {
 .page-boutique .product {
   overflow: hidden;
   border-color: var(--commerce-line);
-  border-radius: 10px;
+  border-radius: var(--card-radius);
   background: rgba(20, 16, 13, 0.76);
   box-shadow: 0 22px 48px rgba(0, 0, 0, 0.16);
 }
@@ -22091,12 +22153,12 @@ body.is-scrolled .topbar {
 
 .page-boutique .product-media-mark,
 .page-boutique .product-badge-row .badge {
-  border-radius: 6px;
+  border-radius: var(--chip-radius);
 }
 
 .page-boutique .product-price-card {
   border-color: var(--commerce-line);
-  border-radius: 8px;
+  border-radius: var(--media-radius);
   background: var(--commerce-surface-soft);
 }
 
@@ -22110,7 +22172,7 @@ body.is-scrolled .topbar {
 .page-boutique .product .qty,
 .page-boutique .product .qty-btn,
 .page-boutique .product .variant-actions .btn {
-  border-radius: 8px;
+  border-radius: var(--button-radius);
 }
 
 .page-boutique .product .seg > span {
@@ -22131,25 +22193,25 @@ body.is-scrolled .topbar {
 .page-boutique .shop-service-panel,
 .page-boutique .shop-service-card,
 .page-boutique .shop-service-note {
-  border-radius: 8px;
+  border-radius: var(--media-radius);
   background: rgba(19, 15, 12, 0.64);
 }
 
 .page-cuvee .product-sale-shell {
   border-color: var(--commerce-line);
-  border-radius: 10px;
+  border-radius: var(--card-radius);
   background: rgba(19, 15, 12, 0.94);
   box-shadow: var(--commerce-shadow);
 }
 
 .page-cuvee .product-sale-visual,
 .page-cuvee .product-sale-scene {
-  border-radius: 8px;
+  border-radius: var(--media-radius);
 }
 
 .page-cuvee .product-buy-card {
   border-color: var(--commerce-line-strong);
-  border-radius: 10px;
+  border-radius: var(--card-radius);
   background: #15110e;
   box-shadow: 0 20px 42px rgba(0, 0, 0, 0.2);
 }
@@ -22162,7 +22224,7 @@ body.is-scrolled .topbar {
 .page-cuvee .product-buy-card .qty-btn,
 .page-cuvee .product-buy-card .variant-actions .btn,
 .page-cuvee .product-buy-help {
-  border-radius: 8px;
+  border-radius: var(--button-radius);
 }
 
 .page-cuvee .product-buy-card .variant-purchase {
@@ -22174,7 +22236,7 @@ body.is-scrolled .topbar {
   gap: 0;
   overflow: hidden;
   border: 1px solid var(--commerce-line);
-  border-radius: 8px;
+  border-radius: var(--media-radius);
 }
 
 .page-cuvee .product-buy-card .product-precart-assurance span {
@@ -22198,6 +22260,27 @@ body.is-scrolled .topbar {
   background: #15110e !important;
 }
 
+/* Keep the selected products visible before checkout, including on short
+   mobile viewports where the reassurance block is taller than the screen. */
+.drawer-panel {
+  overflow-y: auto;
+}
+
+.drawer-head {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.drawer-body {
+  flex: 0 0 auto;
+  overflow: visible;
+}
+
+.drawer-foot {
+  flex: 0 0 auto;
+}
+
 .drawer-head,
 .drawer-body,
 .drawer-foot {
@@ -22212,13 +22295,13 @@ body.is-scrolled .topbar {
 .drawer-assurance span,
 .drawer-assurance a {
   border-color: var(--commerce-line);
-  border-radius: 8px;
+  border-radius: var(--media-radius);
   background: rgba(255, 255, 255, 0.025);
 }
 
 .drawer-actions .btn.primary {
   min-height: 58px;
-  border-radius: 8px;
+  border-radius: var(--button-radius);
 }
 
 .ship-progress,
@@ -22240,7 +22323,7 @@ body.is-scrolled .topbar {
 .checkout-human-contact,
 .checkout-pay-button,
 .checkout-elements-head .btn {
-  border-radius: 8px;
+  border-radius: var(--button-radius);
 }
 
 .checkout-panel {
@@ -22258,7 +22341,7 @@ body.is-scrolled .topbar {
   gap: 0;
   overflow: hidden;
   border: 1px solid var(--commerce-line);
-  border-radius: 8px;
+  border-radius: var(--media-radius);
 }
 
 .checkout-reassurance span {
@@ -22495,5 +22578,161 @@ body.is-scrolled .topbar {
 
   .checkout-reassurance span + span {
     border-top: 1px solid var(--commerce-line);
+  }
+}
+
+/* Product detail mobile path: keep the cuvée identity first, then let visitors
+   choose and add before the secondary image and extended reassurance. */
+@media (max-width: 720px) {
+  .page-cuvee .product-sale-grid {
+    grid-template-areas:
+      "head"
+      "buy"
+      "visual";
+  }
+
+  .page-cuvee .product-buy-copy {
+    display: none;
+  }
+
+  .page-cuvee .product-buy-card .variant-purchase {
+    grid-template-areas:
+      "qty total"
+      "actions actions"
+      "assurance assurance";
+    grid-template-columns: minmax(112px, 0.46fr) minmax(0, 0.54fr);
+  }
+
+  .page-cuvee .product-buy-card .product-selection-note {
+    display: none;
+  }
+
+  .page-cuvee .product-buy-card .variant-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-cuvee .product-buy-card .product-precart-assurance {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Benchmark-derived editorial refinement.
+   Inspired by the clarity of leading winery sites, without imitating their
+   identity or adding heavy motion. */
+@media (min-width: 981px) {
+  .page-home .hero--home::before {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(10, 8, 7, 0.78) 0%,
+        rgba(10, 8, 7, 0.58) 42%,
+        rgba(10, 8, 7, 0.12) 72%
+      ),
+      linear-gradient(180deg, rgba(10, 8, 7, 0.04), rgba(10, 8, 7, 0.34) 100%);
+  }
+
+  .page-home .home-hero-copy-panel {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .page-home .home-hero-copy {
+    padding-block: var(--primitive-space-10);
+  }
+}
+
+.page-home .home-hero-stage-note {
+  backdrop-filter: blur(6px);
+}
+
+.page-home .home-discovery-section {
+  border-color: var(--color-editorial-line);
+  color: var(--color-editorial-ink);
+  background:
+    radial-gradient(
+      circle at 12% 14%,
+      rgba(255, 255, 255, 0.62),
+      transparent 32%
+    ),
+    linear-gradient(
+      135deg,
+      var(--color-editorial-paper) 0%,
+      var(--color-editorial-paper-deep) 100%
+    );
+}
+
+.page-home .home-discovery-section .kicker {
+  color: #71563e;
+}
+
+.page-home .home-discovery-section .h2 {
+  color: var(--color-editorial-ink);
+  text-shadow: none;
+}
+
+.page-home .home-discovery-section .editorial-lead {
+  color: var(--color-editorial-muted);
+}
+
+.page-home .home-discovery-section .home-discovery-facts {
+  border-color: var(--color-editorial-line);
+}
+
+.page-home .home-discovery-section .home-discovery-facts span {
+  border-color: var(--color-editorial-line);
+  color: #44352b;
+}
+
+.page-home .home-discovery-section .home-discovery-facts span + span {
+  border-color: var(--color-editorial-line);
+}
+
+.page-home .home-discovery-section .home-discovery-media img {
+  border-color: var(--color-editorial-line);
+  box-shadow: 0 24px 52px rgba(46, 33, 23, 0.18);
+}
+
+.page-home .home-discovery-section .btn.primary {
+  border-color: #2e2119;
+  background: #2e2119;
+  color: var(--primitive-color-ivory-50);
+  box-shadow: 0 12px 28px rgba(46, 33, 23, 0.18);
+}
+
+.page-home .home-discovery-section .btn.primary:hover {
+  border-color: #17100c;
+  background: #17100c;
+  color: #fff;
+}
+
+.page-home .home-discovery-section .btn.secondary {
+  border-color: rgba(46, 33, 25, 0.32);
+  background: rgba(255, 255, 255, 0.18);
+  color: #2e2119;
+  box-shadow: none;
+}
+
+.page-home .home-discovery-section .btn.secondary:hover {
+  border-color: rgba(46, 33, 25, 0.52);
+  background: rgba(255, 255, 255, 0.42);
+  color: #17100c;
+}
+
+.page-home .home-offer-section,
+.page-home .home-story-section,
+.page-home .home-journal-section,
+.page-home .home-guide-section {
+  border-bottom: 1px solid rgba(236, 225, 211, 0.07);
+}
+
+@media (max-width: 720px) {
+  .page-home .home-discovery-section {
+    padding-block: 44px;
+  }
+
+  .page-home .home-discovery-section .home-discovery-media img {
+    box-shadow: 0 18px 36px rgba(46, 33, 23, 0.16);
   }
 }

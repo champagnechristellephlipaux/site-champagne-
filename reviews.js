@@ -325,7 +325,7 @@
         }
         node.innerHTML = emptyState(config);
       });
-      console.error("Impossible de charger les avis publiés.", error);
+      console.debug("Avis publiés indisponibles.", error.message);
     }
   }
 

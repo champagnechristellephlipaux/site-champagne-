@@ -4,27 +4,47 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
-    <meta content="#17120e" name="theme-color" />
+    <meta content="#f3eee6" name="theme-color" />
     <meta content="telephone=no" name="format-detection" />
     <meta content="Champagne Christelle Phlipaux" name="author" />
     <link href="/assets/logo-trans.png" rel="icon" type="image/png" />
-    <title>Christelle Phlipaux | Champagne de Channes, Côte des Bar</title>
-    <link as="style" href="style.css" rel="preload" />
+    <title>Champagne de vigneron à Channes | Christelle Phlipaux</title>
+    <link as="style" href="style.css?v=20260701d" rel="preload" />
     <link
       as="image"
+      fetchpriority="high"
       href="/assets/vendange-pinot-noir-channes.webp"
       rel="preload"
       type="image/webp"
     />
-    <link href="style.css" rel="stylesheet" />
-    <meta
-      content="À Channes, Christelle Phlipaux signe trois cuvées suivies à la propriété : Brut Tradition, Brut Rosé et Demi-Sec, en vente directe depuis la maison."
-      name="description"
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/cormorant-garamond-latin.woff2"
+      rel="preload"
+      type="font/woff2"
     />
     <link
-      href="https://champagnechristellephlipaux.netlify.app/"
-      rel="canonical"
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/manrope-latin.woff2"
+      rel="preload"
+      type="font/woff2"
     />
+    <link href="style.css?v=20260701d" rel="stylesheet" />
+    <link
+      href="assets/css/editorial-redesign.css?v=20260701d"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/css/immersive-experience.css?v=20260702b"
+      rel="stylesheet"
+    />
+    <meta
+      content="Champagne de vigneronne à Channes, en Côte des Bar : Brut Tradition, Brut Rosé et Demi-Sec élaborés à la propriété et disponibles en vente directe."
+      name="description"
+    />
+    <link href="https://champagne-christelle-phlipaux.com/" rel="canonical" />
     <meta content="index,follow" name="robots" />
     <meta content="website" property="og:type" />
     <meta content="Champagne Christelle Phlipaux" property="og:site_name" />
@@ -38,11 +58,11 @@
       property="og:description"
     />
     <meta
-      content="https://champagnechristellephlipaux.netlify.app/"
+      content="https://champagne-christelle-phlipaux.com/"
       property="og:url"
     />
     <meta
-      content="https://champagnechristellephlipaux.netlify.app/assets/vendanges-maison.jpg"
+      content="https://champagne-christelle-phlipaux.com/assets/vendanges-maison.jpg"
       property="og:image"
     />
     <meta
@@ -59,7 +79,7 @@
       name="twitter:description"
     />
     <meta
-      content="https://champagnechristellephlipaux.netlify.app/assets/vendanges-maison.jpg"
+      content="https://champagne-christelle-phlipaux.com/assets/vendanges-maison.jpg"
       name="twitter:image"
     />
     <meta
@@ -71,10 +91,12 @@
         "@context": "https://schema.org",
         "@type": ["Organization", "Winery"],
         "name": "Champagne Christelle Phlipaux",
-        "url": "https://champagnechristellephlipaux.netlify.app/",
+        "legalName": "CHRISTELLE BOURDICAUD",
+        "vatID": "FR25539870253",
+        "url": "https://champagne-christelle-phlipaux.com/",
         "foundingDate": "1977",
-        "logo": "https://champagnechristellephlipaux.netlify.app/assets/logo.png",
-        "image": "https://champagnechristellephlipaux.netlify.app/assets/vendanges-maison.jpg",
+        "logo": "https://champagne-christelle-phlipaux.com/assets/logo.png",
+        "image": "https://champagne-christelle-phlipaux.com/assets/vendanges-maison.jpg",
         "telephone": "+33 6 82 20 34 30",
         "email": "champagne.christelle.phlipaux@gmail.com",
         "address": {
@@ -96,7 +118,7 @@
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "Champagne Christelle Phlipaux",
-        "url": "https://champagnechristellephlipaux.netlify.app/",
+        "url": "https://champagne-christelle-phlipaux.com/",
         "inLanguage": "fr-FR"
       }
     </script>
@@ -109,7 +131,7 @@
             "@type": "ListItem",
             "position": 1,
             "name": "Accueil",
-            "item": "https://champagnechristellephlipaux.netlify.app/"
+            "item": "https://champagne-christelle-phlipaux.com/"
           }
         ]
       }
@@ -147,9 +169,9 @@
       }
     </script>
     <script defer="" src="consent.js"></script>
-    <script defer="" src="ui.js"></script>
+    <script defer="" src="ui.js?v=20260701d"></script>
   </head>
-  <body class="page-home">
+  <body class="page-home immersive-site">
     <header>
       <div class="container nav">
         <a class="brand" href="index.html">
@@ -191,96 +213,38 @@
           <div class="home-hero-layout">
             <div class="home-hero-copy">
               <div class="home-hero-copy-panel reveal">
-                <div class="kicker">Channes, Côte des Bar</div>
+                <div class="kicker">
+                  Maison familiale · Channes · depuis 1977
+                </div>
                 <h1>
                   <span class="home-hero-title-brand"
-                    >Champagne Christelle Phlipaux</span
+                    >Le champagne de Channes,</span
                   >
                   <span class="home-hero-title-place"
-                    >viticultrice indépendante.</span
+                    >de nos vignes à votre table.</span
                   >
                 </h1>
                 <p class="lead">
-                  À Channes, Christelle Phlipaux garde le fil court : la vigne,
-                  la cave, le conseil direct, puis la bouteille préparée à la
-                  propriété.
+                  Christelle Phlipaux élabore trois cuvées à la propriété et
+                  vous conseille directement pour choisir celle du moment.
                 </p>
                 <div class="home-hero-proofline" aria-label="Repères de maison">
-                  <span>Maison familiale indépendante</span>
-                  <span>Création 1977</span>
-                  <span>Channes, Aube</span>
-                </div>
-                <div class="home-human-note">
-                  <strong>Un choix peut encore se parler.</strong>
-                  <span
-                    >Christelle vous aide à choisir la cuvée juste pour une
-                    table, un cadeau ou une première commande.</span
-                  >
+                  <span>Élaboré à la propriété</span>
+                  <span>Achat direct</span>
+                  <span>Livraison en France</span>
                 </div>
                 <div class="hero-cta">
+                  <a class="btn primary hero-cta-primary" href="#offre"
+                    >Choisir une cuvée</a
+                  >
                   <a
-                    class="btn primary hero-cta-primary"
+                    aria-label="Découvrir le coffret de trois cuvées à 75 euros"
+                    class="hero-cta-secondary"
                     href="boutique.html#coffret-decouverte"
-                    >Commander le coffret</a
-                  >
-                  <a class="hero-cta-secondary" href="cuvees.html"
-                    >Voir les cuvées</a
+                    >Le coffret · 3 cuvées · 75€</a
                   >
                 </div>
               </div>
-            </div>
-            <div class="home-hero-stage reveal">
-              <figure class="home-hero-media home-hero-media--vignoble">
-                <div class="home-hero-media-badge">
-                  <span>Maison indépendante</span>
-                  <strong>Channes, Côte des Bar</strong>
-                </div>
-                <picture>
-                  <source
-                    srcset="assets/vendange-pinot-noir-channes.webp"
-                    type="image/webp"
-                  />
-                  <img
-                    alt="Vendange de Pinot Noir dans les vignes de Channes"
-                    decoding="async"
-                    fetchpriority="high"
-                    height="1800"
-                    loading="eager"
-                    src="assets/vendange-pinot-noir-channes.jpg"
-                    width="1350"
-                  />
-                </picture>
-              </figure>
-              <div class="home-hero-stage-note">
-                <span class="home-hero-stage-label">Du lieu au vin</span>
-                <strong
-                  >Une vigne proche, une cave sur place, trois cuvées sans
-                  dispersion.</strong
-                >
-                <p>Ici, choisir une bouteille peut encore se parler.</p>
-                <a class="home-hero-stage-link" href="maison.html"
-                  >Découvrir le lieu</a
-                >
-              </div>
-            </div>
-            <div
-              aria-label="Repères directs de la maison"
-              class="home-hero-dossier reveal"
-            >
-              <a class="home-hero-dossier-item" href="maison.html">
-                <span class="home-hero-dossier-label">Maison indépendante</span>
-                <strong>Viticultrice à Channes, Côte des Bar</strong>
-              </a>
-              <a class="home-hero-dossier-item" href="cuvees.html">
-                <span class="home-hero-dossier-label">Trois cuvées</span>
-                <strong>Brut Tradition, Rosé, Demi-Sec</strong>
-              </a>
-              <a class="home-hero-dossier-item" href="boutique.html">
-                <span class="home-hero-dossier-label">Commande directe</span>
-                <strong
-                  >Conseil, préparation et suivi depuis la propriété</strong
-                >
-              </a>
             </div>
           </div>
         </div>
@@ -308,10 +272,10 @@
             </figure>
             <div class="home-discovery-copy">
               <div class="kicker">Coffret découverte</div>
-              <h2 class="h2">Les trois cuvées de la maison, en une commande</h2>
+              <h2 class="h2">Les trois cuvées de Channes, réunies</h2>
               <p class="editorial-lead">
-                Brut Tradition, Brut Rosé et Demi-Sec réunis pour découvrir la
-                ligne de Channes sans multiplier les choix.
+                Un flacon de Brut Tradition, de Brut Rosé et de Demi-Sec pour
+                goûter la gamme et trouver votre préférence.
               </p>
               <div class="home-discovery-facts" role="list">
                 <span role="listitem">3 bouteilles 75 cl</span>
@@ -335,15 +299,16 @@
           <div class="home-offer-intro reveal">
             <div class="home-offer-intro-copy">
               <div class="kicker">Les cuvées</div>
-              <h2 class="h2">Trois cuvées, trois intentions nettes</h2>
-              <p class="p">
-                Une gamme courte parce que chaque bouteille doit avoir sa place.
-              </p>
+              <h2 class="h2">Choisissez selon le moment</h2>
+              <p class="p">Trois cuvées élaborées à Channes.</p>
             </div>
             <div class="home-offer-guide">
-              <span>Depuis Channes</span>
-              <strong>Brut Tradition, Brut Rosé, Demi-Sec</strong>
-              <p>Fruit net, bulle tenue, Channes en filigrane.</p>
+              <span>Quelle cuvée choisir ?</span>
+              <strong>Fraîcheur, fruit ou douceur</strong>
+              <p>
+                Brut Tradition pour la fraîcheur, Brut Rosé pour le fruit,
+                Demi-Sec pour les accords gourmands.
+              </p>
             </div>
           </div>
           <div class="home-offer-grid">
@@ -352,13 +317,18 @@
             >
               <div class="home-offer-card-head">
                 <div>
-                  <div class="home-offer-overline">Pour ouvrir la table</div>
+                  <div class="home-offer-overline">
+                    Pour l’apéritif et la table
+                  </div>
                   <h3 class="h3">Brut Tradition</h3>
                 </div>
-                <span class="home-offer-number">01</span>
+                <div class="home-offer-price">
+                  <span>75 cl</span>
+                  <strong>22,50€</strong>
+                </div>
               </div>
               <p class="home-offer-intent">
-                Le brut qui signe la maison : net, droit, sans maquillage.
+                Frais et droit, pour l’apéritif comme pour le repas.
               </p>
               <div class="home-offer-visual">
                 <picture
@@ -377,13 +347,13 @@
                     width="820"
                 /></picture>
                 <div class="home-offer-occasion">
-                  Apéritif, table, première bouteille à ouvrir sans hésiter.
+                  Apéritif, repas, première découverte de la maison.
                 </div>
               </div>
               <div class="home-offer-cues">
                 <div>
-                  <span>Sensation</span>
-                  <strong>Frais, droit, tenu.</strong>
+                  <span>En bouche</span>
+                  <strong>Frais, franc et équilibré.</strong>
                 </div>
                 <div>
                   <span>Formats</span>
@@ -391,8 +361,11 @@
                 </div>
               </div>
               <div class="home-offer-actions">
-                <a class="btn" href="brut-tradition.html"
-                  >Lire Brut Tradition</a
+                <a
+                  aria-label="Choisir le Brut Tradition"
+                  class="btn"
+                  href="brut-tradition.html"
+                  >Choisir le Brut Tradition</a
                 >
               </div>
             </article>
@@ -401,14 +374,16 @@
             >
               <div class="home-offer-card-head">
                 <div>
-                  <div class="home-offer-overline">Pour offrir avec relief</div>
+                  <div class="home-offer-overline">Pour offrir et célébrer</div>
                   <h3 class="h3">Brut Rosé</h3>
                 </div>
-                <span class="home-offer-number">02</span>
+                <div class="home-offer-price">
+                  <span>75 cl</span>
+                  <strong>25€</strong>
+                </div>
               </div>
               <p class="home-offer-intent">
-                Un rosé d’assemblage au fruit délicat, à la couleur juste et à
-                la finale nette.
+                Un rosé d’assemblage au fruit délicat et à la finale fraîche.
               </p>
               <div class="home-offer-visual">
                 <picture
@@ -432,8 +407,8 @@
               </div>
               <div class="home-offer-cues">
                 <div>
-                  <span>Sensation</span>
-                  <strong>Fruité, délicat, lumineux.</strong>
+                  <span>En bouche</span>
+                  <strong>Fruité, délicat et frais.</strong>
                 </div>
                 <div>
                   <span>Formats</span>
@@ -441,7 +416,12 @@
                 </div>
               </div>
               <div class="home-offer-actions">
-                <a class="btn" href="brut-rose.html">Lire Brut Rosé</a>
+                <a
+                  aria-label="Choisir le Brut Rosé"
+                  class="btn"
+                  href="brut-rose.html"
+                  >Choisir le Brut Rosé</a
+                >
               </div>
             </article>
             <article
@@ -450,14 +430,17 @@
               <div class="home-offer-card-head">
                 <div>
                   <div class="home-offer-overline">
-                    Pour les accords plus amples
+                    Pour le dessert et le foie gras
                   </div>
                   <h3 class="h3">Demi-Sec</h3>
                 </div>
-                <span class="home-offer-number">03</span>
+                <div class="home-offer-price">
+                  <span>75 cl</span>
+                  <strong>22,50€</strong>
+                </div>
               </div>
               <p class="home-offer-intent">
-                La douceur tenue : plus ample, mais jamais lourde à table.
+                Une douceur mesurée pour les accords plus gourmands.
               </p>
               <div class="home-offer-visual">
                 <picture
@@ -476,13 +459,13 @@
                     width="820"
                 /></picture>
                 <div class="home-offer-occasion">
-                  Dessert, foie gras, accords sucrés-salés avec tenue.
+                  Dessert, foie gras et accords sucrés-salés.
                 </div>
               </div>
               <div class="home-offer-cues">
                 <div>
-                  <span>Sensation</span>
-                  <strong>Ample, gourmand, tenu.</strong>
+                  <span>En bouche</span>
+                  <strong>Rond, gourmand et frais.</strong>
                 </div>
                 <div>
                   <span>Formats</span>
@@ -490,7 +473,12 @@
                 </div>
               </div>
               <div class="home-offer-actions">
-                <a class="btn" href="demi-sec.html">Lire Demi-Sec</a>
+                <a
+                  aria-label="Choisir le Demi-Sec"
+                  class="btn"
+                  href="demi-sec.html"
+                  >Choisir le Demi-Sec</a
+                >
               </div>
             </article>
           </div>
@@ -510,122 +498,62 @@
                 <div class="kicker">La maison</div>
                 <div class="badge home-story-badge">Viticultrice à Channes</div>
               </div>
-              <h2 class="h2">
-                Christelle Phlipaux, une maison tenue près de sa vigne
-              </h2>
+              <h2 class="h2">Christelle Phlipaux, viticultrice à Channes</h2>
               <p class="editorial-lead">
-                Tout part du même endroit : les vignes, la cave, le geste de
-                travail et la parole de la maison.
+                À Channes, Christelle conduit les vignes, suit les cuvées et
+                prépare les commandes de la maison. Quand vous appelez, c’est
+                elle qui vous répond.
               </p>
               <div class="home-story-signature">
-                <span>Ce qui se sent</span>
+                <span>Depuis 1977</span>
                 <strong
-                  >La distance reste courte entre le raisin, la cave et la
-                  bouteille choisie.</strong
+                  >Une maison familiale installée à Channes, dans
+                  l’Aube.</strong
                 >
               </div>
               <div class="home-story-points">
                 <div class="home-story-point">
-                  <strong>Une présence réelle</strong>
+                  <strong>De la vigne à la commande</strong>
                   <span
-                    >Le vin part d’un lieu précis, et le conseil vient d’une
-                    personne qui connaît ses cuvées.</span
+                    >Les cuvées sont suivies et les commandes préparées à
+                    Channes.</span
                   >
                 </div>
                 <div class="home-story-point">
-                  <strong>Une cave de retenue</strong>
-                  <span>Fruit net, mousse fine, tenue sans démonstration.</span>
-                </div>
-                <div class="home-story-point">
-                  <strong>Trois cuvées seulement</strong>
+                  <strong>Christelle vous répond</strong>
                   <span
-                    >Brut Tradition, Brut Rosé et Demi-Sec tracent une gamme
-                    courte, cohérente, sans dispersion.</span
+                    >Pour choisir une cuvée, un format ou préparer une
+                    commande.</span
                   >
                 </div>
               </div>
               <div class="hero-cta">
-                <a class="btn" href="maison.html">Entrer dans la maison</a>
+                <a class="btn" href="maison.html">Connaître la maison</a>
                 <a class="btn secondary" href="cuvees.html"
-                  >Passer aux cuvées</a
+                  >Découvrir les cuvées</a
                 >
               </div>
             </div>
             <figure class="home-story-media card reveal">
               <picture>
                 <source
-                  srcset="assets/vignes-travail-channes.webp"
+                  srcset="assets/vignes-village-cote-des-bar.webp"
                   type="image/webp"
                 />
                 <img
-                  alt="Travail de la vigne à Channes"
+                  alt="Vignes et village dans la Côte des Bar, près de Channes"
                   decoding="async"
-                  height="1800"
+                  height="1867"
                   loading="lazy"
-                  src="assets/vignes-travail-channes.jpg"
-                  width="1350"
+                  src="assets/vignes-village-cote-des-bar.jpg"
+                  width="1400"
                 />
               </picture>
               <figcaption>
-                <span>À Channes</span>
-                <strong
-                  >Une maison qui se lit dans les gestes, pas dans le
-                  décor.</strong
-                >
+                <span>Depuis les vignes</span>
+                <strong>Les coteaux de la Côte des Bar.</strong>
               </figcaption>
             </figure>
-          </div>
-        </div>
-      </section>
-      <section class="section home-presence-section">
-        <div class="container">
-          <div class="home-presence-grid reveal">
-            <figure class="home-presence-media card">
-              <picture>
-                <source
-                  srcset="assets/vignoble-channes.webp"
-                  type="image/webp"
-                />
-                <img
-                  alt="Le vignoble de la maison Champagne Christelle Phlipaux à Channes"
-                  decoding="async"
-                  height="1080"
-                  loading="lazy"
-                  src="assets/vignoble-channes.jpg"
-                  width="1920"
-                />
-              </picture>
-              <figcaption>
-                Depuis Channes ou chez quelques dépositaires, le lien avec la
-                propriété reste lisible.
-              </figcaption>
-            </figure>
-            <div class="home-presence-copy">
-              <div class="kicker">Dépositaires choisis</div>
-              <h2 class="h2">Trouver les cuvées hors de Channes</h2>
-              <p class="editorial-lead">
-                Quelques adresses choisies prolongent la maison sans rompre le
-                lien avec Channes.
-              </p>
-              <div class="home-presence-points">
-                <div class="home-presence-point">
-                  <strong>Adresses choisies</strong>
-                  <span>Des points de vente identifiés, pas un annuaire.</span>
-                </div>
-                <div class="home-presence-point">
-                  <strong>Conseil maison</strong>
-                  <span>La propriété guide vers l’adresse la plus juste.</span>
-                </div>
-              </div>
-              <div class="hero-cta">
-                <a class="btn" href="depositaires.html"
-                  >Trouver un dépositaire</a
-                >
-                <a class="btn secondary" href="index.html#contact"
-                  >Demander le plus proche</a
-                >
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -634,19 +562,15 @@
           <div class="home-craft-hero reveal">
             <div class="home-craft-copy">
               <div class="kicker">Terroir &amp; savoir-faire</div>
-              <h2 class="h2">
-                Channes donne la matière, la cave garde la ligne
-              </h2>
+              <h2 class="h2">Deux cépages, trois cuvées élaborées à Channes</h2>
               <p class="editorial-lead">
-                Raisin précis, mousse fine, fruit net : ici, le savoir-faire
-                évite le geste de trop.
+                Pinot Noir et Chardonnay sont vendangés puis travaillés à la
+                propriété. Leur assemblage donne à chaque cuvée sa place à
+                table.
               </p>
               <div class="home-craft-thread">
-                <span>Dans les cuvées</span>
-                <strong
-                  >Le Brut droit, le Rosé éclatant, le Demi-Sec ample mais
-                  tenu.</strong
-                >
+                <span>Deux cépages</span>
+                <strong>Pinot Noir et Chardonnay.</strong>
               </div>
             </div>
             <figure class="card home-craft-media">
@@ -665,34 +589,28 @@
                 />
               </picture>
               <figcaption>
-                <span>Du fruit à la cave</span>
-                <strong
-                  >Le raisin donne la matière, la cave garde la ligne.</strong
-                >
+                <span>Vendanges à Channes</span>
+                <strong>Le Pinot Noir mûrit sur les coteaux de l’Aube.</strong>
               </figcaption>
             </figure>
           </div>
           <div class="home-craft-grid">
             <a class="card pad home-craft-card reveal" href="terroir.html">
               <div class="home-craft-label">Le lieu</div>
-              <strong>Channes donne la matière</strong>
-              <p class="p">Lumière, coteaux, calcaire : franchise et relief.</p>
-              <span class="home-craft-cuvee"
-                >Dans le verre : franchise et relief.</span
-              >
-              <span class="home-craft-more">Lire le terroir</span>
+              <strong>Les vignes de Channes</strong>
+              <p class="p">Des coteaux de la Côte des Bar, au sud de l’Aube.</p>
+              <span class="home-craft-cuvee">Pinot Noir et Chardonnay.</span>
+              <span class="home-craft-more">Découvrir le terroir</span>
             </a>
             <a
               class="card pad home-craft-card reveal"
               href="blog-composition.html"
             >
               <div class="home-craft-label">L’assemblage</div>
-              <strong>L’assemblage garde la ligne</strong>
-              <p class="p">
-                Pinot Noir, Chardonnay : matière, allonge, fraîcheur.
-              </p>
+              <strong>Deux cépages, trois cuvées</strong>
+              <p class="p">Chaque assemblage a sa place à table.</p>
               <span class="home-craft-cuvee"
-                >Dans le verre : équilibre et netteté.</span
+                >Brut Tradition, Brut Rosé et Demi-Sec.</span
               >
               <span class="home-craft-more">Comprendre l’assemblage</span>
             </a>
@@ -701,12 +619,14 @@
               href="blog-creation.html"
             >
               <div class="home-craft-label">La cave</div>
-              <strong>Le temps donne la tenue</strong>
-              <p class="p">Repos, mousse, dosage : précision sans lourdeur.</p>
+              <strong>Le temps en cave</strong>
+              <p class="p">
+                Les vins reposent avant d’être préparés à la vente.
+              </p>
               <span class="home-craft-cuvee"
-                >Dans le verre : longueur sans lourdeur.</span
+                >La prise de mousse et le dosage complètent le travail.</span
               >
-              <span class="home-craft-more">Entrer en cave</span>
+              <span class="home-craft-more">Voir le travail en cave</span>
             </a>
           </div>
         </div>
@@ -715,10 +635,11 @@
         <div class="container">
           <div class="home-section-intro reveal">
             <div class="kicker">Commander, offrir, venir</div>
-            <h2 class="h2">Choisir avec des repères clairs</h2>
+            <h2 class="h2">Acheter directement à la propriété</h2>
             <p class="p">
-              Commander, offrir ou venir à Channes : le choix doit rester net,
-              jamais forcé.
+              Les prix, les formats et les frais de livraison sont annoncés
+              avant le paiement. La maison reçoit aussi à Channes, sur
+              rendez-vous.
             </p>
           </div>
           <div
@@ -727,16 +648,16 @@
           >
             <div class="trust-panel-head home-reassurance-head">
               <div>
-                <div class="kicker">Confiance discrète</div>
+                <div class="kicker">Commande directe</div>
                 <h3 class="h3">Commander depuis la maison</h3>
                 <p class="p">
-                  Conseil, livraison et paiement restent clairs avant
-                  validation.
+                  Les bouteilles sont préparées à Channes puis confiées au
+                  transporteur.
                 </p>
               </div>
               <div class="home-reassurance-note">
-                <span>Depuis Channes</span>
-                <strong>Préparation et suivi partent de la propriété.</strong>
+                <span>Besoin d’aide ?</span>
+                <strong>Christelle répond par téléphone ou par mail.</strong>
               </div>
             </div>
             <div class="trust-panel-grid home-reassurance-grid">
@@ -748,7 +669,9 @@
               <div class="trust-point">
                 <span class="trust-point-index">02</span>
                 <strong>Conseil direct</strong>
-                <span>Une cuvée, un format, un cadeau : la maison répond.</span>
+                <span
+                  >Christelle vous aide à choisir la cuvée et le format.</span
+                >
               </div>
               <div class="trust-point">
                 <span class="trust-point-index">03</span>
@@ -761,7 +684,7 @@
               <div class="trust-point">
                 <span class="trust-point-index">04</span>
                 <strong>Paiement sécurisé</strong>
-                <span>Paiement sécurisé après relecture du récapitulatif.</span>
+                <span>Vous relisez la commande avant de payer par Stripe.</span>
               </div>
             </div>
             <div class="trust-contact home-reassurance-actions">
@@ -773,51 +696,22 @@
               <a href="tel:+33682203430">Appeler la propriété</a>
             </div>
           </div>
-          <div class="home-simple-panel reveal">
-            <div>
-              <div class="kicker">Pourquoi nous faisons simple</div>
-              <h3 class="h3">
-                Peu de cuvées, un conseil clair, une préparation suivie
-              </h3>
-            </div>
-            <div class="home-simple-grid">
-              <div>
-                <strong>Un choix court</strong>
-                <span
-                  >Trois cuvées seulement, pour ne pas transformer l’achat en
-                  catalogue.</span
-                >
-              </div>
-              <div>
-                <strong>Un contact humain</strong>
-                <span
-                  >Une question sur un repas, un cadeau ou une quantité peut
-                  être posée directement à la maison.</span
-                >
-              </div>
-              <div>
-                <strong>Un envoi soigné</strong>
-                <span
-                  >Les bouteilles sont préparées, calées et suivies depuis
-                  Channes.</span
-                >
-              </div>
-            </div>
-          </div>
-          <div class="home-guide-grid">
+          <div class="home-guide-grid home-guide-grid--routes-only">
             <div class="home-route-grid">
               <a
                 class="card pad home-route-card reveal"
                 href="boutique.html#produits"
               >
                 <div class="home-route-label">Commande directe</div>
-                <strong>Choisir les cuvées depuis la propriété</strong>
-                <p>Formats, prix et conseil depuis Channes.</p>
+                <strong>Voir les formats et les prix</strong>
+                <p>
+                  Brut Tradition, Brut Rosé, Demi-Sec et coffret découverte.
+                </p>
               </a>
               <a class="card pad home-route-card reveal" href="cadeaux.html">
                 <div class="home-route-label">Offrir</div>
-                <strong>Offrir une bouteille avec justesse</strong>
-                <p>Une cuvée choisie pour remercier sans en faire trop.</p>
+                <strong>Choisir un champagne à offrir</strong>
+                <p>Une bouteille, un coffret ou un carton selon l’occasion.</p>
               </a>
               <a
                 class="card pad home-route-card reveal"
@@ -828,47 +722,35 @@
                 <p>Découvrir la cave sur rendez-vous.</p>
               </a>
             </div>
-            <aside class="card pad home-contact-card reveal">
-              <div class="badge">Conseil direct</div>
-              <h3 class="h3">Un doute sur la cuvée ou le format ?</h3>
-              <p class="home-contact-note">
-                La maison répond avant commande : bouteille, carton, magnum,
-                cadeau ou visite.
+          </div>
+        </div>
+      </section>
+      <section
+        aria-labelledby="home-stockists-title"
+        class="section home-stockists-section"
+        id="depositaires"
+      >
+        <div class="container">
+          <div class="home-stockists-panel reveal">
+            <div class="home-stockists-copy">
+              <div class="kicker">Dépositaires en France</div>
+              <h2 class="h2" id="home-stockists-title">
+                Retrouvez nos champagnes près de chez vous
+              </h2>
+              <p class="p">
+                Nos cuvées sont disponibles chez plusieurs dépositaires en
+                France. Consultez la carte des points de vente ou demandez
+                directement à la maison où trouver la cuvée que vous cherchez.
               </p>
-              <ul class="home-contact-list">
-                <li>
-                  <strong>Réponse maison</strong>
-                  <span
-                    ><a href="mailto:champagne.christelle.phlipaux@gmail.com"
-                      >Écrire à la propriété</a
-                    ><br /><a href="tel:+33682203430"
-                      >+33 6 82 20 34 30</a
-                    ></span
-                  >
-                </li>
-                <li>
-                  <strong>Repères utiles</strong>
-                  <span
-                    >Format, quantité et livraison se vérifient avant
-                    paiement.</span
-                  >
-                </li>
-                <li>
-                  <strong>À la propriété</strong>
-                  <span>Visite et dégustation à Channes sur rendez-vous.</span>
-                </li>
-              </ul>
-              <div class="hero-cta home-contact-actions">
-                <a
-                  class="btn primary"
-                  href="mailto:champagne.christelle.phlipaux@gmail.com"
-                  >Demander conseil</a
-                >
-                <a class="btn secondary" href="visites-degustations.html"
-                  >Préparer une visite</a
-                >
-              </div>
-            </aside>
+              <a class="btn primary" href="depositaires.html"
+                >Trouver un dépositaire</a
+              >
+            </div>
+            <div class="home-stockists-presence">
+              <span class="home-stockists-country">France</span>
+              <strong>Un réseau de dépositaires</strong>
+              <p>Une carte pour vous orienter, un contact direct si besoin.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -897,8 +779,8 @@
             </div>
           </a>
           <div class="small">
-            Un vignoble à Channes, une cave sur place, trois cuvées tenues à la
-            propriété.
+            Une maison familiale à Channes, trois cuvées et une vente directe
+            depuis la propriété.
           </div>
           <div class="footer-trust">
             <span>Channes, Côte des Bar</span>

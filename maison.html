@@ -4,21 +4,43 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
-    <meta content="#17120e" name="theme-color" />
+    <meta content="#f3eee6" name="theme-color" />
     <meta content="telephone=no" name="format-detection" />
     <meta content="Champagne Christelle Phlipaux" name="author" />
     <link href="/assets/logo-trans.png" rel="icon" type="image/png" />
-    <title>La maison | Christelle Phlipaux à Channes</title>
+    <title>Maison familiale à Channes | Champagne Christelle Phlipaux</title>
     <meta
       content="À Channes, la vigne, la cave et le conseil restent liés : une maison indépendante, trois cuvées et un accueil sur rendez-vous."
       name="description"
     />
     <link
-      href="https://champagnechristellephlipaux.netlify.app/maison.html"
+      href="https://champagne-christelle-phlipaux.com/maison.html"
       rel="canonical"
     />
     <meta content="index,follow" name="robots" />
-    <link href="style.css" rel="stylesheet" />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/cormorant-garamond-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/manrope-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link href="style.css?v=20260701d" rel="stylesheet" />
+    <link
+      href="assets/css/editorial-redesign.css?v=20260701d"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/css/immersive-experience.css?v=20260701d"
+      rel="stylesheet"
+    />
     <!-- Open Graph -->
     <meta content="website" property="og:type" />
     <meta content="Champagne Christelle Phlipaux" property="og:site_name" />
@@ -32,15 +54,15 @@
       property="og:description"
     />
     <meta
-      content="https://champagnechristellephlipaux.netlify.app/maison.html"
+      content="https://champagne-christelle-phlipaux.com/maison.html"
       property="og:url"
     />
     <meta
-      content="https://champagnechristellephlipaux.netlify.app/assets/maison-cave.jpg"
+      content="https://champagne-christelle-phlipaux.com/assets/maison-cave.jpg"
       property="og:image"
     />
     <meta
-      content="Cave de la maison Champagne Christelle Phlipaux à Channes"
+      content="Grappes de raisin dans le vignoble de la Côte des Bar"
       property="og:image:alt"
     />
     <!-- Twitter -->
@@ -54,11 +76,11 @@
       name="twitter:description"
     />
     <meta
-      content="https://champagnechristellephlipaux.netlify.app/assets/maison-cave.jpg"
+      content="https://champagne-christelle-phlipaux.com/assets/maison-cave.jpg"
       name="twitter:image"
     />
     <meta
-      content="Cave de la maison Champagne Christelle Phlipaux à Channes"
+      content="Grappes de raisin dans le vignoble de la Côte des Bar"
       name="twitter:image:alt"
     />
     <link
@@ -73,7 +95,7 @@
           "@context": "https://schema.org",
           "@type": "Winery",
           "name": "Champagne Christelle Phlipaux",
-          "url": "https://champagnechristellephlipaux.netlify.app/",
+          "url": "https://champagne-christelle-phlipaux.com/",
           "telephone": "+33 6 82 20 34 30",
           "email": "champagne.christelle.phlipaux@gmail.com",
           "address": {
@@ -92,12 +114,12 @@
           "@context": "https://schema.org",
           "@type": "WebPage",
           "name": "La maison à Channes | Champagne Christelle Phlipaux",
-          "url": "https://champagnechristellephlipaux.netlify.app/maison.html",
+          "url": "https://champagne-christelle-phlipaux.com/maison.html",
           "inLanguage": "fr-FR",
           "isPartOf": {
             "@type": "WebSite",
             "name": "Champagne Christelle Phlipaux",
-            "url": "https://champagnechristellephlipaux.netlify.app/"
+            "url": "https://champagne-christelle-phlipaux.com/"
           }
         },
         {
@@ -108,20 +130,20 @@
               "@type": "ListItem",
               "position": 1,
               "name": "Accueil",
-              "item": "https://champagnechristellephlipaux.netlify.app/"
+              "item": "https://champagne-christelle-phlipaux.com/"
             },
             {
               "@type": "ListItem",
               "position": 2,
               "name": "La maison",
-              "item": "https://champagnechristellephlipaux.netlify.app/maison.html"
+              "item": "https://champagne-christelle-phlipaux.com/maison.html"
             }
           ]
         }
       ]
     </script>
     <script defer="" src="consent.js"></script>
-    <script defer src="ui.js"></script>
+    <script defer src="ui.js?v=20260701d"></script>
   </head>
   <body>
     <header>
@@ -131,10 +153,10 @@
             alt="Logo Champagne Christelle Phlipaux"
             class="brand-logo"
             decoding="async"
-            height="512"
+            height="204"
             loading="lazy"
             src="assets/logo-trans.png"
-            width="512"
+            width="242"
           />
           <div class="brand-text">
             <div class="brand-title">
@@ -158,7 +180,7 @@
         <picture
           ><source srcset="assets/maison-cave.webp" type="image/webp" />
           <img
-            alt="Cave de la maison Champagne Christelle Phlipaux"
+            alt="Grappes de raisin dans le vignoble de la Côte des Bar"
             class="page-hero-media"
             decoding="async"
             fetchpriority="high"
@@ -171,45 +193,40 @@
         <div class="container page-hero-inner">
           <div class="page-hero-copy">
             <div class="kicker">La maison à Channes</div>
-            <h1 class="h1 page-hero-title" style="margin-top: 0">
+            <h1 class="h1 page-hero-title u-mt-0">
               Christelle Phlipaux, maison indépendante à Channes
             </h1>
             <p class="page-hero-sub">
-              À Channes, la vigne, la cave, la famille et le conseil restent au
-              même endroit. Peu de cuvées, un lieu réel, une parole directe.
+              À Channes, la famille suit les vignes, les cuvées et les
+              commandes. Christelle répond directement aux personnes qui
+              souhaitent choisir une bouteille ou venir à la propriété.
             </p>
             <div class="hero-proof-row">
               <div class="hero-proof">
                 <strong>À Channes</strong
                 ><span
                   >Une adresse, des vignes et une cave : la maison se comprend
-                  d’abord sur place.</span
+                  aussi sur place.</span
                 >
               </div>
               <div class="hero-proof">
-                <strong>Trois cuvées</strong
-                ><span
-                  >La gamme courte évite l’effet catalogue et rend chaque vin
-                  plus lisible.</span
-                >
+                <strong>Depuis 1977</strong
+                ><span>Une maison familiale créée à Channes, dans l’Aube.</span>
               </div>
               <div class="hero-proof">
                 <strong>Contact humain</strong
                 ><span
-                  >On peut appeler, écrire ou venir goûter avec un vrai repère
-                  de maison.</span
+                  >Vous échangez directement avec Christelle avant une commande
+                  ou une visite.</span
                 >
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section class="section" style="padding-top: 0">
+      <section class="section section--flush-top">
         <div class="container">
-          <div
-            class="brand-proof-grid brand-proof-grid--shop reveal"
-            style="margin-bottom: 22px"
-          >
+          <div class="brand-proof-grid brand-proof-grid--shop reveal u-mb-6">
             <a class="commerce-point" href="terroir.html">
               <span class="commerce-point-label">Le terroir</span>
               <strong
@@ -235,18 +252,16 @@
             <div class="story-copy">
               <div class="kicker">Maison indépendante</div>
               <h2 class="h2">
-                Une maison lisible parce qu’elle reste proche de son lieu
+                Une maison familiale, des vignes à la bouteille
               </h2>
               <p class="editorial-lead">
-                Ici, l’indépendance se vérifie dans des choses simples : une
-                adresse, une cave, des cuvées peu nombreuses, une voix directe
-                et des gestes transmis au quotidien.
+                La maison cultive ses vignes à Channes et élabore trois cuvées à
+                la propriété : Brut Tradition, Brut Rosé et Demi-Sec.
               </p>
               <p class="p">
-                La maison ne cherche pas à multiplier les effets. Elle préfère
-                garder le fil entre le fruit, le temps de cave et la bouteille
-                choisie, pour que Brut Tradition, Brut Rosé et Demi-Sec aient
-                chacun une raison d’être.
+                Cette gamme courte permet de suivre chaque vin avec attention et
+                de conseiller simplement une bouteille selon le repas,
+                l’occasion ou le nombre de convives.
               </p>
               <div class="hero-cta">
                 <a class="btn gold" href="boutique.html"
@@ -273,51 +288,53 @@
                 />
               </picture>
               <figcaption class="story-caption">
-                Une maison familiale se reconnaît aussi à cela : du temps dans
-                les vignes, une présence réelle, et des bouteilles que l’on suit
-                jusqu’au service.
+                La famille dans les vignes de Channes, au cœur de la Côte des
+                Bar.
               </figcaption>
             </figure>
           </div>
           <div class="family-proof-panel reveal">
             <div class="kicker">Présence familiale</div>
             <p>
-              Derrière chaque commande, il n’y a pas une plateforme anonyme : il
-              y a une maison à Channes, un conseil possible, et l’attention
-              portée aux bouteilles avant leur départ.
+              Chaque commande est préparée à Channes. Christelle reste joignable
+              pour conseiller une cuvée, un format ou une quantité.
             </p>
             <a href="tel:+33682203430">Parler à la maison</a>
           </div>
           <div class="house-anchors">
             <div class="house-anchor reveal">
-              <strong>Un lieu</strong>
+              <strong>1977</strong>
+              <p>Création de la maison familiale à Channes.</p>
+            </div>
+            <div class="house-anchor reveal">
+              <strong>Aujourd’hui</strong>
               <p>
-                Channes, la Côte des Bar, les vignes et la cave : pas un décor,
-                un point d’appui.
+                Christelle suit les cuvées et répond directement aux clients.
               </p>
             </div>
             <div class="house-anchor reveal">
-              <strong>Une cave suivie</strong>
-              <p>Une cave qui cherche la tenue plutôt que l’effet.</p>
-            </div>
-            <div class="house-anchor reveal">
-              <strong>Trois cuvées</strong>
+              <strong>À la propriété</strong>
               <p>
-                Brut Tradition, Brut Rosé, Demi-Sec : peu de bouteilles, mais
-                aucune interchangeable.
+                Les bouteilles sont préparées à Channes pour la vente directe.
               </p>
             </div>
           </div>
           <div class="story-visual-grid">
             <figure class="story-visual-card reveal">
-              <img
-                alt="Vignoble de la maison à Channes"
-                decoding="async"
-                height="1080"
-                loading="lazy"
-                src="assets/vignoble-channes.jpg"
-                width="1920"
-              />
+              <picture>
+                <source
+                  srcset="assets/vignoble-channes.webp"
+                  type="image/webp"
+                />
+                <img
+                  alt="Rangs de vignes dans la Côte des Bar"
+                  decoding="async"
+                  height="1080"
+                  loading="lazy"
+                  src="assets/vignoble-channes.jpg"
+                  width="1920"
+                />
+              </picture>
               <figcaption>
                 Le vignoble donne la lumière, le relief et le rythme de la
                 maison.
@@ -341,35 +358,33 @@
                 />
               </picture>
               <figcaption>
-                Le temps de cave donne de la tenue aux cuvées, sans chercher
-                l’effet.
+                Le temps de cave affine les vins avant leur commercialisation.
               </figcaption>
             </figure>
           </div>
         </div>
       </section>
-      <section class="section" style="padding-top: 0">
+      <section class="section section--flush-top">
         <div class="container">
           <div class="story-columns reveal">
             <article class="story-panel">
               <div class="badge">Maison indépendante • Channes</div>
-              <h2 class="h2">Un fil court, de la vigne au service</h2>
+              <h2 class="h2">De la vigne à la préparation des commandes</h2>
               <p class="p">
-                Vendange, vinification, prise de mousse et temps de cave servent
-                une chose : garder des vins nets, tenus, qui trouvent leur place
-                sans insister.
+                Vendange, vinification, prise de mousse et temps de cave sont
+                suivis à la propriété avant la préparation des commandes.
               </p>
               <h3 class="h3">Ce que la maison cherche dans le verre</h3>
               <p class="p">
-                De la fraîcheur, une matière calme, une finale droite. Le
+                De la fraîcheur, de l’équilibre et une finale nette. Le
                 <b>Pinot Noir</b> donne l’assise et le fruit, le
                 <b>Chardonnay</b> apporte l’élan.
               </p>
-              <h3 class="h3">Comprendre, puis choisir sans hésiter</h3>
+              <h3 class="h3">Choisir avec les conseils de Christelle</h3>
               <p class="p">
-                Brut Tradition ouvre la table, Brut Rosé porte le geste cadeau,
-                Demi-Sec garde sa place dans les accords gourmands. Peu de
-                cuvées, mais chacune a son usage.
+                Brut Tradition ouvre la table, Brut Rosé se prête aux cadeaux et
+                Demi-Sec accompagne les accords gourmands. Chaque cuvée a son
+                usage.
               </p>
               <div class="hero-cta">
                 <a class="btn gold" href="cuvees.html">Comparer les cuvées</a>

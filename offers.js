@@ -1,5 +1,5 @@
-import { CURATED_OFFERS, PRICE_EUR } from "./shop-config.js";
-import { addToCart, formatEuro } from "./cart.js";
+import { CURATED_OFFERS, PRICE_EUR } from "./shop-config.js?v=20260630b";
+import { addToCart, formatEuro } from "./cart.js?v=20260630b";
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));

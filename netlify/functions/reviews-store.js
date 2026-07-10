@@ -4,6 +4,9 @@ const crypto = require("crypto");
 
 const STORE_NAME = "ccp-reviews";
 const STORE_KEY = "reviews.json";
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
+const RATE_LIMIT_MAX = 3;
+const REVIEW_RETENTION_MS = 5 * 365 * 24 * 60 * 60 * 1000;
 const LOCAL_STORE_FILE =
   process.env.REVIEWS_LOCAL_STORE ||
   path.join(process.cwd(), ".netlify", "reviews-local.json");
@@ -89,6 +92,67 @@ function normalizeRating(value) {
   return Math.max(1, Math.min(5, rating));
 }
 
+function requestIp(event) {
+  const direct = event.headers?.["x-nf-client-connection-ip"];
+  const forwarded = event.headers?.["x-forwarded-for"];
+  return String(direct || forwarded || "")
+    .split(",")[0]
+    .trim()
+    .slice(0, 80);
+}
+
+async function checkReviewRateLimit(event) {
+  const ip = requestIp(event);
+  const store = getBlobStore();
+  if (!ip || !store) return { allowed: true };
+
+  const salt =
+    process.env.REVIEWS_RATE_LIMIT_SALT ||
+    process.env.REVIEWS_ADMIN_TOKEN ||
+    "ccp-review-rate";
+  const hash = crypto
+    .createHash("sha256")
+    .update(`${salt}:${ip}`)
+    .digest("hex");
+  const key = `rate-limits/${hash}.json`;
+  const now = Date.now();
+  let record = { startedAt: now, count: 0 };
+
+  try {
+    const existing = await store.get(key, { type: "json" });
+    if (
+      existing &&
+      Number.isFinite(existing.startedAt) &&
+      now - existing.startedAt < RATE_LIMIT_WINDOW_MS
+    ) {
+      record = existing;
+    }
+  } catch (_error) {
+    // Une limite indisponible ne doit pas supprimer un avis légitime.
+  }
+
+  if (record.count >= RATE_LIMIT_MAX) {
+    return {
+      allowed: false,
+      retryAfterSeconds: Math.max(
+        60,
+        Math.ceil((RATE_LIMIT_WINDOW_MS - (now - record.startedAt)) / 1000),
+      ),
+    };
+  }
+
+  record.count += 1;
+  try {
+    await store.set(key, JSON.stringify(record), {
+      contentType: "application/json; charset=utf-8",
+    });
+  } catch (_error) {
+    // Le formulaire continue si le stockage de la limite est indisponible.
+  }
+
+  return { allowed: true };
+}
+
 function publicReview(item) {
   return {
     id: item.id,
@@ -115,13 +179,22 @@ function sortByNewest(items) {
   );
 }
 
+function withinReviewRetention(item) {
+  const createdAt = new Date(item.createdAt || item.date || 0).getTime();
+  return (
+    Number.isFinite(createdAt) && Date.now() - createdAt <= REVIEW_RETENTION_MS
+  );
+}
+
 async function readLocalStore() {
   try {
     const text = await fs.readFile(LOCAL_STORE_FILE, "utf8");
     const parsed = JSON.parse(text);
     return {
       updated_at: parsed.updated_at || new Date().toISOString(),
-      reviews: Array.isArray(parsed.reviews) ? parsed.reviews : [],
+      reviews: Array.isArray(parsed.reviews)
+        ? parsed.reviews.filter(withinReviewRetention)
+        : [],
     };
   } catch (_error) {
     return emptyStore();
@@ -142,7 +215,9 @@ async function readStore() {
         const parsed = JSON.parse(text);
         return {
           updated_at: parsed.updated_at || new Date().toISOString(),
-          reviews: Array.isArray(parsed.reviews) ? parsed.reviews : [],
+          reviews: Array.isArray(parsed.reviews)
+            ? parsed.reviews.filter(withinReviewRetention)
+            : [],
         };
       }
     } catch (_error) {
@@ -156,7 +231,7 @@ async function readStore() {
 async function writeStore(data) {
   const payload = {
     updated_at: new Date().toISOString(),
-    reviews: sortByNewest(data.reviews || []),
+    reviews: sortByNewest((data.reviews || []).filter(withinReviewRetention)),
   };
 
   const store = getBlobStore();
@@ -304,10 +379,7 @@ function requireAdmin(event) {
   const header =
     event.headers?.authorization || event.headers?.Authorization || "";
   const tokenFromHeader = header.replace(/^Bearer\s+/i, "");
-  const token =
-    tokenFromHeader ||
-    event.headers?.["x-admin-token"] ||
-    event.queryStringParameters?.token;
+  const token = tokenFromHeader || event.headers?.["x-admin-token"];
 
   if (token !== expected) {
     return {
@@ -321,6 +393,7 @@ function requireAdmin(event) {
 
 module.exports = {
   CUVEE_LABELS,
+  checkReviewRateLimit,
   computeSummary,
   createReviewFromSubmission,
   json,

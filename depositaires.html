@@ -4,18 +4,40 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
-    <meta content="#17120e" name="theme-color" />
+    <meta content="#f3eee6" name="theme-color" />
     <meta content="telephone=no" name="format-detection" />
     <meta content="Champagne Christelle Phlipaux" name="author" />
     <link href="/assets/logo-trans.png" rel="icon" type="image/png" />
     <title>Dépositaires | Trouver les cuvées près de chez vous</title>
-    <link href="style.css" rel="stylesheet" />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/cormorant-garamond-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/manrope-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link href="style.css?v=20260701d" rel="stylesheet" />
+    <link
+      href="assets/css/editorial-redesign.css?v=20260701d"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/css/immersive-experience.css?v=20260701d"
+      rel="stylesheet"
+    />
     <meta
       content="Repérer un point de vente ou demander une orientation directe pour trouver les cuvées Christelle Phlipaux près de chez vous."
       name="description"
     />
     <link
-      href="https://champagnechristellephlipaux.netlify.app/depositaires.html"
+      href="https://champagne-christelle-phlipaux.com/depositaires.html"
       rel="canonical"
     />
     <meta content="index,follow" name="robots" />
@@ -31,11 +53,11 @@
       property="og:description"
     />
     <meta
-      content="https://champagnechristellephlipaux.netlify.app/depositaires.html"
+      content="https://champagne-christelle-phlipaux.com/depositaires.html"
       property="og:url"
     />
     <meta
-      content="https://champagnechristellephlipaux.netlify.app/assets/hero-vignoble.jpg"
+      content="https://champagne-christelle-phlipaux.com/assets/hero-vignoble.jpg"
       property="og:image"
     />
     <meta
@@ -52,7 +74,7 @@
       name="twitter:description"
     />
     <meta
-      content="https://champagnechristellephlipaux.netlify.app/assets/hero-vignoble.jpg"
+      content="https://champagne-christelle-phlipaux.com/assets/hero-vignoble.jpg"
       name="twitter:image"
     />
     <meta
@@ -64,9 +86,11 @@
         "@context": "https://schema.org",
         "@type": ["Organization", "Winery"],
         "name": "Champagne Christelle Phlipaux",
-        "url": "https://champagnechristellephlipaux.netlify.app/",
-        "logo": "https://champagnechristellephlipaux.netlify.app/assets/logo.png",
-        "image": "https://champagnechristellephlipaux.netlify.app/assets/hero-vignoble.jpg",
+        "legalName": "CHRISTELLE BOURDICAUD",
+        "vatID": "FR25539870253",
+        "url": "https://champagne-christelle-phlipaux.com/",
+        "logo": "https://champagne-christelle-phlipaux.com/assets/logo.png",
+        "image": "https://champagne-christelle-phlipaux.com/assets/hero-vignoble.jpg",
         "telephone": "+33 6 82 20 34 30",
         "email": "champagne.christelle.phlipaux@gmail.com",
         "address": {
@@ -92,19 +116,19 @@
             "@type": "ListItem",
             "position": 1,
             "name": "Accueil",
-            "item": "https://champagnechristellephlipaux.netlify.app/"
+            "item": "https://champagne-christelle-phlipaux.com/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Dépositaires",
-            "item": "https://champagnechristellephlipaux.netlify.app/depositaires.html"
+            "item": "https://champagne-christelle-phlipaux.com/depositaires.html"
           }
         ]
       }
     </script>
     <script defer="" src="consent.js"></script>
-    <script defer src="ui.js"></script>
+    <script defer src="ui.js?v=20260701d"></script>
   </head>
   <body>
     <header>
@@ -142,11 +166,14 @@
       <picture
         ><source srcset="assets/hero-vignoble.webp" type="image/webp" />
         <img
-          alt="Vignoble et cave en Champagne"
+          alt="Vignes de Champagne dans la Côte des Bar"
           class="page-hero-media"
           decoding="async"
+          fetchpriority="high"
+          height="1132"
           loading="eager"
           src="assets/hero-vignoble.jpg"
+          width="2048"
       /></picture>
       <div class="page-hero-overlay"></div>
       <div class="container page-hero-inner">
@@ -166,27 +193,25 @@
         <h2 class="h2">
           Une carte pour vous orienter, puis un contact direct si besoin
         </h2>
-        <p class="p" style="max-width: 860px">
+        <p class="p u-readable-wide">
           La carte donne un premier repère. Si vous cherchez le point de vente
           le plus proche ou une cuvée précise, la maison peut aussi vous
           orienter directement.
         </p>
-        <div class="card pad reveal" style="margin-top: 18px">
+        <div class="card pad reveal u-mt-5">
           <div class="map-wrap">
             <iframe
+              class="u-borderless"
               height="450"
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
               src="https://www.google.com/maps/d/embed?mid=1tzSNL4XLUbeIMkjSdbJ4plD6v0SGPDxo&amp;ehbc=2E312F"
-              style="border: 0"
               title="Carte des dépositaires — Champagne Christelle Phlipaux"
               width="100%"
             >
             </iframe>
           </div>
-          <div
-            style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px"
-          >
+          <div class="u-inline-actions">
             <a class="btn" href="boutique.html">Choisir en boutique</a>
             <a
               class="btn primary"
@@ -199,7 +224,7 @@
               >Demander une orientation</a
             >
           </div>
-          <p class="p" style="margin-top: 10px; opacity: 0.85">
+          <p class="p u-mt-3 u-muted-85">
             Liste non exhaustive. Si la carte ne suffit pas, la maison peut vous
             orienter plus vite par mail ou par téléphone.
           </p>

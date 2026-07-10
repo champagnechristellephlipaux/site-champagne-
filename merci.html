@@ -4,12 +4,34 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
-    <meta content="#17120e" name="theme-color" />
+    <meta content="#f3eee6" name="theme-color" />
     <meta content="telephone=no" name="format-detection" />
     <meta content="Champagne Christelle Phlipaux" name="author" />
     <link href="/assets/logo-trans.png" rel="icon" type="image/png" />
     <title>Merci pour votre commande | Champagne Christelle Phlipaux</title>
-    <link href="style.css" rel="stylesheet" />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/cormorant-garamond-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/manrope-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link href="style.css?v=20260701d" rel="stylesheet" />
+    <link
+      href="assets/css/editorial-redesign.css?v=20260701d"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/css/immersive-experience.css?v=20260701d"
+      rel="stylesheet"
+    />
     <meta
       content="Vérification de votre commande Champagne Christelle Phlipaux après paiement Stripe."
       name="description"
@@ -52,6 +74,8 @@
         "@context": "https://schema.org",
         "@type": ["Organization", "Winery"],
         "name": "Champagne Christelle Phlipaux",
+        "legalName": "CHRISTELLE BOURDICAUD",
+        "vatID": "FR25539870253",
         "url": "/",
         "logo": "/assets/logo.png",
         "image": "/assets/hero-vignoble.jpg",
@@ -92,8 +116,12 @@
       }
     </script>
     <script defer="" src="consent.js"></script>
-    <script defer="" src="ui.js"></script>
-    <script defer="" src="assets/js/merci-checkout.js" type="module"></script>
+    <script defer="" src="ui.js?v=20260701d"></script>
+    <script
+      defer=""
+      src="assets/js/merci-checkout.js?v=20260701b"
+      type="module"
+    ></script>
   </head>
   <body>
     <header>
@@ -154,9 +182,10 @@
             confirmé.
           </div>
 
-          <p class="p" style="margin-top: 18px">
-            Après réception, vous pourrez aussi partager votre retour sur une
-            cuvée, la livraison ou l’accompagnement de la maison.
+          <p class="p u-mt-5">
+            Une question après la commande ? La maison reste joignable au
+            <a href="tel:+33682203430">+33 6 82 20 34 30</a> ou par
+            <a href="mailto:champagne.christelle.phlipaux@gmail.com">email</a>.
           </p>
           <div class="merci-actions">
             <a class="btn primary" href="boutique.html">Retour boutique</a>

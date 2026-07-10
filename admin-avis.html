@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
-    <meta content="#17120e" name="theme-color" />
+    <meta content="#f3eee6" name="theme-color" />
     <meta content="noindex,nofollow,noarchive" name="robots" />
     <link href="/assets/logo-trans.png" rel="icon" type="image/png" />
     <title>Administration des avis | Champagne Christelle Phlipaux</title>
@@ -12,7 +12,29 @@
       content="Interface privée de modération des avis clients."
       name="description"
     />
-    <link href="style.css" rel="stylesheet" />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/cormorant-garamond-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/manrope-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link href="style.css?v=20260701d" rel="stylesheet" />
+    <link
+      href="assets/css/editorial-redesign.css?v=20260701d"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/css/immersive-experience.css?v=20260701d"
+      rel="stylesheet"
+    />
     <script defer="" src="admin-reviews.js"></script>
   </head>
   <body class="page-admin-reviews">
@@ -49,7 +71,7 @@
       <div class="container">
         <div class="kicker">Modération</div>
         <h1 class="h1">Avis clients</h1>
-        <p class="p" style="max-width: 780px">
+        <p class="p u-readable-medium">
           Les avis déposés sur le site arrivent ici en attente. Rien n’est
           publié tant qu’un avis n’a pas été validé manuellement.
         </p>
@@ -71,10 +93,14 @@
             <button class="btn secondary" data-admin-refresh="" type="button">
               Actualiser
             </button>
+            <button class="btn secondary" data-admin-logout="" type="button">
+              Fermer la session
+            </button>
           </div>
           <p class="review-note">
-            La clé doit correspondre à la variable Netlify
-            <code>REVIEWS_ADMIN_TOKEN</code>.
+            La clé correspond à la variable Netlify
+            <code>REVIEWS_ADMIN_TOKEN</code> et reste uniquement dans cet
+            onglet.
           </p>
         </form>
 

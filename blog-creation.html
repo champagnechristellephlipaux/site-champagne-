@@ -4,18 +4,40 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
-    <meta content="#17120e" name="theme-color" />
+    <meta content="#f3eee6" name="theme-color" />
     <meta content="telephone=no" name="format-detection" />
     <meta content="Champagne Christelle Phlipaux" name="author" />
     <link href="/assets/logo-trans.png" rel="icon" type="image/png" />
     <title>Élaboration du champagne | De la vigne à la cave</title>
-    <link href="style.css" rel="stylesheet" />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/cormorant-garamond-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/manrope-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link href="style.css?v=20260701d" rel="stylesheet" />
+    <link
+      href="assets/css/editorial-redesign.css?v=20260701d"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/css/immersive-experience.css?v=20260701d"
+      rel="stylesheet"
+    />
     <meta
       content="De la vigne au temps de cave : comprendre comment la maison garde fraîcheur, matière et précision dans ses cuvées."
       name="description"
     />
     <link
-      href="https://champagnechristellephlipaux.netlify.app/blog-creation.html"
+      href="https://champagne-christelle-phlipaux.com/blog-creation.html"
       rel="canonical"
     />
     <meta content="index,follow" name="robots" />
@@ -31,14 +53,17 @@
       property="og:description"
     />
     <meta
-      content="https://champagnechristellephlipaux.netlify.app/blog-creation.html"
+      content="https://champagne-christelle-phlipaux.com/blog-creation.html"
       property="og:url"
     />
     <meta
-      content="https://champagnechristellephlipaux.netlify.app/assets/blog-champagne.jpg"
+      content="https://champagne-christelle-phlipaux.com/assets/blog-champagne.jpg"
       property="og:image"
     />
-    <meta content="Vignoble et cave en Champagne" property="og:image:alt" />
+    <meta
+      content="Flûte de Champagne Christelle Phlipaux"
+      property="og:image:alt"
+    />
     <meta content="summary_large_image" name="twitter:card" />
     <meta
       content="De la vigne à la cave | Savoir-faire de la maison | Champagne Christelle Phlipaux"
@@ -49,18 +74,23 @@
       name="twitter:description"
     />
     <meta
-      content="https://champagnechristellephlipaux.netlify.app/assets/blog-champagne.jpg"
+      content="https://champagne-christelle-phlipaux.com/assets/blog-champagne.jpg"
       name="twitter:image"
     />
-    <meta content="Vignoble et cave en Champagne" name="twitter:image:alt" />
+    <meta
+      content="Flûte de Champagne Christelle Phlipaux"
+      name="twitter:image:alt"
+    />
     <script id="ld-org" type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": ["Organization", "Winery"],
         "name": "Champagne Christelle Phlipaux",
-        "url": "https://champagnechristellephlipaux.netlify.app/",
-        "logo": "https://champagnechristellephlipaux.netlify.app/assets/logo.png",
-        "image": "https://champagnechristellephlipaux.netlify.app/assets/blog-champagne.jpg",
+        "legalName": "CHRISTELLE BOURDICAUD",
+        "vatID": "FR25539870253",
+        "url": "https://champagne-christelle-phlipaux.com/",
+        "logo": "https://champagne-christelle-phlipaux.com/assets/logo.png",
+        "image": "https://champagne-christelle-phlipaux.com/assets/blog-champagne.jpg",
         "telephone": "+33 6 82 20 34 30",
         "email": "champagne.christelle.phlipaux@gmail.com",
         "address": {
@@ -86,13 +116,13 @@
             "@type": "ListItem",
             "position": 1,
             "name": "Accueil",
-            "item": "https://champagnechristellephlipaux.netlify.app/"
+            "item": "https://champagne-christelle-phlipaux.com/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "De la vigne à la cave",
-            "item": "https://champagnechristellephlipaux.netlify.app/blog-creation.html"
+            "item": "https://champagne-christelle-phlipaux.com/blog-creation.html"
           }
         ]
       }
@@ -104,11 +134,11 @@
         "headline": "De la vigne à la cave",
         "description": "Un savoir-faire sobre, de la vigne au temps de cave, pour préserver fraîcheur, matière et précision dans les cuvées.",
         "image": [
-          "https://champagnechristellephlipaux.netlify.app/assets/blog-champagne.jpg"
+          "https://champagne-christelle-phlipaux.com/assets/blog-champagne.jpg"
         ],
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://champagnechristellephlipaux.netlify.app/blog-creation.html"
+          "@id": "https://champagne-christelle-phlipaux.com/blog-creation.html"
         },
         "author": {
           "@type": "Organization",
@@ -119,13 +149,13 @@
           "name": "Champagne Christelle Phlipaux",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://champagnechristellephlipaux.netlify.app/assets/logo.png"
+            "url": "https://champagne-christelle-phlipaux.com/assets/logo.png"
           }
         }
       }
     </script>
     <script defer="" src="consent.js"></script>
-    <script defer src="ui.js"></script>
+    <script defer src="ui.js?v=20260701d"></script>
   </head>
   <body>
     <header>
@@ -159,102 +189,114 @@
         </nav>
       </div>
     </header>
-    <section class="page-hero">
-      <picture
-        ><source srcset="assets/blog-champagne.webp" type="image/webp" />
-        <img
-          alt="Vignoble et cave en Champagne"
-          class="page-hero-media"
-          decoding="async"
-          loading="eager"
-          src="assets/blog-champagne.jpg"
-      /></picture>
-      <div class="page-hero-overlay"></div>
-      <div class="container page-hero-inner">
-        <div class="kicker">Savoir-faire de la maison</div>
-        <h1 class="h1 page-hero-title">
-          De la vigne à la cave, la cuvée prend sa ligne
-        </h1>
-        <p class="page-hero-sub">
-          Un fruit juste, une cave attentive, une bulle tenue: le savoir-faire
-          reste sobre, mais il se sent dans le verre.
-        </p>
-      </div>
-    </section>
-    <section class="section" style="padding-top: 0">
-      <div class="container">
-        <article class="card pad prose reveal">
-          <div class="prose-hero">
-            <picture
-              ><img
-                alt="Cuves inox dans la cave de vinification"
-                decoding="async"
-                height="1012"
-                loading="lazy"
-                src="assets/cuves-inox-vinification-champagne.jpg"
-                width="1800"
-            /></picture>
-          </div>
-          <div class="badge">Savoir‑faire</div>
-          <div class="hr"></div>
-          <p class="small muted">
-            Article de la maison Champagne Christelle Phlipaux
+    <main id="contenu">
+      <section class="page-hero">
+        <picture
+          ><source srcset="assets/blog-champagne.webp" type="image/webp" />
+          <img
+            alt="Flûte de Champagne Christelle Phlipaux"
+            class="page-hero-media"
+            decoding="async"
+            fetchpriority="high"
+            height="2048"
+            loading="eager"
+            src="assets/blog-champagne.jpg"
+            width="1365"
+        /></picture>
+        <div class="page-hero-overlay"></div>
+        <div class="container page-hero-inner">
+          <div class="kicker">Savoir-faire de la maison</div>
+          <h1 class="h1 page-hero-title">
+            De la vigne à la cave, le travail de la maison
+          </h1>
+          <p class="page-hero-sub">
+            Vendange, assemblage, prise de mousse et repos en cave : les étapes
+            suivies à Channes avant la mise en vente.
           </p>
-          <h2 class="h2" style="margin-top: 0">
-            Ce qui donne de la tenue au vin
-          </h2>
-          <p class="p">
-            Le savoir-faire de la maison n’a pas besoin de grands mots. Il
-            consiste à préserver ce que Channes donne au fruit, puis à laisser
-            la cave installer la bulle, la texture et l’allonge.
-          </p>
-          <div class="divider"></div>
-          <h2 class="h2">Le lieu avant la méthode</h2>
-          <p class="p">
-            Le vin commence par le lieu : la lumière, le relief, la maturité du
-            raisin. À Channes, cette matière doit rester lisible une fois la
-            bouteille ouverte.
-          </p>
-          <h3 class="h3">Une vigne tenue sans brutalité</h3>
-          <p class="p">
-            La maison cherche une conduite cohérente de la vigne :
-            <b>zéro désherbant</b>, <b>zéro insecticide</b>, des traitements
-            raisonnés. L’idée n’est pas de promettre trop, mais de travailler
-            avec plus d’attention.
-          </p>
-          <h3 class="h3">Le fruit au bon moment</h3>
-          <p class="p">
-            Vendanger juste, presser proprement, laisser le jus prendre sa
-            première forme : c’est là que se préparent la fraîcheur, le fruit et
-            l’équilibre que l’on retrouvera plus tard dans la cuvée.
-          </p>
-          <h2 class="h2">L’assemblage garde la ligne</h2>
-          <p class="p">
-            L’assemblage ne sert pas à masquer. Il met en place la matière du
-            <b>Pinot Noir</b>, l’élan du <b>Chardonnay</b> et la signature que
-            l’on doit reconnaître d’une cuvée à l’autre.
-          </p>
-          <h3 class="h3">Le temps de cave affine la bulle</h3>
-          <p class="p">
-            La prise de mousse apporte la bulle; le repos en cave lui donne sa
-            finesse. Pour <b>Brut Tradition</b>, ce temps dure au minimum
-            <b>15 mois</b>, afin de garder une texture nette et une finale
-            droite.
-          </p>
-          <div class="notice">
-            <b>À retenir :</b> le savoir-faire n’est pas une démonstration. Il
-            doit rendre la cuvée plus lisible, plus tenue, plus juste à table.
-          </div>
-          <div class="hero-cta" style="margin-top: 18px">
-            <a class="btn" href="terroir.html">Relier ce travail au terroir</a>
-            <a class="btn secondary" href="cuvees.html">Comparer les cuvées</a>
-            <a class="btn secondary" href="boutique.html"
-              >Choisir un format en boutique</a
-            >
-          </div>
-        </article>
-      </div>
-    </section>
+        </div>
+      </section>
+      <section class="section section--flush-top">
+        <div class="container">
+          <article class="card pad prose reveal">
+            <div class="prose-hero">
+              <picture
+                ><source
+                  srcset="assets/cuves-inox-vinification-champagne.webp"
+                  type="image/webp" />
+                <img
+                  alt="Cuves inox dans la cave de vinification"
+                  decoding="async"
+                  height="1012"
+                  loading="lazy"
+                  src="assets/cuves-inox-vinification-champagne.jpg"
+                  width="1800"
+              /></picture>
+            </div>
+            <div class="badge">Savoir‑faire</div>
+            <div class="hr"></div>
+            <p class="small muted">
+              Article de la maison Champagne Christelle Phlipaux
+            </p>
+            <h2 class="h2 u-mt-0">
+              Ce qui se décide avant la mise en bouteille
+            </h2>
+            <p class="p">
+              Le travail commence par la maturité du raisin, se poursuit lors de
+              l’assemblage, puis avec la prise de mousse et le repos des
+              bouteilles en cave.
+            </p>
+            <div class="divider"></div>
+            <h2 class="h2">Le travail commence dans les vignes</h2>
+            <p class="p">
+              Le vin commence par le lieu : la lumière, le relief, la maturité
+              du raisin. À Channes, cette matière doit rester lisible une fois
+              la bouteille ouverte.
+            </p>
+            <h3 class="h3">Une viticulture attentive</h3>
+            <p class="p">
+              La maison cherche une conduite cohérente de la vigne :
+              <b>zéro désherbant</b>, <b>zéro insecticide</b>, des traitements
+              raisonnés. L’idée n’est pas de promettre trop, mais de travailler
+              avec plus d’attention.
+            </p>
+            <h3 class="h3">Vendanger à maturité</h3>
+            <p class="p">
+              Le choix de la date de vendange et le pressurage préparent la
+              fraîcheur, le fruit et l’équilibre que l’on retrouvera plus tard
+              dans la cuvée.
+            </p>
+            <h2 class="h2">Assembler Pinot Noir et Chardonnay</h2>
+            <p class="p">
+              L’assemblage ne sert pas à masquer. Il met en place la matière du
+              <b>Pinot Noir</b>, l’élan du <b>Chardonnay</b> et la signature que
+              l’on doit reconnaître d’une cuvée à l’autre.
+            </p>
+            <h3 class="h3">Le temps de cave affine la bulle</h3>
+            <p class="p">
+              La prise de mousse apporte la bulle; le repos en cave lui donne sa
+              finesse. Pour <b>Brut Tradition</b>, ce temps dure au minimum
+              <b>15 mois</b>, afin de garder une texture nette et une finale
+              droite.
+            </p>
+            <div class="notice">
+              <b>À retenir :</b> le travail de la maison relie les raisins de
+              Channes, l’assemblage et le temps passé en cave.
+            </div>
+            <div class="hero-cta u-mt-5">
+              <a class="btn" href="terroir.html"
+                >Relier ce travail au terroir</a
+              >
+              <a class="btn secondary" href="cuvees.html"
+                >Comparer les cuvées</a
+              >
+              <a class="btn secondary" href="boutique.html"
+                >Choisir un format en boutique</a
+              >
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
     <footer>
       <div class="container footer-grid">
         <div>

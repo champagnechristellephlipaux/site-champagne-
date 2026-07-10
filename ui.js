@@ -65,15 +65,6 @@
     },
   ];
 
-  const prefersReduced =
-    window.matchMedia &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const coarsePointer =
-    window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
-  const saveData = Boolean(
-    navigator.connection && navigator.connection.saveData,
-  );
-
   function currentPageName() {
     const raw = window.location.pathname.split("/").pop();
     return raw && raw.length ? raw : "index.html";
@@ -113,7 +104,7 @@
   function buildBrand() {
     return [
       '<a class="brand" href="index.html" aria-label="Accueil Champagne Christelle Phlipaux" data-disable-active="true">',
-      '<picture><source srcset="assets/logo-trans.webp" type="image/webp"/><img alt="Logo Champagne Christelle Phlipaux" class="brand-logo" decoding="async" height="204" loading="lazy" src="assets/logo-trans.png" width="242"/></picture>',
+      '<picture><source srcset="assets/logo-trans.webp" type="image/webp"/><img alt="Logo Champagne Christelle Phlipaux" class="brand-logo" decoding="async" fetchpriority="high" height="204" src="assets/logo-trans.png" width="242"/></picture>',
       '<div class="brand-text">',
       '<div class="brand-title"><span class="brand-champagne">Champagne</span> <span class="brand-name">Christelle Phlipaux</span></div>',
       '<div class="brand-sub"><span>Viticultrice indépendante</span><span>Channes, Côte des Bar</span></div>',
@@ -251,7 +242,7 @@
     });
 
     window.addEventListener("resize", () => {
-      if (window.innerWidth > 920) closeNav(button);
+      if (window.innerWidth > 1180) closeNav(button);
     });
   }
 
@@ -359,7 +350,7 @@
       '<div class="brand-sub">Channes — Côte des Bar</div>',
       "</div>",
       "</a>",
-      '<div class="small">Un vignoble à Channes, une cave sur place, trois cuvées tenues à la propriété.</div>',
+      '<div class="small">Un vignoble et une cave à Channes, trois cuvées élaborées à la propriété.</div>',
       '<div class="footer-trust">',
       "<span>Channes, Côte des Bar</span>",
       "<span>3 cuvées suivies</span>",
@@ -463,43 +454,128 @@
     column.appendChild(block);
   }
 
+  function reducedMotionPreferred() {
+    return window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+  }
+
+  function setupImmersiveExperience() {
+    document.body.classList.add("immersive-site");
+    document.documentElement.classList.add("immersive-ready");
+
+    const progress = document.createElement("div");
+    progress.className = "site-progress";
+    progress.setAttribute("aria-hidden", "true");
+    progress.innerHTML = "<span></span>";
+    document.body.appendChild(progress);
+
+    const progressBar = progress.querySelector("span");
+    const heroMedia = document.querySelector(".page-hero-media");
+    const reduceMotion = reducedMotionPreferred();
+    const allowHeroDepth =
+      heroMedia &&
+      !reduceMotion &&
+      window.matchMedia?.("(min-width: 721px)").matches;
+    let ticking = false;
+
+    const syncScrollEffects = () => {
+      const maxScroll =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const ratio =
+        maxScroll > 0
+          ? Math.min(1, Math.max(0, window.scrollY / maxScroll))
+          : 0;
+
+      if (progressBar) {
+        progressBar.style.transform = `scaleX(${ratio})`;
+      }
+
+      if (allowHeroDepth) {
+        const shift = Math.min(34, Math.max(0, window.scrollY * 0.08));
+        document.body.style.setProperty("--hero-scroll-shift", `${shift}px`);
+      }
+
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(syncScrollEffects);
+    };
+
+    syncScrollEffects();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    if (!reduceMotion && "IntersectionObserver" in window) {
+      const chapterObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            entry.target.classList.toggle(
+              "is-section-active",
+              entry.isIntersecting,
+            );
+          });
+        },
+        {
+          threshold: 0.12,
+          rootMargin: "-12% 0px -18% 0px",
+        },
+      );
+
+      document
+        .querySelectorAll("main > section")
+        .forEach((section) => chapterObserver.observe(section));
+    }
+  }
+
   function setupReveal() {
     const items = Array.from(
       document.querySelectorAll(".reveal, [data-reveal]"),
     );
     if (!items.length) return;
 
-    if (
-      prefersReduced ||
-      saveData ||
-      coarsePointer ||
-      window.innerWidth < 820 ||
-      !("IntersectionObserver" in window)
-    ) {
-      items.forEach((item) => item.classList.add("is-visible"));
+    const show = (item) => item.classList.add("is-visible");
+    const reduceMotion = reducedMotionPreferred();
+
+    items.forEach((item, index) => {
+      item.classList.add("immersive-reveal");
+      item.style.setProperty("--reveal-order", String(index % 4));
+      if (
+        item.matches(
+          "figure, .product, .product-sale-shell, .story-stage, .home-craft-hero",
+        )
+      ) {
+        item.classList.add("immersive-reveal--media");
+      }
+    });
+
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      items.forEach(show);
       return;
     }
+
+    document.documentElement.classList.add("immersive-reveal-ready");
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
+          show(entry.target);
           observer.unobserve(entry.target);
         });
       },
-      { threshold: 0.16, rootMargin: "0px 0px -8% 0px" },
+      {
+        threshold: 0.08,
+        rootMargin: "0px 0px -8% 0px",
+      },
     );
 
-    const foldThreshold = window.innerHeight * 0.92;
-
     items.forEach((item) => {
-      const rect = item.getBoundingClientRect();
-      if (rect.top <= foldThreshold) {
-        item.classList.add("is-visible");
-        return;
+      if (item.getBoundingClientRect().top < window.innerHeight * 0.94) {
+        show(item);
+      } else {
+        observer.observe(item);
       }
-      observer.observe(item);
     });
   }
 
@@ -539,10 +615,12 @@
     setupSkipLink();
     setupHeaderState();
     setupGlobalNav();
+    window.dispatchEvent(new CustomEvent("site:navigation-ready"));
     setupNav();
     setupCurrentLink();
     setupInPageNav();
     setupFooter();
+    setupImmersiveExperience();
     setupReveal();
     setupSmoothAnchors();
     setupDetails();

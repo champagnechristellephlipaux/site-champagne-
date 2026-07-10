@@ -4,12 +4,34 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
-    <meta content="#17120e" name="theme-color" />
+    <meta content="#f3eee6" name="theme-color" />
     <meta content="telephone=no" name="format-detection" />
     <meta content="Champagne Christelle Phlipaux" name="author" />
     <link href="/assets/logo-trans.png" rel="icon" type="image/png" />
     <title>Conditions Générales de Vente | Champagne Christelle Phlipaux</title>
-    <link href="style.css" rel="stylesheet" />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/cormorant-garamond-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/manrope-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link href="style.css?v=20260701d" rel="stylesheet" />
+    <link
+      href="assets/css/editorial-redesign.css?v=20260701d"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/css/immersive-experience.css?v=20260701d"
+      rel="stylesheet"
+    />
     <meta
       content="Conditions Générales de Vente (CGV) – commandes, paiement, livraison, rétractation."
       name="description"
@@ -52,6 +74,8 @@
         "@context": "https://schema.org",
         "@type": ["Organization", "Winery"],
         "name": "Champagne Christelle Phlipaux",
+        "legalName": "CHRISTELLE BOURDICAUD",
+        "vatID": "FR25539870253",
         "url": "/",
         "logo": "/assets/logo.png",
         "image": "/assets/hero-vignoble.jpg",
@@ -92,7 +116,7 @@
       }
     </script>
     <script defer="" src="consent.js"></script>
-    <script defer src="ui.js"></script>
+    <script defer src="ui.js?v=20260701d"></script>
   </head>
   <body>
     <header>
@@ -129,11 +153,14 @@
       <picture
         ><source srcset="assets/hero-vignoble.webp" type="image/webp" />
         <img
-          alt="Vignoble et cave en Champagne"
+          alt="Vignes de Champagne dans la Côte des Bar"
           class="page-hero-media"
           decoding="async"
+          fetchpriority="high"
+          height="1132"
           loading="eager"
           src="assets/hero-vignoble.jpg"
+          width="2048"
       /></picture>
       <div class="page-hero-overlay"></div>
       <div class="container page-hero-inner">
@@ -154,7 +181,9 @@
           <p class="p">
             Les présentes Conditions Générales de Vente s’appliquent à toutes
             les commandes passées sur le site de la
-            <b>SARL Christelle Phlipaux</b>.
+            <b>SARL CHRISTELLE BOURDICAUD</b>, exploitant la marque Champagne
+            Christelle Phlipaux, 4 rue de Villiers, 10340 Channes, RCS Troyes
+            539 870 253.
           </p>
           <h2 class="h2">Produits</h2>
           <p class="p">
@@ -164,32 +193,81 @@
           <h2 class="h2">Prix</h2>
           <p class="p">
             Les prix sont indiqués en euros, toutes taxes comprises (TTC). La
-            SARL Christelle Phlipaux se réserve le droit de modifier ses prix à
-            tout moment.
+            SARL CHRISTELLE BOURDICAUD se réserve le droit de modifier ses prix
+            à tout moment.
           </p>
           <h2 class="h2">Commande &amp; paiement</h2>
           <p class="p">
-            Le paiement est exigible immédiatement à la commande. Les paiements
-            sont effectués via la plateforme sécurisée <b>Stripe</b>.
+            Avant paiement, le client peut vérifier les produits, formats,
+            quantités, frais de livraison et montant total de sa commande. La
+            commande devient définitive après acceptation des présentes CGV et
+            confirmation du paiement. Le bouton de validation indique clairement
+            que la commande entraîne une obligation de paiement.
+          </p>
+          <p class="p">
+            Le paiement est exigible immédiatement. Il est traité par la
+            plateforme sécurisée <b>Stripe</b>. Les données bancaires ne sont
+            jamais enregistrées par le site. Une confirmation reprenant la
+            référence et le montant de la commande est présentée après paiement.
           </p>
           <h2 class="h2">Livraison</h2>
           <p class="p">
-            Livraison <b>uniquement en France métropolitaine</b>. Les délais
-            indiqués sont donnés à titre indicatif.
+            La livraison est proposée
+            <b>uniquement en France métropolitaine</b>. Les frais applicables
+            sont affichés dans le panier avant paiement. Le délai habituel
+            annoncé est de deux à cinq jours ouvrés à compter de la confirmation
+            de la commande, sous réserve de disponibilité et hors événement
+            indépendant de la maison.
+          </p>
+          <p class="p">
+            En cas de difficulté ou de retard, le client est invité à contacter
+            la maison. Le risque de perte ou d’endommagement est transféré au
+            consommateur lorsqu’il prend physiquement possession des produits.
           </p>
           <h2 class="h2">Droit de rétractation</h2>
           <p class="p">
-            Conformément à l’article L221-28 du Code de la consommation, le
-            droit de rétractation ne peut être exercé pour des produits
-            descellés ne pouvant être retournés pour des raisons d’hygiène ou de
-            protection de la santé. Toute bouteille ouverte ou descellée ne
-            pourra donc pas être reprise.
+            Pour une commande passée à distance, le consommateur dispose de
+            quatorze jours à compter de la réception des produits pour notifier
+            sa décision de se rétracter, sans avoir à la motiver. La demande
+            peut être adressée par e-mail à
+            <b>champagne.christelle.phlipaux@gmail.com</b> au moyen du modèle
+            ci-dessous ou de toute déclaration dénuée d’ambiguïté.
+          </p>
+          <p class="p">
+            Les produits doivent ensuite être retournés au plus tard dans les
+            quatorze jours suivant cette notification, protégés dans un
+            emballage adapté. Les frais directs de retour restent à la charge du
+            consommateur. Celui-ci peut être tenu responsable de la dépréciation
+            résultant de manipulations autres que celles nécessaires pour
+            établir la nature et les caractéristiques du produit.
+          </p>
+          <p class="p">
+            Le remboursement des sommes versées, y compris les frais de
+            livraison standard, intervient dans les quatorze jours suivant la
+            notification. Il peut être différé jusqu’à la récupération des
+            produits ou la réception d’une preuve de leur expédition.
+          </p>
+          <h3 class="h3">Modèle de rétractation</h3>
+          <p class="p">
+            « Je vous notifie par la présente ma rétractation concernant la
+            commande [numéro], reçue le [date]. Nom et adresse du client :
+            [coordonnées]. Date : [date]. »
           </p>
           <h2 class="h2">Responsabilité</h2>
           <p class="p">
-            La SARL Christelle Phlipaux ne saurait être tenue responsable des
+            La SARL CHRISTELLE BOURDICAUD ne saurait être tenue responsable des
             dommages résultant d’une mauvaise utilisation des produits vendus.
           </p>
+          <h2 class="h2">Garanties légales</h2>
+          <p class="p">
+            Le consommateur bénéficie de la garantie légale de conformité et de
+            la garantie relative aux vices cachés dans les conditions prévues
+            par la loi. Toute réclamation peut être adressée à
+            <b>champagne.christelle.phlipaux@gmail.com</b> ou au 4 rue de
+            Villiers, 10340 Channes.
+          </p>
+          <!-- À compléter avant publication : nom, adresse et site du médiateur
+               de la consommation effectivement désigné par l’entreprise. -->
           <h2 class="h2">Droit applicable</h2>
           <p class="p">Les présentes CGV sont soumises au droit français.</p>
         </article>

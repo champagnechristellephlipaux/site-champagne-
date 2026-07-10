@@ -5,14 +5,17 @@ import {
   getItemMeta,
   loadCart,
   shippingTotals,
-} from "../../cart.js";
+} from "../../cart.js?v=20260630b";
 
 const CREATE_SESSION_ENDPOINT =
   "/.netlify/functions/create-checkout-elements-session";
+const RECORD_CONSENT_ENDPOINT = "/.netlify/functions/record-checkout-consent";
 
 const state = {
   checkout: null,
+  sessionId: "",
   canConfirm: false,
+  hasAcceptedTerms: false,
   isProcessing: false,
   stripeTotal: "",
 };
@@ -38,14 +41,17 @@ function showError(message) {
 function setButtonState(label) {
   const button = $("[data-checkout-submit]");
   if (!button) return;
-  const disabled = state.isProcessing || !state.canConfirm;
+  const disabled =
+    state.isProcessing || !state.canConfirm || !state.hasAcceptedTerms;
   button.disabled = disabled;
   button.setAttribute("aria-busy", state.isProcessing ? "true" : "false");
   button.textContent =
     label ||
-    (state.canConfirm
+    (state.canConfirm && state.hasAcceptedTerms
       ? `Payer ${state.stripeTotal || ""}`.trim()
-      : "Renseigner les informations de paiement");
+      : state.canConfirm
+        ? "Accepter les CGV pour payer"
+        : "Renseigner les informations de paiement");
 }
 
 function escapeHtml(value) {
@@ -65,7 +71,7 @@ function renderLocalCart(items) {
   const root = $("[data-checkout-items]");
   const totals = cartTotals(items);
   const shipping = shippingTotals(items);
-  const estimatedTotal = totals.subtotal + shipping.shippingTotal;
+  const orderTotal = totals.subtotal + shipping.shippingTotal;
   const count = cartCount(items);
 
   setText("[data-checkout-count]", formatCount(count));
@@ -76,7 +82,7 @@ function renderLocalCart(items) {
       ? "Offerte"
       : formatEuro(shipping.shippingTotal),
   );
-  setText("[data-checkout-total]", formatEuro(estimatedTotal));
+  setText("[data-checkout-total]", formatEuro(orderTotal));
 
   const shippingNote = $("[data-checkout-shipping-note]");
   if (shippingNote) {
@@ -89,12 +95,15 @@ function renderLocalCart(items) {
       shippingNote.textContent = "Livraison offerte sur le coffret découverte.";
     } else if ((shipping.freeDiscoveryBoxes || 0) > 0) {
       shippingNote.textContent =
-        "Coffret découverte : livraison offerte. Autres bouteilles : barème habituel confirmé au paiement.";
+        shipping.shippingTotal === 0
+          ? "Le coffret et les bouteilles de 75 cl sont livrés sans frais."
+          : `Le coffret est livré sans frais. Livraison des autres formats : ${formatEuro(shipping.shippingTotal)}.`;
     } else if (shipping.bottles75 >= 6 && !shipping.magnums) {
       shippingNote.textContent = "Livraison offerte atteinte pour ce panier.";
     } else if (shipping.bottles75 >= 6 && shipping.magnums) {
-      shippingNote.textContent =
-        "75 cl : livraison offerte. Magnums : tarif dédié confirmé au paiement.";
+      shippingNote.textContent = `75 cl : livraison offerte. Livraison des magnums : ${formatEuro(shipping.shippingMag)}.`;
+    } else if (!shipping.bottles75 && shipping.magnums) {
+      shippingNote.textContent = `Livraison des magnums : ${formatEuro(shipping.shippingMag)}.`;
     } else {
       const remaining = Math.max(0, 6 - shipping.bottles75);
       shippingNote.textContent = `Plus que ${remaining} bouteille${remaining > 1 ? "s" : ""} de 75 cl avant la livraison offerte.`;
@@ -131,12 +140,21 @@ function cartPayload(items) {
 }
 
 async function parseResponseError(response) {
+  const fallback = "La page de paiement ne répond pas pour l’instant.";
+  if (response.status === 404) return fallback;
   const text = await response.text();
   try {
     const data = JSON.parse(text);
-    return data?.error || "La page de paiement ne répond pas pour l’instant.";
+    if (typeof data?.error === "string") return data.error;
+    if (typeof data?.error?.message === "string") return data.error.message;
+    if (typeof data?.message === "string") return data.message;
+    return fallback;
   } catch (_error) {
-    return text || "La page de paiement ne répond pas pour l’instant.";
+    const plainText = text.trim();
+    const looksLikeMarkup = /<[^>]+>/.test(plainText);
+    return plainText && !looksLikeMarkup && plainText.length <= 180
+      ? plainText
+      : fallback;
   }
 }
 
@@ -162,6 +180,30 @@ async function createCheckoutSession(items) {
   return { ...data, clientSecret };
 }
 
+async function recordTermsAcceptance() {
+  if (!state.sessionId || !state.hasAcceptedTerms) {
+    throw new Error(
+      "Veuillez accepter les conditions générales de vente avant de payer.",
+    );
+  }
+
+  const response = await fetch(RECORD_CONSENT_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({
+      sessionId: state.sessionId,
+      accepted: true,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(await parseResponseError(response));
+  }
+}
+
 function stripeAppearance() {
   return {
     theme: "stripe",
@@ -170,9 +212,9 @@ function stripeAppearance() {
       colorBackground: "#fffaf2",
       colorText: "#2b2119",
       colorDanger: "#9a3d2c",
-      borderRadius: "8px",
+      borderRadius: "3px",
       fontFamily:
-        'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+        'Manrope, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
       spacingUnit: "4px",
     },
   };
@@ -228,12 +270,20 @@ function mountElements() {
 async function confirmPayment(event) {
   event.preventDefault();
   if (state.isProcessing || !state.checkout) return;
+  if (!state.hasAcceptedTerms) {
+    showError(
+      "Veuillez accepter les conditions générales de vente avant de payer.",
+    );
+    $("[data-checkout-terms]")?.focus();
+    return;
+  }
 
   state.isProcessing = true;
   showError("");
   setButtonState("Validation en cours…");
 
   try {
+    await recordTermsAcceptance();
     const loadActionsResult = await state.checkout.loadActions();
     if (loadActionsResult?.type === "error") {
       throw new Error(
@@ -276,6 +326,7 @@ async function init() {
     }
 
     const sessionData = await createCheckoutSession(items);
+    state.sessionId = sessionData.id || "";
     const stripe = window.Stripe(sessionData.publishableKey, { locale: "fr" });
     state.checkout = stripe.initCheckoutElementsSdk({
       clientSecret: sessionData.clientSecret,
@@ -289,7 +340,7 @@ async function init() {
     syncStripeSession();
     setButtonState();
   } catch (error) {
-    console.error(error);
+    console.debug("Initialisation du paiement indisponible.", error.message);
     state.canConfirm = false;
     showError(
       error.message ||
@@ -298,6 +349,11 @@ async function init() {
     setButtonState("Paiement indisponible");
   }
 
+  $("[data-checkout-terms]")?.addEventListener("change", (event) => {
+    state.hasAcceptedTerms = Boolean(event.target.checked);
+    showError("");
+    setButtonState();
+  });
   $("[data-checkout-form]")?.addEventListener("submit", confirmPayment);
 }
 

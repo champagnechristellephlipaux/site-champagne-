@@ -1,4 +1,5 @@
 const {
+  checkReviewRateLimit,
   createReviewFromSubmission,
   json,
   parseBody,
@@ -32,6 +33,16 @@ exports.handler = async (event) => {
       error: "Votre avis n’a pas pu être enregistré.",
       details: result.errors,
     });
+  }
+
+  const rateLimit = await checkReviewRateLimit(event);
+  if (!rateLimit.allowed) {
+    const response = json(429, {
+      error:
+        "Plusieurs avis ont déjà été transmis récemment. Réessayez un peu plus tard.",
+    });
+    response.headers["Retry-After"] = String(rateLimit.retryAfterSeconds);
+    return response;
   }
 
   const store = await readStore();

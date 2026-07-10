@@ -3,17 +3,16 @@ const { json } = require("./checkout-shared");
 
 function safeSessionId(value) {
   const id = String(value || "").trim();
-  return /^cs_(test|live)_[A-Za-z0-9]+/.test(id) ? id : "";
+  return /^cs_(test|live)_[A-Za-z0-9]+$/.test(id) ? id : "";
 }
 
-function customerPayload(session) {
+function maskedEmail(session) {
   const details = session.customer_details || {};
-  return {
-    email: details.email || session.customer_email || "",
-    name: details.name || "",
-    phone: details.phone || "",
-    address: details.address || null,
-  };
+  const email = details.email || session.customer_email || "";
+  const [localPart, domain] = email.split("@");
+  if (!localPart || !domain) return "";
+  const visible = localPart.slice(0, Math.min(2, localPart.length));
+  return `${visible}${"•".repeat(Math.max(3, localPart.length - visible.length))}@${domain}`;
 }
 
 exports.handler = async (event) => {
@@ -50,9 +49,9 @@ exports.handler = async (event) => {
       payment_status: session.payment_status,
       amount_total: session.amount_total,
       currency: session.currency,
-      customer: customerPayload(session),
-      shipping: session.shipping_details || null,
-      shipping_cost: session.shipping_cost || null,
+      customer: {
+        email: maskedEmail(session),
+      },
       order_reference:
         session.metadata?.order_reference || session.client_reference_id || "",
       line_items: lineItems.data.map((item) => ({

@@ -1,5 +1,6 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const { json } = require("./checkout-shared");
+const { saveOrder } = require("./orders-store");
 
 function rawBody(event) {
   return Buffer.from(
@@ -24,7 +25,11 @@ async function buildCompletedOrder(session) {
     limit: 100,
   });
   const details = session.customer_details || {};
-  const shipping = session.shipping_details || {};
+  const shipping =
+    session.collected_information?.shipping_details ||
+    session.shipping_details ||
+    {};
+  const isPaid = session.payment_status === "paid";
 
   return {
     session_id: session.id,
@@ -33,6 +38,12 @@ async function buildCompletedOrder(session) {
     payment_status: session.payment_status,
     amount_total: session.amount_total,
     currency: session.currency,
+    fulfillment_status: isPaid ? "ready" : "payment_pending",
+    terms: {
+      accepted: session.metadata?.terms_accepted === "yes",
+      accepted_at: session.metadata?.terms_accepted_at || "",
+      version: session.metadata?.terms_version || "",
+    },
     customer: {
       name: details.name || "",
       email: details.email || session.customer_email || "",
@@ -81,9 +92,34 @@ exports.handler = async (event) => {
   }
 
   try {
-    if (stripeEvent.type === "checkout.session.completed") {
-      const order = await buildCompletedOrder(stripeEvent.data.object);
-      console.info("checkout.session.completed", JSON.stringify(order));
+    const handledEvents = new Set([
+      "checkout.session.completed",
+      "checkout.session.async_payment_succeeded",
+      "checkout.session.async_payment_failed",
+    ]);
+
+    if (handledEvents.has(stripeEvent.type)) {
+      const session = stripeEvent.data.object;
+      const order = await buildCompletedOrder(session);
+      if (stripeEvent.type === "checkout.session.async_payment_failed") {
+        order.fulfillment_status = "payment_failed";
+      }
+      order.stripe_event = stripeEvent.type;
+      order.stripe_event_id = stripeEvent.id;
+
+      await saveOrder(order);
+
+      console.info(
+        "stripe-order",
+        JSON.stringify({
+          event: stripeEvent.type,
+          session_id: order.session_id,
+          order_reference: order.order_reference,
+          payment_status: order.payment_status,
+          fulfillment_status: order.fulfillment_status,
+          terms_accepted: order.terms.accepted,
+        }),
+      );
     }
 
     return json(200, { received: true });

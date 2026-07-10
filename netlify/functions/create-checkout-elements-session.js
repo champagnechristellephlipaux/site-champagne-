@@ -9,6 +9,7 @@ const {
   parseJsonBody,
   shippingFromItems,
   siteOrigin,
+  TERMS_VERSION,
 } = require("./checkout-shared");
 
 exports.handler = async (event) => {
@@ -77,6 +78,8 @@ exports.handler = async (event) => {
         magnums: String(shipping.magnums),
         free_discovery_boxes: String(shipping.freeDiscoveryBoxes || 0),
         shipping_cents: String(shipping.shippingTotalCents),
+        terms_version: TERMS_VERSION,
+        terms_accepted: "pending",
       },
     });
 

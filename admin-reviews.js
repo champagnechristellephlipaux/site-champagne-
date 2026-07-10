@@ -2,8 +2,10 @@
   const ENDPOINT = "/.netlify/functions/reviews-admin";
   const TOKEN_KEY = "ccp_reviews_admin_token";
 
+  localStorage.removeItem(TOKEN_KEY);
+
   const state = {
-    token: localStorage.getItem(TOKEN_KEY) || "",
+    token: sessionStorage.getItem(TOKEN_KEY) || "",
     reviews: [],
     counts: {},
     summary: {},
@@ -200,13 +202,22 @@
       form.addEventListener("submit", (event) => {
         event.preventDefault();
         state.token = input.value.trim();
-        localStorage.setItem(TOKEN_KEY, state.token);
+        sessionStorage.setItem(TOKEN_KEY, state.token);
         loadReviews();
       });
     }
 
     const refresh = $("[data-admin-refresh]");
     if (refresh) refresh.addEventListener("click", loadReviews);
+
+    const logout = $("[data-admin-logout]");
+    if (logout) {
+      logout.addEventListener("click", () => {
+        sessionStorage.removeItem(TOKEN_KEY);
+        state.token = "";
+        window.location.reload();
+      });
+    }
 
     if (state.token) loadReviews();
   }

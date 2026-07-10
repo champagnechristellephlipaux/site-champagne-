@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
-    <meta content="#17120e" name="theme-color" />
+    <meta content="#f3eee6" name="theme-color" />
     <meta content="telephone=no" name="format-detection" />
     <meta content="Champagne Christelle Phlipaux" name="author" />
     <link href="/assets/logo-trans.png" rel="icon" type="image/png" />
@@ -46,9 +46,31 @@
       content="Confirmation de message envoyé à Champagne Christelle Phlipaux"
       name="twitter:image:alt"
     />
-    <link href="style.css" rel="stylesheet" />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/cormorant-garamond-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/manrope-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link href="style.css?v=20260701d" rel="stylesheet" />
+    <link
+      href="assets/css/editorial-redesign.css?v=20260701d"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/css/immersive-experience.css?v=20260701d"
+      rel="stylesheet"
+    />
     <script defer="" src="consent.js"></script>
-    <script defer="" src="ui.js"></script>
+    <script defer="" src="ui.js?v=20260701d"></script>
   </head>
   <body>
     <header>
@@ -85,11 +107,14 @@
       <picture
         ><source srcset="assets/hero-vignoble.webp" type="image/webp" />
         <img
-          alt="Vignoble et cave en Champagne"
+          alt="Vignes de Champagne dans la Côte des Bar"
           class="page-hero-media"
           decoding="async"
+          fetchpriority="high"
+          height="1132"
           loading="eager"
           src="assets/hero-vignoble.jpg"
+          width="2048"
       /></picture>
       <div class="page-hero-overlay"></div>
       <div class="container page-hero-inner">
@@ -109,7 +134,7 @@
             confirmer un rendez-vous, vous conseiller sur une cuvée ou répondre
             à votre demande.
           </p>
-          <div class="hero-cta" style="margin-top: 18px">
+          <div class="hero-cta u-mt-5">
             <a class="btn gold" href="index.html">Revenir à l’accueil</a>
             <a class="btn" href="boutique.html">Choisir une cuvée</a>
           </div>

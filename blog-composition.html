@@ -4,18 +4,40 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
-    <meta content="#17120e" name="theme-color" />
+    <meta content="#f3eee6" name="theme-color" />
     <meta content="telephone=no" name="format-detection" />
     <meta content="Champagne Christelle Phlipaux" name="author" />
     <link href="/assets/logo-trans.png" rel="icon" type="image/png" />
     <title>Composition d’un champagne | Cépages, assemblage, dosage</title>
-    <link href="style.css" rel="stylesheet" />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/cormorant-garamond-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/manrope-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link href="style.css?v=20260701d" rel="stylesheet" />
+    <link
+      href="assets/css/editorial-redesign.css?v=20260701d"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/css/immersive-experience.css?v=20260701d"
+      rel="stylesheet"
+    />
     <meta
       content="Pinot Noir, Chardonnay, assemblage, rosé et dosage : comprendre avec clarté ce qui façonne l’équilibre d’une cuvée."
       name="description"
     />
     <link
-      href="https://champagnechristellephlipaux.netlify.app/blog-composition.html"
+      href="https://champagne-christelle-phlipaux.com/blog-composition.html"
       rel="canonical"
     />
     <meta content="index,follow" name="robots" />
@@ -31,11 +53,11 @@
       property="og:description"
     />
     <meta
-      content="https://champagnechristellephlipaux.netlify.app/blog-composition.html"
+      content="https://champagne-christelle-phlipaux.com/blog-composition.html"
       property="og:url"
     />
     <meta
-      content="https://champagnechristellephlipaux.netlify.app/assets/blog-cepages.jpg"
+      content="https://champagne-christelle-phlipaux.com/assets/blog-cepages.jpg"
       property="og:image"
     />
     <meta
@@ -52,7 +74,7 @@
       name="twitter:description"
     />
     <meta
-      content="https://champagnechristellephlipaux.netlify.app/assets/blog-cepages.jpg"
+      content="https://champagne-christelle-phlipaux.com/assets/blog-cepages.jpg"
       name="twitter:image"
     />
     <meta
@@ -64,9 +86,11 @@
         "@context": "https://schema.org",
         "@type": ["Organization", "Winery"],
         "name": "Champagne Christelle Phlipaux",
-        "url": "https://champagnechristellephlipaux.netlify.app/",
-        "logo": "https://champagnechristellephlipaux.netlify.app/assets/logo.png",
-        "image": "https://champagnechristellephlipaux.netlify.app/assets/blog-cepages.jpg",
+        "legalName": "CHRISTELLE BOURDICAUD",
+        "vatID": "FR25539870253",
+        "url": "https://champagne-christelle-phlipaux.com/",
+        "logo": "https://champagne-christelle-phlipaux.com/assets/logo.png",
+        "image": "https://champagne-christelle-phlipaux.com/assets/blog-cepages.jpg",
         "telephone": "+33 6 82 20 34 30",
         "email": "champagne.christelle.phlipaux@gmail.com",
         "address": {
@@ -92,13 +116,13 @@
             "@type": "ListItem",
             "position": 1,
             "name": "Accueil",
-            "item": "https://champagnechristellephlipaux.netlify.app/"
+            "item": "https://champagne-christelle-phlipaux.com/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Composition d’un champagne",
-            "item": "https://champagnechristellephlipaux.netlify.app/blog-composition.html"
+            "item": "https://champagne-christelle-phlipaux.com/blog-composition.html"
           }
         ]
       }
@@ -110,11 +134,11 @@
         "headline": "Composition d’un champagne",
         "description": "Pinot Noir, Chardonnay, assemblage, rosé et dosage : comprendre ce qui façonne le goût, l’équilibre et le style d’un champagne.",
         "image": [
-          "https://champagnechristellephlipaux.netlify.app/assets/blog-cepages.jpg"
+          "https://champagne-christelle-phlipaux.com/assets/blog-cepages.jpg"
         ],
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://champagnechristellephlipaux.netlify.app/blog-composition.html"
+          "@id": "https://champagne-christelle-phlipaux.com/blog-composition.html"
         },
         "author": {
           "@type": "Organization",
@@ -125,13 +149,13 @@
           "name": "Champagne Christelle Phlipaux",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://champagnechristellephlipaux.netlify.app/assets/logo.png"
+            "url": "https://champagne-christelle-phlipaux.com/assets/logo.png"
           }
         }
       }
     </script>
     <script defer="" src="consent.js"></script>
-    <script defer src="ui.js"></script>
+    <script defer src="ui.js?v=20260701d"></script>
   </head>
   <body>
     <header>
@@ -165,95 +189,103 @@
         </nav>
       </div>
     </header>
-    <section class="page-hero">
-      <picture
-        ><source srcset="assets/blog-cepages.webp" type="image/webp" />
-        <img
-          alt="Cépages et composition du champagne"
-          class="page-hero-media"
-          decoding="async"
-          loading="eager"
-          src="assets/blog-cepages.jpg"
-      /></picture>
-      <div class="page-hero-overlay"></div>
-      <div class="container page-hero-inner">
-        <div class="kicker">Champagne Christelle Phlipaux</div>
-        <h1 class="h1 page-hero-title">Composition &amp; assemblage</h1>
-        <p class="page-hero-sub">
-          Cépages, assemblage, dosage : les repères utiles.
-        </p>
-      </div>
-    </section>
-    <section class="section" style="padding-top: 0">
-      <div class="container">
-        <article class="card pad prose reveal">
-          <div class="prose-hero">
-            <picture
-              ><source srcset="assets/blog-cepages.webp" type="image/webp" />
-              <img
-                alt="Cépages utilisés pour la composition du champagne"
-                decoding="async"
-                height="2048"
-                loading="lazy"
-                src="assets/blog-cepages.jpg"
-                width="1365"
-            /></picture>
-          </div>
-          <div class="badge">Cuvées • Cépages • Dosage</div>
-          <div class="hr"></div>
-          <p class="small muted">
-            Article de la maison Champagne Christelle Phlipaux
+    <main id="contenu">
+      <section class="page-hero">
+        <picture
+          ><source srcset="assets/blog-cepages.webp" type="image/webp" />
+          <img
+            alt="Cépages et composition du champagne"
+            class="page-hero-media"
+            decoding="async"
+            fetchpriority="high"
+            height="436"
+            loading="eager"
+            src="assets/blog-cepages.jpg"
+            width="806"
+        /></picture>
+        <div class="page-hero-overlay"></div>
+        <div class="container page-hero-inner">
+          <div class="kicker">Champagne Christelle Phlipaux</div>
+          <h1 class="h1 page-hero-title">Composition &amp; assemblage</h1>
+          <p class="page-hero-sub">
+            Cépages, assemblage, dosage : les repères utiles.
           </p>
-          <h2 class="h2" style="margin-top: 0">
-            Cépages, assemblage et dosage dans le verre
-          </h2>
-          <p class="p">
-            Derrière une cuvée, il y a des choix : cépages, assemblage, temps de
-            cave… et parfois le dosage. Ces paramètres font la différence entre
-            un champagne vif, tendu, ou au contraire plus rond et gourmand.
-          </p>
-          <div class="divider"></div>
-          <h3 class="h3">Les cépages : Pinot Noir &amp; Chardonnay</h3>
-          <p class="p">
-            Nos champagnes reposent sur un duo clair :
-            <b>Pinot Noir (70%)</b> et <b>Chardonnay (30%)</b>. Le Pinot Noir
-            apporte la structure, le fruit, la rondeur. Le Chardonnay apporte la
-            fraîcheur, la finesse et une finale plus lumineuse.
-          </p>
-          <h3 class="h3">L’assemblage : trouver l’équilibre</h3>
-          <p class="p">
-            L’assemblage, c’est comme composer un accord musical : on cherche le
-            bon “tempo” entre matière et fraîcheur. C’est ce qui donne une
-            signature reconnaissable et stable, année après année.
-          </p>
-          <h3 class="h3">Rosé d’assemblage : une particularité champenoise</h3>
-          <p class="p">
-            La Champagne est la seule AOC qui autorise le rosé par assemblage :
-            on peut ajouter une petite part de vin rouge (Pinot Noir ou Meunier)
-            pour teinter le vin avant de le “champagniser”. C’est ce qui donne
-            des rosés particulièrement fins et élégants.
-          </p>
-          <h3 class="h3">Brut vs Demi‑Sec : le rôle du dosage</h3>
-          <p class="p">
-            La différence vient principalement de la liqueur de dosage : le
-            <b>demi‑sec</b> est plus gourmand (sucre plus présent), tandis que
-            le <b>brut</b> reste plus sec et plus vif. Chez nous, le demi‑sec
-            est pensé pour les accords sucrés‑salés et les moments plus
-            gourmands.
-          </p>
-          <div class="notice">
-            <b>Conseil dégustation :</b> brut à l’apéritif / fruits de mer ;
-            demi‑sec avec foie gras, desserts ou cuisine légèrement épicée.
-          </div>
-          <div class="hero-cta" style="margin-top: 18px">
-            <a class="btn" href="cuvees.html">Comparer les cuvées</a>
-            <a class="btn secondary" href="blog-creation.html"
-              >Comprendre l’élaboration</a
-            >
-          </div>
-        </article>
-      </div>
-    </section>
+        </div>
+      </section>
+      <section class="section section--flush-top">
+        <div class="container">
+          <article class="card pad prose reveal">
+            <div class="prose-hero">
+              <picture
+                ><source srcset="assets/blog-cepages.webp" type="image/webp" />
+                <img
+                  alt="Cépages utilisés pour la composition du champagne"
+                  decoding="async"
+                  height="436"
+                  loading="lazy"
+                  src="assets/blog-cepages.jpg"
+                  width="806"
+              /></picture>
+            </div>
+            <div class="badge">Cuvées • Cépages • Dosage</div>
+            <div class="hr"></div>
+            <p class="small muted">
+              Article de la maison Champagne Christelle Phlipaux
+            </p>
+            <h2 class="h2 u-mt-0">
+              Cépages, assemblage et dosage dans le verre
+            </h2>
+            <p class="p">
+              Derrière une cuvée, il y a des choix : cépages, assemblage, temps
+              de cave… et parfois le dosage. Ces paramètres font la différence
+              entre un champagne vif, tendu, ou au contraire plus rond et
+              gourmand.
+            </p>
+            <div class="divider"></div>
+            <h3 class="h3">Les cépages : Pinot Noir &amp; Chardonnay</h3>
+            <p class="p">
+              Nos champagnes reposent sur un duo clair :
+              <b>Pinot Noir (70%)</b> et <b>Chardonnay (30%)</b>. Le Pinot Noir
+              apporte la structure, le fruit, la rondeur. Le Chardonnay apporte
+              la fraîcheur, la finesse et une finale plus lumineuse.
+            </p>
+            <h3 class="h3">L’assemblage : trouver l’équilibre</h3>
+            <p class="p">
+              L’assemblage, c’est comme composer un accord musical : on cherche
+              le bon “tempo” entre matière et fraîcheur. C’est ce qui donne une
+              signature reconnaissable et stable, année après année.
+            </p>
+            <h3 class="h3">
+              Rosé d’assemblage : une particularité champenoise
+            </h3>
+            <p class="p">
+              La Champagne est la seule AOC qui autorise le rosé par assemblage
+              : on peut ajouter une petite part de vin rouge (Pinot Noir ou
+              Meunier) pour teinter le vin avant de le “champagniser”. C’est ce
+              qui donne des rosés particulièrement fins et élégants.
+            </p>
+            <h3 class="h3">Brut vs Demi‑Sec : le rôle du dosage</h3>
+            <p class="p">
+              La différence vient principalement de la liqueur de dosage : le
+              <b>demi‑sec</b> est plus gourmand (sucre plus présent), tandis que
+              le <b>brut</b> reste plus sec et plus vif. Chez nous, le demi‑sec
+              est pensé pour les accords sucrés‑salés et les moments plus
+              gourmands.
+            </p>
+            <div class="notice">
+              <b>Conseil dégustation :</b> brut à l’apéritif / fruits de mer ;
+              demi‑sec avec foie gras, desserts ou cuisine légèrement épicée.
+            </div>
+            <div class="hero-cta u-mt-5">
+              <a class="btn" href="cuvees.html">Comparer les cuvées</a>
+              <a class="btn secondary" href="blog-creation.html"
+                >Comprendre l’élaboration</a
+              >
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
     <footer>
       <div class="container footer-grid">
         <div>

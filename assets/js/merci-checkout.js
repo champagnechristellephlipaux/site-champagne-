@@ -1,4 +1,4 @@
-import { clearCart, formatEuro } from "../../cart.js";
+import { clearCart, formatEuro } from "../../cart.js?v=20260630b";
 
 const STATUS_ENDPOINT = "/.netlify/functions/get-checkout-session";
 
@@ -69,7 +69,7 @@ function renderComplete(session) {
   setText("[data-merci-title]", "Merci pour votre commande");
   setText(
     "[data-merci-copy]",
-    "Votre paiement est confirmé. La maison prépare la suite avec soin et vous recevrez les informations de suivi après expédition.",
+    "Votre paiement est confirmé. Nous préparons votre commande à Channes. Vous recevrez les informations de suivi par email dès son expédition.",
   );
   renderSummary(session);
   show($("[data-merci-success]"));
@@ -125,7 +125,7 @@ async function init() {
       renderOpen();
     }
   } catch (error) {
-    console.error(error);
+    console.debug("Vérification de commande indisponible.", error.message);
     renderFallback(
       "La vérification automatique n’a pas abouti. Si un paiement a été validé, la maison le retrouvera dans Stripe.",
     );

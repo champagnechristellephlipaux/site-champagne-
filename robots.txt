@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://champagnechristellephlipaux.netlify.app/sitemap.xml
+Sitemap: https://champagne-christelle-phlipaux.com/sitemap.xml

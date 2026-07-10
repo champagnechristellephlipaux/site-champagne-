@@ -1,0 +1,426 @@
+/*
+ * Champagne Christelle Phlipaux — expérience d’achat
+ *
+ * Une couche commerce ciblée : choix plus lisible, feedback utile,
+ * panier stable et actions accessibles sur mobile comme sur desktop.
+ */
+
+.product-hero-buyline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+  align-items: center;
+  max-width: 38rem;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 250, 243, 0.2);
+}
+
+.product-hero-price {
+  display: grid;
+  gap: 3px;
+  min-width: 150px;
+}
+
+.product-hero-price span {
+  color: rgba(255, 250, 243, 0.66);
+  font-family: var(--font-ui);
+  font-size: 0.69rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.product-hero-price strong {
+  color: #fffaf3;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 2.4vw, 2.3rem);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.product-hero-buyline .btn {
+  min-height: 50px;
+  padding-inline: 22px;
+}
+
+.product-compare-link {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 12px;
+  color: var(--v2-earth-dark);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: rgba(120, 88, 62, 0.34);
+  text-underline-offset: 4px;
+}
+
+.product-compare-link:hover,
+.product-compare-link:focus-visible {
+  color: var(--v2-ink);
+  text-decoration-color: currentColor;
+}
+
+.page-boutique .shop-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.page-boutique .shop-hero-actions .btn {
+  min-height: 50px;
+}
+
+.page-boutique .product-media-link {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: block;
+  color: inherit;
+}
+
+.page-boutique .product-media-link picture {
+  position: absolute;
+  inset: 0;
+}
+
+.page-boutique .product-media-link:focus-visible {
+  outline: 2px solid var(--v2-earth);
+  outline-offset: -4px;
+}
+
+.page-boutique .product-media-mark {
+  z-index: 2;
+  pointer-events: none;
+}
+
+.page-boutique .seg input[value="carton6"] + span,
+.page-cuvee .seg input[value="carton6"] + span {
+  border-color: rgba(120, 88, 62, 0.34);
+  background: rgba(120, 88, 62, 0.055);
+}
+
+.page-boutique .seg input[value="carton6"]:checked + span,
+.page-cuvee .seg input[value="carton6"]:checked + span {
+  border-color: var(--v2-earth);
+  background: #eadfce;
+}
+
+.page-boutique .product.is-selection-changing .product-selection-note,
+.page-cuvee
+  .product-sale-shell.is-selection-changing
+  .product-selection-note {
+  animation: commerce-selection-feedback 320ms ease-out;
+}
+
+@keyframes commerce-selection-feedback {
+  0% {
+    border-color: var(--v2-earth);
+    background: rgba(120, 88, 62, 0.16);
+    transform: translateY(1px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.qty-btn:disabled,
+.drawer-panel .qty-btn:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.ui-close-mark {
+  position: relative;
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.ui-close-mark::before,
+.ui-close-mark::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 1.5px;
+  border-radius: 999px;
+  content: "";
+  background: currentColor;
+  transform-origin: center;
+}
+
+.ui-close-mark::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.ui-close-mark::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.drawer-panel {
+  height: 100dvh;
+}
+
+.drawer-body,
+.drawer-foot {
+  overscroll-behavior: contain;
+}
+
+.drawer-foot {
+  max-height: 58dvh;
+  overflow-y: auto;
+}
+
+.drawer-panel.is-empty .drawer-summary,
+.drawer-panel.is-empty .drawer-actions,
+.drawer-panel.is-empty .drawer-assurance,
+.drawer-panel.is-empty .drawer-help,
+.drawer-panel.is-empty .drawer-clear {
+  display: none;
+}
+
+.drawer-panel.is-changing .drawer-summary,
+.drawer-panel.is-changing .drawer-delivery {
+  animation: commerce-cart-feedback 340ms ease-out;
+}
+
+@keyframes commerce-cart-feedback {
+  0% {
+    border-color: rgba(255, 250, 243, 0.32);
+    transform: translateY(2px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.cart-live-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.shop-toast {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+}
+
+.shop-toast-copy {
+  display: grid !important;
+  gap: 3px;
+}
+
+.shop-toast-copy strong {
+  margin-bottom: 0;
+}
+
+.shop-toast-action {
+  min-height: 42px;
+  padding: 9px 12px;
+  border: 1px solid rgba(255, 250, 243, 0.24);
+  border-radius: 10px;
+  color: #fffaf3;
+  background: rgba(255, 255, 255, 0.07);
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.shop-toast-action:hover,
+.shop-toast-action:focus-visible {
+  border-color: rgba(255, 250, 243, 0.5);
+  background: rgba(255, 255, 255, 0.13);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .page-boutique
+    .product
+    .product-media
+    .product-media-link:hover
+    picture
+    img {
+    filter: saturate(1) contrast(1.04);
+    transform: scale(1.025) !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .product-hero-buyline {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 14px;
+  }
+
+  .product-hero-price {
+    min-width: 0;
+  }
+
+  .product-hero-price strong {
+    font-size: 1.72rem;
+  }
+
+  .product-hero-buyline .btn {
+    min-height: 48px;
+    padding-inline: 16px;
+  }
+
+  .page-boutique .shop-hero-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+
+  .page-boutique .shop-hero-actions .btn {
+    width: 100%;
+    min-width: 0;
+    padding-inline: 12px;
+  }
+
+  .drawer-foot {
+    max-height: 62dvh;
+    padding-bottom: max(18px, env(safe-area-inset-bottom));
+  }
+
+  .shop-toast-wrap {
+    right: 12px;
+    bottom: calc(84px + env(safe-area-inset-bottom));
+    left: 12px;
+  }
+
+  .shop-toast {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  #age-gate-overlay {
+    padding: 12px;
+    overflow-x: hidden;
+  }
+
+  #age-gate-overlay .age-gate-card {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    margin-inline: 0;
+  }
+
+  #age-gate-overlay .age-gate-inner {
+    min-width: 0;
+    padding: 20px 16px 16px;
+  }
+
+  #age-gate-overlay .age-gate-title,
+  #age-gate-overlay .age-gate-text,
+  #age-gate-overlay .age-gate-small {
+    overflow-wrap: anywhere;
+  }
+
+  .product-hero-buyline {
+    grid-template-columns: 1fr;
+  }
+
+  .product-hero-buyline .btn {
+    width: 100%;
+  }
+
+  .page-boutique .shop-hero-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-toast {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-toast-action {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-boutique .product.is-selection-changing .product-selection-note,
+  .page-cuvee
+    .product-sale-shell.is-selection-changing
+    .product-selection-note,
+  .drawer-panel.is-changing .drawer-summary,
+  .drawer-panel.is-changing .drawer-delivery {
+    animation: none;
+  }
+}
+
+/* Product images: keep every bottle complete and optically centered. */
+.page-boutique
+  .product:not(.product--coffret)
+  .product-media
+  .product-media-link
+  picture {
+  display: flex;
+  padding: 18px;
+  align-items: center;
+  justify-content: center;
+  background: #e9e2d8;
+}
+
+.page-boutique
+  .product:not(.product--coffret)
+  .product-media
+  .product-media-link
+  picture
+  img {
+  position: static;
+  inset: auto;
+  display: block;
+  width: auto !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 0;
+  filter: saturate(0.97) contrast(1.02);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .page-boutique
+    .product:not(.product--coffret)
+    .product-media
+    .product-media-link:hover
+    picture
+    img {
+    transform: scale(1.012) !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .page-boutique .product:not(.product--coffret) .product-media {
+    min-height: 248px;
+  }
+
+  .page-boutique
+    .product:not(.product--coffret)
+    .product-media
+    .product-media-link
+    picture {
+    padding: 12px 14px;
+  }
+}

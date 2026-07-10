@@ -2,6 +2,15 @@
   const AGE_KEY = "ccp_age_verified_v1";
   const COOKIE_KEY = "ccp_cookie_consent_v1"; // "accepted" | "refused"
   const MIN_AGE = 18;
+  const OPTIONAL_COOKIES_ENABLED = false;
+
+  function focusableElements(scope) {
+    return Array.from(
+      scope.querySelectorAll(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ),
+    ).filter((node) => !node.hidden && node.offsetParent !== null);
+  }
 
   function el(tag, attrs, children) {
     const n = document.createElement(tag);
@@ -23,6 +32,7 @@
   function ensureAgeGate() {
     if (localStorage.getItem(AGE_KEY) === "true") return;
 
+    const previouslyFocused = document.activeElement;
     const overlay = el(
       "div",
       {
@@ -55,6 +65,10 @@
                     }
                     overlay.classList.remove("is-open");
                     overlay.style.display = "none";
+                    document.removeEventListener("keydown", keepFocusInGate);
+                    if (previouslyFocused instanceof HTMLElement) {
+                      previouslyFocused.focus();
+                    }
                   },
                 },
                 ["Oui, j’ai 18+"],
@@ -79,6 +93,7 @@
                         ["Quitter le site"],
                       ),
                     );
+                    overlay.querySelector(".age-gate-actions a")?.focus();
                   },
                 },
                 ["Non"],
@@ -98,9 +113,35 @@
     );
 
     document.body.appendChild(overlay);
+
+    function keepFocusInGate(event) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        return;
+      }
+      if (event.key !== "Tab") return;
+
+      const focusable = focusableElements(overlay);
+      if (!focusable.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+
+    document.addEventListener("keydown", keepFocusInGate);
+    window.setTimeout(() => focusableElements(overlay)[0]?.focus(), 0);
   }
 
   function ensureCookieBanner() {
+    if (!OPTIONAL_COOKIES_ENABLED) return;
+
     const v = localStorage.getItem(COOKIE_KEY);
     if (v === "accepted" || v === "refused") return;
 

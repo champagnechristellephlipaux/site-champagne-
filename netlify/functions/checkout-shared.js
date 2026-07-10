@@ -1,7 +1,8 @@
 const crypto = require("crypto");
 
 const MAX_ITEM_QTY = 48;
-const DEFAULT_SITE_URL = "https://champagnechristellephlipaux.netlify.app";
+const DEFAULT_SITE_URL = "https://champagne-christelle-phlipaux.com";
+const TERMS_VERSION = "2026-06-30";
 
 const CATALOG = {
   "coffret-decouverte": {
@@ -23,18 +24,21 @@ const CATALOG = {
       750: {
         label: "75 cl",
         priceId: "price_1SuZHHD96OJnHwPGwtcGoAWf",
+        unitAmount: 2250,
         bottles75: 1,
         magnums: 0,
       },
       magnum: {
         label: "Magnum 1,5 L",
         priceId: "price_1SwjyPD96OJnHwPGvyvJuQEZ",
+        unitAmount: 4900,
         bottles75: 0,
         magnums: 1,
       },
       carton6: {
         label: "Carton de 6",
         priceId: "price_1SuZIdD96OJnHwPGUzPgaC7b",
+        unitAmount: 13500,
         bottles75: 6,
         magnums: 0,
       },
@@ -46,18 +50,21 @@ const CATALOG = {
       750: {
         label: "75 cl",
         priceId: "price_1SuZJvD96OJnHwPGzGSNXU4j",
+        unitAmount: 2250,
         bottles75: 1,
         magnums: 0,
       },
       magnum: {
         label: "Magnum 1,5 L",
         priceId: "price_1SwjzND96OJnHwPGJSfyYl4Z",
+        unitAmount: 4900,
         bottles75: 0,
         magnums: 1,
       },
       carton6: {
         label: "Carton de 6",
         priceId: "price_1SuZKnD96OJnHwPGtpalrKg2",
+        unitAmount: 13500,
         bottles75: 6,
         magnums: 0,
       },
@@ -69,12 +76,14 @@ const CATALOG = {
       750: {
         label: "75 cl",
         priceId: "price_1SuZDcD96OJnHwPGV9Snay25",
+        unitAmount: 2500,
         bottles75: 1,
         magnums: 0,
       },
       carton6: {
         label: "Carton de 6",
         priceId: "price_1SuZF5D96OJnHwPGYqH6CCaf",
+        unitAmount: 15000,
         bottles75: 6,
         magnums: 0,
       },
@@ -229,7 +238,7 @@ function sanitizeOrigin(value) {
     const host = url.hostname;
     const isLocal = host === "localhost" || host === "127.0.0.1";
     const isNetlify = host.endsWith(".netlify.app");
-    const isKnownDomain = host === "champagnechristellephlipaux.netlify.app";
+    const isKnownDomain = host === "champagne-christelle-phlipaux.com";
     if (isLocal || isNetlify || isKnownDomain) {
       return url.origin;
     }
@@ -283,6 +292,7 @@ module.exports = {
   CATALOG,
   DEFAULT_SITE_URL,
   MAX_ITEM_QTY,
+  TERMS_VERSION,
   buildShippingOptions,
   cartSignature,
   json,

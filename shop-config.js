@@ -1,10 +1,6 @@
-// Configuration boutique (prix & Price IDs Stripe)
-//
-// 1) Les PRIX (EUR) ci-dessous correspondent à ce que vous m’avez donné.
-// 2) Pour activer le paiement en panier, remplacez les placeholders "price_..._PLACEHOLDER"
-//    par vos vrais identifiants Stripe (Price IDs), ex: price_1Pxxxxxx...
-//
-// Où les trouver ? Stripe > Produits > (produit) > Prix > ID (price_...)
+// Configuration d’affichage de la boutique.
+// Les identifiants Stripe et la validation finale des montants restent
+// exclusivement côté serveur dans netlify/functions/checkout-shared.js.
 
 export const PRICE_EUR = {
   "coffret-decouverte": {
@@ -23,26 +19,6 @@ export const PRICE_EUR = {
   rose: {
     750: 25,
     carton6: 150,
-  },
-};
-
-export const STRIPE_PRICE_IDS = {
-  "coffret-decouverte": {
-    coffret3: "price_1TmbcPD96OJnHwPGeEMqIjYX",
-  },
-  brut: {
-    750: "price_1SuZHHD96OJnHwPGwtcGoAWf",
-    magnum: "price_1SwjyPD96OJnHwPGvyvJuQEZ",
-    carton6: "price_1SuZIdD96OJnHwPGUzPgaC7b",
-  },
-  demisec: {
-    750: "price_1SuZJvD96OJnHwPGzGSNXU4j",
-    magnum: "price_1SwjzND96OJnHwPGJSfyYl4Z",
-    carton6: "price_1SuZKnD96OJnHwPGtpalrKg2",
-  },
-  rose: {
-    750: "price_1SuZDcD96OJnHwPGV9Snay25",
-    carton6: "price_1SuZF5D96OJnHwPGYqH6CCaf",
   },
 };
 

@@ -1,4 +1,4 @@
-import { PRODUCTS, FORMATS, PRICE_EUR } from "./shop-config.js";
+import { PRODUCTS, FORMATS, PRICE_EUR } from "./shop-config.js?v=20260630b";
 
 const CART_KEY = "cp_cart_v1";
 export const MAX_ITEM_QTY = 48;

@@ -4,18 +4,40 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
-    <meta content="#17120e" name="theme-color" />
+    <meta content="#f3eee6" name="theme-color" />
     <meta content="telephone=no" name="format-detection" />
     <meta content="Champagne Christelle Phlipaux" name="author" />
     <link href="/assets/logo-trans.png" rel="icon" type="image/png" />
     <title>La Champagne aujourd’hui | Climat, vigne et styles</title>
-    <link href="style.css" rel="stylesheet" />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/cormorant-garamond-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/manrope-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link href="style.css?v=20260701d" rel="stylesheet" />
+    <link
+      href="assets/css/editorial-redesign.css?v=20260701d"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/css/immersive-experience.css?v=20260701d"
+      rel="stylesheet"
+    />
     <meta
       content="Climat, vigne, maturité et styles : une lecture claire des évolutions qui traversent la Champagne, sans jargon ni discours automatique."
       name="description"
     />
     <link
-      href="https://champagnechristellephlipaux.netlify.app/blog-actualites.html"
+      href="https://champagne-christelle-phlipaux.com/blog-actualites.html"
       rel="canonical"
     />
     <meta content="index,follow" name="robots" />
@@ -31,15 +53,15 @@
       property="og:description"
     />
     <meta
-      content="https://champagnechristellephlipaux.netlify.app/blog-actualites.html"
+      content="https://champagne-christelle-phlipaux.com/blog-actualites.html"
       property="og:url"
     />
     <meta
-      content="https://champagnechristellephlipaux.netlify.app/assets/blog-champagne.jpg"
+      content="https://champagne-christelle-phlipaux.com/assets/blog-champagne.jpg"
       property="og:image"
     />
     <meta
-      content="Dégustation et actualité du vignoble en Champagne"
+      content="Flûte de Champagne Christelle Phlipaux"
       property="og:image:alt"
     />
     <meta content="summary_large_image" name="twitter:card" />
@@ -52,11 +74,11 @@
       name="twitter:description"
     />
     <meta
-      content="https://champagnechristellephlipaux.netlify.app/assets/blog-champagne.jpg"
+      content="https://champagne-christelle-phlipaux.com/assets/blog-champagne.jpg"
       name="twitter:image"
     />
     <meta
-      content="Dégustation et actualité du vignoble en Champagne"
+      content="Flûte de Champagne Christelle Phlipaux"
       name="twitter:image:alt"
     />
     <script id="ld-org" type="application/ld+json">
@@ -64,9 +86,11 @@
         "@context": "https://schema.org",
         "@type": ["Organization", "Winery"],
         "name": "Champagne Christelle Phlipaux",
-        "url": "https://champagnechristellephlipaux.netlify.app/",
-        "logo": "https://champagnechristellephlipaux.netlify.app/assets/logo.png",
-        "image": "https://champagnechristellephlipaux.netlify.app/assets/hero-vignoble.jpg",
+        "legalName": "CHRISTELLE BOURDICAUD",
+        "vatID": "FR25539870253",
+        "url": "https://champagne-christelle-phlipaux.com/",
+        "logo": "https://champagne-christelle-phlipaux.com/assets/logo.png",
+        "image": "https://champagne-christelle-phlipaux.com/assets/hero-vignoble.jpg",
         "telephone": "+33 6 82 20 34 30",
         "email": "champagne.christelle.phlipaux@gmail.com",
         "address": {
@@ -92,13 +116,13 @@
             "@type": "ListItem",
             "position": 1,
             "name": "Accueil",
-            "item": "https://champagnechristellephlipaux.netlify.app/"
+            "item": "https://champagne-christelle-phlipaux.com/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "La Champagne aujourd’hui",
-            "item": "https://champagnechristellephlipaux.netlify.app/blog-actualites.html"
+            "item": "https://champagne-christelle-phlipaux.com/blog-actualites.html"
           }
         ]
       }
@@ -110,11 +134,11 @@
         "headline": "La Champagne aujourd’hui",
         "description": "Climat, viticulture durable et évolution des styles : une lecture claire sur les changements qui traversent la Champagne.",
         "image": [
-          "https://champagnechristellephlipaux.netlify.app/assets/blog-champagne.jpg"
+          "https://champagne-christelle-phlipaux.com/assets/blog-champagne.jpg"
         ],
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://champagnechristellephlipaux.netlify.app/blog-actualites.html"
+          "@id": "https://champagne-christelle-phlipaux.com/blog-actualites.html"
         },
         "author": {
           "@type": "Organization",
@@ -125,13 +149,13 @@
           "name": "Champagne Christelle Phlipaux",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://champagnechristellephlipaux.netlify.app/assets/logo.png"
+            "url": "https://champagne-christelle-phlipaux.com/assets/logo.png"
           }
         }
       }
     </script>
     <script defer="" src="consent.js"></script>
-    <script defer src="ui.js"></script>
+    <script defer src="ui.js?v=20260701d"></script>
   </head>
   <body class="blog-actualites">
     <header>
@@ -165,123 +189,129 @@
         </nav>
       </div>
     </header>
-    <section class="page-hero">
-      <picture
-        ><source srcset="assets/blog-champagne.webp" type="image/webp" />
-        <img
-          alt="Vignoble et cave en Champagne"
-          class="page-hero-media"
-          decoding="async"
-          loading="eager"
-          src="assets/blog-champagne.jpg"
-      /></picture>
-      <div class="page-hero-overlay"></div>
-      <div class="container page-hero-inner">
-        <div class="kicker">Champagne Christelle Phlipaux</div>
-        <h1 class="h1 page-hero-title">La Champagne aujourd’hui</h1>
-        <p class="page-hero-sub">
-          Repères courts sur la vigne, la cave et les cuvées.
-        </p>
-      </div>
-    </section>
-    <section class="section" style="padding-top: 0">
-      <div class="container">
-        <article class="card pad prose reveal">
-          <div class="prose-hero">
-            <picture
-              ><source srcset="assets/blog-champagne.webp" type="image/webp" />
-              <img
-                alt="Flûte de champagne – dégustation"
-                decoding="async"
-                height="2048"
-                loading="lazy"
-                src="assets/blog-champagne.jpg"
-                width="1365"
-            /></picture>
-          </div>
-          <div class="badge">Actualités</div>
-          <div class="hr"></div>
-          <p class="small muted">
-            Article de la maison Champagne Christelle Phlipaux
+    <main id="contenu">
+      <section class="page-hero">
+        <picture
+          ><source srcset="assets/blog-champagne.webp" type="image/webp" />
+          <img
+            alt="Flûte de Champagne Christelle Phlipaux"
+            class="page-hero-media"
+            decoding="async"
+            fetchpriority="high"
+            height="2048"
+            loading="eager"
+            src="assets/blog-champagne.jpg"
+            width="1365"
+        /></picture>
+        <div class="page-hero-overlay"></div>
+        <div class="container page-hero-inner">
+          <div class="kicker">Champagne Christelle Phlipaux</div>
+          <h1 class="h1 page-hero-title">La Champagne aujourd’hui</h1>
+          <p class="page-hero-sub">
+            Repères courts sur la vigne, la cave et les cuvées.
           </p>
-          <h2 class="h2" style="margin-top: 0">
-            Climat, vigne et styles en mouvement
-          </h2>
-          <p class="p">
-            La Champagne n’est pas une région figée. Elle évolue constamment,
-            portée par le climat, les attentes des consommateurs et une volonté
-            croissante de mieux respecter le vivant. Ces évolutions influencent
-            directement le style des champagnes et la manière dont ils sont
-            élaborés.
-          </p>
-          <div class="divider"></div>
-          <h3 class="h3">Une viticulture plus responsable</h3>
-          <p class="p">
-            Depuis plusieurs années, de nombreux domaines champenois s’engagent
-            dans une viticulture plus durable. L’objectif est clair : préserver
-            les sols, la biodiversité et la qualité des raisins sur le long
-            terme.
-          </p>
-          <p class="p">
-            Chez Champagne Christelle Phlipaux, cela se traduit par des choix
-            concrets :
-            <b>zéro désherbant</b>, <b>zéro insecticide</b> et une utilisation
-            raisonnée des traitements. Ces pratiques demandent plus de travail
-            manuel, mais elles permettent de respecter l’équilibre naturel du
-            vignoble.
-          </p>
-          <div class="divider"></div>
-          <h3 class="h3">Le climat : un paramètre de plus en plus central</h3>
-          <p class="p">
-            Les vendanges sont aujourd’hui souvent plus précoces qu’il y a 20 ou
-            30 ans. Des étés plus chauds et plus secs modifient la maturité des
-            raisins et demandent une grande capacité d’adaptation.
-          </p>
-          <p class="p">
-            Dans la Côte des Bar, et plus particulièrement à Channes,
-            l’exposition plein sud et les sols calcaires permettent de conserver
-            un bel équilibre entre maturité, fraîcheur et tension.
-          </p>
-          <div class="divider"></div>
-          <h3 class="h3">Des styles de champagne qui évoluent</h3>
-          <p class="p">
-            Les amateurs recherchent aujourd’hui davantage de lisibilité : moins
-            de maquillage, plus d’expression du terroir. Cela se traduit par des
-            dosages plus précis, parfois plus faibles, et par une mise en avant
-            du caractère naturel du vin.
-          </p>
-          <p class="p">
-            Les champagnes <b>brut</b> restent des repères évidents, mais les
-            cuvées <b>demi-sec</b> retrouvent aussi leur place, notamment à
-            table, avec des accords sucrés-salés ou des desserts.
-          </p>
-          <div class="divider"></div>
-          <h3 class="h3">Une actualité vivante et évolutive</h3>
-          <p class="p">
-            Cette page a vocation à évoluer. Elle peut accueillir :
-          </p>
-          <ul class="p" style="padding-left: 18px">
-            <li>des informations sur les vendanges,</li>
-            <li>la participation à des salons ou évènements,</li>
-            <li>l’arrivée de nouvelles cuvées,</li>
-            <li>ou des temps forts du domaine.</li>
-          </ul>
-          <p class="p">
-            Une actualité sobre, claire, et toujours reliée au réel du vignoble.
-          </p>
-          <div class="notice">
-            <b>L’idée :</b> quelques mises à jour par an suffisent pour montrer
-            que le domaine est vivant et en mouvement.
-          </div>
-          <div class="hero-cta" style="margin-top: 18px">
-            <a class="btn" href="terroir.html">Lire le terroir de Channes</a>
-            <a class="btn secondary" href="cuvees.html"
-              >Comparer les cuvées de la maison</a
-            >
-          </div>
-        </article>
-      </div>
-    </section>
+        </div>
+      </section>
+      <section class="section section--flush-top">
+        <div class="container">
+          <article class="card pad prose reveal">
+            <div class="prose-hero">
+              <picture
+                ><source
+                  srcset="assets/blog-champagne.webp"
+                  type="image/webp" />
+                <img
+                  alt="Flûte de champagne – dégustation"
+                  decoding="async"
+                  height="2048"
+                  loading="lazy"
+                  src="assets/blog-champagne.jpg"
+                  width="1365"
+              /></picture>
+            </div>
+            <div class="badge">Actualités</div>
+            <div class="hr"></div>
+            <p class="small muted">
+              Article de la maison Champagne Christelle Phlipaux
+            </p>
+            <h2 class="h2 u-mt-0">Climat, vigne et styles en mouvement</h2>
+            <p class="p">
+              La Champagne n’est pas une région figée. Elle évolue constamment,
+              portée par le climat, les attentes des consommateurs et une
+              volonté croissante de mieux respecter le vivant. Ces évolutions
+              influencent directement le style des champagnes et la manière dont
+              ils sont élaborés.
+            </p>
+            <div class="divider"></div>
+            <h3 class="h3">Une viticulture plus responsable</h3>
+            <p class="p">
+              Depuis plusieurs années, de nombreux domaines champenois
+              s’engagent dans une viticulture plus durable. L’objectif est clair
+              : préserver les sols, la biodiversité et la qualité des raisins
+              sur le long terme.
+            </p>
+            <p class="p">
+              Chez Champagne Christelle Phlipaux, cela se traduit par des choix
+              concrets :
+              <b>zéro désherbant</b>, <b>zéro insecticide</b> et une utilisation
+              raisonnée des traitements. Ces pratiques demandent plus de travail
+              manuel, mais elles permettent de respecter l’équilibre naturel du
+              vignoble.
+            </p>
+            <div class="divider"></div>
+            <h3 class="h3">Le climat : un paramètre de plus en plus central</h3>
+            <p class="p">
+              Les vendanges sont aujourd’hui souvent plus précoces qu’il y a 20
+              ou 30 ans. Des étés plus chauds et plus secs modifient la maturité
+              des raisins et demandent une grande capacité d’adaptation.
+            </p>
+            <p class="p">
+              Dans la Côte des Bar, et plus particulièrement à Channes,
+              l’exposition plein sud et les sols calcaires permettent de
+              conserver un bel équilibre entre maturité, fraîcheur et tension.
+            </p>
+            <div class="divider"></div>
+            <h3 class="h3">Des styles de champagne qui évoluent</h3>
+            <p class="p">
+              Les amateurs recherchent aujourd’hui davantage de lisibilité :
+              moins de maquillage, plus d’expression du terroir. Cela se traduit
+              par des dosages plus précis, parfois plus faibles, et par une mise
+              en avant du caractère naturel du vin.
+            </p>
+            <p class="p">
+              Les champagnes <b>brut</b> restent des repères évidents, mais les
+              cuvées <b>demi-sec</b> retrouvent aussi leur place, notamment à
+              table, avec des accords sucrés-salés ou des desserts.
+            </p>
+            <div class="divider"></div>
+            <h3 class="h3">Une actualité vivante et évolutive</h3>
+            <p class="p">
+              Cette page a vocation à évoluer. Elle peut accueillir :
+            </p>
+            <ul class="p u-pl-5">
+              <li>des informations sur les vendanges,</li>
+              <li>la participation à des salons ou évènements,</li>
+              <li>l’arrivée de nouvelles cuvées,</li>
+              <li>ou des temps forts du domaine.</li>
+            </ul>
+            <p class="p">
+              Une actualité sobre, claire, et toujours reliée au réel du
+              vignoble.
+            </p>
+            <div class="notice">
+              <b>L’idée :</b> quelques mises à jour par an suffisent pour
+              montrer que le domaine est vivant et en mouvement.
+            </div>
+            <div class="hero-cta u-mt-5">
+              <a class="btn" href="terroir.html">Lire le terroir de Channes</a>
+              <a class="btn secondary" href="cuvees.html"
+                >Comparer les cuvées de la maison</a
+              >
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
     <footer>
       <div class="container footer-grid">
         <div>
