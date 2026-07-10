@@ -1,6 +1,8 @@
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const { json } = require("./checkout-shared");
 const { saveOrder } = require("./orders-store");
+const { createStripeClient } = require("./stripe-client");
+
+const stripe = createStripeClient();
 
 function rawBody(event) {
   return Buffer.from(

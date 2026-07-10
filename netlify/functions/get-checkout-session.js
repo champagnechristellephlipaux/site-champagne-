@@ -1,5 +1,7 @@
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const { json } = require("./checkout-shared");
+const { createStripeClient } = require("./stripe-client");
+
+const stripe = createStripeClient();
 
 function safeSessionId(value) {
   const id = String(value || "").trim();

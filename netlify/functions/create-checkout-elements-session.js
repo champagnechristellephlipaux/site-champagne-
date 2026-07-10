@@ -1,4 +1,4 @@
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const { createStripeClient } = require("./stripe-client");
 const {
   buildShippingOptions,
   cartSignature,
@@ -11,6 +11,8 @@ const {
   siteOrigin,
   TERMS_VERSION,
 } = require("./checkout-shared");
+
+const stripe = createStripeClient();
 
 exports.handler = async (event) => {
   if (event.httpMethod === "OPTIONS") {
