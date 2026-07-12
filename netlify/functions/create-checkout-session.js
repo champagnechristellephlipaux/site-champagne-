@@ -82,6 +82,7 @@ exports.handler = async (event) => {
         shipping_cents: String(shipping.shippingTotalCents),
         terms_version: TERMS_VERSION,
         terms_accepted: "stripe_checkout",
+        terms_acceptance_method: "stripe_checkout_submit",
       },
     });
 

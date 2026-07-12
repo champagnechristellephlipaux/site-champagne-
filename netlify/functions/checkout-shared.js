@@ -3,6 +3,7 @@ const crypto = require("crypto");
 const MAX_ITEM_QTY = 48;
 const DEFAULT_SITE_URL = "https://www.champagne-christelle-phlipaux.com";
 const TERMS_VERSION = "2026-06-30";
+const STRIPE_CHECKOUT_TERMS_VALUE = "stripe_checkout";
 
 const CATALOG = {
   "coffret-decouverte": {
@@ -272,6 +273,33 @@ function cartSignature(items) {
     .slice(0, 500);
 }
 
+function termsAcceptanceFromSession(session) {
+  const metadata = session?.metadata || {};
+  const marker = String(metadata.terms_accepted || "").trim();
+  const explicitMethod = String(metadata.terms_acceptance_method || "").trim();
+  const accepted =
+    marker === "yes" ||
+    marker === STRIPE_CHECKOUT_TERMS_VALUE ||
+    explicitMethod === "stripe_checkout_submit";
+  const acceptedAtFromSession =
+    accepted && Number.isFinite(session?.created)
+      ? new Date(session.created * 1000).toISOString()
+      : "";
+
+  return {
+    accepted,
+    accepted_at: metadata.terms_accepted_at || acceptedAtFromSession,
+    version: metadata.terms_version || TERMS_VERSION,
+    method:
+      explicitMethod ||
+      (marker === STRIPE_CHECKOUT_TERMS_VALUE
+        ? "stripe_checkout_submit"
+        : marker === "yes"
+          ? "site_checkbox"
+          : ""),
+  };
+}
+
 function lineItemsForStripe(items) {
   const useConfiguredPriceIds = process.env.STRIPE_USE_PRICE_IDS === "true";
 
@@ -296,6 +324,7 @@ module.exports = {
   CATALOG,
   DEFAULT_SITE_URL,
   MAX_ITEM_QTY,
+  STRIPE_CHECKOUT_TERMS_VALUE,
   TERMS_VERSION,
   buildShippingOptions,
   cartSignature,
@@ -306,4 +335,5 @@ module.exports = {
   parseJsonBody,
   shippingFromItems,
   siteOrigin,
+  termsAcceptanceFromSession,
 };

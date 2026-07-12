@@ -1,4 +1,4 @@
-const { json } = require("./checkout-shared");
+const { json, termsAcceptanceFromSession } = require("./checkout-shared");
 const { saveOrder } = require("./orders-store");
 const { createStripeClient } = require("./stripe-client");
 
@@ -41,11 +41,7 @@ async function buildCompletedOrder(session) {
     amount_total: session.amount_total,
     currency: session.currency,
     fulfillment_status: isPaid ? "ready" : "payment_pending",
-    terms: {
-      accepted: session.metadata?.terms_accepted === "yes",
-      accepted_at: session.metadata?.terms_accepted_at || "",
-      version: session.metadata?.terms_version || "",
-    },
+    terms: termsAcceptanceFromSession(session),
     customer: {
       name: details.name || "",
       email: details.email || session.customer_email || "",
@@ -120,6 +116,7 @@ exports.handler = async (event) => {
           payment_status: order.payment_status,
           fulfillment_status: order.fulfillment_status,
           terms_accepted: order.terms.accepted,
+          terms_method: order.terms.method,
         }),
       );
     }

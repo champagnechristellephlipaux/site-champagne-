@@ -12,6 +12,7 @@ const {
   CATALOG,
   normalizeCart,
   shippingFromItems,
+  termsAcceptanceFromSession,
   TERMS_VERSION,
 } = require("../netlify/functions/checkout-shared.js");
 
@@ -70,6 +71,31 @@ for (const cart of scenarios) {
 
 assert.match(TERMS_VERSION, /^\d{4}-\d{2}-\d{2}$/);
 
+const checkoutTerms = termsAcceptanceFromSession({
+  created: 1783036800,
+  metadata: {
+    terms_accepted: "stripe_checkout",
+    terms_version: TERMS_VERSION,
+  },
+});
+assert.equal(checkoutTerms.accepted, true);
+assert.equal(checkoutTerms.method, "stripe_checkout_submit");
+assert.match(checkoutTerms.accepted_at, /^\d{4}-\d{2}-\d{2}T/);
+
+const checkboxTerms = termsAcceptanceFromSession({
+  metadata: {
+    terms_accepted: "yes",
+    terms_accepted_at: "2026-07-10T12:00:00.000Z",
+    terms_version: TERMS_VERSION,
+  },
+});
+assert.deepEqual(checkboxTerms, {
+  accepted: true,
+  accepted_at: "2026-07-10T12:00:00.000Z",
+  version: TERMS_VERSION,
+  method: "site_checkbox",
+});
+
 try {
   await saveOrder({
     session_id: "cs_test_validation",
@@ -90,5 +116,5 @@ try {
 }
 
 console.log(
-  `${Object.keys(PRICE_EUR).length} produits, ${scenarios.length} scénarios de livraison et le stockage de commande validés.`,
+  `${Object.keys(PRICE_EUR).length} produits, ${scenarios.length} scénarios de livraison, CGV et stockage de commande validés.`,
 );

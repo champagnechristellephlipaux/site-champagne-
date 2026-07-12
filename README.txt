@@ -7,22 +7,27 @@ Développement local
 
 Paiement Stripe
 
-Le site utilise un seul parcours :
+Le site utilise Stripe Checkout hébergé, le parcours le plus simple à maintenir
+pour la maison :
 
-1. le panier ouvre `checkout.html` ;
-2. `create-checkout-elements-session` contrôle les produits, montants et frais
-   de livraison côté serveur ;
-3. `record-checkout-consent` enregistre l’acceptation des CGV avant paiement ;
+1. le panier demande une session via `create-checkout-session` ;
+2. le serveur contrôle les produits, montants et frais de livraison ;
+3. Stripe collecte les coordonnées, l’adresse de livraison, le paiement et
+   affiche le rappel d’acceptation des CGV avant validation ;
 4. `stripe-webhook` vérifie la signature Stripe et enregistre chaque commande
-   dans le store Netlify Blobs `ccp-orders`.
+   dans le store Netlify Blobs `ccp-orders`, avec la version des CGV.
 
 Variables Netlify nécessaires :
 
 - `STRIPE_SECRET_KEY`
-- `STRIPE_PUBLISHABLE_KEY`
 - `STRIPE_WEBHOOK_SECRET`
 - `SITE_URL` avec l’origine publique définitive du site
 - `REVIEWS_ADMIN_TOKEN` pour la modération des avis
+
+Variable optionnelle :
+
+- `STRIPE_PUBLISHABLE_KEY`, seulement si l’ancien checkout embarqué est
+  réactivé.
 
 Événements Stripe à activer sur le webhook :
 
