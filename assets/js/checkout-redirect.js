@@ -1,4 +1,4 @@
-import { startCheckout } from "../../checkout.js?v=20260710b";
+import { startCheckout } from "../../checkout.js?v=20260712a";
 
 const errorNode = document.querySelector("[data-checkout-error]");
 const submitButton = document.querySelector("[data-checkout-submit]");

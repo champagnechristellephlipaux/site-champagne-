@@ -22775,7 +22775,7 @@ body.is-scrolled .topbar {
 .page-home .home-discovery-section .btn.primary {
   border-color: #2e2119;
   background: #2e2119;
-  color: var(--primitive-color-ivory-50);
+  color: #fffaf3;
   box-shadow: 0 12px 28px rgba(46, 33, 23, 0.18);
 }
 
@@ -22813,4 +22813,294 @@ body.is-scrolled .topbar {
   .page-home .home-discovery-section .home-discovery-media img {
     box-shadow: 0 18px 36px rgba(46, 33, 23, 0.16);
   }
+}
+
+/* Global contrast hardening: readable text and controls on every dark surface. */
+:root {
+  --contrast-ink: #fff8ef;
+  --contrast-soft: rgba(255, 248, 239, 0.9);
+  --contrast-muted: rgba(255, 239, 220, 0.78);
+  --contrast-dark: #17110e;
+  --contrast-dark-soft: rgba(23, 17, 14, 0.84);
+  --contrast-paper-ink: #2e2119;
+  --contrast-paper-soft: #5a493c;
+  --contrast-link-paper: #56351f;
+}
+
+header .menu a:not(.btn),
+header .topbar .nav a:not(.btn),
+.topbar .nav a:not(.btn) {
+  color: rgba(255, 248, 239, 0.88);
+}
+
+header .menu a:not(.btn):hover,
+header .menu a.active:not(.btn),
+header .menu a[aria-current="page"]:not(.btn),
+.topbar .nav a:not(.btn):hover,
+.topbar .nav a.active:not(.btn),
+.topbar .nav a[aria-current="page"]:not(.btn) {
+  color: var(--contrast-ink);
+}
+
+.menu a.nav-link--featured,
+.menu a.nav-link--featured:hover,
+.menu a.nav-link--featured.active,
+.menu a.nav-link--featured[aria-current="page"],
+.topbar .nav a.nav-link--featured {
+  color: var(--contrast-ink);
+  border-bottom-color: rgba(255, 248, 239, 0.72);
+}
+
+.nav-primary-cta,
+.menu .btn.primary,
+.cart-btn {
+  border-color: rgba(255, 248, 239, 0.88);
+  background: #fff8ef;
+  color: #17110e;
+}
+
+.nav-primary-cta:hover,
+.menu .btn.primary:hover,
+.cart-btn:hover {
+  border-color: #fff;
+  background: #fff;
+  color: #120d09;
+}
+
+.btn.secondary,
+.page-cuvee .hero-cta .btn:not(.primary),
+.page-cuvee .offer-actions .btn:not(.primary),
+.page-boutique .shop-hero-actions .btn.secondary,
+.product-hero-buyline .btn.secondary {
+  border-color: rgba(255, 248, 239, 0.46);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.075),
+      rgba(255, 255, 255, 0.02)
+    ),
+    rgba(18, 13, 10, 0.72);
+  color: var(--contrast-ink);
+}
+
+.btn.secondary:hover,
+.page-cuvee .hero-cta .btn:not(.primary):hover,
+.page-cuvee .offer-actions .btn:not(.primary):hover,
+.page-boutique .shop-hero-actions .btn.secondary:hover,
+.product-hero-buyline .btn.secondary:hover {
+  border-color: rgba(255, 248, 239, 0.72);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.12),
+      rgba(255, 255, 255, 0.035)
+    ),
+    rgba(18, 13, 10, 0.84);
+  color: #fff;
+}
+
+footer,
+.footer {
+  background: var(--contrast-dark);
+  color: var(--contrast-soft);
+}
+
+footer .brand-name,
+footer .footer-heading,
+footer strong {
+  color: var(--contrast-ink);
+}
+
+footer .brand-champagne,
+footer .brand-sub,
+footer .small,
+footer a,
+footer .footer-alcool,
+footer .footer-trust span {
+  color: var(--contrast-soft);
+}
+
+footer a:hover,
+footer a:focus-visible,
+footer .social-link:hover,
+footer .social-link:focus-visible {
+  color: #fff;
+}
+
+footer .social-link,
+footer .footer-trust span {
+  border-color: rgba(255, 248, 239, 0.22);
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.page-checkout-elements .checkout-panel,
+.page-checkout-elements .checkout-reassurance span,
+.page-checkout-elements .checkout-human-contact,
+.page-checkout-elements .checkout-terms {
+  border-color: rgba(64, 48, 36, 0.18);
+  background: #fffdf9;
+  color: var(--contrast-paper-ink);
+}
+
+.page-checkout-elements .checkout-panel h2,
+.page-checkout-elements .checkout-summary h2,
+.page-checkout-elements .checkout-stripe-total,
+.page-checkout-elements .checkout-human-contact strong {
+  color: var(--contrast-paper-ink);
+}
+
+.page-checkout-elements .checkout-note,
+.page-checkout-elements .checkout-flow-intro,
+.page-checkout-elements .checkout-summary .small,
+.page-checkout-elements .stripe-element-status,
+.page-checkout-elements .checkout-totals span,
+.page-checkout-elements .checkout-item span,
+.page-checkout-elements .checkout-terms {
+  color: var(--contrast-paper-soft);
+}
+
+.page-checkout-elements .checkout-eyebrow,
+.page-checkout-elements .checkout-terms a,
+.page-checkout-elements .checkout-human-contact a {
+  color: var(--contrast-link-paper);
+}
+
+.page-checkout-elements .checkout-terms a {
+  text-decoration-color: rgba(86, 53, 31, 0.54);
+  text-decoration-thickness: 1px;
+}
+
+.checkout-alert {
+  border-color: rgba(255, 201, 182, 0.52);
+  background: #35140e;
+  color: #fff0e7;
+}
+
+.home-offer-occasion,
+.home-story-media figcaption,
+.home-craft-media figcaption,
+.product-media-scene figcaption,
+.page-boutique .product-media-scene figcaption,
+.page-cuvee .product-sale-scene figcaption,
+figure figcaption {
+  border-color: rgba(255, 248, 239, 0.22);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.055),
+      rgba(255, 255, 255, 0.014)
+    ),
+    rgba(14, 10, 8, 0.88);
+  color: var(--contrast-ink);
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.36);
+}
+
+.home-offer-occasion {
+  border-top: 1px solid rgba(255, 248, 239, 0.2);
+}
+
+.quote-block,
+.sensory-card,
+.trust-panel,
+.support-card,
+.trust-point,
+.page-home .home-reassurance-grid .trust-point {
+  color: var(--contrast-soft);
+}
+
+.quote-block {
+  border-color: rgba(255, 248, 239, 0.18);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.055),
+      rgba(255, 255, 255, 0.012)
+    ),
+    rgba(18, 13, 10, 0.82);
+}
+
+.support-card a,
+.trust-contact a,
+.legal-prose a,
+.faq a {
+  color: #fff3e5;
+  font-weight: 750;
+  text-decoration-color: rgba(255, 243, 229, 0.5);
+}
+
+.support-card strong,
+.trust-point strong,
+.sensory-card .h3,
+.compare-cell strong,
+.product-summary-item strong,
+.page-boutique .product-summary-item strong,
+.page-cuvee .product-summary-item strong {
+  color: var(--contrast-ink);
+}
+
+.support-card p,
+.trust-point span,
+.sensory-card p,
+.compare-cell p,
+.product-summary-item span,
+.page-boutique .product-summary-item span,
+.page-cuvee .product-summary-item span,
+.page-home .home-reassurance-grid .trust-point span:not(.trust-point-index) {
+  color: var(--contrast-soft);
+}
+
+.trust-point-index,
+.compare-cell.is-side,
+.compare-cell.is-head,
+.kicker,
+.badge,
+.product-note,
+.variant-label,
+.field-label {
+  color: var(--contrast-muted);
+}
+
+.page-boutique .product .seg > span,
+.page-cuvee .product-buy-card .seg > span {
+  border-color: rgba(255, 248, 239, 0.18);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.014)
+    ),
+    rgba(16, 12, 9, 0.78);
+  color: var(--contrast-ink);
+}
+
+.page-boutique .product .seg input:checked + span,
+.page-cuvee .product-buy-card .seg input:checked + span {
+  border-color: rgba(255, 248, 239, 0.38);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.105),
+      rgba(255, 255, 255, 0.026)
+    ),
+    rgba(23, 17, 14, 0.92);
+}
+
+.page-boutique .product .seg-copy strong,
+.page-cuvee .product-buy-card .seg .seg-copy strong,
+.page-boutique .product .seg em,
+.page-cuvee .product-buy-card .seg .seg-side em {
+  color: var(--contrast-ink);
+}
+
+.page-boutique .product .seg-copy small,
+.page-boutique .product .seg-side small,
+.page-cuvee .product-buy-card .seg .seg-copy small,
+.page-cuvee .product-buy-card .seg .seg-side small {
+  color: var(--contrast-soft);
+}
+
+.page-boutique .product .seg em,
+.page-cuvee .product-buy-card .seg .seg-side em {
+  border-color: rgba(255, 248, 239, 0.18);
+  background: rgba(255, 248, 239, 0.095);
 }

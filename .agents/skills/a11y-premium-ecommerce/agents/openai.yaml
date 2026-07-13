@@ -1,0 +1,4 @@
+interface:
+  display_name: "A11y Premium Ecommerce"
+  short_description: "Accessible premium ecommerce UX checks"
+  default_prompt: "Use $a11y-premium-ecommerce to review accessibility before shipping."

@@ -40,7 +40,7 @@
     {
       href: "depositaires.html",
       label: "Dépositaires",
-      matches: ["depositaires.html"],
+      matches: ["depositaires.html", "devenir-depositaire.html"],
     },
     {
       href: "cadeaux.html",
@@ -65,7 +65,9 @@
         "boutique.html",
         "checkout.html",
         "livraison-paiement.html",
+        "retractation.html",
         "merci.html",
+        "merci-retractation.html",
       ],
     },
   ];
@@ -335,8 +337,10 @@
       "cgv.html",
       "politique-confidentialite.html",
       "merci.html",
+      "merci-retractation.html",
       "merci-contact.html",
       "merci-avis.html",
+      "retractation.html",
     ]);
 
     if (compactPages.has(current) && footer.querySelector(".footer-meta")) {
@@ -374,7 +378,9 @@
       '<div class="footer-heading">Commander et venir</div>',
       '<div><a href="boutique.html">Boutique</a></div>',
       '<div><a href="livraison-paiement.html">Livraison & paiement</a></div>',
+      '<div><a href="retractation.html">Rétractation</a></div>',
       '<div><a href="depositaires.html">Dépositaires</a></div>',
+      '<div><a href="devenir-depositaire.html">Devenir dépositaire</a></div>',
       '<div><a href="visites-degustations.html">Visiter la maison</a></div>',
       '<div><a href="avis-clients.html">Avis & retours</a></div>',
       '<div><a href="index.html#contact">Contact</a></div>',
@@ -391,7 +397,7 @@
       "</div>",
       "</div>",
       '<div class="container footer-meta">',
-      '<div class="small footer-links"><a href="mentions-legales.html">Mentions légales</a> • <a href="cgv.html">CGV</a> • <a href="politique-confidentialite.html">Confidentialité</a></div>',
+      '<div class="small footer-links"><a href="mentions-legales.html">Mentions légales</a> • <a href="cgv.html">CGV</a> • <a href="retractation.html">Rétractation</a> • <a href="politique-confidentialite.html">Confidentialité</a></div>',
       '<div class="small footer-alcool">La vente d’alcool est interdite aux mineurs de moins de 18 ans. L’abus d’alcool est dangereux pour la santé, à consommer avec modération.</div>',
       "</div>",
     ].join("");

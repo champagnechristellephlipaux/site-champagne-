@@ -6,6 +6,10 @@ const CONTACT_HELP =
 
 function notifyCheckoutIssue(message, { showContact = true } = {}) {
   const fullMessage = `${message}${showContact ? CONTACT_HELP : ""}`;
+  window.ccpTrack?.("checkout_issue", {
+    contactHelp: showContact ? "shown" : "hidden",
+    page: location.pathname,
+  });
   window.dispatchEvent(
     new CustomEvent("checkout:issue", {
       detail: { message: fullMessage },
@@ -64,6 +68,7 @@ async function createCheckoutSession(items) {
 export async function startCheckout() {
   const items = loadCart();
   if (!items.length) {
+    window.ccpTrack?.("checkout_empty_cart", { page: location.pathname });
     notifyCheckoutIssue("Choisissez d’abord une cuvée.", {
       showContact: false,
     });
@@ -71,6 +76,10 @@ export async function startCheckout() {
   }
 
   try {
+    window.ccpTrack?.("checkout_session_requested", {
+      items: items.reduce((sum, item) => sum + (item.qty || 0), 0),
+      page: location.pathname,
+    });
     const session = await createCheckoutSession(items);
     window.location.assign(session.url);
   } catch (error) {

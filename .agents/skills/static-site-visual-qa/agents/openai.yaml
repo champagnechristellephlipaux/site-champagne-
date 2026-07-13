@@ -1,0 +1,4 @@
+interface:
+  display_name: "Static Site Visual QA"
+  short_description: "Desktop and mobile page verification"
+  default_prompt: "Use $static-site-visual-qa to inspect key static pages on desktop and mobile."

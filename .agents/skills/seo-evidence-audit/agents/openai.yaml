@@ -1,0 +1,4 @@
+interface:
+  display_name: "SEO Evidence Audit"
+  short_description: "Evidence-led SEO checks for pages"
+  default_prompt: "Use $seo-evidence-audit to audit metadata, schema, links, and images."

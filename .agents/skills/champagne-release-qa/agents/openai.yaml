@@ -1,0 +1,4 @@
+interface:
+  display_name: "Champagne Release QA"
+  short_description: "Release checks for the Champagne site"
+  default_prompt: "Use $champagne-release-qa to validate this Champagne site change before release."

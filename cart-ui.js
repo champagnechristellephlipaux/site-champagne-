@@ -14,7 +14,7 @@ import {
   equivalent75clPrice,
   estimateSelectionTotal,
 } from "./cart.js?v=20260630b";
-import { startCheckout } from "./checkout.js?v=20260710b";
+import { startCheckout } from "./checkout.js?v=20260712a";
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
@@ -627,7 +627,14 @@ function bindProductControls() {
       const sku = btn.getAttribute("data-add");
       if (!sku) return;
       const qty = currentQty(sku);
-      addToCart(sku, currentFormat(sku), qty);
+      const format = currentFormat(sku);
+      addToCart(sku, format, qty);
+      window.ccpTrack?.("cart_item_added", {
+        sku,
+        format,
+        quantity: qty,
+        page: location.pathname,
+      });
       flashAddFeedback(btn, sku, qty);
     });
   });
@@ -656,11 +663,16 @@ function bindCartControls() {
   $("#cartCheckout")?.addEventListener("click", async () => {
     const btn = $("#cartCheckout");
     if (!btn) return;
+    const items = loadCart();
 
     const originalLabel = btn.textContent;
     btn.disabled = true;
     btn.setAttribute("aria-busy", "true");
     btn.textContent = "Préparation du paiement…";
+    window.ccpTrack?.("checkout_started", {
+      items: cartCount(items),
+      page: location.pathname,
+    });
 
     try {
       await startCheckout();

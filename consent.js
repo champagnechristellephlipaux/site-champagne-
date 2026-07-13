@@ -2,7 +2,69 @@
   const AGE_KEY = "ccp_age_verified_v1";
   const COOKIE_KEY = "ccp_cookie_consent_v1"; // "accepted" | "refused"
   const MIN_AGE = 18;
-  const OPTIONAL_COOKIES_ENABLED = false;
+  const OPTIONAL_COOKIES_ENABLED = true;
+  const ANALYTICS_DOMAIN = "www.champagne-christelle-phlipaux.com";
+  const ANALYTICS_SCRIPT_ID = "ccp-plausible-analytics";
+  const ANALYTICS_SRC = "https://plausible.io/js/script.js";
+
+  function storageValue(key) {
+    try {
+      return localStorage.getItem(key);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function setStorageValue(key, value) {
+    try {
+      localStorage.setItem(key, value);
+    } catch (e) {
+      /* Ignore storage failures and keep the page usable. */
+    }
+  }
+
+  function ageIsVerified() {
+    return storageValue(AGE_KEY) === "true";
+  }
+
+  function analyticsAccepted() {
+    return storageValue(COOKIE_KEY) === "accepted";
+  }
+
+  function analyticsProps(props) {
+    return Object.fromEntries(
+      Object.entries(props || {})
+        .filter(([, value]) => value !== undefined && value !== null)
+        .map(([key, value]) => [key, String(value).slice(0, 120)]),
+    );
+  }
+
+  function loadAnalytics() {
+    if (!OPTIONAL_COOKIES_ENABLED || !analyticsAccepted()) return;
+    if (document.getElementById(ANALYTICS_SCRIPT_ID)) return;
+
+    window.plausible =
+      window.plausible ||
+      function () {
+        (window.plausible.q = window.plausible.q || []).push(arguments);
+      };
+
+    const script = document.createElement("script");
+    script.id = ANALYTICS_SCRIPT_ID;
+    script.defer = true;
+    script.src = ANALYTICS_SRC;
+    script.setAttribute("data-domain", ANALYTICS_DOMAIN);
+    document.head.appendChild(script);
+  }
+
+  function trackAnalytics(name, props) {
+    if (!analyticsAccepted()) return;
+    loadAnalytics();
+    if (typeof window.plausible !== "function") return;
+    window.plausible(name, { props: analyticsProps(props) });
+  }
+
+  window.ccpTrack = trackAnalytics;
 
   function focusableElements(scope) {
     return Array.from(
@@ -30,7 +92,7 @@
   }
 
   function ensureAgeGate() {
-    if (localStorage.getItem(AGE_KEY) === "true") return;
+    if (ageIsVerified()) return true;
 
     const previouslyFocused = document.activeElement;
     const overlay = el(
@@ -58,14 +120,12 @@
                   type: "button",
                   class: "btn primary",
                   onclick: () => {
-                    try {
-                      localStorage.setItem(AGE_KEY, "true");
-                    } catch (e) {
-                      /* Ignore storage failures and keep the gate usable. */
-                    }
+                    setStorageValue(AGE_KEY, "true");
                     overlay.classList.remove("is-open");
                     overlay.style.display = "none";
                     document.removeEventListener("keydown", keepFocusInGate);
+                    window.dispatchEvent(new CustomEvent("ccp:age-verified"));
+                    ensureCookieBanner();
                     if (previouslyFocused instanceof HTMLElement) {
                       previouslyFocused.focus();
                     }
@@ -137,13 +197,20 @@
 
     document.addEventListener("keydown", keepFocusInGate);
     window.setTimeout(() => focusableElements(overlay)[0]?.focus(), 0);
+    return false;
   }
 
   function ensureCookieBanner() {
     if (!OPTIONAL_COOKIES_ENABLED) return;
+    if (!ageIsVerified()) return;
+    if (document.getElementById("cookie-banner")) return;
 
-    const v = localStorage.getItem(COOKIE_KEY);
-    if (v === "accepted" || v === "refused") return;
+    const v = storageValue(COOKIE_KEY);
+    if (v === "accepted") {
+      loadAnalytics();
+      return;
+    }
+    if (v === "refused") return;
 
     const banner = el(
       "div",
@@ -170,11 +237,7 @@
                   type: "button",
                   class: "btn primary",
                   onclick: () => {
-                    try {
-                      localStorage.setItem(COOKIE_KEY, "accepted");
-                    } catch (e) {
-                      /* Ignore storage failures and keep the banner usable. */
-                    }
+                    setStorageValue(COOKIE_KEY, "accepted");
                     banner.classList.remove("is-open");
                     banner.style.display = "none";
                     if (typeof window.ccpEnableOptionalCookies === "function")
@@ -189,11 +252,7 @@
                   type: "button",
                   class: "btn secondary",
                   onclick: () => {
-                    try {
-                      localStorage.setItem(COOKIE_KEY, "refused");
-                    } catch (e) {
-                      /* Ignore storage failures and keep the banner usable. */
-                    }
+                    setStorageValue(COOKIE_KEY, "refused");
                     banner.classList.remove("is-open");
                     banner.style.display = "none";
                   },
@@ -209,20 +268,51 @@
     document.body.appendChild(banner);
   }
 
-  // Optional hook for future analytics (kept inert unless you add scripts inside)
   window.ccpEnableOptionalCookies = function () {
-    // Example: load analytics only after consent.
-    // const s=document.createElement('script'); s.src='https://www.googletagmanager.com/gtag/js?id=G-XXXX'; s.async=true; document.head.appendChild(s);
+    loadAnalytics();
+    trackAnalytics("cookie_consent", { choice: "accepted" });
   };
 
+  function bindAnalyticsSignals() {
+    if (window.__ccpAnalyticsSignalsBound) return;
+    window.__ccpAnalyticsSignalsBound = true;
+
+    document.addEventListener("click", (event) => {
+      const link = event.target?.closest?.("a[href]");
+      const href = link?.getAttribute("href") || "";
+      if (href.startsWith("tel:") || href.startsWith("mailto:")) {
+        trackAnalytics("contact_click", {
+          type: href.startsWith("tel:") ? "phone" : "email",
+          page: location.pathname,
+        });
+      }
+    });
+
+    window.addEventListener("cart:offer-added", (event) => {
+      trackAnalytics("add_offer_to_cart", {
+        offer: event?.detail?.offerId,
+        page: location.pathname,
+      });
+    });
+
+    window.addEventListener("checkout:issue", () => {
+      trackAnalytics("checkout_issue", { page: location.pathname });
+    });
+  }
+
   function init() {
+    bindAnalyticsSignals();
     try {
       ensureAgeGate();
     } catch (e) {
       /* Keep the rest of the page accessible if the gate fails. */
     }
     try {
-      ensureCookieBanner();
+      if (ageIsVerified()) ensureCookieBanner();
+      else
+        window.addEventListener("ccp:age-verified", ensureCookieBanner, {
+          once: true,
+        });
     } catch (e) {
       /* Keep the rest of the page accessible if the banner fails. */
     }
