@@ -3112,3 +3112,104 @@ footer .footer-trust span {
 .checkout-alert a {
   color: #fffaf3;
 }
+
+@media (max-width: 720px) {
+  body.nav-open .nav-panel {
+    background: rgba(250, 247, 241, 0.98);
+    border-color: rgba(59, 40, 29, 0.2);
+    color: #231914;
+    box-shadow:
+      0 22px 56px rgba(18, 12, 8, 0.24),
+      inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  }
+
+  body.nav-open .menu a:not(.btn),
+  body.nav-open .topbar .nav a:not(.btn),
+  body.nav-open .nav-contact-link,
+  body.nav-open .nav-mobile-utility .nav-mobile-utility-link {
+    background: rgba(255, 253, 249, 0.9);
+    border-color: rgba(59, 40, 29, 0.2);
+    color: #231914;
+    text-shadow: none;
+  }
+
+  body.nav-open header .nav-panel .menu--secondary a:not(.btn),
+  body.nav-open header .nav-panel .nav-mobile-utility .nav-mobile-utility-link {
+    color: #231914;
+    text-shadow: none;
+  }
+
+  body.nav-open .menu a:not(.btn):hover,
+  body.nav-open .menu a:not(.btn):focus-visible,
+  body.nav-open .topbar .nav a:not(.btn):hover,
+  body.nav-open .topbar .nav a:not(.btn):focus-visible,
+  body.nav-open .nav-mobile-utility .nav-mobile-utility-link:hover,
+  body.nav-open .nav-mobile-utility .nav-mobile-utility-link:focus-visible {
+    background: #fffaf3;
+    border-color: rgba(59, 40, 29, 0.34);
+    color: #15100c;
+  }
+
+  body.nav-open .menu a.nav-link--featured,
+  body.nav-open .topbar .nav a.nav-link--featured,
+  body.nav-open .nav-primary-cta,
+  body.nav-open .nav-cart-link {
+    background: linear-gradient(135deg, #2b1f17 0%, #463122 100%);
+    border-color: rgba(43, 31, 23, 0.82);
+    color: #fffaf3;
+    text-shadow: none;
+  }
+
+  body.nav-open header .nav-panel .menu--primary a.nav-link--featured,
+  body.nav-open header .nav-panel .nav-actions .nav-primary-cta,
+  body.nav-open header .nav-panel .nav-actions .nav-cart-link {
+    background: linear-gradient(135deg, #2b1f17 0%, #463122 100%);
+    border-color: rgba(43, 31, 23, 0.82);
+    color: #fffaf3;
+    text-shadow: none;
+  }
+
+  .page-home.immersive-site .home-offer-visual {
+    background:
+      radial-gradient(
+        circle at 50% 18%,
+        rgba(255, 253, 249, 0.82),
+        rgba(239, 232, 221, 0) 54%
+      ),
+      #e9e2d8;
+  }
+
+  .page-home.immersive-site .home-offer-visual::after {
+    z-index: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(35, 25, 20, 0.02) 0%,
+      rgba(35, 25, 20, 0.08) 100%
+    );
+  }
+
+  .page-home.immersive-site .home-offer-visual picture {
+    inset: 10px 10px 66px;
+    z-index: 1;
+  }
+
+  .page-home.immersive-site .home-offer-bottle {
+    opacity: 1;
+    filter: saturate(1) contrast(1.01) brightness(1);
+  }
+
+  .page-home.immersive-site .home-offer-occasion {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    z-index: 2;
+    min-height: 0;
+    margin: 0;
+    border: 1px solid rgba(59, 40, 29, 0.14);
+    background: rgba(255, 250, 243, 0.9);
+    color: #2a1d16;
+    text-shadow: none;
+    transform: none;
+  }
+}
