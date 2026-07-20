@@ -1,0 +1,174 @@
+/*
+ * Champagne Christelle Phlipaux — design system
+ *
+ * Architecture: primitives -> semantic roles -> component decisions.
+ * Brand direction: warm paper, vineyard earth, cellar ink, restrained motion.
+ */
+
+:root {
+  /* === 1. PRIMITIVES === */
+
+  /* Colour */
+  --primitive-paper-0: #fffdf9;
+  --primitive-paper-50: #faf7f1;
+  --primitive-paper-100: #f3eee6;
+  --primitive-paper-200: #e7ddd0;
+  --primitive-paper-300: #d5c5b4;
+  --primitive-ink-950: #17110e;
+  --primitive-ink-900: #231914;
+  --primitive-ink-700: #5f5045;
+  --primitive-ink-600: #78685b;
+  --primitive-ink-500: #8b7a6b;
+  --primitive-earth-800: #3a291f;
+  --primitive-earth-600: #78583e;
+  --primitive-earth-100: #eee3d6;
+  --primitive-wine-700: #6d2f35;
+  --primitive-success-700: #45634d;
+  --primitive-danger-700: #873d31;
+
+  /* Typography */
+  --primitive-font-display: "Cormorant Garamond", Georgia, serif;
+  --primitive-font-text: "Manrope", "Segoe UI", sans-serif;
+  --primitive-type-hero: clamp(4rem, 6.3vw, 6.25rem);
+  --primitive-type-page: clamp(3.5rem, 5.9vw, 5.75rem);
+  --primitive-type-section: clamp(2.5rem, 3.8vw, 4rem);
+  --primitive-type-title: clamp(1.75rem, 2.4vw, 2.6rem);
+  --primitive-type-lead: clamp(1.08rem, 1.35vw, 1.28rem);
+  --primitive-type-body: 1rem;
+  --primitive-type-small: 0.875rem;
+  --primitive-type-overline: 0.72rem;
+
+  /* Spacing — 4 px base rhythm */
+  --primitive-space-1: 0.25rem;
+  --primitive-space-2: 0.5rem;
+  --primitive-space-3: 0.75rem;
+  --primitive-space-4: 1rem;
+  --primitive-space-5: 1.25rem;
+  --primitive-space-6: 1.5rem;
+  --primitive-space-8: 2rem;
+  --primitive-space-10: 2.5rem;
+  --primitive-space-12: 3rem;
+  --primitive-space-16: 4rem;
+  --primitive-space-20: 5rem;
+  --primitive-space-24: 6rem;
+  --primitive-space-28: 7rem;
+  --primitive-space-32: 8rem;
+
+  /* Geometry */
+  --primitive-radius-none: 0;
+  --primitive-radius-hairline: 2px;
+  --primitive-radius-control: 3px;
+  --primitive-line: 1px;
+
+  /* Elevation */
+  --primitive-shadow-none: none;
+  --primitive-shadow-raised: 0 18px 48px rgba(54, 37, 26, 0.1);
+  --primitive-shadow-floating: 0 24px 64px rgba(23, 17, 14, 0.18);
+
+  /* Motion */
+  --primitive-duration-fast: 140ms;
+  --primitive-duration-normal: 200ms;
+  --primitive-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* === 2. SEMANTIC ROLES === */
+
+  --color-background: var(--primitive-paper-100);
+  --color-background-deep: var(--primitive-ink-950);
+  --color-background-elevated: var(--primitive-paper-50);
+  --color-background-soft: var(--primitive-paper-200);
+  --color-surface: var(--primitive-paper-0);
+  --color-surface-soft: var(--primitive-paper-50);
+  --color-surface-quiet: transparent;
+
+  --color-text-primary: var(--primitive-ink-900);
+  --color-text-secondary: var(--primitive-ink-700);
+  --color-text-muted: var(--primitive-ink-600);
+  --color-text-subtle: var(--primitive-ink-500);
+  --color-text-on-dark: #fffaf3;
+
+  --color-border: rgba(59, 40, 29, 0.18);
+  --color-border-strong: rgba(59, 40, 29, 0.34);
+  --color-accent: var(--primitive-earth-600);
+  --color-accent-strong: var(--primitive-earth-800);
+  --color-accent-soft: rgba(120, 88, 62, 0.1);
+  --color-wine: var(--primitive-wine-700);
+  --color-success: var(--primitive-success-700);
+  --color-danger: var(--primitive-danger-700);
+
+  /* Transaction surfaces — cart, checkout and legal access dialogs */
+  --color-transaction-surface: #211813;
+  --color-transaction-surface-elevated: #2a201b;
+  --color-transaction-text: var(--color-text-on-dark);
+  --color-transaction-text-soft: rgba(255, 250, 243, 0.82);
+  --color-transaction-text-muted: rgba(255, 250, 243, 0.7);
+  --color-transaction-border: rgba(255, 250, 243, 0.18);
+  --color-transaction-action: var(--primitive-paper-50);
+  --color-transaction-action-hover: var(--primitive-paper-0);
+  --color-transaction-action-text: var(--primitive-ink-950);
+
+  /* Legacy editorial aliases */
+  --color-editorial-paper: var(--primitive-paper-100);
+  --color-editorial-paper-deep: var(--primitive-paper-200);
+  --color-editorial-ink: var(--primitive-ink-900);
+  --color-editorial-muted: var(--primitive-ink-700);
+  --color-editorial-line: var(--color-border);
+  --color-action-start: var(--primitive-paper-50);
+  --color-action-end: var(--primitive-paper-300);
+
+  /* Typography roles */
+  --font-family-display: var(--primitive-font-display);
+  --font-family-body: var(--primitive-font-text);
+  --font-family-ui: var(--primitive-font-text);
+  --font-size-hero: var(--primitive-type-hero);
+  --font-size-page: var(--primitive-type-page);
+  --font-size-section: var(--primitive-type-section);
+  --font-size-title: var(--primitive-type-title);
+  --font-size-lead: var(--primitive-type-lead);
+  --font-size-body: var(--primitive-type-body);
+  --font-size-small: var(--primitive-type-small);
+  --font-size-overline: var(--primitive-type-overline);
+  --line-height-display: 0.92;
+  --line-height-title: 1;
+  --line-height-body: 1.7;
+
+  /* Layout roles */
+  --layout-max: 1240px;
+  --layout-reading: 68ch;
+  --layout-gutter: clamp(1.5rem, 4vw, 3.5rem);
+  --space-section: clamp(4.5rem, 8vw, 7.75rem);
+  --space-section-compact: clamp(3rem, 5vw, 5rem);
+
+  /* Elevation and focus */
+  --shadow-soft: var(--primitive-shadow-none);
+  --shadow-card: var(--primitive-shadow-none);
+  --shadow-commerce: var(--primitive-shadow-raised);
+  --focus-ring: 0 0 0 3px rgba(120, 88, 62, 0.2);
+
+  /* Layering */
+  --z-content: 1;
+  --z-sticky: 20;
+  --z-overlay: 40;
+  --z-drawer: 50;
+  --z-toast: 60;
+
+  /* === 3. COMPONENT TOKENS === */
+
+  --button-height: 50px;
+  --button-radius: var(--primitive-radius-control);
+  --button-padding-inline: var(--primitive-space-6);
+  --button-transition:
+    color var(--primitive-duration-fast) var(--primitive-ease),
+    border-color var(--primitive-duration-fast) var(--primitive-ease),
+    background-color var(--primitive-duration-fast) var(--primitive-ease);
+
+  --card-radius: var(--primitive-radius-hairline);
+  --card-padding: clamp(1.5rem, 2.4vw, 2.25rem);
+  --card-border: var(--primitive-line) solid var(--color-border);
+  --card-shadow: var(--primitive-shadow-none);
+
+  --panel-radius: var(--primitive-radius-hairline);
+  --media-radius: var(--primitive-radius-none);
+  --chip-radius: var(--primitive-radius-none);
+  --control-height-touch: 48px;
+  --control-border: var(--primitive-line) solid var(--color-border-strong);
+}

@@ -1,6 +1,13 @@
-import { PRODUCTS, FORMATS, PRICE_EUR } from "./shop-config.js";
+import { PRODUCTS, FORMATS, PRICE_EUR } from "./shop-config.js?v=20260630b";
 
 const CART_KEY = "cp_cart_v1";
+export const MAX_ITEM_QTY = 48;
+
+function normalizeQty(qty) {
+  const parsed = Number.parseInt(qty, 10);
+  if (!Number.isFinite(parsed)) return 1;
+  return Math.min(MAX_ITEM_QTY, Math.max(1, parsed));
+}
 
 export function loadCart() {
   try {
@@ -19,14 +26,15 @@ export function addToCart(sku, formatKey, qty = 1) {
     PRICE_EUR?.[sku] && PRICE_EUR[sku][formatKey] != null ? formatKey : "750";
   const items = loadCart();
   const existing = items.find((i) => i.sku === sku && i.format === safeFormat);
-  if (existing) existing.qty += qty;
-  else items.push({ sku, format: safeFormat, qty });
+  if (existing)
+    existing.qty = normalizeQty(normalizeQty(existing.qty) + normalizeQty(qty));
+  else items.push({ sku, format: safeFormat, qty: normalizeQty(qty) });
   saveCart(items);
 }
 export function setQty(index, qty) {
   const items = loadCart();
   if (!items[index]) return;
-  items[index].qty = Math.max(1, qty | 0);
+  items[index].qty = normalizeQty(qty);
   saveCart(items);
 }
 export function removeItem(index) {
@@ -68,6 +76,7 @@ export function cartCount(items) {
 export function equivalent75clPrice(sku, formatKey) {
   const unit = PRICE_EUR?.[sku]?.[formatKey] ?? 0;
   if (!unit) return 0;
+  if (formatKey === "coffret3") return unit / 3;
   if (formatKey === "magnum") return unit / 2;
   if (formatKey === "carton6") return unit / 6;
   return unit;
@@ -92,6 +101,15 @@ export function bottles75clEquivalent(items) {
   return count;
 }
 
+export function freeDiscoveryBoxCount(items) {
+  return items.reduce((acc, it) => {
+    if (it.sku === "coffret-decouverte" && it.format === "coffret3") {
+      return acc + Number(it.qty || 0);
+    }
+    return acc;
+  }, 0);
+}
+
 export function magnumCount(items) {
   return items.reduce(
     (acc, it) => acc + (it.format === "magnum" ? Number(it.qty || 0) : 0),
@@ -102,6 +120,7 @@ export function magnumCount(items) {
 export function shippingTotals(items) {
   const b75 = bottles75clEquivalent(items);
   const mags = magnumCount(items);
+  const discoveryBoxes = freeDiscoveryBoxCount(items);
 
   let shipping75 = 0;
   if (b75 >= 6) shipping75 = 0;
@@ -119,6 +138,7 @@ export function shippingTotals(items) {
     shippingTotal: shipping75 + shippingMag,
     bottles75: b75,
     magnums: mags,
+    freeDiscoveryBoxes: discoveryBoxes,
   };
 }
 

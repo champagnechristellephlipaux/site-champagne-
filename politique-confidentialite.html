@@ -4,17 +4,46 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
-    <meta content="#17120e" name="theme-color" />
+    <meta content="#f3eee6" name="theme-color" />
     <meta content="telephone=no" name="format-detection" />
     <meta content="Champagne Christelle Phlipaux" name="author" />
-    <link href="/assets/logo-trans.png" rel="icon" type="image/png" />
+    <link href="/favicon.ico" rel="icon" sizes="any" />
+    <link href="/favicon-48x48.png" rel="icon" sizes="48x48" type="image/png" />
+    <link href="/favicon-96x96.png" rel="icon" sizes="96x96" type="image/png" />
+    <link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
+    <link href="/site.webmanifest" rel="manifest" />
     <title>Politique de confidentialité | Champagne Christelle Phlipaux</title>
-    <link href="style.css" rel="stylesheet" />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/cormorant-garamond-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/manrope-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link href="style.css?v=20260712a" rel="stylesheet" />
+    <link
+      href="assets/css/editorial-redesign.css?v=20260701d"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/css/immersive-experience.css?v=20260715a"
+      rel="stylesheet"
+    />
     <meta
       content="Politique de confidentialité et informations sur la gestion des données personnelles."
       name="description"
     />
-    <link href="/politique-confidentialite.html" rel="canonical" />
+    <link
+      href="https://www.champagne-christelle-phlipaux.com/politique-confidentialite.html"
+      rel="canonical"
+    />
     <meta content="index,follow" name="robots" />
     <meta content="website" property="og:type" />
     <meta content="Champagne Christelle Phlipaux" property="og:site_name" />
@@ -27,7 +56,10 @@
       content="Politique de confidentialité et informations sur la gestion des données personnelles."
       property="og:description"
     />
-    <meta content="/politique-confidentialite.html" property="og:url" />
+    <meta
+      content="https://www.champagne-christelle-phlipaux.com/politique-confidentialite.html"
+      property="og:url"
+    />
     <meta content="/assets/hero-vignoble.jpg" property="og:image" />
     <meta
       content="Politique de confidentialité Champagne Christelle Phlipaux"
@@ -52,8 +84,10 @@
         "@context": "https://schema.org",
         "@type": ["Organization", "Winery"],
         "name": "Champagne Christelle Phlipaux",
+        "legalName": "CHRISTELLE BOURDICAUD",
+        "vatID": "FR25539870253",
         "url": "/",
-        "logo": "/assets/logo.png",
+        "logo": "https://www.champagne-christelle-phlipaux.com/assets/logo-search.png",
         "image": "/assets/hero-vignoble.jpg",
         "telephone": "+33 6 82 20 34 30",
         "email": "champagne.christelle.phlipaux@gmail.com",
@@ -94,13 +128,13 @@
         ]
       }
     </script>
-    <script defer="" src="consent.js"></script>
-    <script defer src="ui.js"></script>
+    <script defer="" src="consent.js?v=20260712a"></script>
+    <script defer src="ui.js?v=20260713a"></script>
   </head>
   <body>
     <header>
       <div class="container nav">
-        <a class="brand" href="index.html">
+        <a class="brand" href="/">
           <picture
             ><source srcset="assets/logo-trans.webp" type="image/webp" />
             <img
@@ -121,10 +155,10 @@
           </div>
         </a>
         <nav aria-label="Navigation principale" class="menu">
-          <a href="index.html">Accueil</a>
+          <a href="/">Accueil</a>
           <a href="boutique.html">Boutique</a>
           <a href="depositaires.html">Dépositaires</a>
-          <a href="index.html#contact">Contact</a>
+          <a href="/#contact">Contact</a>
         </nav>
       </div>
     </header>
@@ -132,16 +166,21 @@
       <picture
         ><source srcset="assets/hero-vignoble.webp" type="image/webp" />
         <img
-          alt="Vignoble et cave en Champagne"
+          alt="Vignes de Champagne dans la Côte des Bar"
           class="page-hero-media"
           decoding="async"
+          fetchpriority="high"
+          height="1132"
           loading="eager"
           src="assets/hero-vignoble.jpg"
+          width="2048"
       /></picture>
       <div class="page-hero-overlay"></div>
       <div class="container page-hero-inner">
         <div class="kicker">Champagne Christelle Phlipaux</div>
-        <h1 class="h2 page-hero-title">Politique de confidentialité</h1>
+        <h1 class="h1 page-hero-title page-hero-title--utility">
+          Politique de confidentialité
+        </h1>
         <p class="page-hero-sub">
           Informations relatives au traitement des données personnelles et aux
           cookies du site.
@@ -152,48 +191,93 @@
       <div class="container">
         <div class="kicker">RGPD</div>
 
-        <article class="card pad prose reveal">
+        <article class="card pad prose legal-prose reveal">
           <p class="p">
-            La <b>SARL Christelle Phlipaux</b> collecte des données personnelles
-            (nom, coordonnées, message, adresse de livraison le cas échéant)
-            uniquement dans le cadre du traitement des commandes, des demandes
-            de contact, des avis transmis sur le site et de la relation client.
+            Le responsable de traitement est la
+            <b>SARL CHRISTELLE BOURDICAUD</b>, exploitant la marque Champagne
+            Christelle Phlipaux, 4 rue de Villiers, 10340 Channes. Le site
+            traite uniquement les données nécessaires aux commandes, demandes de
+            contact, demandes de rétractation, avis transmis et à la relation
+            client.
           </p>
-          <h3 class="h3">Formulaires du site</h3>
+          <h2 class="h2">Formulaires du site</h2>
           <p class="p">
             Lorsque vous utilisez un formulaire de contact, de visite, de
-            dégustation, de demande événementielle ou d’avis client, les
-            informations transmises servent uniquement à vous répondre,
-            confirmer un rendez-vous, traiter votre retour ou vous orienter dans
-            votre demande.
+            dégustation, de demande événementielle, de rétractation ou d’avis
+            client, les informations transmises servent uniquement à vous
+            répondre, confirmer un rendez-vous, traiter votre retour ou vous
+            orienter dans votre demande.
           </p>
-          <h3 class="h3">Paiement</h3>
+          <h2 class="h2">Finalités et bases légales</h2>
+          <p class="p">
+            Les données de commande sont traitées pour exécuter le contrat et
+            respecter les obligations comptables et légales. Les demandes de
+            contact, de visite et de rétractation sont traitées pour répondre à
+            votre demande, exécuter le contrat ou préparer une relation
+            contractuelle. Les avis sont conservés sur la base de votre
+            consentement, révocable à tout moment.
+          </p>
+          <h2 class="h2">Paiement</h2>
           <p class="p">
             Les paiements sont traités par <b>Stripe</b>, prestataire de
             paiement sécurisé.
           </p>
-          <h3 class="h3">Traitement technique</h3>
+          <h2 class="h2">Traitement technique</h2>
           <p class="p">
             Les formulaires du site sont transmis via l’infrastructure
-            d’hébergement <b>Netlify</b>. Les données ne sont utilisées que dans
-            le cadre de la demande adressée à la maison.
+            d’hébergement <b>Netlify</b>. Les commandes confirmées sont
+            enregistrées dans un espace serveur privé afin d’en permettre la
+            préparation et le suivi.
           </p>
-          <h3 class="h3">Partage des données</h3>
+          <h2 class="h2">Données enregistrées sur votre appareil</h2>
           <p class="p">
-            Les données ne sont pas vendues ni cédées à des tiers.
+            Le site mémorise localement votre panier et la confirmation de votre
+            majorité afin d’assurer son fonctionnement. Avec votre accord, un
+            outil de mesure d’audience sobre peut également être chargé pour
+            comprendre les pages consultées, les ajouts au panier, les débuts de
+            paiement et les clics de contact. Ces mesures ne transmettent pas
+            votre adresse email, votre numéro de téléphone ni le contenu de vos
+            messages.
           </p>
-          <h3 class="h3">Conservation</h3>
+          <h2 class="h2">Mesure d’audience</h2>
           <p class="p">
-            Les données sont conservées pendant la durée nécessaire au suivi de
-            la commande ou de la demande, puis supprimées ou archivées
-            conformément aux obligations légales applicables.
+            La mesure d’audience optionnelle est chargée uniquement après
+            acceptation des cookies. Elle sert à améliorer le site, le parcours
+            boutique et les informations utiles avant commande. Vous pouvez
+            refuser cette mesure sans bloquer l’accès au site ni à la commande.
           </p>
-          <h3 class="h3">Vos droits</h3>
+          <h2 class="h2">Partage des données</h2>
           <p class="p">
-            Conformément au RGPD, vous disposez d’un droit d’accès, de
-            rectification et de suppression de vos données personnelles. Pour
-            exercer ces droits, contactez-nous à :
-            <b>champagne.christelle.phlipaux@gmail.com</b>.
+            Les données ne sont jamais vendues. Elles sont accessibles
+            uniquement à la maison et, dans la limite de leurs missions, à
+            Stripe pour le paiement, Netlify pour l’hébergement et au
+            transporteur chargé de la livraison.
+          </p>
+          <h2 class="h2">Conservation</h2>
+          <p class="p">
+            Les demandes sans commande sont conservées au maximum trois ans
+            après le dernier échange. Les pièces comptables relatives aux
+            commandes sont archivées pendant la durée légale applicable. Les
+            avis restent en modération ou publiés pendant cinq ans au maximum,
+            sauf retrait anticipé demandé par leur auteur. La limitation
+            anti-abus du formulaire d’avis conserve uniquement une empreinte
+            technique temporaire pendant une heure.
+          </p>
+          <h2 class="h2">Transferts hors de l’Union européenne</h2>
+          <p class="p">
+            Certains prestataires techniques peuvent traiter des données hors de
+            l’Union européenne. Ces traitements sont encadrés par les mécanismes
+            contractuels et garanties prévus par le RGPD. Le site limite les
+            informations transmises à ce qui est nécessaire au service concerné.
+          </p>
+          <h2 class="h2">Vos droits</h2>
+          <p class="p">
+            Vous disposez, selon la base légale du traitement, de droits
+            d’accès, de rectification, d’effacement, de limitation, d’opposition
+            et de portabilité. Vous pouvez également retirer votre consentement
+            à tout moment. Pour exercer ces droits, écrivez à
+            <b>champagne.christelle.phlipaux@gmail.com</b>. Vous pouvez enfin
+            introduire une réclamation auprès de la CNIL.
           </p>
         </article>
       </div>
@@ -203,6 +287,7 @@
         <div class="small footer-links">
           <a href="mentions-legales.html">Mentions légales</a> •
           <a href="cgv.html">CGV</a> •
+          <a href="retractation.html">Rétractation</a> •
           <a href="politique-confidentialite.html">Confidentialité</a>
         </div>
         <div class="small footer-alcool">

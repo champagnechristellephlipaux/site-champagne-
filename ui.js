@@ -17,7 +17,8 @@
   const NAV_ITEMS = [
     {
       href: "cuvees.html",
-      label: "Les Cuvées",
+      label: "Cuvées",
+      group: "primary",
       matches: [
         "cuvees.html",
         "brut-tradition.html",
@@ -25,11 +26,6 @@
         "demi-sec.html",
       ],
       className: "nav-link--featured",
-    },
-    {
-      href: "cadeaux.html",
-      label: "Offrir",
-      matches: ["cadeaux.html", "evenements.html"],
     },
     {
       href: "maison.html",
@@ -41,31 +37,40 @@
         "visites-degustations.html",
       ],
     },
+    {
+      href: "depositaires.html",
+      label: "Dépositaires",
+      matches: ["depositaires.html", "devenir-depositaire.html"],
+    },
+    {
+      href: "cadeaux.html",
+      label: "Offrir",
+      matches: ["cadeaux.html", "evenements.html"],
+    },
+    {
+      href: "index.html#contact",
+      label: "Contact",
+      className: "nav-link--subtle nav-link--contact",
+      mobileUtility: true,
+      disableActive: true,
+    },
   ];
 
   const HEADER_ACTIONS = [
     {
-      href: "index.html#contact",
-      label: "Contact",
-      className: "nav-contact-link",
-      disableActive: true,
-    },
-    {
       href: "boutique.html",
-      label: "Commander",
+      label: "Boutique",
       className: "btn primary nav-primary-cta",
-      matches: ["boutique.html", "livraison-paiement.html", "merci.html"],
+      matches: [
+        "boutique.html",
+        "checkout.html",
+        "livraison-paiement.html",
+        "retractation.html",
+        "merci.html",
+        "merci-retractation.html",
+      ],
     },
   ];
-
-  const prefersReduced =
-    window.matchMedia &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const coarsePointer =
-    window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
-  const saveData = Boolean(
-    navigator.connection && navigator.connection.saveData,
-  );
 
   function currentPageName() {
     const raw = window.location.pathname.split("/").pop();
@@ -106,10 +111,10 @@
   function buildBrand() {
     return [
       '<a class="brand" href="index.html" aria-label="Accueil Champagne Christelle Phlipaux" data-disable-active="true">',
-      '<picture><source srcset="assets/logo-trans.webp" type="image/webp"/><img alt="Logo Champagne Christelle Phlipaux" class="brand-logo" decoding="async" height="204" loading="lazy" src="assets/logo-trans.png" width="242"/></picture>',
+      '<picture><source srcset="assets/logo-trans.webp" type="image/webp"/><img alt="Logo Champagne Christelle Phlipaux" class="brand-logo" decoding="async" fetchpriority="high" height="204" src="assets/logo-trans.png" width="242"/></picture>',
       '<div class="brand-text">',
       '<div class="brand-title"><span class="brand-champagne">Champagne</span> <span class="brand-name">Christelle Phlipaux</span></div>',
-      '<div class="brand-sub"><span>Maison de vigneron</span><span>Channes, Côte des Bar</span></div>',
+      '<div class="brand-sub"><span>Viticultrice indépendante</span><span>Channes, Côte des Bar</span></div>',
       "</div>",
       "</a>",
     ].join("");
@@ -130,19 +135,30 @@
 
     const { shell } = parts;
     const hasCart = Boolean(document.querySelector("#cartDrawer"));
-    const links = NAV_ITEMS.map((item) => buildMenuLink(item)).join("");
+    const primaryLinks = NAV_ITEMS.filter((item) => item.group === "primary")
+      .map((item) => buildMenuLink(item))
+      .join("");
+    const secondaryLinks = NAV_ITEMS.filter((item) => item.group !== "primary")
+      .map((item) => buildMenuLink(item))
+      .join("");
+    const mobileUtilityLinks = NAV_ITEMS.filter((item) => item.mobileUtility)
+      .map((item) => buildMenuLink(item, "nav-mobile-utility-link"))
+      .join("");
     const actions = [
-      buildMenuLink(HEADER_ACTIONS[0]),
       hasCart ? buildCartAction() : "",
-      buildMenuLink(HEADER_ACTIONS[1]),
+      buildMenuLink(HEADER_ACTIONS[0]),
     ].join("");
 
     shell.classList.add("nav-shell");
     shell.innerHTML = [
       buildBrand(),
       '<div class="nav-panel" id="siteNavPanel">',
-      `<nav aria-label="Navigation principale" class="menu">${links}</nav>`,
+      '<div class="nav-mobile-priority">',
+      `<nav aria-label="Navigation principale" class="menu menu--primary">${primaryLinks}</nav>`,
       `<div class="nav-actions${hasCart ? " nav-actions--has-cart" : ""}">${actions}</div>`,
+      "</div>",
+      `<nav aria-label="Navigation secondaire" class="menu menu--secondary">${secondaryLinks}</nav>`,
+      `<div class="nav-mobile-utility">${mobileUtilityLinks}</div>`,
       "</div>",
     ].join("");
   }
@@ -233,7 +249,7 @@
     });
 
     window.addEventListener("resize", () => {
-      if (window.innerWidth > 920) closeNav(button);
+      if (window.innerWidth > 1180) closeNav(button);
     });
   }
 
@@ -321,8 +337,10 @@
       "cgv.html",
       "politique-confidentialite.html",
       "merci.html",
+      "merci-retractation.html",
       "merci-contact.html",
       "merci-avis.html",
+      "retractation.html",
     ]);
 
     if (compactPages.has(current) && footer.querySelector(".footer-meta")) {
@@ -341,10 +359,10 @@
       '<div class="brand-sub">Channes — Côte des Bar</div>',
       "</div>",
       "</a>",
-      '<div class="small">Trois cuvées de vigneron, un vignoble à Channes, une cave et un conseil direct depuis la propriété.</div>',
+      '<div class="small">Un vignoble et une cave à Channes, trois cuvées élaborées à la propriété.</div>',
       '<div class="footer-trust">',
       "<span>Channes, Côte des Bar</span>",
-      "<span>3 cuvées de vigneron</span>",
+      "<span>3 cuvées suivies</span>",
       "<span>Vente directe</span>",
       "<span>Paiement sécurisé</span>",
       "</div>",
@@ -357,10 +375,12 @@
       '<div><a href="champagne-de-vigneron.html">Champagne de vigneron</a></div>',
       "</div>",
       "<div>",
-      '<div class="footer-heading">Commander & visiter</div>',
+      '<div class="footer-heading">Commander et venir</div>',
       '<div><a href="boutique.html">Boutique</a></div>',
       '<div><a href="livraison-paiement.html">Livraison & paiement</a></div>',
+      '<div><a href="retractation.html">Rétractation</a></div>',
       '<div><a href="depositaires.html">Dépositaires</a></div>',
+      '<div><a href="devenir-depositaire.html">Devenir dépositaire</a></div>',
       '<div><a href="visites-degustations.html">Visiter la maison</a></div>',
       '<div><a href="avis-clients.html">Avis & retours</a></div>',
       '<div><a href="index.html#contact">Contact</a></div>',
@@ -377,7 +397,7 @@
       "</div>",
       "</div>",
       '<div class="container footer-meta">',
-      '<div class="small footer-links"><a href="mentions-legales.html">Mentions légales</a> • <a href="cgv.html">CGV</a> • <a href="politique-confidentialite.html">Confidentialité</a></div>',
+      '<div class="small footer-links"><a href="mentions-legales.html">Mentions légales</a> • <a href="cgv.html">CGV</a> • <a href="retractation.html">Rétractation</a> • <a href="politique-confidentialite.html">Confidentialité</a></div>',
       '<div class="small footer-alcool">La vente d’alcool est interdite aux mineurs de moins de 18 ans. L’abus d’alcool est dangereux pour la santé, à consommer avec modération.</div>',
       "</div>",
     ].join("");
@@ -445,43 +465,128 @@
     column.appendChild(block);
   }
 
+  function reducedMotionPreferred() {
+    return window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+  }
+
+  function setupImmersiveExperience() {
+    document.body.classList.add("immersive-site");
+    document.documentElement.classList.add("immersive-ready");
+
+    const progress = document.createElement("div");
+    progress.className = "site-progress";
+    progress.setAttribute("aria-hidden", "true");
+    progress.innerHTML = "<span></span>";
+    document.body.appendChild(progress);
+
+    const progressBar = progress.querySelector("span");
+    const heroMedia = document.querySelector(".page-hero-media");
+    const reduceMotion = reducedMotionPreferred();
+    const allowHeroDepth =
+      heroMedia &&
+      !reduceMotion &&
+      window.matchMedia?.("(min-width: 721px)").matches;
+    let ticking = false;
+
+    const syncScrollEffects = () => {
+      const maxScroll =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const ratio =
+        maxScroll > 0
+          ? Math.min(1, Math.max(0, window.scrollY / maxScroll))
+          : 0;
+
+      if (progressBar) {
+        progressBar.style.transform = `scaleX(${ratio})`;
+      }
+
+      if (allowHeroDepth) {
+        const shift = Math.min(34, Math.max(0, window.scrollY * 0.08));
+        document.body.style.setProperty("--hero-scroll-shift", `${shift}px`);
+      }
+
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(syncScrollEffects);
+    };
+
+    syncScrollEffects();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    if (!reduceMotion && "IntersectionObserver" in window) {
+      const chapterObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            entry.target.classList.toggle(
+              "is-section-active",
+              entry.isIntersecting,
+            );
+          });
+        },
+        {
+          threshold: 0.12,
+          rootMargin: "-12% 0px -18% 0px",
+        },
+      );
+
+      document
+        .querySelectorAll("main > section")
+        .forEach((section) => chapterObserver.observe(section));
+    }
+  }
+
   function setupReveal() {
     const items = Array.from(
       document.querySelectorAll(".reveal, [data-reveal]"),
     );
     if (!items.length) return;
 
-    if (
-      prefersReduced ||
-      saveData ||
-      coarsePointer ||
-      window.innerWidth < 820 ||
-      !("IntersectionObserver" in window)
-    ) {
-      items.forEach((item) => item.classList.add("is-visible"));
+    const show = (item) => item.classList.add("is-visible");
+    const reduceMotion = reducedMotionPreferred();
+
+    items.forEach((item, index) => {
+      item.classList.add("immersive-reveal");
+      item.style.setProperty("--reveal-order", String(index % 4));
+      if (
+        item.matches(
+          "figure, .product, .product-sale-shell, .story-stage, .home-craft-hero",
+        )
+      ) {
+        item.classList.add("immersive-reveal--media");
+      }
+    });
+
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      items.forEach(show);
       return;
     }
+
+    document.documentElement.classList.add("immersive-reveal-ready");
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
+          show(entry.target);
           observer.unobserve(entry.target);
         });
       },
-      { threshold: 0.16, rootMargin: "0px 0px -8% 0px" },
+      {
+        threshold: 0.08,
+        rootMargin: "0px 0px -8% 0px",
+      },
     );
 
-    const foldThreshold = window.innerHeight * 0.92;
-
     items.forEach((item) => {
-      const rect = item.getBoundingClientRect();
-      if (rect.top <= foldThreshold) {
-        item.classList.add("is-visible");
-        return;
+      if (item.getBoundingClientRect().top < window.innerHeight * 0.94) {
+        show(item);
+      } else {
+        observer.observe(item);
       }
-      observer.observe(item);
     });
   }
 
@@ -521,10 +626,12 @@
     setupSkipLink();
     setupHeaderState();
     setupGlobalNav();
+    window.dispatchEvent(new CustomEvent("site:navigation-ready"));
     setupNav();
     setupCurrentLink();
     setupInPageNav();
     setupFooter();
+    setupImmersiveExperience();
     setupReveal();
     setupSmoothAnchors();
     setupDetails();

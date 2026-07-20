@@ -1,4 +1,4 @@
-import { CURATED_OFFERS, PRICE_EUR } from "./shop-config.js";
+import { CURATED_OFFERS, PRICE_EUR } from "./shop-config.js?v=20260630b";
 import {
   loadCart,
   addToCart,
@@ -7,13 +7,14 @@ import {
   clearCart,
   cartTotals,
   cartCount,
+  MAX_ITEM_QTY,
   getItemMeta,
   formatEuro,
   shippingTotals,
   equivalent75clPrice,
   estimateSelectionTotal,
-} from "./cart.js";
-import { startCheckout } from "./checkout.js";
+} from "./cart.js?v=20260630b";
+import { startCheckout } from "./checkout.js?v=20260712a";
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
@@ -21,26 +22,100 @@ const prefersDirectScroll =
   window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
 
 const FORMAT_NOTES = {
+  "coffret-decouverte": {
+    coffret3: "Coffret • 3 bouteilles, livraison offerte",
+  },
   brut: {
-    750: "75 cl • pour découvrir la cuvée ou servir la table avec naturel",
-    magnum:
-      "Magnum 1,5 L • pour 6 à 8 convives ou une réception plus marquante",
-    carton6:
-      "Carton de 6 • pour recevoir sereinement et profiter de la livraison offerte",
+    750: "75 cl • première commande, repas",
+    magnum: "Magnum • grande table",
+    carton6: "Carton de 6 • livraison offerte",
   },
   rose: {
-    750: "75 cl • pour offrir, inviter ou installer l’apéritif",
-    carton6: "Carton de 6 • pour plusieurs cadeaux ou une table de fête",
+    750: "75 cl • cadeau, apéritif",
+    carton6: "Carton de 6 • cadeaux ou réception",
   },
   demisec: {
-    750: "75 cl • pour foie gras, dessert ou première découverte",
-    magnum: "Magnum 1,5 L • pour brunch, grande table ou service gourmand",
-    carton6:
-      "Carton de 6 • pour prévoir plusieurs accords et profiter de la livraison offerte",
+    750: "75 cl • foie gras, fruits",
+    magnum: "Magnum • grande table gourmande",
+    carton6: "Carton de 6 • livraison offerte",
   },
 };
 
 let toastTimer = 0;
+let cartTrigger = null;
+const selectionTimers = new Map();
+
+function ensureCartLiveStatus() {
+  const drawer = $("#cartDrawer .drawer-panel");
+  if (!drawer) return null;
+
+  let status = $("#cartLiveStatus");
+  if (status) return status;
+
+  status = document.createElement("div");
+  status.id = "cartLiveStatus";
+  status.className = "cart-live-status";
+  status.setAttribute("role", "status");
+  status.setAttribute("aria-live", "polite");
+  status.setAttribute("aria-atomic", "true");
+  drawer.appendChild(status);
+  return status;
+}
+
+function announceCart(message) {
+  const status = ensureCartLiveStatus();
+  if (!status) return;
+  status.textContent = "";
+  window.setTimeout(() => {
+    status.textContent = message;
+  }, 20);
+}
+
+function replaceCloseIcons() {
+  $$(".icon-btn").forEach((button) => {
+    if (
+      !button.matches("[data-cart-close], [data-ci-remove]") ||
+      button.querySelector(".ui-close-mark")
+    )
+      return;
+    button.innerHTML = '<span class="ui-close-mark" aria-hidden="true"></span>';
+  });
+}
+
+function pulseDrawerChange() {
+  const panel = $("#cartDrawer .drawer-panel");
+  if (!panel) return;
+  panel.classList.remove("is-changing");
+  void panel.offsetWidth;
+  panel.classList.add("is-changing");
+  window.setTimeout(() => panel.classList.remove("is-changing"), 360);
+}
+
+function pulseProductSelection(sku) {
+  const card = document.querySelector(`[data-sku="${sku}"]`);
+  if (!card) return;
+
+  card.classList.remove("is-selection-changing");
+  void card.offsetWidth;
+  card.classList.add("is-selection-changing");
+
+  window.clearTimeout(selectionTimers.get(sku));
+  selectionTimers.set(
+    sku,
+    window.setTimeout(() => {
+      card.classList.remove("is-selection-changing");
+      selectionTimers.delete(sku);
+    }, 340),
+  );
+}
+
+function drawerFocusableElements(drawer) {
+  return Array.from(
+    drawer.querySelectorAll(
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    ),
+  ).filter((node) => !node.hidden && node.offsetParent !== null);
+}
 
 function bottleLabel(count) {
   return `${count} bouteille${count > 1 ? "s" : ""}`;
@@ -49,12 +124,29 @@ function bottleLabel(count) {
 function purchaseUnitLabel(format, qty) {
   if (format === "magnum") return `${qty} ${qty > 1 ? "magnums" : "magnum"}`;
   if (format === "carton6") return `${qty} ${qty > 1 ? "cartons" : "carton"}`;
+  if (format === "coffret3")
+    return `${qty} ${qty > 1 ? "coffrets" : "coffret"}`;
   return bottleLabel(qty);
 }
 
-function openDrawer() {
+function singlePurchaseLabel(format) {
+  if (format === "magnum") return "ce magnum";
+  if (format === "carton6") return "ce carton";
+  if (format === "coffret3") return "ce coffret";
+  return "cette cuvée";
+}
+
+function selectedFormatLabel(format) {
+  if (format === "magnum") return "Magnum 1,5 L";
+  if (format === "carton6") return "Carton de 6";
+  if (format === "coffret3") return "Coffret 3 bouteilles";
+  return "Bouteille 75 cl";
+}
+
+function openDrawer(trigger = document.activeElement) {
   const d = $("#cartDrawer");
   if (!d) return;
+  cartTrigger = trigger instanceof HTMLElement ? trigger : null;
   document.body.classList.remove("nav-open");
   const navToggle = document.querySelector(".nav-toggle");
   if (navToggle) {
@@ -65,6 +157,9 @@ function openDrawer() {
   d.setAttribute("aria-hidden", "false");
   document.body.classList.add("cart-open");
   renderCart();
+  window.setTimeout(() => {
+    d.querySelector(".drawer-head [data-cart-close]")?.focus();
+  }, 0);
 }
 
 function closeDrawer() {
@@ -73,6 +168,8 @@ function closeDrawer() {
   d.classList.remove("open");
   d.setAttribute("aria-hidden", "true");
   document.body.classList.remove("cart-open");
+  if (cartTrigger?.isConnected) cartTrigger.focus();
+  cartTrigger = null;
 }
 
 function safeText(sel, value) {
@@ -97,7 +194,7 @@ function syncCartTriggers(items) {
     button.classList.toggle("is-filled", count > 0);
     button.setAttribute(
       "aria-label",
-      count ? `Ouvrir la sélection, ${label}` : "Ouvrir la sélection",
+      count ? `Ouvrir le panier, ${label}` : "Ouvrir le panier",
     );
   });
 }
@@ -124,8 +221,11 @@ function showToast(title, message) {
   toast.hidden = false;
   toast.innerHTML = `
     <div class="shop-toast">
-      <strong>${title}</strong>
-      <span>${message}</span>
+      <span class="shop-toast-copy">
+        <strong>${title}</strong>
+        <span>${message}</span>
+      </span>
+      <button class="shop-toast-action" type="button" data-cart-open>Voir le panier</button>
     </div>
   `;
 
@@ -133,23 +233,33 @@ function showToast(title, message) {
   toastTimer = window.setTimeout(() => {
     toast.hidden = true;
     toast.innerHTML = "";
-  }, 2600);
+  }, 4500);
 }
 
 function setCheckoutIssue(message = "") {
   const feedback = $("#cartCheckoutMessage");
   if (!feedback) return;
+  feedback.setAttribute("aria-live", "polite");
   feedback.hidden = !message;
   feedback.textContent = message;
 }
 
+function normalizeQuantity(value) {
+  const parsed = Number.parseInt(value, 10);
+  if (!Number.isFinite(parsed)) return 1;
+  return Math.min(MAX_ITEM_QTY, Math.max(1, parsed));
+}
+
+function setQuantityInput(input, value) {
+  input.value = String(normalizeQuantity(value));
+}
+
 function currentProductTitle(sku) {
+  const card = document.querySelector(`[data-sku="${sku}"]`);
   return (
-    document
-      .querySelector(
-        `[data-sku="${sku}"] .product-sale-title, [data-sku="${sku}"] h2, [data-sku="${sku}"] h3`,
-      )
-      ?.textContent?.trim() || sku
+    card?.querySelector(".product-buy-heading strong")?.textContent?.trim() ||
+    card?.querySelector(".product-sale-title, h2, h3")?.textContent?.trim() ||
+    sku
   );
 }
 
@@ -168,10 +278,10 @@ function flashAddFeedback(button, sku, qty) {
 
   button.disabled = true;
   button.classList.add("is-success");
-  button.textContent = "Ajouté à la sélection";
+  button.textContent = "Ajouté au panier";
   pulseCartButtons();
   showToast(
-    "Sélection mise à jour",
+    "Ajouté au panier",
     `${currentProductTitle(sku)} • ${formatLabel} • x${qty}`,
   );
 
@@ -186,7 +296,7 @@ function flashOfferFeedback(offer) {
   if (!offer) return;
   pulseCartButtons();
   showToast(
-    "Sélection maison ajoutée",
+    "Ajouté au panier",
     `${offer.name} • ${formatEuro(offerTotal(offer))}`,
   );
 }
@@ -220,9 +330,22 @@ function updateSelectionNotes() {
   });
 }
 
+function syncDrawerAssurance() {
+  $$(".drawer-assurance").forEach((node) => {
+    node.innerHTML = `
+      <span>Préparé à Channes</span>
+      <span>Emballage renforcé</span>
+      <span>Paiement sécurisé</span>
+    `;
+  });
+}
+
 function renderCart() {
   const items = loadCart();
+  const panel = $("#cartDrawer .drawer-panel");
+  panel?.classList.toggle("is-empty", !items.length);
   setCheckoutIssue();
+  syncDrawerAssurance();
   safeText("#cartCount", String(cartCount(items)));
   syncCartTriggers(items);
 
@@ -234,10 +357,10 @@ function renderCart() {
   const clearBtn = $("#cartClear");
   if (checkoutBtn && !checkoutBtn.dataset.baseLabel) {
     checkoutBtn.dataset.baseLabel =
-      checkoutBtn.textContent?.trim() || "Passer au paiement sécurisé";
+      checkoutBtn.textContent?.trim() || "Continuer vers le paiement";
   }
   const checkoutBaseLabel =
-    checkoutBtn?.dataset.baseLabel || "Passer au paiement sécurisé";
+    checkoutBtn?.dataset.baseLabel || "Continuer vers le paiement";
   if (!body || !subtotalEl) return;
 
   if (checkoutBtn) checkoutBtn.disabled = !items.length;
@@ -246,9 +369,9 @@ function renderCart() {
   if (!items.length) {
     body.innerHTML = `
       <div class="empty">
-        <strong>Votre sélection est vide.</strong>
-        <p>Choisissez une cuvée pour relire le total, l’expédition estimée et préparer une commande directe depuis Channes, avec la maison joignable si besoin.</p>
-        <button class="btn primary" type="button" data-empty-close>Découvrir nos cuvées</button>
+        <strong>Votre panier est vide.</strong>
+        <p>Choisissez une cuvée pour voir le format, la livraison et le total avant paiement.</p>
+        <button class="btn primary" type="button" data-empty-close>Choisir une cuvée</button>
       </div>
     `;
     subtotalEl.textContent = "0€";
@@ -266,10 +389,10 @@ function renderCart() {
     if (bar) bar.style.width = "0%";
     if (txt)
       txt.textContent =
-        "La livraison est offerte dès 6 bouteilles de 75 cl ou sur un carton complet.";
+        "Livraison offerte sur le coffret découverte ou dès 6 bouteilles de 75 cl.";
     if (note)
       note.textContent =
-        "Les magnums conservent un tarif d’expédition dédié, toujours relu avant validation.";
+        "Coffret : sans frais. 6 bouteilles de 75 cl : sans frais. Magnum : 10€ par unité.";
 
     return;
   }
@@ -297,32 +420,29 @@ function renderCart() {
 
           <div class="cart-main">
             <div class="cart-item-top">
-              <div>
+              <div class="cart-item-identity">
                 <div class="cart-title">${title}</div>
                 <div class="cart-format">${fmt}</div>
               </div>
-              <button class="icon-btn" type="button" data-ci-remove="${idx}" aria-label="Retirer ${title} de la sélection">✕</button>
+              <div class="cart-line-wrap cart-line-wrap--primary">
+                <span class="cart-row-label">Sous-total</span>
+                <strong class="cart-line">${formatEuro(line)}</strong>
+              </div>
+              <button class="icon-btn" type="button" data-ci-remove="${idx}" aria-label="Retirer ${title} du panier"><span class="ui-close-mark" aria-hidden="true"></span></button>
             </div>
             ${hint ? `<div class="cart-hint">${hint}</div>` : ""}
-            <div class="cart-metrics">
-              <div class="cart-metric">
-                <span class="cart-row-label">${unitLabel}</span>
-                <strong class="cart-metric-value">${formatEuro(unit)}</strong>
-              </div>
-              <div class="cart-metric cart-metric--subtotal">
-                <span class="cart-row-label">Sous-total</span>
-                <strong class="cart-metric-value cart-line">${formatEuro(line)}</strong>
-              </div>
-            </div>
-
-            <div class="cart-row cart-row--qty">
+            <div class="cart-item-bottom">
               <div class="cart-qty-wrap">
                 <span class="cart-row-label">Quantité</span>
                 <div class="qty small">
-                  <button class="qty-btn" type="button" aria-label="Retirer une unité de ${title}" data-ci-minus="${idx}">−</button>
-                  <input class="qty-input" type="number" min="1" inputmode="numeric" pattern="[0-9]*" aria-label="Quantité pour ${title}" value="${it.qty}" data-ci-input="${idx}" />
-                  <button class="qty-btn" type="button" aria-label="Ajouter une unité de ${title}" data-ci-plus="${idx}">+</button>
+                  <button class="qty-btn" type="button" aria-label="Réduire la quantité de ${title}" data-ci-minus="${idx}" ${it.qty <= 1 ? "disabled" : ""}>−</button>
+                  <input class="qty-input" type="number" min="1" max="${MAX_ITEM_QTY}" inputmode="numeric" pattern="[0-9]*" aria-label="Quantité pour ${title}, de 1 à ${MAX_ITEM_QTY}" value="${it.qty}" data-ci-input="${idx}" />
+                  <button class="qty-btn" type="button" aria-label="Augmenter la quantité de ${title}" data-ci-plus="${idx}">+</button>
                 </div>
+              </div>
+              <div class="cart-unit-note">
+                <span class="cart-row-label">${unitLabel}</span>
+                <strong>${formatEuro(unit)}</strong>
               </div>
             </div>
           </div>
@@ -330,6 +450,7 @@ function renderCart() {
       `;
     })
     .join("");
+  replaceCloseIcons();
 
   const totals = cartTotals(items);
   subtotalEl.textContent = formatEuro(totals.subtotal);
@@ -345,7 +466,7 @@ function renderCart() {
     checkoutBtn.textContent = `${checkoutBaseLabel} • ${formatEuro(estimatedTotal)}`;
   updateFloatingCart(items, totals.subtotal);
 
-  // Livraison (affichage indicatif : la logique finale est appliquée au checkout)
+  // Livraison : la même grille est appliquée côté serveur au paiement.
   const shipEl = $("#cartShipping");
   if (shipEl)
     shipEl.textContent =
@@ -358,24 +479,46 @@ function renderCart() {
   if (bar && txt) {
     const target = 6;
     const progress = Math.min(1, (ship.bottles75 || 0) / target);
-    bar.style.width = `${Math.round(progress * 100)}%`;
+    const hasOnlyFreeDiscovery =
+      (ship.freeDiscoveryBoxes || 0) > 0 &&
+      (ship.bottles75 || 0) === 0 &&
+      (ship.magnums || 0) === 0;
+    bar.style.width = `${Math.round((hasOnlyFreeDiscovery ? 1 : progress) * 100)}%`;
 
-    if ((ship.bottles75 || 0) >= target) {
+    if (hasOnlyFreeDiscovery) {
+      txt.textContent = "Livraison offerte sur le coffret découverte.";
+    } else if ((ship.bottles75 || 0) >= target) {
       txt.textContent =
         (ship.magnums || 0) > 0
-          ? "Les 75 cl de cette sélection sont au franco. Les magnums gardent leur tarif propre."
-          : "Cette sélection bénéficie de la livraison offerte.";
-    } else {
+          ? `75 cl : livraison offerte. Magnums : ${formatEuro(ship.shippingMag)}.`
+          : "Livraison offerte atteinte pour ce panier.";
+    } else if ((ship.bottles75 || 0) > 0) {
       const remaining = target - (ship.bottles75 || 0);
-      txt.textContent = `Encore ${bottleLabel(remaining)} de 75 cl pour atteindre le franco.`;
+      txt.textContent = `Plus que ${bottleLabel(remaining)} avant la livraison offerte.`;
+    } else if ((ship.magnums || 0) > 0) {
+      txt.textContent = `Livraison des magnums : ${formatEuro(ship.shippingMag)}.`;
+    } else {
+      txt.textContent = "Frais de livraison affichés dans le total.";
     }
   }
 
   if (note) {
-    note.textContent =
-      (ship.magnums || 0) > 0
-        ? "Les cartons complets bénéficient aussi du franco. Les magnums sont expédiés à 10€ par unité."
-        : "La livraison est offerte dès 6 bouteilles de 75 cl ou sur un carton complet.";
+    if (
+      (ship.freeDiscoveryBoxes || 0) > 0 &&
+      ((ship.bottles75 || 0) > 0 || (ship.magnums || 0) > 0)
+    ) {
+      note.textContent =
+        ship.shippingTotal === 0
+          ? "Le coffret et les bouteilles de 75 cl sont livrés sans frais."
+          : `Le coffret est livré sans frais. Livraison des autres formats : ${formatEuro(ship.shippingTotal)}.`;
+    } else if ((ship.freeDiscoveryBoxes || 0) > 0) {
+      note.textContent = "Aucun frais de livraison pour ce coffret.";
+    } else {
+      note.textContent =
+        (ship.magnums || 0) > 0
+          ? "Magnum : 10€ par unité. Les 75 cl sont livrés sans frais dès 6 bouteilles."
+          : "Livraison offerte dès 6 bouteilles de 75 cl.";
+    }
   }
 }
 
@@ -386,27 +529,28 @@ function currentFormat(sku) {
 
 function currentQty(sku) {
   const el = document.querySelector(`[data-qty-input="${sku}"]`);
-  return Math.max(1, parseInt(el?.value || "1", 10));
+  return normalizeQuantity(el?.value || "1");
 }
 
 function updateAddButtonLabel(sku, selected, qty, price) {
   const button = document.querySelector(`[data-add="${sku}"]`);
   if (!button) return;
   const total = formatEuro(price * qty);
-  const label =
-    qty > 1
+  const isMobileShop =
+    window.matchMedia && window.matchMedia("(max-width: 720px)").matches;
+  const label = isMobileShop
+    ? qty > 1
+      ? `Ajouter x${qty} • ${total}`
+      : `Ajouter • ${total}`
+    : qty > 1
       ? `Ajouter ${purchaseUnitLabel(selected, qty)} • ${total}`
-      : selected === "magnum"
-        ? `Ajouter le magnum • ${total}`
-        : selected === "carton6"
-          ? `Ajouter le carton • ${total}`
-          : `Ajouter ce format • ${total}`;
+      : `Ajouter ${singlePurchaseLabel(selected)} • ${total}`;
   button.textContent = label;
-  button.setAttribute("aria-label", `${label} à la sélection`);
+  button.setAttribute("aria-label", label);
 }
 
 function updateCardPrices() {
-  ["brut", "rose", "demisec"].forEach((sku) => {
+  ["coffret-decouverte", "brut", "rose", "demisec"].forEach((sku) => {
     const selected =
       document.querySelector(`input[name="fmt-${sku}"]:checked`)?.value ||
       "750";
@@ -414,15 +558,20 @@ function updateCardPrices() {
     const qty = currentQty(sku);
     const card = document.querySelector(`[data-sku="${sku}"]`);
     const priceEl = card?.querySelector(".price");
+    const formatEl = card?.querySelector("[data-format-current]");
     const equivalentEl = card?.querySelector("[data-price-equivalent]");
     const estimateEl = card?.querySelector("[data-total-estimate]");
     if (priceEl) priceEl.textContent = formatEuro(price);
+    if (formatEl) formatEl.textContent = selectedFormatLabel(selected);
     if (equivalentEl) {
-      equivalentEl.textContent = `Soit ${formatEuro(equivalent75clPrice(sku, selected))} / 75 cl équivalent`;
+      equivalentEl.textContent =
+        selected === "coffret3"
+          ? "Prix TTC · 3 bouteilles de 75 cl · livraison offerte"
+          : `Prix TTC · soit ${formatEuro(equivalent75clPrice(sku, selected))} / 75 cl équivalent`;
     }
     if (estimateEl) {
       const estimate = estimateSelectionTotal(sku, selected, qty);
-      estimateEl.textContent = `Repère France métropolitaine, livraison incluse : ${formatEuro(estimate.total)}`;
+      estimateEl.textContent = `Total TTC, livraison comprise : ${formatEuro(estimate.total)}`;
     }
     updateAddButtonLabel(sku, selected, qty, price);
   });
@@ -431,7 +580,10 @@ function updateCardPrices() {
 
 function bindProductControls() {
   document.addEventListener("change", (e) => {
-    if (e.target?.name?.startsWith("fmt-")) updateCardPrices();
+    if (!e.target?.name?.startsWith("fmt-")) return;
+    const sku = e.target.name.replace("fmt-", "");
+    updateCardPrices();
+    pulseProductSelection(sku);
   });
   updateCardPrices();
 
@@ -440,8 +592,9 @@ function bindProductControls() {
       const sku = btn.getAttribute("data-qty-plus");
       const input = document.querySelector(`[data-qty-input="${sku}"]`);
       if (!input) return;
-      input.value = String(parseInt(input.value || "1", 10) + 1);
+      setQuantityInput(input, normalizeQuantity(input.value) + 1);
       updateCardPrices();
+      pulseProductSelection(sku);
     });
   });
 
@@ -450,14 +603,23 @@ function bindProductControls() {
       const sku = btn.getAttribute("data-qty-minus");
       const input = document.querySelector(`[data-qty-input="${sku}"]`);
       if (!input) return;
-      input.value = String(Math.max(1, parseInt(input.value || "1", 10) - 1));
+      setQuantityInput(input, normalizeQuantity(input.value) - 1);
       updateCardPrices();
+      pulseProductSelection(sku);
     });
   });
 
   $$("[data-qty-input]").forEach((input) => {
+    input.setAttribute("min", "1");
+    input.setAttribute("max", String(MAX_ITEM_QTY));
+    input.setAttribute("inputmode", "numeric");
     input.addEventListener("input", updateCardPrices);
-    input.addEventListener("change", updateCardPrices);
+    input.addEventListener("change", () => {
+      setQuantityInput(input, input.value);
+      updateCardPrices();
+      const sku = input.getAttribute("data-qty-input");
+      if (sku) pulseProductSelection(sku);
+    });
   });
 
   $$("[data-add]").forEach((btn) => {
@@ -465,21 +627,28 @@ function bindProductControls() {
       const sku = btn.getAttribute("data-add");
       if (!sku) return;
       const qty = currentQty(sku);
-      addToCart(sku, currentFormat(sku), qty);
-      renderCart();
+      const format = currentFormat(sku);
+      addToCart(sku, format, qty);
+      window.ccpTrack?.("cart_item_added", {
+        sku,
+        format,
+        quantity: qty,
+        page: location.pathname,
+      });
       flashAddFeedback(btn, sku, qty);
     });
   });
 }
 
 function bindCartControls() {
-  const buttons = new Set([
-    ...$$("[data-cart-open]"),
-    ...$$("[id='cartOpen']"),
-    ...$$("[id='floatingCartOpen']"),
-  ]);
-
-  buttons.forEach((button) => button.addEventListener("click", openDrawer));
+  document.addEventListener("click", (event) => {
+    const trigger = event.target?.closest?.(
+      "[data-cart-open], #cartOpen, #floatingCartOpen",
+    );
+    if (!trigger || !$("#cartDrawer")) return;
+    event.preventDefault();
+    openDrawer(trigger);
+  });
 
   $$("[data-cart-close]").forEach((el) =>
     el.addEventListener("click", closeDrawer),
@@ -487,17 +656,23 @@ function bindCartControls() {
 
   $("#cartClear")?.addEventListener("click", () => {
     clearCart();
-    renderCart();
+    announceCart("Panier vidé.");
+    pulseDrawerChange();
   });
 
   $("#cartCheckout")?.addEventListener("click", async () => {
     const btn = $("#cartCheckout");
     if (!btn) return;
+    const items = loadCart();
 
     const originalLabel = btn.textContent;
     btn.disabled = true;
     btn.setAttribute("aria-busy", "true");
-    btn.textContent = "Ouverture du paiement sécurisé…";
+    btn.textContent = "Préparation du paiement…";
+    window.ccpTrack?.("checkout_started", {
+      items: cartCount(items),
+      page: location.pathname,
+    });
 
     try {
       await startCheckout();
@@ -509,7 +684,27 @@ function bindCartControls() {
   });
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeDrawer();
+    const drawer = $("#cartDrawer");
+    if (!drawer?.classList.contains("open")) return;
+
+    if (e.key === "Escape") {
+      closeDrawer();
+      return;
+    }
+
+    if (e.key !== "Tab") return;
+    const focusable = drawerFocusableElements(drawer);
+    if (!focusable.length) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
   });
 
   const cartItems = $("#cartItems");
@@ -537,8 +732,11 @@ function bindCartControls() {
       const idx = parseInt(minus, 10);
       const items = loadCart();
       const cur = items[idx]?.qty || 1;
-      setQty(idx, Math.max(1, cur - 1));
-      renderCart();
+      const title = getItemMeta(items[idx]).product?.name || "Cuvée";
+      const next = Math.max(1, cur - 1);
+      setQty(idx, next);
+      announceCart(`${title} : quantité ${next}.`);
+      pulseDrawerChange();
       return;
     }
 
@@ -546,15 +744,21 @@ function bindCartControls() {
       const idx = parseInt(plus, 10);
       const items = loadCart();
       const cur = items[idx]?.qty || 1;
-      setQty(idx, cur + 1);
-      renderCart();
+      const title = getItemMeta(items[idx]).product?.name || "Cuvée";
+      const next = normalizeQuantity(cur + 1);
+      setQty(idx, next);
+      announceCart(`${title} : quantité ${next}.`);
+      pulseDrawerChange();
       return;
     }
 
     if (rem != null) {
       const idx = parseInt(rem, 10);
+      const items = loadCart();
+      const title = getItemMeta(items[idx]).product?.name || "Cuvée";
       removeItem(idx);
-      renderCart();
+      announceCart(`${title} retiré du panier.`);
+      pulseDrawerChange();
     }
   });
 
@@ -564,16 +768,22 @@ function bindCartControls() {
     if (idxStr == null) return;
 
     const idx = parseInt(idxStr, 10);
-    const qty = Math.max(1, parseInt(t.value || "1", 10));
+    const qty = normalizeQuantity(t.value || "1");
+    const items = loadCart();
+    const title = getItemMeta(items[idx]).product?.name || "Cuvée";
     setQty(idx, qty);
-    renderCart();
+    announceCart(`${title} : quantité ${qty}.`);
+    pulseDrawerChange();
   });
 }
 
 function init() {
+  replaceCloseIcons();
+  ensureCartLiveStatus();
   bindProductControls();
   bindCartControls();
   window.addEventListener("cart:updated", renderCart);
+  window.addEventListener("site:navigation-ready", renderCart);
   window.addEventListener("cart:offer-added", (event) => {
     const offerId = event?.detail?.offerId;
     const offer = CURATED_OFFERS?.[offerId];
@@ -599,7 +809,7 @@ function init() {
     openDrawer();
     setCheckoutIssue(
       event?.detail?.message ||
-        "Le paiement sécurisé ne peut pas être ouvert pour le moment.",
+        "La page de paiement ne répond pas pour l’instant. Votre panier reste conservé.",
     );
   });
 }

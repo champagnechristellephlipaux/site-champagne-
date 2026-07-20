@@ -6,14 +6,17 @@
     "dev": "netlify dev",
     "dev:static": "serve -l 8000 .",
     "lint": "npm run lint:js && npm run lint:html",
-    "lint:js": "eslint \"*.js\" \"netlify/functions/**/*.js\"",
+    "lint:js": "eslint \"*.js\" \"assets/js/**/*.js\" \"netlify/functions/**/*.js\"",
     "lint:html": "htmlhint --config .htmlhintrc \"*.html\"",
-    "format": "prettier --write \"*.{css,html,js,json,md}\" \"data/**/*.json\" \"netlify/functions/**/*.js\"",
-    "format:check": "prettier --check \"*.{css,html,js,json,md}\" \"data/**/*.json\" \"netlify/functions/**/*.js\"",
-    "check": "npm run lint && npm run format:check",
+    "test:commerce": "node --no-warnings scripts/validate-commerce.mjs",
+    "test:site": "node scripts/validate-site.mjs",
+    "format": "prettier --write \"*.{css,html,js,json,md}\" \"assets/js/**/*.js\" \"data/**/*.json\" \"netlify/functions/**/*.js\"",
+    "format:check": "prettier --check \"*.{css,html,js,json,md}\" \"assets/js/**/*.js\" \"data/**/*.json\" \"netlify/functions/**/*.js\"",
+    "check": "npm run lint && npm run format:check && npm run test:commerce && npm run test:site",
     "build": "npm run check"
   },
   "dependencies": {
+    "@netlify/blobs": "8.1.0",
     "stripe": "^16.0.0"
   },
   "devDependencies": {

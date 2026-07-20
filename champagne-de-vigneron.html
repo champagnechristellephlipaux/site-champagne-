@@ -4,19 +4,21 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
-    <meta content="#17120e" name="theme-color" />
+    <meta content="#f3eee6" name="theme-color" />
     <meta content="telephone=no" name="format-detection" />
     <meta content="Champagne Christelle Phlipaux" name="author" />
-    <link href="/assets/logo-trans.png" rel="icon" type="image/png" />
-    <title>
-      Champagne Christelle Phlipaux | Champagne de vigneron et vente directe
-    </title>
+    <link href="/favicon.ico" rel="icon" sizes="any" />
+    <link href="/favicon-48x48.png" rel="icon" sizes="48x48" type="image/png" />
+    <link href="/favicon-96x96.png" rel="icon" sizes="96x96" type="image/png" />
+    <link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
+    <link href="/site.webmanifest" rel="manifest" />
+    <title>Champagne de viticultrice | Vigne, cave, vente directe</title>
     <meta
-      content="Comprendre ce qu’est un champagne de vigneron chez Champagne Christelle Phlipaux : vigne, cave, élaboration, vente directe et style de maison à Channes, en Côte des Bar."
+      content="Ce que signifie une maison suivie à la propriété : vigne, cave, assemblage, conseil direct et cuvées expédiées depuis Channes."
       name="description"
     />
     <link
-      href="https://champagnechristellephlipaux.netlify.app/champagne-de-vigneron.html"
+      href="https://www.champagne-christelle-phlipaux.com/champagne-de-vigneron.html"
       rel="canonical"
     />
     <meta content="index,follow" name="robots" />
@@ -32,11 +34,11 @@
       property="og:description"
     />
     <meta
-      content="https://champagnechristellephlipaux.netlify.app/assets/hero-vignoble.jpg"
+      content="https://www.champagne-christelle-phlipaux.com/assets/hero-vignoble.jpg"
       property="og:image"
     />
     <meta
-      content="https://champagnechristellephlipaux.netlify.app/champagne-de-vigneron.html"
+      content="https://www.champagne-christelle-phlipaux.com/champagne-de-vigneron.html"
       property="og:url"
     />
     <meta
@@ -53,21 +55,43 @@
       name="twitter:description"
     />
     <meta
-      content="https://champagnechristellephlipaux.netlify.app/assets/hero-vignoble.jpg"
+      content="https://www.champagne-christelle-phlipaux.com/assets/hero-vignoble.jpg"
       name="twitter:image"
     />
     <meta
       content="Vignoble de la maison Champagne Christelle Phlipaux en Côte des Bar"
       name="twitter:image:alt"
     />
-    <link href="style.css" rel="stylesheet" />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/cormorant-garamond-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/manrope-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link href="style.css?v=20260712a" rel="stylesheet" />
+    <link
+      href="assets/css/editorial-redesign.css?v=20260701d"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/css/immersive-experience.css?v=20260715a"
+      rel="stylesheet"
+    />
     <script type="application/ld+json">
       [
         {
           "@context": "https://schema.org",
           "@type": "Winery",
           "name": "Champagne Christelle Phlipaux",
-          "url": "https://champagnechristellephlipaux.netlify.app/",
+          "url": "https://www.champagne-christelle-phlipaux.com/",
           "telephone": "+33 6 82 20 34 30",
           "email": "champagne.christelle.phlipaux@gmail.com",
           "address": {
@@ -86,12 +110,12 @@
           "@context": "https://schema.org",
           "@type": "WebPage",
           "name": "Champagne de vigneron | Champagne Christelle Phlipaux — Vigneron indépendant",
-          "url": "https://champagnechristellephlipaux.netlify.app/champagne-de-vigneron.html",
+          "url": "https://www.champagne-christelle-phlipaux.com/champagne-de-vigneron.html",
           "inLanguage": "fr-FR",
           "isPartOf": {
             "@type": "WebSite",
             "name": "Champagne Christelle Phlipaux",
-            "url": "https://champagnechristellephlipaux.netlify.app/"
+            "url": "https://www.champagne-christelle-phlipaux.com/"
           }
         },
         {
@@ -102,13 +126,13 @@
               "@type": "ListItem",
               "position": 1,
               "name": "Accueil",
-              "item": "https://champagnechristellephlipaux.netlify.app/"
+              "item": "https://www.champagne-christelle-phlipaux.com/"
             },
             {
               "@type": "ListItem",
               "position": 2,
               "name": "Champagne de vigneron",
-              "item": "https://champagnechristellephlipaux.netlify.app/champagne-de-vigneron.html"
+              "item": "https://www.champagne-christelle-phlipaux.com/champagne-de-vigneron.html"
             }
           ]
         },
@@ -134,7 +158,7 @@
             },
             {
               "@type": "Question",
-              "name": "Où acheter vos cuvées ?",
+              "name": "Où commander vos cuvées ?",
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": "En ligne via la boutique, ou chez nos dépositaires (page dédiée)."
@@ -144,13 +168,13 @@
         }
       ]
     </script>
-    <script defer="" src="consent.js"></script>
-    <script defer src="ui.js"></script>
+    <script defer="" src="consent.js?v=20260712a"></script>
+    <script defer src="ui.js?v=20260713a"></script>
   </head>
   <body>
     <header>
       <div class="container nav">
-        <a class="brand" href="index.html">
+        <a class="brand" href="/">
           <picture
             ><source srcset="assets/logo-trans.webp" type="image/webp" />
             <img
@@ -171,161 +195,162 @@
           </div>
         </a>
         <nav class="menu">
-          <a href="cuvees.html">Nos Cuvées</a>
-          <a href="maison.html">La maison</a>
+          <a href="cuvees.html">Cuvées</a>
+          <a href="maison.html">Maison</a>
+          <a href="depositaires.html">Dépositaires</a>
           <a href="cadeaux.html">Offrir</a>
-          <a href="index.html#contact">Contact</a>
+          <a href="/#contact">Contact</a>
           <a class="btn primary" href="boutique.html">Boutique</a>
         </nav>
       </div>
     </header>
-    <section class="page-hero">
-      <picture
-        ><source srcset="assets/hero-vignoble.webp" type="image/webp" />
-        <img
-          alt="Vignoble et cave en Champagne"
-          class="page-hero-media"
-          decoding="async"
-          loading="eager"
-          src="assets/hero-vignoble.jpg"
-      /></picture>
-      <div class="page-hero-overlay"></div>
-      <div class="container page-hero-inner">
-        <div class="page-hero-copy">
-          <div class="kicker">Champagne Christelle Phlipaux</div>
-          <h1 class="h1 page-hero-title">Champagne de vigneron</h1>
-          <p class="page-hero-sub">
-            Un champagne suivi de la vigne à la cave, puis proposé en direct
-            depuis la propriété.
-          </p>
-          <div class="hero-proof-row">
-            <div class="hero-proof">
-              <strong>Un lieu</strong
-              ><span
-                >Channes reste le point commun entre la vigne, la cave et la
-                vente directe.</span
-              >
-            </div>
-            <div class="hero-proof">
-              <strong>Une cave</strong
-              ><span
-                >L’élaboration et le temps de cave servent une ligne de maison
-                lisible.</span
-              >
-            </div>
-            <div class="hero-proof">
-              <strong>Trois cuvées</strong
-              ><span
-                >Une gamme courte pour que le style se lise sans se
-                disperser.</span
-              >
+    <main id="contenu">
+      <section class="page-hero">
+        <picture
+          ><source srcset="assets/hero-vignoble.webp" type="image/webp" />
+          <img
+            alt="Vignes de Champagne dans la Côte des Bar"
+            class="page-hero-media"
+            decoding="async"
+            fetchpriority="high"
+            height="1132"
+            loading="eager"
+            src="assets/hero-vignoble.jpg"
+            width="2048"
+        /></picture>
+        <div class="page-hero-overlay"></div>
+        <div class="container page-hero-inner">
+          <div class="page-hero-copy">
+            <div class="kicker">Champagne Christelle Phlipaux</div>
+            <h1 class="h1 page-hero-title">
+              Champagne de viticultrice, en direct de Channes
+            </h1>
+            <p class="page-hero-sub">
+              Un champagne suivi de la vigne à la cave, puis proposé en direct
+              depuis la propriété.
+            </p>
+            <div class="hero-proof-row">
+              <div class="hero-proof">
+                <strong>Un lieu</strong
+                ><span
+                  >Channes reste le point commun entre la vigne, la cave et la
+                  vente directe.</span
+                >
+              </div>
+              <div class="hero-proof">
+                <strong>Une cave</strong
+                ><span
+                  >Les cuvées sont élaborées et conservées à la propriété avant
+                  leur commercialisation.</span
+                >
+              </div>
+              <div class="hero-proof">
+                <strong>Trois cuvées</strong
+                ><span
+                  >Brut Tradition, Brut Rosé et Demi-Sec pour trois usages
+                  distincts.</span
+                >
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container">
-        <div
-          class="brand-proof-grid brand-proof-grid--shop reveal"
-          style="margin-bottom: 22px"
-        >
-          <a class="commerce-point" href="maison.html">
-            <span class="commerce-point-label">La maison</span>
-            <strong
-              >Le mot vigneron reste crédible parce qu’il renvoie à une adresse
-              et à une propriété réelle.</strong
-            >
-          </a>
-          <a class="commerce-point" href="cuvees.html">
-            <span class="commerce-point-label">Le style</span>
-            <strong
-              >Trois cuvées suffisent ici à lire la maison, sans brouiller la
-              gamme.</strong
-            >
-          </a>
-          <a class="commerce-point" href="boutique.html">
-            <span class="commerce-point-label">La vente directe</span>
-            <strong
-              >Comprendre l’approche de vigneron doit aider à acheter une cuvée
-              moins anonyme.</strong
-            >
-          </a>
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="brand-proof-grid brand-proof-grid--shop reveal u-mb-6">
+            <a class="commerce-point" href="maison.html">
+              <span class="commerce-point-label">La maison</span>
+              <strong
+                >L’indépendance se vérifie à l’adresse : Channes, la vigne, la
+                cave.</strong
+              >
+            </a>
+            <a class="commerce-point" href="cuvees.html">
+              <span class="commerce-point-label">Le style</span>
+              <strong
+                >Trois cuvées suffisent ici à lire la maison, sans brouiller la
+                gamme.</strong
+              >
+            </a>
+            <a class="commerce-point" href="boutique.html">
+              <span class="commerce-point-label">La vente directe</span>
+              <strong
+                >Relier la cuvée à la maison évite de choisir une bouteille
+                anonyme.</strong
+              >
+            </a>
+          </div>
+          <h2 class="h2">Une maison suivie de la vigne à la cave</h2>
+          <p class="p">
+            Un champagne de vigneron n’est pas une formule marketing. Cela veut
+            dire qu’un même lieu relie la vigne, la cave, l’élaboration et le
+            conseil donné au moment de choisir.
+          </p>
+          <p class="p">
+            À Channes, la même maison suit les vignes, les bouteilles en cave et
+            les commandes. Cette proximité permet aussi de conseiller une cuvée
+            selon le repas ou le format recherché.
+          </p>
+          <ul class="more-list">
+            <li>Raisins issus du vignoble de la maison à Channes.</li>
+            <li>
+              Élaboration suivie à la propriété, de la vendange au temps de
+              cave.
+            </li>
+            <li>Trois cuvées seulement, chacune avec un usage clair.</li>
+          </ul>
+          <div class="hero-cta u-mt-4">
+            <a class="btn" href="maison.html">Découvrir la maison de Channes</a
+            ><a class="btn" href="cuvees.html">Lire les cuvées de la maison</a>
+            <a class="btn" href="terroir.html">Lire le terroir de Channes</a>
+          </div>
         </div>
-        <h2 class="h2">
-          Ici, le mot vigneron renvoie à un lieu, un vignoble et des choix
-          d’élaboration
-        </h2>
-        <p class="p">
-          Un champagne de vigneron n’est pas un simple positionnement. Cela veut
-          dire qu’un même lieu relie la vigne, la cave, l’élaboration et la
-          parole donnée au moment de vendre le vin.
-        </p>
-        <p class="p">
-          À Channes, la maison cherche à garder ce lien visible jusqu’au verre:
-          origine claire, style cohérent et cuvées faciles à situer selon
-          l’occasion ou le format choisi.
-        </p>
-        <ul class="more-list">
-          <li>Raisins issus du vignoble de la maison à Channes.</li>
-          <li>
-            Élaboration suivie à la propriété, de la vendange au temps de cave.
-          </li>
-          <li>
-            Trois cuvées seulement, pour garder un style de maison lisible.
-          </li>
-        </ul>
-        <div class="hero-cta" style="margin-top: 14px">
-          <a class="btn" href="maison.html">Découvrir la maison de Channes</a
-          ><a class="btn" href="cuvees.html">Voir ce que cela donne en cuvée</a>
+      </section>
+      <section class="section">
+        <div class="container">
+          <h2 class="h2">Ce que cela change au moment de choisir</h2>
+          <p class="p">
+            Choisir un champagne de vigneron, c’est pouvoir relier une bouteille
+            à un vignoble, à une cave et à une manière de travailler. Vous savez
+            où le vin est élaboré et à qui vous adresser avant une commande.
+          </p>
+          <p class="p">
+            En ligne, cela évite de choisir une bouteille anonyme : chaque cuvée
+            reste reliée à Channes, à un terroir de Côte des Bar et à un conseil
+            réel avant commande si besoin.
+          </p>
+          <div class="hero-cta u-mt-4">
+            <a class="btn" href="boutique.html">Choisir en boutique</a
+            ><a class="btn" href="cuvees.html">Comparer les cuvées</a>
+          </div>
         </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container">
-        <h2 class="h2">Pourquoi cela change réellement la lecture du vin</h2>
-        <p class="p">
-          Choisir un champagne de vigneron, c’est pouvoir relier une bouteille à
-          un vignoble, à une cave et à une manière de travailler. L’origine
-          devient plus lisible, le style plus cohérent et la parole de la maison
-          plus engageante.
-        </p>
-        <p class="p">
-          Cela change aussi l’achat en ligne: on ne choisit pas un produit
-          anonyme, mais une cuvée de maison, reliée à Channes, à un terroir de
-          Côte des Bar et à un conseil réel avant commande si besoin.
-        </p>
-        <div class="hero-cta" style="margin-top: 14px">
-          <a class="btn" href="boutique.html">Commander en direct</a
-          ><a class="btn" href="cuvees.html">Comparer les cuvées</a>
+      </section>
+      <section class="section section--flush-top">
+        <div class="container">
+          <h2 class="h2">Questions utiles sur la vente directe</h2>
+          <ul class="faq">
+            <li>
+              <b>Êtes-vous une maison indépendante ?</b><br />Oui. Champagne
+              Christelle Phlipaux est une maison indépendante, ancrée à Channes,
+              en Côte des Bar.
+            </li>
+            <li>
+              <b>Que veut dire “récoltant-manipulant” ?</b><br />C’est un statut
+              courant en Champagne : le vigneron récolte ses raisins et élabore
+              ses champagnes.
+            </li>
+            <li>
+              <b>Où commander vos cuvées ?</b><br />En ligne via la boutique, ou
+              chez nos dépositaires (page dédiée).
+            </li>
+          </ul>
         </div>
-      </div>
-    </section>
-    <section class="section" style="padding-top: 0">
-      <div class="container">
-        <h2 class="h2">FAQ</h2>
-        <ul class="faq">
-          <li>
-            <b>Êtes-vous une maison indépendante ?</b><br />Oui. Champagne
-            Christelle Phlipaux est une maison indépendante, ancrée à Channes,
-            en Côte des Bar.
-          </li>
-          <li>
-            <b>Que veut dire “récoltant-manipulant” ?</b><br />C’est un statut
-            courant en Champagne : le vigneron récolte ses raisins et élabore
-            ses champagnes.
-          </li>
-          <li>
-            <b>Où acheter vos cuvées ?</b><br />En ligne via la boutique, ou
-            chez nos dépositaires (page dédiée).
-          </li>
-        </ul>
-      </div>
-    </section>
+      </section>
+    </main>
     <footer>
       <div class="container footer-grid">
         <div>
-          <a class="brand brand--compact" href="index.html">
+          <a class="brand brand--compact" href="/">
             <picture
               ><source srcset="assets/logo-trans.webp" type="image/webp" />
               <img
@@ -365,7 +390,7 @@
           </div>
           <div><a href="avis-clients.html">Avis &amp; retours</a></div>
           <div><a href="depositaires.html">Dépositaires</a></div>
-          <div><a href="index.html#contact">Contact</a></div>
+          <div><a href="/#contact">Contact</a></div>
           <div>
             <a href="mailto:champagne.christelle.phlipaux@gmail.com"
               >champagne.christelle.phlipaux@gmail.com</a
@@ -379,6 +404,7 @@
         <div class="small footer-links">
           <a href="mentions-legales.html">Mentions légales</a> •
           <a href="cgv.html">CGV</a> •
+          <a href="retractation.html">Rétractation</a> •
           <a href="politique-confidentialite.html">Confidentialité</a>
         </div>
         <div class="small footer-alcool">

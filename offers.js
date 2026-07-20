@@ -1,5 +1,5 @@
-import { CURATED_OFFERS, PRICE_EUR } from "./shop-config.js";
-import { addToCart, formatEuro } from "./cart.js";
+import { CURATED_OFFERS, PRICE_EUR } from "./shop-config.js?v=20260630b";
+import { addToCart, formatEuro } from "./cart.js?v=20260630b";
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
@@ -19,6 +19,7 @@ function offerTotal(offer) {
 function offerBottleCount(offer) {
   if (!offer?.items) return 0;
   return offer.items.reduce((sum, item) => {
+    if (item.format === "coffret3") return sum + 3 * (item.qty || 0);
     if (item.format === "carton6") return sum + 6 * (item.qty || 0);
     return sum + (item.qty || 0);
   }, 0);
@@ -37,6 +38,11 @@ function offerCountLabel(offer) {
 
     if (item.format === "carton6") {
       return `${qty} ${qty > 1 ? "cartons" : "carton"}`;
+    }
+
+    if (item.format === "coffret3") {
+      const bottles = 3 * qty;
+      return `${bottles} ${bottles > 1 ? "bouteilles" : "bouteille"}`;
     }
 
     return `${qty} ${qty > 1 ? "bouteilles" : "bouteille"}`;

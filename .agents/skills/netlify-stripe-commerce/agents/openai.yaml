@@ -1,0 +1,4 @@
+interface:
+  display_name: "Netlify Stripe Commerce"
+  short_description: "Netlify Functions and Stripe checkout guardrails"
+  default_prompt: "Use $netlify-stripe-commerce to change checkout, orders, or Netlify functions safely."

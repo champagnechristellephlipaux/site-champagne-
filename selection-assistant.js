@@ -16,7 +16,7 @@
       shopHref: "boutique.html#rose",
       fallbackOffer: "rose-a-offrir",
       baseReason:
-        "La cuvée la plus lumineuse pour un cadeau, une célébration ou une ambiance plus festive.",
+        "La cuvée la plus lumineuse pour offrir, célébrer ou apporter une note fruitée à table.",
     },
     demisec: {
       name: "Demi-Sec",
@@ -25,7 +25,7 @@
       shopHref: "boutique.html#demisec",
       fallbackOffer: "douceur-gourmande",
       baseReason:
-        "Le meilleur choix pour le dessert, le foie gras et les accords plus gourmands.",
+        "La cuvée la plus juste pour le dessert, le foie gras et les accords plus gourmands.",
     },
   };
 
@@ -56,20 +56,21 @@
     const config = RECOMMENDATIONS[winner];
 
     let offerId = config.fallbackOffer;
-    let offerLabel = "Découvrir cette sélection";
+    let offerLabel = "Choisir cette sélection";
 
     if (state.format === "selection" && state.occasion === "reception") {
       offerId = "table-de-fete";
     } else if (state.format === "selection") {
       offerId = "trio-decouverte";
+      offerLabel = "Choisir le coffret";
     } else if (state.format === "magnum" && winner === "brut") {
       offerId = "magnum-reception";
     } else if (winner === "rose") {
       offerId = "rose-a-offrir";
-      offerLabel = "Découvrir cette cuvée";
+      offerLabel = "Choisir cette cuvée";
     } else if (winner === "demisec") {
       offerId = "douceur-gourmande";
-      offerLabel = "Découvrir cette cuvée";
+      offerLabel = "Choisir cette cuvée";
     }
 
     const reasons = [];
@@ -78,12 +79,10 @@
         "Vous cherchez un champagne qui ouvre le repas avec assurance.",
       );
     if (state.occasion === "cadeau")
-      reasons.push(
-        "Vous avez besoin d’un choix qui se remarque et se retient facilement.",
-      );
+      reasons.push("Vous cherchez une attention délicate, facile à situer.");
     if (state.occasion === "dessert")
       reasons.push(
-        "Vous voulez une cuvée qui fonctionne au bon moment gourmand.",
+        "Vous voulez une cuvée qui trouve sa place au moment gourmand.",
       );
     if (state.occasion === "reception")
       reasons.push(
@@ -91,9 +90,7 @@
       );
 
     if (state.style === "frais")
-      reasons.push(
-        "Vous aimez les profils nets, tendus et immédiatement élégants.",
-      );
+      reasons.push("Vous aimez les profils nets, droits et précis.");
     if (state.style === "lumineux")
       reasons.push(
         "Vous cherchez plus de fruit, d’éclat et d’énergie dans le verre.",
@@ -104,9 +101,7 @@
     if (state.format === "magnum")
       reasons.push("Le format réception compte dans votre décision.");
     if (state.format === "selection")
-      reasons.push(
-        "Vous voulez raccourcir le choix avec une sélection déjà pensée.",
-      );
+      reasons.push("Vous préférez une sélection déjà construite.");
 
     return {
       ...config,
@@ -123,9 +118,9 @@
     if (!recommendation) {
       target.innerHTML = `
         <div class="choice-result-card is-placeholder">
-          <div class="badge">Suggestion de la maison</div>
-          <strong>Choisissez un moment, un style et un format pour faire apparaître la cuvée qui vous conviendra le mieux.</strong>
-          <p>La recommandation s’affichera ici, avec un accès direct à la fiche ou à la sélection correspondante.</p>
+          <div class="badge">Conseil de maison</div>
+          <strong>Indiquez le moment, le style et le format : la cuvée conseillée apparaîtra ici.</strong>
+          <p>Vous pourrez ensuite lire la fiche ou choisir la sélection correspondante.</p>
         </div>
       `;
       return;
@@ -138,16 +133,16 @@
             <div class="badge">${recommendation.badge}</div>
             <div class="h3">${recommendation.name}</div>
           </div>
-          <div class="choice-result-mark">Suggestion de la maison</div>
+          <div class="choice-result-mark">Conseil de maison</div>
         </div>
         <p class="choice-result-copy">${recommendation.baseReason}</p>
         <div class="choice-reason-list">
           ${recommendation.reasons.map((reason) => `<span>${reason}</span>`).join("")}
         </div>
         <div class="offer-actions" style="margin-top:10px;">
-          <a class="btn primary" href="${recommendation.href}">Voir la fiche complète</a>
+          <a class="btn primary" href="${recommendation.href}">Lire la fiche</a>
           <button class="btn" data-offer-add="${recommendation.offerId}" type="button">${recommendation.offerLabel}</button>
-          <a class="btn" href="${recommendation.shopHref}">Commander directement</a>
+          <a class="btn" href="${recommendation.shopHref}">Choisir en boutique</a>
         </div>
       </div>
     `;

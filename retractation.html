@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <meta content="#f3eee6" name="theme-color" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="Champagne Christelle Phlipaux" name="author" />
+    <link href="/favicon.ico" rel="icon" sizes="any" />
+    <link href="/favicon-48x48.png" rel="icon" sizes="48x48" type="image/png" />
+    <link href="/favicon-96x96.png" rel="icon" sizes="96x96" type="image/png" />
+    <link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
+    <link href="/site.webmanifest" rel="manifest" />
+    <title>Rétractation en ligne | Champagne Christelle Phlipaux</title>
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/cormorant-garamond-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/manrope-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link href="style.css?v=20260712a" rel="stylesheet" />
+    <link
+      href="assets/css/editorial-redesign.css?v=20260701d"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/css/immersive-experience.css?v=20260715a"
+      rel="stylesheet"
+    />
+    <meta
+      content="Formulaire de rétractation en ligne pour une commande Champagne Christelle Phlipaux, avec rappel des informations utiles."
+      name="description"
+    />
+    <link
+      href="https://www.champagne-christelle-phlipaux.com/retractation.html"
+      rel="canonical"
+    />
+    <meta content="noindex,follow" name="robots" />
+    <script defer="" src="consent.js?v=20260712a"></script>
+    <script defer src="ui.js?v=20260713a"></script>
+  </head>
+  <body class="page-legal">
+    <noscript>
+      <div class="notice">
+        Le site reste consultable sans JavaScript. Certaines aides d'interface
+        peuvent toutefois être limitées.
+      </div>
+    </noscript>
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+    <header>
+      <div class="container nav">
+        <a class="brand" href="/">
+          <picture
+            ><source srcset="assets/logo-trans.webp" type="image/webp" />
+            <img
+              alt="Logo Champagne Christelle Phlipaux"
+              class="brand-logo"
+              decoding="async"
+              height="204"
+              loading="lazy"
+              src="assets/logo-trans.png"
+              width="242"
+          /></picture>
+          <div class="brand-text">
+            <div class="brand-title">
+              <span class="brand-champagne">Champagne</span>
+              <span class="brand-name">Christelle Phlipaux</span>
+            </div>
+            <div class="brand-sub">Rétractation</div>
+          </div>
+        </a>
+        <nav aria-label="Navigation principale" class="menu">
+          <a href="/">Accueil</a>
+          <a href="boutique.html">Boutique</a>
+          <a href="livraison-paiement.html">Livraison</a>
+          <a href="cgv.html">CGV</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="contenu">
+      <section class="section">
+        <div class="container">
+          <article class="prose legal-prose reveal">
+            <p class="eyebrow">Droit de rétractation</p>
+            <h1 class="h1">Renoncer au contrat ici</h1>
+            <p class="lead">
+              Ce formulaire permet de notifier votre décision de rétractation
+              pour une commande passée en ligne, dans les conditions prévues par
+              les Conditions générales de vente.
+            </p>
+
+            <div class="notice">
+              <p>
+                La demande doit être envoyée dans les 14 jours suivant la
+                réception de la commande. Les bouteilles concernées doivent être
+                retournées intactes, protégées et dans un état permettant leur
+                remise en vente.
+              </p>
+            </div>
+
+            <form
+              class="card pad contact-form reveal"
+              name="retractation"
+              method="POST"
+              action="/merci-retractation.html"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+            >
+              <input type="hidden" name="form-name" value="retractation" />
+              <p class="form-honeypot">
+                <label
+                  >Ne pas remplir ce champ <input name="bot-field" type="text"
+                /></label>
+              </p>
+
+              <div class="form-grid">
+                <label class="field">
+                  <span class="field-label">Nom et prénom *</span>
+                  <input
+                    autocomplete="name"
+                    class="field-input"
+                    name="nom"
+                    required=""
+                    type="text"
+                  />
+                </label>
+                <label class="field">
+                  <span class="field-label">Email *</span>
+                  <input
+                    autocomplete="email"
+                    class="field-input"
+                    name="email"
+                    required=""
+                    type="email"
+                  />
+                </label>
+                <label class="field">
+                  <span class="field-label">Téléphone</span>
+                  <input
+                    autocomplete="tel"
+                    class="field-input"
+                    name="telephone"
+                    type="tel"
+                  />
+                </label>
+                <label class="field">
+                  <span class="field-label">Référence de commande</span>
+                  <input
+                    class="field-input"
+                    name="reference_commande"
+                    type="text"
+                  />
+                </label>
+                <label class="field">
+                  <span class="field-label">Date de commande</span>
+                  <input class="field-input" name="date_commande" type="date" />
+                </label>
+                <label class="field">
+                  <span class="field-label">Date de réception</span>
+                  <input
+                    class="field-input"
+                    name="date_reception"
+                    type="date"
+                  />
+                </label>
+              </div>
+
+              <label class="field">
+                <span class="field-label">Produit(s) concerné(s) *</span>
+                <textarea
+                  class="field-textarea"
+                  name="produits"
+                  required=""
+                  rows="4"
+                ></textarea>
+              </label>
+
+              <label class="field">
+                <span class="field-label">Message complémentaire</span>
+                <textarea
+                  class="field-textarea"
+                  name="message"
+                  placeholder="Vous pouvez préciser le nombre de bouteilles concernées ou toute information utile."
+                  rows="5"
+                ></textarea>
+              </label>
+
+              <label class="checkout-terms">
+                <input type="checkbox" name="consentement" required />
+                <span>
+                  J'accepte que ces informations soient utilisées pour traiter
+                  ma demande de rétractation. *
+                </span>
+              </label>
+
+              <button class="btn primary" type="submit">
+                Envoyer la rétractation
+              </button>
+            </form>
+
+            <section class="u-mt-6">
+              <h2 class="h2">Après l'envoi</h2>
+              <p class="p">
+                La maison confirme la bonne réception de la demande par email et
+                indique les modalités pratiques de retour. Sauf indication
+                contraire, les frais directs de retour restent à la charge du
+                client.
+              </p>
+              <p class="p">
+                Pour toute question avant l'envoi du formulaire, vous pouvez
+                écrire à
+                <a href="mailto:champagne.christelle.phlipaux@gmail.com">
+                  champagne.christelle.phlipaux@gmail.com </a
+                >.
+              </p>
+              <p class="p">
+                Le détail complet figure dans les
+                <a href="cgv.html">Conditions générales de vente</a>.
+              </p>
+            </section>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-meta">
+        <div class="small footer-links">
+          <a href="mentions-legales.html">Mentions légales</a> •
+          <a href="cgv.html">CGV</a> •
+          <a href="retractation.html">Rétractation</a> •
+          <a href="politique-confidentialite.html">Confidentialité</a>
+        </div>
+        <div class="small footer-alcool">
+          La vente d’alcool est interdite aux mineurs de moins de 18 ans. L’abus
+          d’alcool est dangereux pour la santé, à consommer avec modération.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

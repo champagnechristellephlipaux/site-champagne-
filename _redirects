@@ -1,1 +1,82 @@
-/  /index.html  200
+# Anciennes URLs WordPress conservées pour protéger le référencement.
+/portfolio/brut-tradition/ /brut-tradition.html 301!
+/portfolio/brut-tradition-magnum/ /brut-tradition.html 301
+/portfolio/demi-bouteille-brut-tradition/ /brut-tradition.html 301
+/portfolio/brut-rose/ /brut-rose.html 301!
+/portfolio/demi-sec/ /demi-sec.html 301!
+/christelle-test/ /maison.html 301
+/infos/ /livraison-paiement.html 301
+/r-g-p-d-politique-de-confidentialite/ /politique-confidentialite.html 301
+/politique-de-cookies-ue/ /politique-confidentialite.html 301
+/testimonial-category/particulier/ /avis-clients.html 301
+/test/ / 301
+
+# Variantes de la page d'accueil redirigées vers l'URL canonique.
+/index / 301!
+/index/ / 301!
+/index.html / 301!
+
+# Versions sans extension redirigées vers les URLs canoniques du sitemap.
+/boutique /boutique.html 301!
+/boutique/ /boutique.html 301!
+/maison /maison.html 301!
+/maison/ /maison.html 301!
+/terroir /terroir.html 301!
+/terroir/ /terroir.html 301!
+/cuvees /cuvees.html 301!
+/cuvees/ /cuvees.html 301!
+/brut-tradition /brut-tradition.html 301!
+/brut-tradition/ /brut-tradition.html 301!
+/brut-rose /brut-rose.html 301!
+/brut-rose/ /brut-rose.html 301!
+/demi-sec /demi-sec.html 301!
+/demi-sec/ /demi-sec.html 301!
+/cadeaux /cadeaux.html 301!
+/cadeaux/ /cadeaux.html 301!
+/evenements /evenements.html 301!
+/evenements/ /evenements.html 301!
+/visites-degustations /visites-degustations.html 301!
+/visites-degustations/ /visites-degustations.html 301!
+/livraison-paiement /livraison-paiement.html 301!
+/livraison-paiement/ /livraison-paiement.html 301!
+/avis-clients /avis-clients.html 301!
+/avis-clients/ /avis-clients.html 301!
+/depositaires /depositaires.html 301!
+/depositaires/ /depositaires.html 301!
+/devenir-depositaire /devenir-depositaire.html 301!
+/devenir-depositaire/ /devenir-depositaire.html 301!
+/champagne-de-vigneron /champagne-de-vigneron.html 301!
+/champagne-de-vigneron/ /champagne-de-vigneron.html 301!
+/blog-creation /blog-creation.html 301!
+/blog-creation/ /blog-creation.html 301!
+/blog-composition /blog-composition.html 301!
+/blog-composition/ /blog-composition.html 301!
+/blog-actualites /blog-actualites.html 301!
+/blog-actualites/ /blog-actualites.html 301!
+/cgv /cgv.html 301!
+/cgv/ /cgv.html 301!
+/mentions-legales /mentions-legales.html 301!
+/mentions-legales/ /mentions-legales.html 301!
+/politique-confidentialite /politique-confidentialite.html 301!
+/politique-confidentialite/ /politique-confidentialite.html 301!
+
+# Pages utilitaires : conserver une seule forme d'URL même si elles sont noindex.
+/checkout /checkout.html 301!
+/checkout/ /checkout.html 301!
+/merci /merci.html 301!
+/merci/ /merci.html 301!
+/merci-avis /merci-avis.html 301!
+/merci-avis/ /merci-avis.html 301!
+/merci-contact /merci-contact.html 301!
+/merci-contact/ /merci-contact.html 301!
+/merci-retractation /merci-retractation.html 301!
+/merci-retractation/ /merci-retractation.html 301!
+/retractation /retractation.html 301!
+/retractation/ /retractation.html 301!
+/admin-avis /admin-avis.html 301!
+/admin-avis/ /admin-avis.html 301!
+
+# Domaine canonique recommandé : www.
+https://champagne-christelle-phlipaux.com/* https://www.champagne-christelle-phlipaux.com/:splat 301!
+
+/ /index.html 200

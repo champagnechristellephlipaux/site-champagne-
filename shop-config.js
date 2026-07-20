@@ -1,12 +1,11 @@
-// Configuration boutique (prix & Price IDs Stripe)
-//
-// 1) Les PRIX (EUR) ci-dessous correspondent à ce que vous m’avez donné.
-// 2) Pour activer le paiement en panier, remplacez les placeholders "price_..._PLACEHOLDER"
-//    par vos vrais identifiants Stripe (Price IDs), ex: price_1Pxxxxxx...
-//
-// Où les trouver ? Stripe > Produits > (produit) > Prix > ID (price_...)
+// Configuration d’affichage de la boutique.
+// Les identifiants Stripe et la validation finale des montants restent
+// exclusivement côté serveur dans netlify/functions/checkout-shared.js.
 
 export const PRICE_EUR = {
+  "coffret-decouverte": {
+    coffret3: 75,
+  },
   brut: {
     750: 22.5,
     magnum: 49,
@@ -23,81 +22,70 @@ export const PRICE_EUR = {
   },
 };
 
-export const STRIPE_PRICE_IDS = {
-  brut: {
-    750: "price_1SuZHHD96OJnHwPGwtcGoAWf",
-    magnum: "price_1SwjyPD96OJnHwPGvyvJuQEZ",
-    carton6: "price_1SuZIdD96OJnHwPGUzPgaC7b",
-  },
-  demisec: {
-    750: "price_1SuZJvD96OJnHwPGzGSNXU4j",
-    magnum: "price_1SwjzND96OJnHwPGJSfyYl4Z",
-    carton6: "price_1SuZKnD96OJnHwPGtpalrKg2",
-  },
-  rose: {
-    750: "price_1SuZDcD96OJnHwPGV9Snay25",
-    carton6: "price_1SuZF5D96OJnHwPGYqH6CCaf",
-  },
-};
-
 export const PRODUCTS = [
+  {
+    sku: "coffret-decouverte",
+    name: "Coffret découverte",
+    image: "assets/coffret-decouverte-champagne-christelle-phlipaux.webp",
+  },
   {
     sku: "brut",
     name: "Brut Tradition",
-    image: "assets/brut.png",
+    image: "assets/brut.webp",
   },
   {
     sku: "rose",
     name: "Brut Rosé",
-    image: "assets/rose.png",
+    image: "assets/rose.webp",
   },
   {
     sku: "demisec",
     name: "Demi-Sec",
-    image: "assets/demisec.png",
+    image: "assets/demisec.webp",
   },
 ];
 
 export const FORMATS = [
-  { key: "750", label: "75 cl", hint: "Format découverte" },
-  { key: "magnum", label: "Magnum 1,5 L", hint: "Format réception" },
+  {
+    key: "coffret3",
+    label: "Coffret 3 × 75 cl",
+    hint: "Brut Tradition, Brut Rosé, Demi-Sec · livraison offerte",
+  },
+  { key: "750", label: "75 cl", hint: "Format de service" },
+  { key: "magnum", label: "Magnum 1,5 L", hint: "Grande table" },
   { key: "carton6", label: "Carton (6 × 75 cl)", hint: "Livraison offerte" },
 ];
 
 export const CURATED_OFFERS = {
   "trio-decouverte": {
-    name: "Trio Découverte Maison",
+    name: "Coffret découverte",
     summary: "Brut Tradition, Brut Rosé et Demi-Sec en 75 cl",
-    focus: "Pour découvrir le style de la maison dans ses trois lectures",
-    items: [
-      { sku: "brut", format: "750", qty: 1 },
-      { sku: "rose", format: "750", qty: 1 },
-      { sku: "demisec", format: "750", qty: 1 },
-    ],
+    focus: "Trois cuvées pour découvrir la maison, livraison offerte",
+    items: [{ sku: "coffret-decouverte", format: "coffret3", qty: 1 }],
   },
   "table-de-fete": {
-    name: "Sélection Table de Fête",
+    name: "Table de fête maison",
     summary: "2 Brut Tradition et 1 Brut Rosé",
-    focus: "Pour recevoir de l'apéritif à la table avec une même ligne",
+    focus: "Pour recevoir avec la ligne droite du Brut et l'éclat du Rosé",
     items: [
       { sku: "brut", format: "750", qty: 2 },
       { sku: "rose", format: "750", qty: 1 },
     ],
   },
   "rose-a-offrir": {
-    name: "Rosé à Offrir",
+    name: "Brut Rosé à offrir",
     summary: "1 bouteille de Brut Rosé 75 cl",
-    focus: "Pour une attention juste, simple et soignée",
+    focus: "Pour remercier avec fruit, tenue et discrétion",
     items: [{ sku: "rose", format: "750", qty: 1 }],
   },
   "magnum-reception": {
     name: "Magnum Réception",
     summary: "1 magnum de Brut Tradition 1,5 L",
-    focus: "Pour une table de 6 à 8 convives et un service plus ample",
+    focus: "Pour servir la ligne de Channes à une grande table",
     items: [{ sku: "brut", format: "magnum", qty: 1 }],
   },
   "douceur-gourmande": {
-    name: "Demi-Sec Gourmand",
+    name: "Demi-Sec gourmand",
     summary: "1 bouteille de Demi-Sec 75 cl",
     focus:
       "Pour le foie gras, les desserts peu sucrés et les accords de contraste",
@@ -106,7 +94,7 @@ export const CURATED_OFFERS = {
   "cadeau-entreprise": {
     name: "Carton Signature Maison",
     summary: "1 carton de 6 Brut Tradition 75 cl",
-    focus: "Pour recevoir sereinement ou garder du Brut à la maison",
+    focus: "Pour garder le Brut de Channes prêt à servir",
     items: [{ sku: "brut", format: "carton6", qty: 1 }],
   },
 };

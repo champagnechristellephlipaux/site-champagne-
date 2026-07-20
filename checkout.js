@@ -1,11 +1,15 @@
-import { STRIPE_PRICE_IDS } from "./shop-config.js";
-import { loadCart } from "./cart.js";
+import { loadCart } from "./cart.js?v=20260630b";
 
+const CREATE_SESSION_ENDPOINT = "/.netlify/functions/create-checkout-session";
 const CONTACT_HELP =
-  " La maison peut reprendre la commande au +33 6 82 20 34 30 ou par mail à champagne.christelle.phlipaux@gmail.com.";
+  "\nVotre panier reste conservé. La maison peut reprendre la commande avec vous : +33 6 82 20 34 30 ou champagne.christelle.phlipaux@gmail.com.";
 
-function notifyCheckoutIssue(message) {
-  const fullMessage = `${message}${CONTACT_HELP}`;
+function notifyCheckoutIssue(message, { showContact = true } = {}) {
+  const fullMessage = `${message}${showContact ? CONTACT_HELP : ""}`;
+  window.ccpTrack?.("checkout_issue", {
+    contactHelp: showContact ? "shown" : "hidden",
+    page: location.pathname,
+  });
   window.dispatchEvent(
     new CustomEvent("checkout:issue", {
       detail: { message: fullMessage },
@@ -17,80 +21,71 @@ function notifyCheckoutIssue(message) {
   }
 }
 
-function parseServerError(raw) {
-  if (!raw) return "";
+function cartPayload(items) {
+  return items.map((item) => ({
+    sku: item.sku,
+    format: item.format,
+    qty: item.qty,
+  }));
+}
+
+async function parseResponseError(response) {
+  const fallback = "Stripe ne peut pas ouvrir le paiement pour le moment.";
+  const text = await response.text();
   try {
-    const parsed = JSON.parse(raw);
-    return parsed?.error || "";
-  } catch {
-    return raw.length < 180 ? raw : "";
+    const data = JSON.parse(text);
+    return data.error || data.message || fallback;
+  } catch (_error) {
+    const plainText = text.trim();
+    const looksLikeMarkup = /<[^>]+>/.test(plainText);
+    return plainText && !looksLikeMarkup && plainText.length <= 180
+      ? plainText
+      : fallback;
   }
 }
 
-function validatePriceIds(items) {
-  const missing = [];
-  items.forEach((it) => {
-    const pid = STRIPE_PRICE_IDS?.[it.sku]?.[it.format];
-    if (!pid || pid.includes("PLACEHOLDER"))
-      missing.push(`${it.sku}/${it.format}`);
+async function createCheckoutSession(items) {
+  const response = await fetch(CREATE_SESSION_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({ cart: cartPayload(items) }),
   });
-  return missing;
+
+  if (!response.ok) {
+    throw new Error(await parseResponseError(response));
+  }
+
+  const data = await response.json();
+  if (!data.url) {
+    throw new Error("Stripe n’a pas retourné d’adresse de paiement.");
+  }
+  return data;
 }
 
 export async function startCheckout() {
   const items = loadCart();
   if (!items.length) {
-    notifyCheckoutIssue(
-      "Votre sélection est vide. Ajoutez une cuvée avant d’ouvrir le paiement sécurisé.",
-    );
+    window.ccpTrack?.("checkout_empty_cart", { page: location.pathname });
+    notifyCheckoutIssue("Choisissez d’abord une cuvée.", {
+      showContact: false,
+    });
     return;
   }
-
-  const missing = validatePriceIds(items);
-  if (missing.length) {
-    console.error(
-      "Price IDs Stripe manquants pour la sélection en cours.",
-      missing,
-    );
-    notifyCheckoutIssue(
-      "La page de paiement ne peut pas être préparée pour cette sélection.",
-    );
-    return;
-  }
-
-  const line_items = items.map((it) => ({
-    price: STRIPE_PRICE_IDS[it.sku][it.format],
-    quantity: it.qty,
-  }));
 
   try {
-    const res = await fetch("/.netlify/functions/create-checkout-session", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ line_items }),
+    window.ccpTrack?.("checkout_session_requested", {
+      items: items.reduce((sum, item) => sum + (item.qty || 0), 0),
+      page: location.pathname,
     });
-
-    if (!res.ok) {
-      const txt = await res.text();
-      console.error(txt);
-      const errorMessage = parseServerError(txt);
-      notifyCheckoutIssue(
-        errorMessage ||
-          "Le paiement sécurisé ne peut pas être ouvert pour le moment. Merci de réessayer dans quelques instants.",
-      );
-      return;
-    }
-
-    const data = await res.json();
-    if (data?.url) window.location.href = data.url;
-    else
-      notifyCheckoutIssue(
-        "Le paiement n’a pas pu être initialisé. Relisez votre sélection puis réessayez.",
-      );
-  } catch (err) {
-    console.error(err);
+    const session = await createCheckoutSession(items);
+    window.location.assign(session.url);
+  } catch (error) {
     notifyCheckoutIssue(
-      "La connexion au paiement sécurisé est momentanément indisponible. Merci de réessayer dans quelques instants.",
+      error.message ||
+        "Le paiement ne peut pas être ouvert pour le moment. Votre panier reste conservé.",
     );
   }
 }

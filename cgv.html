@@ -4,17 +4,46 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
-    <meta content="#17120e" name="theme-color" />
+    <meta content="#f3eee6" name="theme-color" />
     <meta content="telephone=no" name="format-detection" />
     <meta content="Champagne Christelle Phlipaux" name="author" />
-    <link href="/assets/logo-trans.png" rel="icon" type="image/png" />
+    <link href="/favicon.ico" rel="icon" sizes="any" />
+    <link href="/favicon-48x48.png" rel="icon" sizes="48x48" type="image/png" />
+    <link href="/favicon-96x96.png" rel="icon" sizes="96x96" type="image/png" />
+    <link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
+    <link href="/site.webmanifest" rel="manifest" />
     <title>Conditions Générales de Vente | Champagne Christelle Phlipaux</title>
-    <link href="style.css" rel="stylesheet" />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/cormorant-garamond-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link
+      as="font"
+      crossorigin="anonymous"
+      href="assets/fonts/manrope-latin.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link href="style.css?v=20260712a" rel="stylesheet" />
+    <link
+      href="assets/css/editorial-redesign.css?v=20260701d"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/css/immersive-experience.css?v=20260715a"
+      rel="stylesheet"
+    />
     <meta
       content="Conditions Générales de Vente (CGV) – commandes, paiement, livraison, rétractation."
       name="description"
     />
-    <link href="/cgv.html" rel="canonical" />
+    <link
+      href="https://www.champagne-christelle-phlipaux.com/cgv.html"
+      rel="canonical"
+    />
     <meta content="index,follow" name="robots" />
     <meta content="website" property="og:type" />
     <meta content="Champagne Christelle Phlipaux" property="og:site_name" />
@@ -27,7 +56,10 @@
       content="Conditions Générales de Vente (CGV) – commandes, paiement, livraison, rétractation."
       property="og:description"
     />
-    <meta content="/cgv.html" property="og:url" />
+    <meta
+      content="https://www.champagne-christelle-phlipaux.com/cgv.html"
+      property="og:url"
+    />
     <meta content="/assets/hero-vignoble.jpg" property="og:image" />
     <meta
       content="Conditions générales de vente Champagne Christelle Phlipaux"
@@ -52,8 +84,10 @@
         "@context": "https://schema.org",
         "@type": ["Organization", "Winery"],
         "name": "Champagne Christelle Phlipaux",
+        "legalName": "CHRISTELLE BOURDICAUD",
+        "vatID": "FR25539870253",
         "url": "/",
-        "logo": "/assets/logo.png",
+        "logo": "https://www.champagne-christelle-phlipaux.com/assets/logo-search.png",
         "image": "/assets/hero-vignoble.jpg",
         "telephone": "+33 6 82 20 34 30",
         "email": "champagne.christelle.phlipaux@gmail.com",
@@ -91,13 +125,13 @@
         ]
       }
     </script>
-    <script defer="" src="consent.js"></script>
-    <script defer src="ui.js"></script>
+    <script defer="" src="consent.js?v=20260712a"></script>
+    <script defer src="ui.js?v=20260713a"></script>
   </head>
   <body>
     <header>
       <div class="container nav">
-        <a class="brand" href="index.html">
+        <a class="brand" href="/">
           <picture
             ><source srcset="assets/logo-trans.webp" type="image/webp" />
             <img
@@ -118,10 +152,10 @@
           </div>
         </a>
         <nav aria-label="Navigation principale" class="menu">
-          <a href="index.html">Accueil</a>
+          <a href="/">Accueil</a>
           <a href="boutique.html">Boutique</a>
           <a href="depositaires.html">Dépositaires</a>
-          <a href="index.html#contact">Contact</a>
+          <a href="/#contact">Contact</a>
         </nav>
       </div>
     </header>
@@ -129,16 +163,21 @@
       <picture
         ><source srcset="assets/hero-vignoble.webp" type="image/webp" />
         <img
-          alt="Vignoble et cave en Champagne"
+          alt="Vignes de Champagne dans la Côte des Bar"
           class="page-hero-media"
           decoding="async"
+          fetchpriority="high"
+          height="1132"
           loading="eager"
           src="assets/hero-vignoble.jpg"
+          width="2048"
       /></picture>
       <div class="page-hero-overlay"></div>
       <div class="container page-hero-inner">
         <div class="kicker">Champagne Christelle Phlipaux</div>
-        <h1 class="h2 page-hero-title">Conditions Générales de Vente</h1>
+        <h1 class="h1 page-hero-title page-hero-title--utility">
+          Conditions Générales de Vente
+        </h1>
         <p class="page-hero-sub">
           Conditions applicables aux commandes, au paiement et à la livraison.
         </p>
@@ -148,47 +187,116 @@
       <div class="container">
         <div class="kicker">Vente en ligne</div>
 
-        <article class="card pad prose reveal">
+        <article class="card pad prose legal-prose reveal">
           <p class="p">
             Les présentes Conditions Générales de Vente s’appliquent à toutes
             les commandes passées sur le site de la
-            <b>SARL Christelle Phlipaux</b>.
+            <b>SARL CHRISTELLE BOURDICAUD</b>, exploitant la marque Champagne
+            Christelle Phlipaux, 4 rue de Villiers, 10340 Channes, RCS Troyes
+            539 870 253.
           </p>
-          <h3 class="h3">Produits</h3>
+          <h2 class="h2">Produits</h2>
           <p class="p">
             Les produits proposés à la vente sont des bouteilles de champagne.
             Les caractéristiques essentielles sont décrites sur le site.
           </p>
-          <h3 class="h3">Prix</h3>
+          <h2 class="h2">Prix</h2>
           <p class="p">
             Les prix sont indiqués en euros, toutes taxes comprises (TTC). La
-            SARL Christelle Phlipaux se réserve le droit de modifier ses prix à
-            tout moment.
+            SARL CHRISTELLE BOURDICAUD se réserve le droit de modifier ses prix
+            à tout moment.
           </p>
-          <h3 class="h3">Commande &amp; paiement</h3>
+          <h2 class="h2">Commande &amp; paiement</h2>
           <p class="p">
-            Le paiement est exigible immédiatement à la commande. Les paiements
-            sont effectués via la plateforme sécurisée <b>Stripe</b>.
+            Avant paiement, le client peut vérifier les produits, formats,
+            quantités, frais de livraison et montant total de sa commande. La
+            commande devient définitive après acceptation des présentes CGV et
+            confirmation du paiement. Le bouton de validation indique clairement
+            que la commande entraîne une obligation de paiement.
           </p>
-          <h3 class="h3">Livraison</h3>
           <p class="p">
-            Livraison <b>uniquement en France métropolitaine</b>. Les délais
-            indiqués sont donnés à titre indicatif.
+            Le paiement est exigible immédiatement. Il est traité par la
+            plateforme sécurisée <b>Stripe</b>. Les données bancaires ne sont
+            jamais enregistrées par le site. Une confirmation reprenant la
+            référence et le montant de la commande est présentée après paiement.
           </p>
-          <h3 class="h3">Droit de rétractation</h3>
+          <h2 class="h2">Livraison</h2>
           <p class="p">
-            Conformément à l’article L221-28 du Code de la consommation, le
-            droit de rétractation ne peut être exercé pour des produits
-            descellés ne pouvant être retournés pour des raisons d’hygiène ou de
-            protection de la santé. Toute bouteille ouverte ou descellée ne
-            pourra donc pas être reprise.
+            La livraison est proposée
+            <b>uniquement en France métropolitaine</b>. Les frais applicables
+            sont affichés dans le panier avant paiement. Le délai habituel
+            annoncé est de deux à cinq jours ouvrés à compter de la confirmation
+            de la commande, sous réserve de disponibilité et hors événement
+            indépendant de la maison.
           </p>
-          <h3 class="h3">Responsabilité</h3>
           <p class="p">
-            La SARL Christelle Phlipaux ne saurait être tenue responsable des
+            En cas de difficulté ou de retard, le client est invité à contacter
+            la maison. Le risque de perte ou d’endommagement est transféré au
+            consommateur lorsqu’il prend physiquement possession des produits.
+          </p>
+          <h2 class="h2">Droit de rétractation</h2>
+          <p class="p">
+            Pour une commande passée à distance, le consommateur dispose de
+            quatorze jours à compter de la réception des produits pour notifier
+            sa décision de se rétracter, sans avoir à la motiver. La demande
+            peut être transmise via le
+            <a href="retractation.html">formulaire de rétractation en ligne</a>,
+            par e-mail à <b>champagne.christelle.phlipaux@gmail.com</b>, au
+            moyen du modèle ci-dessous ou de toute déclaration dénuée
+            d’ambiguïté.
+          </p>
+          <p class="p">
+            Les produits doivent ensuite être retournés au plus tard dans les
+            quatorze jours suivant cette notification, protégés dans un
+            emballage adapté. Les frais directs de retour restent à la charge du
+            consommateur. Celui-ci peut être tenu responsable de la dépréciation
+            résultant de manipulations autres que celles nécessaires pour
+            établir la nature et les caractéristiques du produit.
+          </p>
+          <p class="p">
+            Le remboursement des sommes versées, y compris les frais de
+            livraison standard, intervient dans les quatorze jours suivant la
+            notification. Il peut être différé jusqu’à la récupération des
+            produits ou la réception d’une preuve de leur expédition.
+          </p>
+          <h3 class="h3">Modèle de rétractation</h3>
+          <p class="p">
+            « Je vous notifie par la présente ma rétractation concernant la
+            commande [numéro], reçue le [date]. Nom et adresse du client :
+            [coordonnées]. Date : [date]. »
+          </p>
+          <p class="p">
+            Le formulaire en ligne est accessible à tout moment depuis la page
+            <a href="retractation.html">Rétractation</a>.
+          </p>
+          <h2 class="h2">Responsabilité</h2>
+          <p class="p">
+            La SARL CHRISTELLE BOURDICAUD ne saurait être tenue responsable des
             dommages résultant d’une mauvaise utilisation des produits vendus.
           </p>
-          <h3 class="h3">Droit applicable</h3>
+          <h2 class="h2">Garanties légales</h2>
+          <p class="p">
+            Le consommateur bénéficie de la garantie légale de conformité et de
+            la garantie relative aux vices cachés dans les conditions prévues
+            par la loi. Toute réclamation peut être adressée à
+            <b>champagne.christelle.phlipaux@gmail.com</b> ou au 4 rue de
+            Villiers, 10340 Channes.
+          </p>
+          <h2 class="h2">Médiation de la consommation</h2>
+          <p class="p">
+            En cas de litige non résolu après une demande écrite adressée à la
+            maison, le client consommateur peut recourir gratuitement à un
+            médiateur de la consommation.
+          </p>
+          <p class="p">
+            Le Syndicat Général des Vignerons de la Champagne rappelle que les
+            opérateurs commercialisant des bouteilles auprès de particuliers
+            doivent permettre ce recours et propose, pour ses adhérents, une
+            solution de médiation avec le CM2C. Les coordonnées du médiateur
+            effectivement désigné par la maison doivent être confirmées avant
+            publication définitive des présentes CGV.
+          </p>
+          <h2 class="h2">Droit applicable</h2>
           <p class="p">Les présentes CGV sont soumises au droit français.</p>
         </article>
       </div>
@@ -198,6 +306,7 @@
         <div class="small footer-links">
           <a href="mentions-legales.html">Mentions légales</a> •
           <a href="cgv.html">CGV</a> •
+          <a href="retractation.html">Rétractation</a> •
           <a href="politique-confidentialite.html">Confidentialité</a>
         </div>
         <div class="small footer-alcool">

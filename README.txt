@@ -1,59 +1,49 @@
-INSTALLATION (TRÈS SIMPLE)
+CHAMPAGNE CHRISTELLE PHLIPAUX — EXPLOITATION DU SITE
 
-1) Ouvrez index.html et boutique.html sur votre ordinateur (double-clic).
-2) Pour mettre en ligne :
-   - hébergeur classique : envoyez tous les fichiers (index.html, boutique.html, style.css, dossier assets/)
-   - ou Netlify / OVH / o2switch : idem.
+Développement local
 
-BRANCHER STRIPE (QUAND VOUS ÊTES PRÊT)
-Dans boutique.html, cherchez : const STRIPE_LINKS = { ... }
-Collez vos 12 Payment Links Stripe à la place des valeurs "A_REMPLACER".
+- `npm run dev` lance Netlify Dev et les fonctions locales.
+- `npm run check` vérifie JavaScript, HTML, formatage et règles de commerce.
 
-ASTUCE STRIPE (Payment Links)
-Créez 12 liens (Brut/Rosé/Demi-sec x 4 formats).
-Prix déjà intégrés dans le site :
-- Brut : 9 / 18 / 36 / 120
-- Rosé : 11 / 20 / 38 / 132
-- Demi-sec : 9 / 18 / 36 / 120
+Paiement Stripe
 
-LIVRAISON
-France uniquement.
-Bouteilles à l’unité : +2,50€ / bouteille (à gérer via "Shipping rates" dans Stripe).
-Cartons : livraison offerte (shipping rate gratuit).
+Le site utilise Stripe Checkout hébergé, le parcours le plus simple à maintenir
+pour la maison :
 
-LÉGAL
-Ajoutez une page mentions légales/CGV si vous voulez (recommandé).
+1. le panier demande une session via `create-checkout-session` ;
+2. le serveur contrôle les produits, montants et frais de livraison ;
+3. Stripe collecte les coordonnées, l’adresse de livraison, le paiement et
+   affiche le rappel d’acceptation des CGV avant validation ;
+4. `stripe-webhook` vérifie la signature Stripe et enregistre chaque commande
+   dans le store Netlify Blobs `ccp-orders`, avec la version des CGV.
 
+Variables Netlify nécessaires :
 
+- `STRIPE_SECRET_KEY`
+- `STRIPE_WEBHOOK_SECRET`
+- `SITE_URL` avec l’origine publique définitive du site
+- `REVIEWS_ADMIN_TOKEN` pour la modération des avis
 
-=== PANIER STRIPE (multi-produits) ===
-Cette version ajoute un panier (75cl / Magnum / Carton de 6) pour Brut, Rosé, Demi-Sec.
+Variable optionnelle :
 
-1) Dans Stripe, crée 3 produits (Brut, Rosé, Demi-sec), chacun avec 3 prix :
-   - 75 cl
-   - Magnum 1,5 L
-   - Carton 6 × 75 cl
-   Récupère les IDs de prix (price_...)
+- `STRIPE_PUBLISHABLE_KEY`, seulement si l’ancien checkout embarqué est
+  réactivé.
 
-2) Remplace les placeholders dans le fichier:
-   - shop-config.js  (STRIPE_PRICE_IDS)
+Événements Stripe à activer sur le webhook :
 
-3) Déploiement Netlify (recommandé):
-   - Le dossier /netlify/functions contient la fonction create-checkout-session.
-   - Ajoute des variables d'environnement Netlify:
-       STRIPE_SECRET_KEY = sk_live_... (ou sk_test_...)
-       SUCCESS_URL = https://TON-DOMAINE/merci.html
-       CANCEL_URL  = https://TON-DOMAINE/boutique.html
+- `checkout.session.completed`
+- `checkout.session.async_payment_succeeded`
+- `checkout.session.async_payment_failed`
 
-4) Paiement:
-   - La boutique appelle /.netlify/functions/create-checkout-session
-   - Stripe renvoie une URL de paiement (Checkout) et redirige le client.
+Les prix affichés au navigateur sont dans `shop-config.js`. Les prix et
+identifiants Stripe faisant foi sont dans
+`netlify/functions/checkout-shared.js`. Le test de commerce bloque le build si
+les montants divergent.
 
-NB: Les liens buy.stripe.com ne sont plus nécessaires quand le panier est activé.
+Avant mise en ligne
 
-
-
-=== Price IDs Stripe intégrés ===
-Brut: 75cl / Magnum / Carton6 = price_1SuZHH... / price_1SwjyP... / price_1SuZId...
-Rosé: 75cl / Magnum / Carton6 = price_1SmXMc... / price_1Smafn... / price_1Smafv...
-Demi-sec: 75cl / Magnum / Carton6 = price_1SmXNe... / price_1SmahL... / price_1SmahX...
+- confirmer le domaine public dans `SITE_URL` ;
+- effectuer une commande Stripe complète en mode test ;
+- confirmer les mentions légales de la société et le médiateur de la
+  consommation ;
+- contrôler qu’une commande apparaît dans le store `ccp-orders`.

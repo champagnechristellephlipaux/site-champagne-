@@ -12,12 +12,19 @@ module.exports = [
       "**/*.zip",
       ".DS_Store",
       "AGENTS.md/**",
-      "assets/**",
+      "assets/*.{jpg,jpeg,png,webp,gif,svg,ico}",
       "champagne_christelle_phlipaux_maison_terroir_cuvees_v8/**",
     ],
   },
   {
-    files: ["consent.js", "reviews.js", "selection-assistant.js", "ui.js"],
+    files: [
+      "admin-reviews.js",
+      "consent.js",
+      "review-submit.js",
+      "reviews.js",
+      "selection-assistant.js",
+      "ui.js",
+    ],
     ...js.configs.recommended,
     languageOptions: {
       ecmaVersion: "latest",
@@ -30,6 +37,7 @@ module.exports = [
   },
   {
     files: [
+      "assets/js/**/*.js",
       "cart.js",
       "cart-ui.js",
       "checkout.js",
