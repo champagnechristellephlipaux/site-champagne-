@@ -48,7 +48,7 @@
       matches: ["cadeaux.html", "evenements.html"],
     },
     {
-      href: "index.html#contact",
+      href: "/#contact",
       label: "Contact",
       className: "nav-link--subtle nav-link--contact",
       mobileUtility: true,
@@ -110,7 +110,7 @@
 
   function buildBrand() {
     return [
-      '<a class="brand" href="index.html" aria-label="Accueil Champagne Christelle Phlipaux" data-disable-active="true">',
+      '<a class="brand" href="/" aria-label="Accueil Champagne Christelle Phlipaux" data-disable-active="true">',
       '<picture><source srcset="assets/logo-trans.webp" type="image/webp"/><img alt="Logo Champagne Christelle Phlipaux" class="brand-logo" decoding="async" fetchpriority="high" height="204" src="assets/logo-trans.png" width="242"/></picture>',
       '<div class="brand-text">',
       '<div class="brand-title"><span class="brand-champagne">Champagne</span> <span class="brand-name">Christelle Phlipaux</span></div>',
@@ -352,7 +352,7 @@
     footer.innerHTML = [
       '<div class="container footer-grid">',
       "<div>",
-      '<a class="brand brand--compact" href="index.html">',
+      '<a class="brand brand--compact" href="/">',
       '<picture><source srcset="assets/logo-trans.webp" type="image/webp"/><img alt="Logo Champagne Christelle Phlipaux" class="brand-logo" decoding="async" height="204" loading="lazy" src="assets/logo-trans.png" width="242"/></picture>',
       '<div class="brand-text">',
       '<div class="brand-title"><span class="brand-champagne">Champagne</span> <span class="brand-name">Christelle Phlipaux</span></div>',
@@ -383,7 +383,7 @@
       '<div><a href="devenir-depositaire.html">Devenir dépositaire</a></div>',
       '<div><a href="visites-degustations.html">Visiter la maison</a></div>',
       '<div><a href="avis-clients.html">Avis & retours</a></div>',
-      '<div><a href="index.html#contact">Contact</a></div>',
+      '<div><a href="/#contact">Contact</a></div>',
       '<div><a href="mailto:champagne.christelle.phlipaux@gmail.com">champagne.christelle.phlipaux@gmail.com</a></div>',
       '<div><a href="tel:+33682203430">+33 6 82 20 34 30</a></div>',
       "<div>4 rue de Villiers, 10340 Channes</div>",

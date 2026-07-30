@@ -3139,6 +3139,20 @@ footer .footer-trust span {
     text-shadow: none;
   }
 
+  body.nav-open.immersive-site
+    header
+    .nav-panel
+    .menu.menu--secondary
+    a:not(.btn):not(.nav-link--featured),
+  body.nav-open.immersive-site
+    header
+    .nav-panel
+    .nav-mobile-utility
+    a.nav-mobile-utility-link {
+    color: #231914;
+    text-shadow: none;
+  }
+
   body.nav-open .menu a:not(.btn):hover,
   body.nav-open .menu a:not(.btn):focus-visible,
   body.nav-open .topbar .nav a:not(.btn):hover,
@@ -3211,5 +3225,26 @@ footer .footer-trust span {
     color: #2a1d16;
     text-shadow: none;
     transform: none;
+  }
+}
+
+/* Final premium QA: make the human note readable without adding visual noise. */
+@media (min-width: 721px) {
+  .page-home.immersive-site .home-human-note {
+    max-width: 34rem;
+    padding: 14px 16px 14px 18px;
+    border-left-color: rgba(255, 250, 243, 0.46);
+    background: rgba(12, 9, 7, 0.42);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+
+  .page-home.immersive-site .home-human-note strong {
+    color: #fffaf3;
+  }
+
+  .page-home.immersive-site .home-human-note span {
+    color: rgba(255, 250, 243, 0.86);
   }
 }

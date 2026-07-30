@@ -424,3 +424,210 @@
     padding: 12px 14px;
   }
 }
+
+/* Final commerce QA: lighter heroes, clearer mobile choices, readable bottles. */
+.page-boutique .page-hero-overlay {
+  background:
+    radial-gradient(
+      circle at 34% 24%,
+      rgba(255, 250, 243, 0.12),
+      transparent 36%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(8, 7, 6, 0.24) 0%,
+      rgba(8, 7, 6, 0.42) 54%,
+      rgba(8, 7, 6, 0.62) 100%
+    ),
+    linear-gradient(90deg, rgba(8, 7, 6, 0.54), rgba(8, 7, 6, 0.1));
+}
+
+.page-boutique .page-hero-copy {
+  border-color: rgba(255, 250, 243, 0.18);
+  background: rgba(14, 11, 9, 0.5);
+  box-shadow:
+    0 22px 52px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.page-cuvee .page-hero-overlay {
+  background:
+    radial-gradient(
+      ellipse at 68% 40%,
+      rgba(255, 250, 243, 0.18),
+      rgba(255, 250, 243, 0.03) 34%,
+      transparent 62%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(8, 7, 6, 0.36) 0%,
+      rgba(8, 7, 6, 0.18) 38%,
+      rgba(8, 7, 6, 0.62) 100%
+    ),
+    linear-gradient(90deg, rgba(8, 7, 6, 0.56), rgba(8, 7, 6, 0.12));
+}
+
+.page-cuvee .product-hero-price {
+  padding: 11px 13px;
+  border: 1px solid rgba(255, 250, 243, 0.2);
+  border-radius: 14px;
+  background: rgba(12, 9, 7, 0.3);
+}
+
+@media (min-width: 721px) {
+  .page-boutique.immersive-site header .nav-cart-link,
+  .page-cuvee.immersive-site header .nav-cart-link {
+    border-color: rgba(255, 250, 243, 0.18);
+    color: rgba(255, 250, 243, 0.84);
+    background: rgba(10, 8, 6, 0.24);
+  }
+
+  .page-boutique.immersive-site header .nav-cart-link .nav-cart-label,
+  .page-cuvee.immersive-site header .nav-cart-link .nav-cart-label {
+    color: currentColor;
+  }
+
+  .page-boutique.immersive-site header .nav-cart-link .nav-cart-count,
+  .page-cuvee.immersive-site header .nav-cart-link .nav-cart-count {
+    border-color: rgba(255, 250, 243, 0.18);
+    background: rgba(255, 250, 243, 0.92);
+    color: #231914;
+  }
+
+  .page-boutique.immersive-site header .nav-cart-link:hover,
+  .page-boutique.immersive-site header .nav-cart-link:focus-visible,
+  .page-cuvee.immersive-site header .nav-cart-link:hover,
+  .page-cuvee.immersive-site header .nav-cart-link:focus-visible {
+    border-color: rgba(255, 250, 243, 0.34);
+    color: #fffaf3;
+    background: rgba(10, 8, 6, 0.34);
+  }
+}
+
+@media (max-width: 720px) {
+  .page-boutique .page-hero-overlay {
+    background:
+      radial-gradient(
+        circle at 42% 18%,
+        rgba(255, 250, 243, 0.16),
+        transparent 36%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(8, 7, 6, 0.32) 0%,
+        rgba(8, 7, 6, 0.14) 34%,
+        rgba(8, 7, 6, 0.58) 100%
+      ) !important;
+  }
+
+  .page-boutique .page-hero-copy {
+    width: 100%;
+    padding: 16px;
+    border-radius: 20px;
+    background: rgba(14, 11, 9, 0.46);
+  }
+
+  .page-boutique .shop-hero-choice {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    max-width: 100%;
+    gap: 8px;
+    overflow: visible;
+  }
+
+  .page-boutique .shop-hero-choice a {
+    min-height: 64px;
+    padding: 10px 9px;
+    border-radius: 14px;
+  }
+
+  .page-boutique .shop-hero-choice strong {
+    font-size: clamp(0.9rem, 4.4vw, 1.05rem);
+  }
+
+  .page-boutique .shop-hero-choice em {
+    justify-self: start;
+    font-size: 0.68rem;
+  }
+
+  .page-cuvee.page-cuvee--brut .page-hero {
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(8, 7, 6, 0.34) 0%,
+        rgba(8, 7, 6, 0.12) 38%,
+        rgba(8, 7, 6, 0.58) 100%
+      ),
+      url("../brut.webp") !important;
+    background-position: center 45% !important;
+  }
+
+  .page-cuvee.page-cuvee--rose .page-hero {
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(8, 7, 6, 0.34) 0%,
+        rgba(8, 7, 6, 0.12) 38%,
+        rgba(8, 7, 6, 0.58) 100%
+      ),
+      url("../rose.webp") !important;
+    background-position: center 45% !important;
+  }
+
+  .page-cuvee.page-cuvee--demisec .page-hero {
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(8, 7, 6, 0.34) 0%,
+        rgba(8, 7, 6, 0.12) 38%,
+        rgba(8, 7, 6, 0.58) 100%
+      ),
+      url("../demisec.webp") !important;
+    background-position: center 45% !important;
+  }
+
+  .page-cuvee .page-hero-overlay {
+    background:
+      radial-gradient(
+        ellipse at 50% 30%,
+        rgba(255, 250, 243, 0.22),
+        rgba(255, 250, 243, 0.04) 34%,
+        transparent 62%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(8, 7, 6, 0.3) 0%,
+        rgba(8, 7, 6, 0.1) 38%,
+        rgba(8, 7, 6, 0.56) 100%
+      ) !important;
+  }
+
+  .page-cuvee .product-hero-buyline {
+    grid-template-columns: 1fr;
+  }
+
+  .page-cuvee .product-hero-buyline .btn {
+    width: 100%;
+  }
+
+  .page-cuvee .product-hero-price {
+    width: fit-content;
+    background: rgba(12, 9, 7, 0.36);
+  }
+}
+
+@media (max-width: 420px) {
+  .page-boutique .shop-hero-choice {
+    gap: 7px;
+  }
+
+  .page-boutique .shop-hero-choice a {
+    min-height: 58px;
+    padding: 9px 8px;
+  }
+
+  .page-boutique .shop-hero-choice em {
+    font-size: 0.64rem;
+  }
+}

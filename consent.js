@@ -2,7 +2,7 @@
   const AGE_KEY = "ccp_age_verified_v1";
   const COOKIE_KEY = "ccp_cookie_consent_v1"; // "accepted" | "refused"
   const MIN_AGE = 18;
-  const OPTIONAL_COOKIES_ENABLED = true;
+  const AUDIENCE_MEASUREMENT_ENABLED = true;
   const ANALYTICS_DOMAIN = "www.champagne-christelle-phlipaux.com";
   const ANALYTICS_SCRIPT_ID = "ccp-plausible-analytics";
   const ANALYTICS_SRC = "https://plausible.io/js/script.js";
@@ -28,7 +28,7 @@
   }
 
   function analyticsAccepted() {
-    return storageValue(COOKIE_KEY) === "accepted";
+    return storageValue(COOKIE_KEY) !== "refused";
   }
 
   function analyticsProps(props) {
@@ -40,7 +40,7 @@
   }
 
   function loadAnalytics() {
-    if (!OPTIONAL_COOKIES_ENABLED || !analyticsAccepted()) return;
+    if (!AUDIENCE_MEASUREMENT_ENABLED || !analyticsAccepted()) return;
     if (document.getElementById(ANALYTICS_SCRIPT_ID)) return;
 
     window.plausible =
@@ -58,7 +58,7 @@
   }
 
   function trackAnalytics(name, props) {
-    if (!analyticsAccepted()) return;
+    if (!AUDIENCE_MEASUREMENT_ENABLED || !analyticsAccepted()) return;
     loadAnalytics();
     if (typeof window.plausible !== "function") return;
     window.plausible(name, { props: analyticsProps(props) });
@@ -201,7 +201,7 @@
   }
 
   function ensureCookieBanner() {
-    if (!OPTIONAL_COOKIES_ENABLED) return;
+    if (!AUDIENCE_MEASUREMENT_ENABLED) return;
     if (!ageIsVerified()) return;
     if (document.getElementById("cookie-banner")) return;
 
@@ -212,22 +212,24 @@
     }
     if (v === "refused") return;
 
+    loadAnalytics();
+
     const banner = el(
       "div",
       {
         id: "cookie-banner",
         class: "is-open",
         role: "region",
-        "aria-label": "Préférences cookies",
+        "aria-label": "Préférences de mesure d’audience",
       },
       [
         el("div", { class: "cookie-card" }, [
           el("div", { class: "cookie-row" }, [
             el("div", { class: "cookie-text" }, [
-              el("div", { class: "cookie-title" }, ["Cookies"]),
+              el("div", { class: "cookie-title" }, ["Mesure d’audience"]),
               el("p", {
                 class: "cookie-desc",
-                html: 'Nous utilisons des cookies strictement nécessaires au fonctionnement du site et, avec votre accord, des cookies de mesure d’audience pour améliorer votre expérience. <a href="politique-confidentialite.html">Lire la confidentialité</a>.',
+                html: 'Nous utilisons une mesure d’audience sobre, sans publicité ni suivi commercial, afin de comprendre les pages consultées et les actions utiles du site. Vous pouvez la désactiver à tout moment. <a href="politique-confidentialite.html">Lire la confidentialité</a>.',
               }),
             ]),
             el("div", { class: "cookie-actions" }, [
@@ -244,7 +246,7 @@
                       window.ccpEnableOptionalCookies();
                   },
                 },
-                ["Accepter"],
+                ["Laisser active"],
               ),
               el(
                 "button",
@@ -257,7 +259,7 @@
                     banner.style.display = "none";
                   },
                 },
-                ["Refuser"],
+                ["Désactiver"],
               ),
             ]),
           ]),
