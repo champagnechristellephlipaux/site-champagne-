@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-"""Print a lightweight release snapshot for the static Champagne site."""
+"""Print a lightweight release snapshot for the Champagne site."""
 
 from __future__ import annotations
 
 import json
-import os
 import pathlib
 import subprocess
 
@@ -43,7 +42,8 @@ def read_package_scripts() -> dict[str, str]:
         return {}
     with package_path.open("r", encoding="utf-8") as handle:
         data = json.load(handle)
-    return data.get("scripts", {})
+    scripts = data.get("scripts", {})
+    return scripts if isinstance(scripts, dict) else {}
 
 
 def main() -> int:
@@ -70,18 +70,17 @@ def main() -> int:
     if "check" in scripts:
         print("- npm run check")
     else:
-        print("- Run lint/site/commerce checks available for this project")
+        print("- Run the relevant lint, site and commerce checks available")
     print("- python3 .agents/skills/seo-evidence-audit/scripts/scan_static_seo.py")
     print("- python3 .agents/skills/a11y-premium-ecommerce/scripts/scan_static_a11y.py")
+    print("- python3 .agents/skills/static-site-visual-qa/scripts/visual_targets.py")
     print()
 
     print("Git status")
     for line in run_git_status():
         print(f"- {line}")
 
-    if missing_high_value:
-        return 1
-    return 0
+    return 1 if missing_high_value else 0
 
 
 if __name__ == "__main__":

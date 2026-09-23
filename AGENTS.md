@@ -1,89 +1,145 @@
 # AGENTS.md — Champagne Christelle Phlipaux
 
-## Project mission
+## Mission
 
-This project is the website for Champagne Christelle Phlipaux.
-The site must feel premium, elegant, credible, calm, refined, and authentic.
-It must never feel generic, noisy, cheap, overdesigned, or AI-generated.
+Build and maintain the official website of Champagne Christelle Phlipaux, an independent family Champagne house based in Channes, in the Aube.
 
-## Core priorities
+The site must make visitors want to discover and buy the wines through trust, clarity, authenticity and quality of execution. It must not imitate the visual codes or language of an impersonal luxury group.
 
-1. Preserve a premium brand image
-2. Improve clarity and usability
-3. Ensure excellent mobile experience
-4. Improve SEO fundamentals
-5. Support conversion without aggressive tactics
-6. Keep the codebase clean and maintainable
+Before any marketing, design, SEO, ecommerce or conversion task, read `.agents/product-marketing-context.md` and use `.agents/skills/champagne-site-guardian/SKILL.md` as the main project skill.
 
-## Design expectations
+## Skill routing
 
-- Use restrained, elegant, high-end visual language
-- Favor whitespace, hierarchy, readability, and polish
-- Avoid visual clutter, excessive animations, and gimmicks
-- Keep interfaces calm, premium, and confidence-building
-- Every page must look intentional on desktop and mobile
+Keep the project skill set deliberately small:
 
-## Brand tone
+- `champagne-site-guardian`: main brand, business, routing and final verification skill.
+- `a11y-premium-ecommerce`: accessibility, semantics, keyboard, forms and focus.
+- `seo-evidence-audit`: technical and editorial SEO checks.
+- `static-site-visual-qa`: rendered layout, responsive behavior and visual QA.
+- `netlify-stripe-commerce`: current legacy Netlify/Stripe commerce implementation only.
 
-- Premium
-- Authentic
-- Elegant
-- Reassuring
-- Never pushy
-- Never mass-market
-- Never cheap or overly promotional
+Do not recreate a separate general release or completion skill. That responsibility belongs to `champagne-site-guardian`.
 
-## Working rules
+Do not apply `netlify-stripe-commerce` assumptions to PrestaShop. Remove that specialist only after the legacy checkout is no longer active or maintained.
 
-- Before making changes, inspect the relevant files and understand the current structure
-- Prefer small, controlled, reversible changes
-- Do not rewrite large parts of the codebase unless necessary
-- Do not introduce unnecessary dependencies
-- Keep naming consistent with the existing project
-- Preserve working functionality unless the task explicitly requires redesign
+## Brand hierarchy
 
-## Validation rules
+1. Family identity and real human relationships.
+2. Love of well-done work, from vineyard to bottle.
+3. Simplicity, generosity and accessibility.
+4. Product quality and confidence.
+5. Elegance without ostentation.
 
-After changes:
+Do not equate Champagne with black-and-gold luxury, excessive prestige language, castles, aristocratic clichés or artificial scarcity.
 
-- run the project if possible
-- run build if available
-- run lint if available
-- run tests if available
-- check that the result works on mobile and desktop
-- check that no premium-brand consistency was lost
+## Approved product facts
 
-## UX rules
+Current website prices:
 
-- Prioritize clarity over visual excess
-- Reduce friction in navigation and shopping flow
-- Keep key actions obvious
-- Avoid overwhelming the user with too much information at once
-- Product pages must increase confidence and desire
+- Brut 75 cl: 22.50 €
+- Brut magnum: 49 €
+- Brut carton of 6: 135 €
+- Rosé 75 cl: 25 €
+- Rosé carton of 6: 150 €
+- Demi-sec: same prices as Brut
+- Rosé has no active magnum or 37.5 cl format
 
-## SEO rules
+Never invent prices, awards, certifications, stock, delivery times, reviews, vintages, grape proportions or technical wine claims.
 
-- Maintain clean semantic structure
-- Preserve proper headings hierarchy
-- Improve title/meta/internal linking when relevant
-- Avoid thin or repetitive copy
-- Do not sacrifice brand tone for robotic SEO writing
+## Approved delivery rules
 
-## What to avoid
+- 1 standard bottle: 12 € total delivery
+- 2 standard bottles: 10 € total delivery
+- 3 standard bottles: 6 € total delivery
+- 4–5 standard bottles: 10 € total delivery
+- Magnum: 10 € per magnum, cumulative
+- Free delivery from 6 standard bottles
 
-- Cheap promotional patterns
-- Generic luxury clichés with no substance
-- Overcrowded sections
-- Excessive text blocks
-- “AI-looking” layouts or wording
-- Unverified changes presented as final
+Treat these rules as business-critical. Add or update automated tests whenever delivery logic changes. Flag ambiguous mixed-format cases instead of guessing.
 
-## Output expectations
+## UX and conversion rules
 
-When completing a task:
+- Mobile-first, but fully polished on desktop.
+- Make the range, prices, delivery threshold and purchasing path immediately understandable.
+- Reduce friction rather than adding aggressive persuasion.
+- Use concrete reassurance: family House, real production, customer relationship, delivery information and depositary network.
+- Product pages must answer practical objections before decorative storytelling.
+- Keep calls to action visible and explicit.
+- Do not hide essential information behind animation, hover or oversized editorial sections.
+- Maintain the depositary network on the homepage or through a clearly accessible dedicated area.
 
-1. explain what was changed
-2. explain why it improves the site
-3. mention files touched
-4. mention validation performed
-5. mention remaining risks or follow-up improvements
+## Design rules
+
+- Warm, restrained, human and contemporary.
+- Strong typography, deliberate spacing and clear hierarchy.
+- Prefer real photography over generic stock imagery or synthetic luxury imagery.
+- Motion must clarify or enhance; never delay access to content or purchasing.
+- Avoid generic AI layouts, excessive gradients, glassmorphism, ornamental gold and decorative clutter.
+- Accessibility and readability take priority over visual novelty.
+
+## Copy rules
+
+Write in natural French unless another language is requested.
+
+Preferred tone:
+
+- direct;
+- warm;
+- precise;
+- sincere;
+- knowledgeable without sounding elitist.
+
+Avoid empty luxury vocabulary, unverifiable superlatives, generic wine poetry, pressure tactics and robotic SEO repetition.
+
+## Engineering workflow
+
+Before changing code:
+
+1. inspect the relevant architecture and existing behavior;
+2. identify affected business rules;
+3. state assumptions when information is missing;
+4. prefer small, reversible changes;
+5. do not introduce dependencies without a clear benefit.
+
+After changing code, run every relevant available check:
+
+- formatting;
+- lint;
+- type checking when available;
+- site and commerce tests;
+- build when available;
+- browser or end-to-end checks;
+- responsive review;
+- accessibility checks where applicable.
+
+Never claim a correction is complete without fresh evidence from the checks actually run. Clearly distinguish verified results from untested assumptions.
+
+## Mandatory checkout scenarios
+
+For any cart, delivery or checkout change, validate:
+
+- 1, 2, 3, 4, 5 and 6 standard bottles;
+- mixed cuvées;
+- magnums;
+- free-delivery messaging;
+- desktop cart opening from the header;
+- mobile cart interaction;
+- displayed totals against the active server or platform calculation;
+- checkout handoff and confirmation behavior.
+
+## Responsible alcohol communication
+
+Keep communication adult-oriented and product-focused. Do not associate Champagne consumption with success, seduction, physical or mental performance, driving, emotional relief or excessive consumption.
+
+Do not present legal compliance as guaranteed when legal review has not occurred.
+
+## Completion report
+
+Every completed task must state:
+
+1. what changed;
+2. why it improves the site or reduces risk;
+3. every file touched;
+4. exact validation performed and results;
+5. anything unverified;
+6. the main remaining risk or next action.
