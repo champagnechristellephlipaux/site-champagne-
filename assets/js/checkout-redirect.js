@@ -1,9 +1,9 @@
-import { startCheckout } from "../../checkout.js?v=20260712a";
+import { startCheckout } from "../../checkout.js?v=20260911a";
 
 const errorNode = document.querySelector("[data-checkout-error]");
 const submitButton = document.querySelector("[data-checkout-submit]");
 
-function showError(message) {
+function showError(message, reason = "checkout_error") {
   if (errorNode) {
     errorNode.hidden = false;
     errorNode.textContent = message;
@@ -11,7 +11,10 @@ function showError(message) {
   if (submitButton) {
     submitButton.disabled = false;
     submitButton.removeAttribute("aria-busy");
-    submitButton.textContent = "Réessayer le paiement";
+    submitButton.dataset.checkoutAction =
+      reason === "empty_cart" ? "shop" : "retry";
+    submitButton.textContent =
+      reason === "empty_cart" ? "Choisir une cuvée" : "Réessayer le paiement";
   }
 }
 
@@ -19,6 +22,7 @@ window.addEventListener("checkout:issue", (event) => {
   showError(
     event.detail?.message ||
       "Stripe ne peut pas ouvrir le paiement pour le moment.",
+    event.detail?.reason,
   );
 });
 
@@ -28,6 +32,10 @@ if (submitButton) {
   submitButton.textContent = "Ouverture de Stripe…";
   submitButton.addEventListener("click", (event) => {
     event.preventDefault();
+    if (submitButton.dataset.checkoutAction === "shop") {
+      window.location.assign("boutique.html");
+      return;
+    }
     startCheckout();
   });
 }

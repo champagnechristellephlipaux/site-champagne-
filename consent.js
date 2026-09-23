@@ -58,10 +58,11 @@
   }
 
   function trackAnalytics(name, props) {
-    if (!AUDIENCE_MEASUREMENT_ENABLED || !analyticsAccepted()) return;
+    if (!AUDIENCE_MEASUREMENT_ENABLED || !analyticsAccepted()) return false;
     loadAnalytics();
-    if (typeof window.plausible !== "function") return;
+    if (typeof window.plausible !== "function") return false;
     window.plausible(name, { props: analyticsProps(props) });
+    return true;
   }
 
   window.ccpTrack = trackAnalytics;
@@ -226,10 +227,12 @@
         el("div", { class: "cookie-card" }, [
           el("div", { class: "cookie-row" }, [
             el("div", { class: "cookie-text" }, [
-              el("div", { class: "cookie-title" }, ["Mesure d’audience"]),
+              el("div", { class: "cookie-title" }, [
+                "Mesure d’audience active",
+              ]),
               el("p", {
                 class: "cookie-desc",
-                html: 'Nous utilisons une mesure d’audience sobre, sans publicité ni suivi commercial, afin de comprendre les pages consultées et les actions utiles du site. Vous pouvez la désactiver à tout moment. <a href="politique-confidentialite.html">Lire la confidentialité</a>.',
+                html: 'Une mesure sobre, sans publicité ni suivi commercial, nous aide à améliorer le site. Vous pouvez la désactiver à tout moment. <a href="politique-confidentialite.html">Confidentialité</a>.',
               }),
             ]),
             el("div", { class: "cookie-actions" }, [
@@ -246,7 +249,7 @@
                       window.ccpEnableOptionalCookies();
                   },
                 },
-                ["Laisser active"],
+                ["Continuer"],
               ),
               el(
                 "button",
@@ -291,14 +294,19 @@
     });
 
     window.addEventListener("cart:offer-added", (event) => {
-      trackAnalytics("add_offer_to_cart", {
+      trackAnalytics("cart_item_added", {
         offer: event?.detail?.offerId,
+        source: "curated_offer",
         page: location.pathname,
       });
     });
 
-    window.addEventListener("checkout:issue", () => {
-      trackAnalytics("checkout_issue", { page: location.pathname });
+    window.addEventListener("checkout:issue", (event) => {
+      trackAnalytics("checkout_issue", {
+        reason: event?.detail?.reason || "checkout_error",
+        contactHelp: event?.detail?.showContact ? "shown" : "hidden",
+        page: location.pathname,
+      });
     });
   }
 

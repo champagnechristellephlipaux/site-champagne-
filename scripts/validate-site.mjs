@@ -78,6 +78,15 @@ for (const [file, html] of pages) {
       `${file} utilise un domaine canonique inattendu`,
     );
   }
+
+  for (const match of html.matchAll(
+    /\b(?:href|src)="((?!https?:|\/)[^"]+\.(?:css|js))(\?[^\"]*)?"/gi,
+  )) {
+    assert.ok(
+      match[2]?.includes("v="),
+      `${file} charge un fichier CSS/JS sans version de cache : ${match[1]}`,
+    );
+  }
 }
 
 const sitemap = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
@@ -91,6 +100,20 @@ for (const match of sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)) {
     `Le sitemap référence une page noindex : ${file}`,
   );
 }
+
+const redirects = fs.readFileSync(path.join(root, "_redirects"), "utf8");
+assert.match(
+  redirects,
+  /https:\/\/champagnechristellephlipaux\.netlify\.app\/\*\s+https:\/\/www\.champagne-christelle-phlipaux\.com\/:splat\s+301!/,
+  "Le sous-domaine Netlify doit rediriger vers le domaine officiel",
+);
+
+const netlifyConfig = fs.readFileSync(path.join(root, "netlify.toml"), "utf8");
+assert.match(
+  netlifyConfig,
+  /frame-src[^"\n]*https:\/\/www\.google\.com/,
+  "La CSP doit autoriser la carte Google des dépositaires",
+);
 
 console.log(
   `${htmlFiles.length} pages validées : structure, liens, images, JSON-LD et sitemap.`,

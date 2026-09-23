@@ -1,3 +1,6 @@
+# Le sous-domaine technique ne doit jamais concurrencer le domaine officiel.
+https://champagnechristellephlipaux.netlify.app/* https://www.champagne-christelle-phlipaux.com/:splat 301!
+
 # Anciennes URLs WordPress conservées pour protéger le référencement.
 /portfolio/brut-tradition/ /brut-tradition.html 301!
 /portfolio/brut-tradition-magnum/ /brut-tradition.html 301

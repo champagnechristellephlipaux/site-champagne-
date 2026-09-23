@@ -18,7 +18,6 @@
     {
       href: "cuvees.html",
       label: "Cuvées",
-      group: "primary",
       matches: [
         "cuvees.html",
         "brut-tradition.html",
@@ -51,7 +50,6 @@
       href: "/#contact",
       label: "Contact",
       className: "nav-link--subtle nav-link--contact",
-      mobileUtility: true,
       disableActive: true,
     },
   ];
@@ -61,20 +59,15 @@
       href: "boutique.html",
       label: "Boutique",
       className: "btn primary nav-primary-cta",
-      matches: [
-        "boutique.html",
-        "checkout.html",
-        "livraison-paiement.html",
-        "retractation.html",
-        "merci.html",
-        "merci-retractation.html",
-      ],
+      matches: ["boutique.html"],
     },
   ];
+  const COMPACT_NAV_MAX_WIDTH = 1279;
 
   function currentPageName() {
-    const raw = window.location.pathname.split("/").pop();
-    return raw && raw.length ? raw : "index.html";
+    const path = window.location.pathname.replace(/\/+$/, "");
+    const raw = path.split("/").pop() || "index";
+    return raw.endsWith(".html") ? raw : `${raw}.html`;
   }
 
   function getNavParts() {
@@ -97,8 +90,8 @@
     return null;
   }
 
-  function buildMenuLink(item, extraClass = "") {
-    const className = [item.className, extraClass].filter(Boolean).join(" ");
+  function buildMenuLink(item) {
+    const className = item.className || "";
     const classes = className ? ` class="${className}"` : "";
     const attributes = [`href="${item.href}"`];
     if (Array.isArray(item.matches) && item.matches.length) {
@@ -135,15 +128,9 @@
 
     const { shell } = parts;
     const hasCart = Boolean(document.querySelector("#cartDrawer"));
-    const primaryLinks = NAV_ITEMS.filter((item) => item.group === "primary")
-      .map((item) => buildMenuLink(item))
-      .join("");
-    const secondaryLinks = NAV_ITEMS.filter((item) => item.group !== "primary")
-      .map((item) => buildMenuLink(item))
-      .join("");
-    const mobileUtilityLinks = NAV_ITEMS.filter((item) => item.mobileUtility)
-      .map((item) => buildMenuLink(item, "nav-mobile-utility-link"))
-      .join("");
+    const navigationLinks = NAV_ITEMS.map((item) => buildMenuLink(item)).join(
+      "",
+    );
     const actions = [
       hasCart ? buildCartAction() : "",
       buildMenuLink(HEADER_ACTIONS[0]),
@@ -154,21 +141,36 @@
       buildBrand(),
       '<div class="nav-panel" id="siteNavPanel">',
       '<div class="nav-mobile-priority">',
-      `<nav aria-label="Navigation principale" class="menu menu--primary">${primaryLinks}</nav>`,
+      `<nav aria-label="Navigation principale" class="menu menu--primary">${navigationLinks}</nav>`,
       `<div class="nav-actions${hasCart ? " nav-actions--has-cart" : ""}">${actions}</div>`,
       "</div>",
-      `<nav aria-label="Navigation secondaire" class="menu menu--secondary">${secondaryLinks}</nav>`,
-      `<div class="nav-mobile-utility">${mobileUtilityLinks}</div>`,
       "</div>",
     ].join("");
   }
 
-  function closeNav(button) {
+  function setNavBackgroundInert(inert) {
+    document
+      .querySelectorAll(".skip-link, main, footer, .floating-cart")
+      .forEach((element) => {
+        element.toggleAttribute("inert", inert);
+      });
+  }
+
+  function closeNav(button, { restoreFocus = false } = {}) {
     document.body.classList.remove("nav-open");
+    setNavBackgroundInert(false);
     if (button) {
       button.setAttribute("aria-expanded", "false");
       button.setAttribute("aria-label", "Ouvrir le menu");
+      if (restoreFocus) button.focus({ preventScroll: true });
     }
+  }
+
+  function openNav(button) {
+    document.body.classList.add("nav-open");
+    setNavBackgroundInert(true);
+    button.setAttribute("aria-expanded", "true");
+    button.setAttribute("aria-label", "Fermer le menu");
   }
 
   function setupSkipLink() {
@@ -226,12 +228,11 @@
     }
 
     button.addEventListener("click", () => {
-      const open = document.body.classList.toggle("nav-open");
-      button.setAttribute("aria-expanded", open ? "true" : "false");
-      button.setAttribute(
-        "aria-label",
-        open ? "Fermer le menu" : "Ouvrir le menu",
-      );
+      if (document.body.classList.contains("nav-open")) {
+        closeNav(button, { restoreFocus: true });
+      } else {
+        openNav(button);
+      }
     });
 
     panel?.addEventListener("click", (event) => {
@@ -239,18 +240,26 @@
     });
 
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closeNav(button);
+      if (
+        event.key === "Escape" &&
+        document.body.classList.contains("nav-open")
+      ) {
+        closeNav(button, { restoreFocus: true });
+      }
     });
 
     document.addEventListener("click", (event) => {
       if (!document.body.classList.contains("nav-open")) return;
       if (shell.contains(event.target)) return;
-      closeNav(button);
+      closeNav(button, { restoreFocus: true });
     });
 
     window.addEventListener("resize", () => {
-      if (window.innerWidth > 1180) closeNav(button);
+      if (window.innerWidth > COMPACT_NAV_MAX_WIDTH) closeNav(button);
     });
+
+    window.addEventListener("pagehide", () => closeNav(button));
+    window.addEventListener("pageshow", () => closeNav(button));
   }
 
   function setupCurrentLink() {

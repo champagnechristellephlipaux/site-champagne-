@@ -33,17 +33,17 @@
       rel="preload"
       type="font/woff2"
     />
-    <link href="style.css?v=20260712a" rel="stylesheet" />
+    <link href="style.css?v=20260923a" rel="stylesheet" />
     <link
       href="assets/css/editorial-redesign.css?v=20260701d"
       rel="stylesheet"
     />
     <link
-      href="assets/css/immersive-experience.css?v=20260724a"
+      href="assets/css/immersive-experience.css?v=20260923a"
       rel="stylesheet"
     />
     <meta
-      content="Repérer un point de vente ou demander une orientation directe pour trouver les cuvées Christelle Phlipaux près de chez vous."
+      content="Trouver un dépositaire Champagne Christelle Phlipaux en France, repérer les villes desservies et vérifier la disponibilité d’une cuvée avec la maison."
       name="description"
     />
     <link
@@ -59,7 +59,7 @@
       property="og:title"
     />
     <meta
-      content="Repérer un point de vente ou demander une orientation directe pour trouver les cuvées Christelle Phlipaux près de chez vous."
+      content="Trouver un dépositaire Champagne Christelle Phlipaux en France, repérer les villes desservies et vérifier la disponibilité d’une cuvée avec la maison."
       property="og:description"
     />
     <meta
@@ -80,7 +80,7 @@
       name="twitter:title"
     />
     <meta
-      content="Repérer un point de vente ou demander une orientation directe pour trouver les cuvées Christelle Phlipaux près de chez vous."
+      content="Trouver un dépositaire Champagne Christelle Phlipaux en France, repérer les villes desservies et vérifier la disponibilité d’une cuvée avec la maison."
       name="twitter:description"
     />
     <meta
@@ -137,10 +137,10 @@
         ]
       }
     </script>
-    <script defer="" src="consent.js?v=20260712a"></script>
-    <script defer src="ui.js?v=20260713a"></script>
+    <script defer="" src="consent.js?v=20260923a"></script>
+    <script defer src="ui.js?v=20260917a"></script>
   </head>
-  <body>
+  <body class="page-depositaires">
     <header>
       <div class="container nav">
         <a class="brand" href="/">
@@ -201,10 +201,59 @@
     <main class="section">
       <div class="container">
         <div class="kicker">Points de vente</div>
-        <h2 class="h2">Une carte pour repérer les points de vente</h2>
+        <h2 class="h2">Des relais dans plusieurs régions de France</h2>
         <p class="p u-readable-wide">
-          La carte donne un premier repère. Si vous cherchez une cuvée précise
-          ou l’adresse la plus pratique, la maison peut vous répondre.
+          Le réseau permet de retrouver les cuvées au-delà de Channes. Les
+          secteurs ci-dessous correspondent aux dépositaires actuellement
+          indiqués sur la carte de la maison.
+        </p>
+        <section
+          aria-labelledby="depositaires-regions-title"
+          class="depository-coverage u-mt-5"
+        >
+          <h3 class="h3" id="depositaires-regions-title">
+            Régions et villes desservies
+          </h3>
+          <ul class="depository-region-grid">
+            <li>
+              <strong>Grand Est</strong>
+              <span>Channes, Sedan, Mouzon et Marly</span>
+            </li>
+            <li>
+              <strong>Centre-Val de Loire</strong>
+              <span>Sully-sur-Loire, Yèvres et Mareau-aux-Prés</span>
+            </li>
+            <li>
+              <strong>Occitanie</strong>
+              <span
+                >Peyre en Aubrac, Saint-Alban-sur-Limagnole et Fonsorbes</span
+              >
+            </li>
+            <li>
+              <strong>Provence-Alpes-Côte d’Azur</strong>
+              <span>Châteaurenard et Cannes</span>
+            </li>
+            <li>
+              <strong>Nord et Ouest</strong>
+              <span
+                >Forest-en-Cambrésis, Landéhen et Sainte-Luce-sur-Loire</span
+              >
+            </li>
+            <li>
+              <strong>Autres secteurs</strong>
+              <span>Sassenay, Andernos-les-Bains et Cusset</span>
+            </li>
+          </ul>
+          <p class="small depository-availability">
+            La disponibilité et les cuvées proposées peuvent varier. Avant de
+            vous déplacer, demandez à la maison le contact du dépositaire le
+            plus proche.
+          </p>
+        </section>
+        <h2 class="h2 u-mt-6">Consulter la carte des dépositaires</h2>
+        <p class="p u-readable-wide">
+          Ouvrez la carte pour situer chaque relais. Pour une cuvée précise ou
+          une quantité importante, Christelle peut vous orienter directement.
         </p>
         <div class="card pad reveal u-mt-5">
           <div class="map-wrap">
@@ -233,8 +282,8 @@
             >
           </div>
           <p class="p u-mt-3 u-muted-85">
-            Liste non exhaustive. Si la carte ne suffit pas, écrivez ou appelez
-            la maison.
+            Liste non exhaustive. Les coordonnées sont accessibles depuis la
+            carte ou directement auprès de la maison.
           </p>
         </div>
         <article

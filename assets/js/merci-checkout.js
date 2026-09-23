@@ -1,6 +1,7 @@
 import { clearCart, formatEuro } from "../../cart.js?v=20260630b";
 
 const STATUS_ENDPOINT = "/.netlify/functions/get-checkout-session";
+const TRACKED_PURCHASES_KEY = "ccp_tracked_purchases_v1";
 
 const $ = (selector, root = document) => root.querySelector(selector);
 
@@ -26,6 +27,38 @@ function formatAmount(amount, currency) {
   if (!Number.isFinite(amount)) return "";
   if (currency === "eur") return formatEuro(amount / 100);
   return `${(amount / 100).toFixed(2)} ${String(currency || "").toUpperCase()}`;
+}
+
+function trackedPurchases() {
+  try {
+    const value = JSON.parse(localStorage.getItem(TRACKED_PURCHASES_KEY));
+    return Array.isArray(value) ? value : [];
+  } catch (_error) {
+    return [];
+  }
+}
+
+function trackCompletedPurchase(session) {
+  if (!session?.id || trackedPurchases().includes(session.id)) return;
+
+  const quantity = (session.line_items || []).reduce(
+    (total, item) => total + (Number(item.quantity) || 0),
+    0,
+  );
+  const tracked = window.ccpTrack?.("purchase_completed", {
+    amount_cents: session.amount_total,
+    currency: String(session.currency || "eur").toUpperCase(),
+    items: quantity,
+    page: location.pathname,
+  });
+
+  if (!tracked) return;
+  try {
+    const recent = [...trackedPurchases(), session.id].slice(-20);
+    localStorage.setItem(TRACKED_PURCHASES_KEY, JSON.stringify(recent));
+  } catch (_error) {
+    /* The confirmation stays usable when local storage is unavailable. */
+  }
 }
 
 async function fetchSession(sessionId) {
@@ -64,6 +97,7 @@ function renderSummary(session) {
 }
 
 function renderComplete(session) {
+  trackCompletedPurchase(session);
   clearCart();
   setText("[data-merci-kicker]", "Paiement confirmé");
   setText("[data-merci-title]", "Merci pour votre commande");

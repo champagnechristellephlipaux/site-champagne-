@@ -4,19 +4,18 @@ const CREATE_SESSION_ENDPOINT = "/.netlify/functions/create-checkout-session";
 const CONTACT_HELP =
   "\nVotre panier reste conservé. La maison peut reprendre la commande avec vous : +33 6 82 20 34 30 ou champagne.christelle.phlipaux@gmail.com.";
 
-function notifyCheckoutIssue(message, { showContact = true } = {}) {
+function notifyCheckoutIssue(
+  message,
+  { showContact = true, reason = "checkout_error" } = {},
+) {
   const fullMessage = `${message}${showContact ? CONTACT_HELP : ""}`;
-  window.ccpTrack?.("checkout_issue", {
-    contactHelp: showContact ? "shown" : "hidden",
-    page: location.pathname,
-  });
   window.dispatchEvent(
     new CustomEvent("checkout:issue", {
-      detail: { message: fullMessage },
+      detail: { message: fullMessage, reason, showContact },
     }),
   );
 
-  if (!document.querySelector("#cartDrawer")) {
+  if (!document.querySelector("#cartDrawer, [data-checkout-error]")) {
     alert(fullMessage);
   }
 }
@@ -71,6 +70,7 @@ export async function startCheckout() {
     window.ccpTrack?.("checkout_empty_cart", { page: location.pathname });
     notifyCheckoutIssue("Choisissez d’abord une cuvée.", {
       showContact: false,
+      reason: "empty_cart",
     });
     return;
   }
