@@ -20,6 +20,7 @@ module.exports = [
     files: [
       "admin-reviews.js",
       "consent.js",
+      "google-reviews.js",
       "review-submit.js",
       "reviews.js",
       "selection-assistant.js",

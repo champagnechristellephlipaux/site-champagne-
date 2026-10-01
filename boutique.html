@@ -55,6 +55,7 @@
       href="assets/css/commerce-experience.css?v=20260724a"
       rel="stylesheet"
     />
+    <link href="assets/css/google-reviews.css?v=20260930a" rel="stylesheet" />
     <meta
       content="Commander un champagne de vigneron en vente directe depuis Channes : coffret découverte, Brut Tradition, Brut Rosé, Demi-Sec et conseil de la maison."
       name="description"
@@ -344,6 +345,7 @@
       }
     </script>
     <script defer="" src="consent.js?v=20260923a"></script>
+    <script defer src="google-reviews.js?v=20260930a"></script>
     <script defer src="ui.js?v=20260917a"></script>
   </head>
   <body class="page-boutique">
@@ -1061,6 +1063,86 @@
               </div>
             </div>
           </article>
+        </div>
+      </section>
+      <section
+        aria-labelledby="shop-google-reviews-title"
+        class="section shop-google-reviews-section"
+        id="avis-google"
+      >
+        <div class="container">
+          <div class="shop-google-reviews-intro">
+            <div>
+              <div class="kicker">Avis Google</div>
+              <h2 class="h2" id="shop-google-reviews-title">
+                Des retours publics pour mieux connaître la maison
+              </h2>
+              <p class="p">
+                Retrouvez ici une sélection d’avis publiés sur Google Maps, puis
+                consultez la fiche complète pour lire l’ensemble des retours.
+              </p>
+            </div>
+            <div
+              aria-label="Résumé des avis Google"
+              class="google-reviews-summary"
+              data-google-reviews-summary
+              hidden
+            ></div>
+          </div>
+          <div
+            aria-busy="false"
+            data-google-reviews
+            data-google-reviews-limit="3"
+          >
+            <div class="google-reviews-fallback">
+              <div class="google-reviews-fallback-copy">
+                <strong>Consulter les avis Google de la maison</strong>
+                <span
+                  >Les avis restent accessibles sur la fiche Google Maps, même
+                  lorsque leur affichage direct n’est pas disponible ici.</span
+                >
+              </div>
+              <a
+                class="btn secondary"
+                data-google-reviews-link
+                href="https://www.google.com/maps/search/?api=1&amp;query=Champagne%20Christelle%20Phlipaux%2C%204%20Rue%20de%20Villiers%2C%2010340%20Channes"
+                rel="noopener noreferrer"
+                target="_blank"
+                >Voir les avis sur Google</a
+              >
+            </div>
+          </div>
+          <p
+            aria-live="polite"
+            class="u-visually-hidden"
+            data-google-reviews-status
+          ></p>
+          <p
+            class="google-reviews-disclosure"
+            data-google-reviews-disclosure
+            hidden
+          >
+            Google Maps fournit et classe ces avis par pertinence. Aucun filtre
+            par note n’est appliqué par la maison. Les avis ne sont pas vérifiés
+            par Google, qui peut retirer les contenus non conformes. Consultez
+            les
+            <a
+              href="https://cloud.google.com/maps-platform/terms"
+              rel="noopener noreferrer"
+              target="_blank"
+              >conditions Google Maps</a
+            >,
+            <a
+              href="https://policies.google.com/privacy"
+              rel="noopener noreferrer"
+              target="_blank"
+              >la politique de confidentialité Google</a
+            >
+            et notre
+            <a href="politique-confidentialite.html"
+              >politique de confidentialité</a
+            >.
+          </p>
         </div>
       </section>
       <section class="section shop-service-section" id="livraison">
