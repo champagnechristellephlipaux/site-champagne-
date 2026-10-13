@@ -1,4 +1,4 @@
-import { clearCart, formatEuro } from "../../cart.js?v=20260630b";
+import { clearCart, formatEuro } from "../../cart.js?v=20261012a";
 
 const STATUS_ENDPOINT = "/.netlify/functions/get-checkout-session";
 const TRACKED_PURCHASES_KEY = "ccp_tracked_purchases_v1";
@@ -103,7 +103,7 @@ function renderComplete(session) {
   setText("[data-merci-title]", "Merci pour votre commande");
   setText(
     "[data-merci-copy]",
-    "Votre paiement est confirmé. Nous préparons votre commande à Channes. Vous recevrez les informations de suivi par email dès son expédition.",
+    "Votre paiement est confirmé. Nous préparons votre commande à Channes. Pour toute question sur l’expédition, la maison reste joignable par téléphone ou par email.",
   );
   renderSummary(session);
   show($("[data-merci-success]"));

@@ -4,21 +4,21 @@
 
 export const PRICE_EUR = {
   "coffret-decouverte": {
-    coffret3: 75,
+    coffret3: 56,
   },
   brut: {
-    750: 22.5,
-    magnum: 49,
-    carton6: 135,
+    750: 18,
+    magnum: 40,
+    carton6: 108,
   },
   demisec: {
-    750: 22.5,
-    magnum: 49,
-    carton6: 135,
+    750: 18,
+    magnum: 40,
+    carton6: 108,
   },
   rose: {
-    750: 25,
-    carton6: 150,
+    750: 20,
+    carton6: 120,
   },
 };
 
@@ -49,7 +49,7 @@ export const FORMATS = [
   {
     key: "coffret3",
     label: "Coffret 3 × 75 cl",
-    hint: "Brut Tradition, Brut Rosé, Demi-Sec · livraison offerte",
+    hint: "Brut Tradition, Brut Rosé, Demi-Sec · livraison 5 €",
   },
   { key: "750", label: "75 cl", hint: "Format de service" },
   { key: "magnum", label: "Magnum 1,5 L", hint: "Grande table" },
@@ -60,7 +60,7 @@ export const CURATED_OFFERS = {
   "trio-decouverte": {
     name: "Coffret découverte",
     summary: "Brut Tradition, Brut Rosé et Demi-Sec en 75 cl",
-    focus: "Trois cuvées pour découvrir la maison, livraison offerte",
+    focus: "Trois cuvées pour découvrir la maison, livraison 5 €",
     items: [{ sku: "coffret-decouverte", format: "coffret3", qty: 1 }],
   },
   "table-de-fete": {

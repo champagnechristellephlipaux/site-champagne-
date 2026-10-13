@@ -1,4 +1,4 @@
-import { CURATED_OFFERS, PRICE_EUR } from "./shop-config.js?v=20260630b";
+import { CURATED_OFFERS, PRICE_EUR } from "./shop-config.js?v=20261012a";
 import {
   loadCart,
   addToCart,
@@ -13,8 +13,8 @@ import {
   shippingTotals,
   equivalent75clPrice,
   estimateSelectionTotal,
-} from "./cart.js?v=20260630b";
-import { startCheckout } from "./checkout.js?v=20260712a";
+} from "./cart.js?v=20261012a";
+import { startCheckout } from "./checkout.js?v=20261012a";
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
@@ -23,7 +23,7 @@ const prefersDirectScroll =
 
 const FORMAT_NOTES = {
   "coffret-decouverte": {
-    coffret3: "Coffret • 3 bouteilles, livraison offerte",
+    coffret3: "Coffret • 3 bouteilles, livraison 5€",
   },
   brut: {
     750: "75 cl • première commande, repas",
@@ -301,7 +301,7 @@ function flashOfferFeedback(offer) {
   );
 }
 
-function updateFloatingCart(items, subtotal) {
+function updateFloatingCart(items, estimatedTotal) {
   const floating = $("#floatingCart");
   if (!floating) return;
 
@@ -316,7 +316,7 @@ function updateFloatingCart(items, subtotal) {
     "#floatingCartCount",
     `${count} ${count > 1 ? "articles" : "article"}`,
   );
-  safeText("#floatingCartSubtotal", formatEuro(subtotal));
+  safeText("#floatingCartSubtotal", formatEuro(estimatedTotal));
 }
 
 function updateSelectionNotes() {
@@ -389,10 +389,10 @@ function renderCart() {
     if (bar) bar.style.width = "0%";
     if (txt)
       txt.textContent =
-        "Livraison offerte sur le coffret découverte ou dès 6 bouteilles de 75 cl.";
+        "Coffret découverte : livraison 5€. Dès 6 bouteilles de 75 cl : offerte.";
     if (note)
       note.textContent =
-        "Coffret : sans frais. 6 bouteilles de 75 cl : sans frais. Magnum : 10€ par unité.";
+        "Coffret seul : 5€. 6 bouteilles de 75 cl : sans frais. Magnum : 10€ par unité.";
 
     return;
   }
@@ -464,7 +464,7 @@ function renderCart() {
   }
   if (checkoutBtn)
     checkoutBtn.textContent = `${checkoutBaseLabel} • ${formatEuro(estimatedTotal)}`;
-  updateFloatingCart(items, totals.subtotal);
+  updateFloatingCart(items, estimatedTotal);
 
   // Livraison : la même grille est appliquée côté serveur au paiement.
   const shipEl = $("#cartShipping");
@@ -479,14 +479,15 @@ function renderCart() {
   if (bar && txt) {
     const target = 6;
     const progress = Math.min(1, (ship.bottles75 || 0) / target);
-    const hasOnlyFreeDiscovery =
-      (ship.freeDiscoveryBoxes || 0) > 0 &&
-      (ship.bottles75 || 0) === 0 &&
+    const hasOnlyDiscovery =
+      (ship.discoveryBoxes || 0) === 1 &&
+      (ship.bottles75 || 0) === 3 &&
       (ship.magnums || 0) === 0;
-    bar.style.width = `${Math.round((hasOnlyFreeDiscovery ? 1 : progress) * 100)}%`;
+    bar.style.width = `${Math.round(progress * 100)}%`;
 
-    if (hasOnlyFreeDiscovery) {
-      txt.textContent = "Livraison offerte sur le coffret découverte.";
+    if (hasOnlyDiscovery) {
+      txt.textContent =
+        "Coffret : livraison 5€. Ajoutez 3 bouteilles pour atteindre la livraison offerte.";
     } else if ((ship.bottles75 || 0) >= target) {
       txt.textContent =
         (ship.magnums || 0) > 0
@@ -503,16 +504,12 @@ function renderCart() {
   }
 
   if (note) {
-    if (
-      (ship.freeDiscoveryBoxes || 0) > 0 &&
-      ((ship.bottles75 || 0) > 0 || (ship.magnums || 0) > 0)
-    ) {
-      note.textContent =
-        ship.shippingTotal === 0
-          ? "Le coffret et les bouteilles de 75 cl sont livrés sans frais."
-          : `Le coffret est livré sans frais. Livraison des autres formats : ${formatEuro(ship.shippingTotal)}.`;
-    } else if ((ship.freeDiscoveryBoxes || 0) > 0) {
-      note.textContent = "Aucun frais de livraison pour ce coffret.";
+    const hasOnlyDiscovery =
+      (ship.discoveryBoxes || 0) === 1 &&
+      (ship.bottles75 || 0) === 3 &&
+      (ship.magnums || 0) === 0;
+    if (hasOnlyDiscovery) {
+      note.textContent = "Livraison du coffret découverte : 5€.";
     } else {
       note.textContent =
         (ship.magnums || 0) > 0
@@ -566,7 +563,7 @@ function updateCardPrices() {
     if (equivalentEl) {
       equivalentEl.textContent =
         selected === "coffret3"
-          ? "Prix TTC · 3 bouteilles de 75 cl · livraison offerte"
+          ? "Prix TTC · 3 bouteilles de 75 cl · livraison 5€"
           : `Prix TTC · soit ${formatEuro(equivalent75clPrice(sku, selected))} / 75 cl équivalent`;
     }
     if (estimateEl) {

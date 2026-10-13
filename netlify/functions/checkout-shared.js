@@ -11,11 +11,10 @@ const CATALOG = {
     formats: {
       coffret3: {
         label: "Brut Tradition, Brut Rosé et Demi-Sec en 75 cl",
-        priceId: "price_1TmbcPD96OJnHwPGeEMqIjYX",
-        unitAmount: 7500,
-        bottles75: 0,
+        priceId: "price_1UPd16D96OJnHwPGJP0SZlIE",
+        unitAmount: 5600,
+        bottles75: 3,
         magnums: 0,
-        shippingIncluded: true,
       },
     },
   },
@@ -24,22 +23,22 @@ const CATALOG = {
     formats: {
       750: {
         label: "75 cl",
-        priceId: "price_1SuZHHD96OJnHwPGwtcGoAWf",
-        unitAmount: 2250,
+        priceId: "price_1SmWpbD96OJnHwPGXHehtam4",
+        unitAmount: 1800,
         bottles75: 1,
         magnums: 0,
       },
       magnum: {
         label: "Magnum 1,5 L",
-        priceId: "price_1SwjyPD96OJnHwPGvyvJuQEZ",
-        unitAmount: 4900,
+        priceId: "price_1UPcvZD96OJnHwPGRx7U3ZQ5",
+        unitAmount: 4000,
         bottles75: 0,
         magnums: 1,
       },
       carton6: {
         label: "Carton de 6",
-        priceId: "price_1SuZIdD96OJnHwPGUzPgaC7b",
-        unitAmount: 13500,
+        priceId: "price_1UPcw0D96OJnHwPGErK0n5vh",
+        unitAmount: 10800,
         bottles75: 6,
         magnums: 0,
       },
@@ -50,22 +49,22 @@ const CATALOG = {
     formats: {
       750: {
         label: "75 cl",
-        priceId: "price_1SuZJvD96OJnHwPGzGSNXU4j",
-        unitAmount: 2250,
+        priceId: "price_1UPd4lD96OJnHwPGM0vRZwRv",
+        unitAmount: 1800,
         bottles75: 1,
         magnums: 0,
       },
       magnum: {
         label: "Magnum 1,5 L",
-        priceId: "price_1SwjzND96OJnHwPGJSfyYl4Z",
-        unitAmount: 4900,
+        priceId: "price_1UPd5bD96OJnHwPGa1kljMhc",
+        unitAmount: 4000,
         bottles75: 0,
         magnums: 1,
       },
       carton6: {
         label: "Carton de 6",
-        priceId: "price_1SuZKnD96OJnHwPGtpalrKg2",
-        unitAmount: 13500,
+        priceId: "price_1UPd53D96OJnHwPGGKe926sS",
+        unitAmount: 10800,
         bottles75: 6,
         magnums: 0,
       },
@@ -76,15 +75,15 @@ const CATALOG = {
     formats: {
       750: {
         label: "75 cl",
-        priceId: "price_1SuZDcD96OJnHwPGV9Snay25",
-        unitAmount: 2500,
+        priceId: "price_1UPd2sD96OJnHwPG7OIsfI9o",
+        unitAmount: 2000,
         bottles75: 1,
         magnums: 0,
       },
       carton6: {
         label: "Carton de 6",
-        priceId: "price_1SuZF5D96OJnHwPGYqH6CCaf",
-        unitAmount: 15000,
+        priceId: "price_1UPd3KD96OJnHwPGL1L7ifTx",
+        unitAmount: 12000,
         bottles75: 6,
         magnums: 0,
       },
@@ -172,7 +171,6 @@ function normalizeCart(input) {
     unitAmount: item.formatConfig.unitAmount || 0,
     bottles75: item.formatConfig.bottles75,
     magnums: item.formatConfig.magnums,
-    shippingIncluded: Boolean(item.formatConfig.shippingIncluded),
   }));
 }
 
@@ -185,15 +183,24 @@ function shippingFromItems(items) {
     (sum, item) => sum + item.magnums * item.quantity,
     0,
   );
-  const freeDiscoveryBoxes = items.reduce(
-    (sum, item) => sum + (item.shippingIncluded ? item.quantity : 0),
+  const discoveryBoxes = items.reduce(
+    (sum, item) =>
+      sum +
+      (item.sku === "coffret-decouverte" && item.format === "coffret3"
+        ? item.quantity
+        : 0),
     0,
   );
+  const regularBottles75 = bottles75 - discoveryBoxes * 3;
 
   let shipping75Cents = 0;
   if (bottles75 >= 6) shipping75Cents = 0;
   else if (bottles75 === 5 || bottles75 === 4) shipping75Cents = 1000;
-  else if (bottles75 === 3) shipping75Cents = 600;
+  else if (bottles75 === 3)
+    shipping75Cents =
+      discoveryBoxes === 1 && regularBottles75 === 0 && magnums === 0
+        ? 500
+        : 600;
   else if (bottles75 === 2) shipping75Cents = 1000;
   else if (bottles75 === 1) shipping75Cents = 1200;
 
@@ -206,7 +213,7 @@ function shippingFromItems(items) {
     shipping75Cents,
     shippingMagnumCents,
     shippingTotalCents,
-    freeDiscoveryBoxes,
+    discoveryBoxes,
   };
 }
 
@@ -223,10 +230,6 @@ function buildShippingOptions(amount) {
           amount === 0
             ? "Livraison offerte"
             : "Livraison France métropolitaine",
-        delivery_estimate: {
-          minimum: { unit: "business_day", value: 2 },
-          maximum: { unit: "business_day", value: 5 },
-        },
       },
     },
   ];
@@ -266,6 +269,13 @@ function orderReference() {
   return `CCP-${stamp}-${suffix}`;
 }
 
+function integrationIdentifier() {
+  const suffix = Array.from(crypto.randomBytes(8), (byte) =>
+    String.fromCharCode(97 + (byte % 26)),
+  ).join("");
+  return `ccp_checkout_${suffix}`;
+}
+
 function cartSignature(items) {
   return items
     .map((item) => `${item.sku}:${item.format}:${item.quantity}`)
@@ -301,10 +311,8 @@ function termsAcceptanceFromSession(session) {
 }
 
 function lineItemsForStripe(items) {
-  const useConfiguredPriceIds = process.env.STRIPE_USE_PRICE_IDS === "true";
-
   return items.map((item) => ({
-    ...(useConfiguredPriceIds && item.price
+    ...(item.price
       ? { price: item.price }
       : {
           price_data: {
@@ -328,6 +336,7 @@ module.exports = {
   TERMS_VERSION,
   buildShippingOptions,
   cartSignature,
+  integrationIdentifier,
   json,
   lineItemsForStripe,
   normalizeCart,

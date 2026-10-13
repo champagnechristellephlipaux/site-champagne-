@@ -2,9 +2,6 @@ const fs = require("fs/promises");
 const path = require("path");
 
 const STORE_NAME = "ccp-orders";
-const LOCAL_STORE_DIR =
-  process.env.ORDERS_LOCAL_STORE ||
-  path.join(process.cwd(), ".netlify", "orders");
 
 function getBlobsModule() {
   try {
@@ -53,9 +50,16 @@ async function saveOrder(order) {
     return payload;
   }
 
-  await fs.mkdir(LOCAL_STORE_DIR, { recursive: true });
+  const localStoreDir = String(process.env.ORDERS_LOCAL_STORE || "").trim();
+  if (!localStoreDir) {
+    throw new Error(
+      "Le stockage durable Netlify Blobs est indisponible pour cette commande.",
+    );
+  }
+
+  await fs.mkdir(localStoreDir, { recursive: true });
   await fs.writeFile(
-    path.join(LOCAL_STORE_DIR, `${safeSessionId}.json`),
+    path.join(localStoreDir, `${safeSessionId}.json`),
     serialized,
     "utf8",
   );

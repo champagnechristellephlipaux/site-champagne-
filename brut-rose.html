@@ -48,7 +48,7 @@
       property="og:image"
     />
     <meta content="Bouteille de Champagne Brut Rosé" property="og:image:alt" />
-    <meta content="25.00" property="product:price:amount" />
+    <meta content="20.00" property="product:price:amount" />
     <meta content="EUR" property="product:price:currency" />
     <meta content="summary_large_image" name="twitter:card" />
     <meta
@@ -104,8 +104,11 @@
         {
           "@context": "https://schema.org",
           "@type": "Winery",
+          "@id": "https://www.champagne-christelle-phlipaux.com/#organization",
           "name": "Champagne Christelle Phlipaux",
           "url": "https://www.champagne-christelle-phlipaux.com/",
+          "logo": "https://www.champagne-christelle-phlipaux.com/assets/logo-search.png",
+          "image": "https://www.champagne-christelle-phlipaux.com/assets/vendanges-maison.jpg",
           "telephone": "+33 6 82 20 34 30",
           "email": "champagne.christelle.phlipaux@gmail.com",
           "address": {
@@ -118,7 +121,10 @@
           "sameAs": [
             "https://www.instagram.com/champagne.c.phlipaux/",
             "https://www.facebook.com/Christelle.Phlipaux/"
-          ]
+          ],
+          "hasMerchantReturnPolicy": {
+            "@id": "https://www.champagne-christelle-phlipaux.com/#return-policy"
+          }
         },
         {
           "@context": "https://schema.org",
@@ -157,9 +163,12 @@
               "@type": "Offer",
               "name": "Brut Rosé 75 cl",
               "priceCurrency": "EUR",
-              "price": "25.00",
+              "price": "20.00",
               "url": "https://www.champagne-christelle-phlipaux.com/boutique.html#rose",
               "itemCondition": "https://schema.org/NewCondition",
+              "hasMerchantReturnPolicy": {
+                "@id": "https://www.champagne-christelle-phlipaux.com/#return-policy"
+              },
               "seller": {
                 "@type": "Organization",
                 "name": "Champagne Christelle Phlipaux"
@@ -169,9 +178,12 @@
               "@type": "Offer",
               "name": "Brut Rosé carton 6 x 75 cl",
               "priceCurrency": "EUR",
-              "price": "150.00",
+              "price": "120.00",
               "url": "https://www.champagne-christelle-phlipaux.com/boutique.html#rose",
               "itemCondition": "https://schema.org/NewCondition",
+              "hasMerchantReturnPolicy": {
+                "@id": "https://www.champagne-christelle-phlipaux.com/#return-policy"
+              },
               "seller": {
                 "@type": "Organization",
                 "name": "Champagne Christelle Phlipaux"
@@ -286,7 +298,7 @@
             <div class="product-hero-buyline">
               <div class="product-hero-price">
                 <span>Bouteille 75 cl · prix TTC</span>
-                <strong>25€</strong>
+                <strong>20€</strong>
               </div>
               <a class="btn primary" href="#produits">Choisir le format</a>
             </div>
@@ -377,9 +389,9 @@
                 <div class="product-buy-top">
                   <div class="product-buy-price">
                     <div class="badge">Prix TTC</div>
-                    <div class="price">25€</div>
+                    <div class="price">20€</div>
                     <div class="small" data-price-equivalent="">
-                      Prix TTC · soit 25€ / 75 cl équivalent
+                      Prix TTC · soit 20€ / 75 cl équivalent
                     </div>
                     <div
                       aria-label="Formats disponibles"
@@ -417,7 +429,7 @@
                               >Cadeau, apéritif ou dîner d’été</small
                             ></span
                           ><span class="seg-side"
-                            ><em>25€</em><small>1 bouteille</small></span
+                            ><em>20€</em><small>1 bouteille</small></span
                           ></span
                         ></label
                       >
@@ -433,7 +445,7 @@
                               >Plusieurs attentions ou réception</small
                             ></span
                           ><span class="seg-side"
-                            ><em>150€</em><small>Livraison offerte</small></span
+                            ><em>120€</em><small>Livraison offerte</small></span
                           ></span
                         ></label
                       >
@@ -483,7 +495,7 @@
                   </div>
                   <div class="variant-actions">
                     <button class="btn primary" data-add="rose" type="button">
-                      Ajouter au panier • 25€
+                      Ajouter au panier • 20€
                     </button>
                     <button
                       aria-label="Ouvrir le panier"
@@ -800,7 +812,7 @@
               Frais calculés selon les formats du panier.
             </div>
             <div class="ship-note small muted" id="cartShipNote">
-              Coffret découverte : livraison offerte. Dès 6 bouteilles : offert
+              Coffret découverte seul : livraison 5€. Dès 6 bouteilles : offert
               hors magnums.
             </div>
             <div
@@ -865,7 +877,7 @@
       id="shopToast"
       role="status"
     ></div>
-    <script src="offers.js?v=20260630b" type="module"></script>
-    <script src="cart-ui.js?v=20260712a" type="module"></script>
+    <script src="offers.js?v=20261012a" type="module"></script>
+    <script src="cart-ui.js?v=20261012b" type="module"></script>
   </body>
 </html>

@@ -5,7 +5,7 @@ import {
   getItemMeta,
   loadCart,
   shippingTotals,
-} from "../../cart.js?v=20260630b";
+} from "../../cart.js?v=20261012a";
 
 const CREATE_SESSION_ENDPOINT =
   "/.netlify/functions/create-checkout-elements-session";
@@ -110,18 +110,13 @@ function renderLocalCart(items) {
 
   const shippingNote = $("[data-checkout-shipping-note]");
   if (shippingNote) {
-    const hasOnlyFreeDiscovery =
-      (shipping.freeDiscoveryBoxes || 0) > 0 &&
-      (shipping.bottles75 || 0) === 0 &&
+    const hasOnlyDiscovery =
+      (shipping.discoveryBoxes || 0) === 1 &&
+      (shipping.bottles75 || 0) === 3 &&
       (shipping.magnums || 0) === 0;
 
-    if (hasOnlyFreeDiscovery) {
-      shippingNote.textContent = "Livraison offerte sur le coffret découverte.";
-    } else if ((shipping.freeDiscoveryBoxes || 0) > 0) {
-      shippingNote.textContent =
-        shipping.shippingTotal === 0
-          ? "Le coffret et les bouteilles de 75 cl sont livrés sans frais."
-          : `Le coffret est livré sans frais. Livraison des autres formats : ${formatEuro(shipping.shippingTotal)}.`;
+    if (hasOnlyDiscovery) {
+      shippingNote.textContent = "Livraison du coffret découverte : 5€.";
     } else if (shipping.bottles75 >= 6 && !shipping.magnums) {
       shippingNote.textContent = "Livraison offerte atteinte pour ce panier.";
     } else if (shipping.bottles75 >= 6 && shipping.magnums) {

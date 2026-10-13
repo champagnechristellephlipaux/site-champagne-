@@ -23,7 +23,7 @@
     <link
       as="image"
       fetchpriority="high"
-      href="/assets/hero-vignoble.webp"
+      href="/assets/vendange-pinot-noir-channes.webp"
       rel="preload"
       type="image/webp"
     />
@@ -103,6 +103,7 @@
       {
         "@context": "https://schema.org",
         "@type": ["Organization", "Winery"],
+        "@id": "https://www.champagne-christelle-phlipaux.com/#organization",
         "name": "Champagne Christelle Phlipaux",
         "legalName": "CHRISTELLE BOURDICAUD",
         "vatID": "FR25539870253",
@@ -120,6 +121,17 @@
           "addressCountry": "FR"
         },
         "areaServed": "FR",
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "@id": "https://www.champagne-christelle-phlipaux.com/#return-policy",
+          "merchantReturnLink": "https://www.champagne-christelle-phlipaux.com/retractation.html",
+          "applicableCountry": "FR",
+          "returnPolicyCountry": "FR",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+          "merchantReturnDays": 14,
+          "returnMethod": "https://schema.org/ReturnByMail",
+          "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility"
+        },
         "sameAs": [
           "https://www.instagram.com/champagne.c.phlipaux/",
           "https://www.facebook.com/Christelle.Phlipaux/"
@@ -226,10 +238,10 @@
                     >Voir les cuvées</a
                   >
                   <a
-                    aria-label="Découvrir le coffret de trois cuvées à 75 euros"
+                    aria-label="Découvrir le coffret de trois cuvées à 56 euros, livraison 5 euros"
                     class="hero-cta-secondary"
                     href="boutique.html#coffret-decouverte"
-                    >Le coffret · 3 cuvées · 75€</a
+                    >Le coffret · 3 cuvées · 56€</a
                   >
                 </div>
               </div>
@@ -242,6 +254,11 @@
           <div class="home-family-layout reveal">
             <figure class="home-family-media">
               <picture>
+                <source
+                  media="(max-width: 720px)"
+                  srcset="assets/famille-vigneron-vignes-channes-768.webp"
+                  type="image/webp"
+                />
                 <source
                   srcset="assets/famille-vigneron-vignes-channes.webp"
                   type="image/webp"
@@ -284,6 +301,13 @@
             <figure class="home-discovery-media">
               <picture>
                 <source
+                  media="(max-width: 720px)"
+                  srcset="
+                    assets/coffret-decouverte-champagne-christelle-phlipaux-768.webp
+                  "
+                  type="image/webp"
+                />
+                <source
                   srcset="
                     assets/coffret-decouverte-champagne-christelle-phlipaux.webp
                   "
@@ -308,8 +332,8 @@
               </p>
               <div class="home-discovery-facts" role="list">
                 <span role="listitem">3 bouteilles 75 cl</span>
-                <span role="listitem">75€</span>
-                <span role="listitem">Livraison offerte sur le coffret</span>
+                <span role="listitem">56€</span>
+                <span role="listitem">Livraison du coffret : 5€</span>
               </div>
               <div class="hero-cta">
                 <a class="btn primary" href="boutique.html#coffret-decouverte"
@@ -353,7 +377,7 @@
                 </div>
                 <div class="home-offer-price">
                   <span>75 cl</span>
-                  <strong>22,50€</strong>
+                  <strong>18€</strong>
                 </div>
               </div>
               <p class="home-offer-intent">
@@ -408,7 +432,7 @@
                 </div>
                 <div class="home-offer-price">
                   <span>75 cl</span>
-                  <strong>25€</strong>
+                  <strong>20€</strong>
                 </div>
               </div>
               <p class="home-offer-intent">
@@ -465,7 +489,7 @@
                 </div>
                 <div class="home-offer-price">
                   <span>75 cl</span>
-                  <strong>22,50€</strong>
+                  <strong>18€</strong>
                 </div>
               </div>
               <p class="home-offer-intent">
@@ -703,8 +727,8 @@
                 <span class="trust-point-index">03</span>
                 <strong>Livraison annoncée</strong>
                 <span
-                  >Frais visibles avant validation, inclus sur le coffret
-                  découverte et dès 6 bouteilles.</span
+                  >Frais visibles avant validation : 5€ pour le coffret seul,
+                  offerts dès 6 bouteilles.</span
                 >
               </div>
               <div class="trust-point">

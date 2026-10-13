@@ -35,10 +35,10 @@ Variable optionnelle :
 - `checkout.session.async_payment_succeeded`
 - `checkout.session.async_payment_failed`
 
-Les prix affichés au navigateur sont dans `shop-config.js`. Les prix et
-identifiants Stripe faisant foi sont dans
+Les prix affichés au navigateur sont dans `shop-config.js`. Les montants et les
+Price IDs Stripe faisant foi au moment du paiement sont dans
 `netlify/functions/checkout-shared.js`. Le test de commerce bloque le build si
-les montants divergent.
+les montants divergent ou si un identifiant attendu change.
 
 Avant mise en ligne
 

@@ -2,6 +2,7 @@ const { createStripeClient } = require("./stripe-client");
 const {
   buildShippingOptions,
   cartSignature,
+  integrationIdentifier,
   json,
   lineItemsForStripe,
   normalizeCart,
@@ -58,6 +59,7 @@ exports.handler = async (event) => {
 
   try {
     const session = await stripe.checkout.sessions.create({
+      integration_identifier: integrationIdentifier(),
       ui_mode: "elements",
       mode: "payment",
       locale: "fr",
@@ -78,7 +80,7 @@ exports.handler = async (event) => {
         cart: cartSignature(items),
         bottles75: String(shipping.bottles75),
         magnums: String(shipping.magnums),
-        free_discovery_boxes: String(shipping.freeDiscoveryBoxes || 0),
+        discovery_boxes: String(shipping.discoveryBoxes || 0),
         shipping_cents: String(shipping.shippingTotalCents),
         terms_version: TERMS_VERSION,
         terms_accepted: "pending",

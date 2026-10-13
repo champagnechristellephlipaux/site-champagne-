@@ -55,7 +55,7 @@
     <script defer="" src="ui.js?v=20260917a"></script>
     <script
       defer=""
-      src="assets/js/checkout-redirect.js?v=20260911a"
+      src="assets/js/checkout-redirect.js?v=20261012a"
       type="module"
     ></script>
   </head>
@@ -212,31 +212,26 @@
                 </div>
               </div>
 
-              <label class="checkout-terms">
-                <input
-                  data-checkout-terms=""
-                  name="terms"
-                  required=""
-                  type="checkbox"
-                />
+              <p class="checkout-terms">
                 <span>
-                  En continuant, je confirme avoir lu et accepté les
+                  Sur la page Stripe, la validation du paiement confirme la
+                  lecture et l’acceptation des
                   <a href="cgv.html" target="_blank" rel="noopener"
                     >conditions générales de vente</a
                   >, incluant les conditions de
                   <a href="retractation.html" target="_blank" rel="noopener"
                     >rétractation</a
-                  >. Je confirme être majeur et comprends que la validation
-                  entraîne une obligation de paiement.
+                  >. La validation entraîne une obligation de paiement et la
+                  vente d’alcool est réservée aux personnes majeures.
                 </span>
-              </label>
+              </p>
 
               <button
                 aria-busy="false"
                 class="btn primary checkout-pay-button"
                 data-checkout-submit=""
                 disabled=""
-                type="submit"
+                type="button"
               >
                 Ouverture de Stripe…
               </button>

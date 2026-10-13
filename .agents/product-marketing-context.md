@@ -11,6 +11,7 @@ The business is not trying to imitate a large luxury house. Its strongest advant
 The website must support direct sales while strengthening the credibility and memorability of the House. It should turn curiosity into confidence, then confidence into a simple purchase.
 
 The experience should answer four questions quickly:
+
 1. Who is behind the Champagne?
 2. Why should I trust this House?
 3. Which cuvée or format should I choose?
@@ -23,6 +24,7 @@ The experience should answer four questions quickly:
 People buying Champagne for meals, celebrations, gifts or personal enjoyment. They may know little about technical wine vocabulary and need straightforward guidance.
 
 Main needs:
+
 - confidence in the producer
 - understandable differences between cuvées
 - visible prices and formats
@@ -34,6 +36,7 @@ Main needs:
 Customers who already know the family, have purchased through word of mouth or use the depositary network.
 
 Main needs:
+
 - quickly find the familiar cuvée
 - reorder without friction
 - locate a nearby depositary
@@ -44,6 +47,7 @@ Main needs:
 Adults who are interested in Champagne but may perceive the category as formal, inaccessible or old-fashioned.
 
 Main needs:
+
 - simple explanations
 - authentic behind-the-scenes content
 - approachable language
@@ -55,6 +59,7 @@ Main needs:
 Restaurants, bars, caterers, retailers, companies and event professionals.
 
 Main needs:
+
 - credible presentation of the House
 - easy contact route
 - formats and range overview
@@ -67,6 +72,7 @@ Do not expose confidential professional pricing or commercial conditions unless 
 A family Champagne that combines quality, sincerity and a strong relationship with customers.
 
 Not:
+
 - ostentatious luxury
 - mass-market discount Champagne
 - a fashionable lifestyle brand disconnected from production
@@ -147,12 +153,13 @@ Alcohol communication must remain responsible, adult-oriented and compliant with
 
 ## Approved current online prices
 
-- Brut 75 cl: 22.50 €
-- Brut magnum: 49 €
-- Brut carton of 6: 135 €
-- Rosé 75 cl: 25 €
-- Rosé carton of 6: 150 €
+- Brut 75 cl: 18 €
+- Brut magnum: 40 €
+- Brut carton of 6: 108 €
+- Rosé 75 cl: 20 €
+- Rosé carton of 6: 120 €
 - Demi-sec: same prices as Brut
+- Discovery box (one 75 cl bottle of each cuvée): 56 €
 
 These are website prices, not a claim about all sales channels or future pricing.
 
@@ -164,12 +171,14 @@ These are website prices, not a claim about all sales channels or future pricing
 - 4 or 5 standard bottles: 10 € total
 - free delivery from 6 standard bottles
 - magnums: 10 € each, cumulative
+- discovery box ordered alone: 5 € total delivery
 
 When combinations create ambiguity, preserve existing tested production behavior and flag the question rather than guessing.
 
 ## Decision filter
 
 Before approving any design or copy change, ask:
+
 1. Does it make the House more credible and human?
 2. Does it help a customer understand or choose?
 3. Is every claim verifiable?

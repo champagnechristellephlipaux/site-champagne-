@@ -1,4 +1,4 @@
-import { PRODUCTS, FORMATS, PRICE_EUR } from "./shop-config.js?v=20260630b";
+import { PRODUCTS, FORMATS, PRICE_EUR } from "./shop-config.js?v=20261012a";
 
 const CART_KEY = "cp_cart_v1";
 export const MAX_ITEM_QTY = 48;
@@ -95,13 +95,14 @@ export function bottles75clEquivalent(items) {
   items.forEach((it) => {
     const q = Number(it.qty || 0);
     if (!q) return;
-    if (it.format === "carton6") count += 6 * q;
+    if (it.format === "coffret3") count += 3 * q;
+    else if (it.format === "carton6") count += 6 * q;
     else if (it.format === "750") count += 1 * q;
   });
   return count;
 }
 
-export function freeDiscoveryBoxCount(items) {
+export function discoveryBoxCount(items) {
   return items.reduce((acc, it) => {
     if (it.sku === "coffret-decouverte" && it.format === "coffret3") {
       return acc + Number(it.qty || 0);
@@ -120,12 +121,15 @@ export function magnumCount(items) {
 export function shippingTotals(items) {
   const b75 = bottles75clEquivalent(items);
   const mags = magnumCount(items);
-  const discoveryBoxes = freeDiscoveryBoxCount(items);
+  const discoveryBoxes = discoveryBoxCount(items);
+  const regularBottles75 = b75 - discoveryBoxes * 3;
 
   let shipping75 = 0;
   if (b75 >= 6) shipping75 = 0;
   else if (b75 === 5 || b75 === 4) shipping75 = 10;
-  else if (b75 === 3) shipping75 = 6;
+  else if (b75 === 3)
+    shipping75 =
+      discoveryBoxes === 1 && regularBottles75 === 0 && mags === 0 ? 5 : 6;
   else if (b75 === 2) shipping75 = 10;
   else if (b75 === 1) shipping75 = 12;
   else shipping75 = 0;
@@ -138,7 +142,7 @@ export function shippingTotals(items) {
     shippingTotal: shipping75 + shippingMag,
     bottles75: b75,
     magnums: mags,
-    freeDiscoveryBoxes: discoveryBoxes,
+    discoveryBoxes,
   };
 }
 
