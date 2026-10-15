@@ -256,11 +256,11 @@ function sanitizeOrigin(value) {
 
 function siteOrigin(event) {
   return (
-    process.env.SITE_URL ||
-    process.env.URL ||
+    sanitizeOrigin(process.env.SITE_URL) ||
+    sanitizeOrigin(process.env.URL) ||
     sanitizeOrigin(event.headers?.origin || event.headers?.Origin) ||
     DEFAULT_SITE_URL
-  ).replace(/\/$/, "");
+  );
 }
 
 function orderReference() {

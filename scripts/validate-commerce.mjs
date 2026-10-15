@@ -402,7 +402,8 @@ try {
   process.env.STRIPE_SECRET_KEY = "sk_test_checkout_validation";
   process.env.STRIPE_PUBLISHABLE_KEY = "pk_test_checkout_validation";
   process.env.STRIPE_WEBHOOK_SECRET = "whsec_checkout_validation";
-  process.env.SITE_URL = "https://www.champagne-christelle-phlipaux.com";
+  process.env.SITE_URL =
+    "https://www.champagne-christelle-phlipaux.com/merci.html";
 
   delete require.cache[checkoutHandlerPath];
   const { handler: createCheckoutHandler } = require(checkoutHandlerPath);
@@ -512,6 +513,38 @@ try {
     elementsCheckoutPayload.shipping_options[0].shipping_rate_data
       .delivery_estimate,
     undefined,
+  );
+
+  const discoveryBoxCheckoutResponse = await createCheckoutHandler({
+    httpMethod: "POST",
+    headers: {},
+    body: JSON.stringify({
+      cart: [{ sku: "coffret-decouverte", format: "coffret3", qty: 1 }],
+    }),
+  });
+  assert.equal(discoveryBoxCheckoutResponse.statusCode, 200);
+  assert.equal(createdSessions.length, 3);
+  const discoveryBoxCheckoutPayload = createdSessions[2];
+  assert.deepEqual(discoveryBoxCheckoutPayload.line_items, [
+    {
+      price: expectedStripePriceIds["coffret-decouverte"].coffret3,
+      quantity: 1,
+    },
+  ]);
+  assert.equal(
+    discoveryBoxCheckoutPayload.shipping_options[0].shipping_rate_data
+      .fixed_amount.amount,
+    500,
+  );
+  assert.equal(discoveryBoxCheckoutPayload.metadata.shipping_cents, "500");
+  assert.equal(discoveryBoxCheckoutPayload.metadata.discovery_boxes, "1");
+  assert.equal(
+    discoveryBoxCheckoutPayload.success_url,
+    "https://www.champagne-christelle-phlipaux.com/merci.html?session_id={CHECKOUT_SESSION_ID}",
+  );
+  assert.equal(
+    discoveryBoxCheckoutPayload.cancel_url,
+    "https://www.champagne-christelle-phlipaux.com/boutique.html",
   );
 
   delete require.cache[statusHandlerPath];
