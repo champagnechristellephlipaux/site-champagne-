@@ -15,10 +15,13 @@ function getBlobsModule() {
   }
 }
 
-function getBlobStore() {
+function getBlobStore(event) {
   const blobs = getBlobsModule();
   if (!blobs?.getStore) return null;
   try {
+    if (event?.blobs && typeof blobs.connectLambda === "function") {
+      blobs.connectLambda(event);
+    }
     return blobs.getStore({ name: STORE_NAME });
   } catch (_error) {
     return null;
@@ -29,7 +32,7 @@ function safeFileName(value) {
   return String(value || "").replace(/[^A-Za-z0-9_-]/g, "");
 }
 
-async function saveOrder(order) {
+async function saveOrder(order, event) {
   const safeSessionId = safeFileName(order.session_id);
   if (!safeSessionId) {
     throw new Error("Référence de session Stripe invalide.");
@@ -41,7 +44,7 @@ async function saveOrder(order) {
   };
   const serialized = JSON.stringify(payload, null, 2);
   const key = `orders/${safeSessionId}.json`;
-  const store = getBlobStore();
+  const store = getBlobStore(event);
 
   if (store) {
     await store.set(key, serialized, {

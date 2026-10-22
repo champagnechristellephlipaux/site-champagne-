@@ -8,7 +8,7 @@
     "lint": "npm run lint:js && npm run lint:html",
     "lint:js": "eslint \"*.js\" \"assets/js/**/*.js\" \"netlify/functions/**/*.js\"",
     "lint:html": "htmlhint --config .htmlhintrc \"*.html\"",
-    "test:commerce": "node --no-warnings scripts/validate-commerce.mjs",
+    "test:commerce": "node --no-warnings scripts/validate-commerce.mjs && node --no-warnings scripts/validate-orders-blobs.mjs",
     "test:google-reviews": "node scripts/validate-google-reviews.mjs",
     "test:site": "node scripts/validate-site.mjs",
     "format": "prettier --write \"*.{css,html,js,json,md}\" \"assets/js/**/*.js\" \"data/**/*.json\" \"netlify/functions/**/*.js\" \"scripts/**/*.mjs\"",

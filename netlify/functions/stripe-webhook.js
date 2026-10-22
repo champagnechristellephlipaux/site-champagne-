@@ -105,7 +105,7 @@ exports.handler = async (event) => {
       order.stripe_event = stripeEvent.type;
       order.stripe_event_id = stripeEvent.id;
 
-      await saveOrder(order);
+      await saveOrder(order, event);
 
       console.info(
         "stripe-order",
