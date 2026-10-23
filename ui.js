@@ -44,7 +44,11 @@
     {
       href: "cadeaux.html",
       label: "Offrir",
-      matches: ["cadeaux.html", "evenements.html"],
+      matches: [
+        "cadeaux.html",
+        "coffret-decouverte-champagne.html",
+        "evenements.html",
+      ],
     },
     {
       href: "/#contact",

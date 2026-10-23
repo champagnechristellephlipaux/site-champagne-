@@ -3638,6 +3638,13 @@ footer .footer-trust span {
     display: none;
   }
 
+  .page-home.immersive-site
+    .home-offer-card--brut
+    .home-offer-cues
+    > div:nth-child(2) {
+    display: grid;
+  }
+
   .page-home.immersive-site .home-offer-actions .btn {
     min-height: 46px;
   }
@@ -3782,5 +3789,67 @@ footer .footer-trust span {
   .product-title h3,
   .checkout-total-line strong {
     font-size: 1.25rem;
+  }
+}
+
+/* The discovery-box artwork is a horizontal three-bottle composition. On
+   mobile it must remain complete instead of being cropped like a portrait. */
+@media (max-width: 720px) {
+  body.page-coffret .page-hero {
+    display: block !important;
+    min-height: 0 !important;
+    padding-top: calc(var(--header-height, 72px) + clamp(230px, 67vw, 282px));
+    background: #15110d;
+  }
+
+  body.page-coffret .page-hero picture {
+    top: var(--header-height, 72px);
+    bottom: auto;
+    height: clamp(230px, 67vw, 282px);
+    overflow: hidden;
+    background: #090806;
+  }
+
+  body.page-coffret .page-hero .page-hero-media {
+    width: 100%;
+    height: 100%;
+    object-fit: contain !important;
+    object-position: center !important;
+    opacity: 1;
+    filter: saturate(0.9) contrast(1.03) brightness(0.9);
+  }
+
+  body.page-coffret .page-hero .page-hero-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(8, 7, 6, 0.04) 0%,
+      rgba(8, 7, 6, 0.08) 34%,
+      rgba(8, 7, 6, 0.82) 48%,
+      #15110d 62%,
+      #15110d 100%
+    );
+  }
+
+  body.page-coffret .page-hero .page-hero-inner {
+    display: grid !important;
+    align-content: start !important;
+    min-height: 0 !important;
+    gap: 12px;
+    padding: 28px clamp(22px, 7vw, 30px) 36px !important;
+  }
+
+  body.page-coffret .page-hero .page-hero-title {
+    max-width: 12ch;
+    font-size: clamp(2.45rem, 11.4vw, 3.1rem);
+  }
+
+  body.page-coffret .page-hero .page-hero-sub {
+    max-width: 32ch;
+  }
+
+  body.page-coffret .page-hero .home-discovery-facts,
+  body.page-coffret .page-hero .hero-cta,
+  body.page-coffret .page-hero .hero-cta .btn {
+    width: 100%;
   }
 }

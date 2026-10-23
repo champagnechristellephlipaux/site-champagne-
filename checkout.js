@@ -28,12 +28,15 @@ function cartPayload(items) {
   }));
 }
 
-async function parseResponseError(response) {
+export async function parseResponseError(response) {
   const fallback = "Stripe ne peut pas ouvrir le paiement pour le moment.";
   const text = await response.text();
   try {
     const data = JSON.parse(text);
-    return data.error || data.message || fallback;
+    if (typeof data?.error === "string") return data.error;
+    if (typeof data?.error?.message === "string") return data.error.message;
+    if (typeof data?.message === "string") return data.message;
+    return fallback;
   } catch (_error) {
     const plainText = text.trim();
     const looksLikeMarkup = /<[^>]+>/.test(plainText);

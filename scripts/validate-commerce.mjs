@@ -8,6 +8,7 @@ import {
   cartTotals as clientCartTotals,
   shippingTotals as clientShippingTotals,
 } from "../cart.js";
+import { parseResponseError } from "../checkout.js";
 import { PRICE_EUR } from "../shop-config.js";
 
 const require = createRequire(import.meta.url);
@@ -54,6 +55,23 @@ const expectedStripePriceIds = {
   },
 };
 
+assert.equal(
+  await parseResponseError(
+    new Response(
+      JSON.stringify({ error: { message: "Paiement indisponible" } }),
+    ),
+  ),
+  "Paiement indisponible",
+  "Le checkout doit extraire le message d'une erreur structurée",
+);
+assert.equal(
+  await parseResponseError(
+    new Response(JSON.stringify({ error: { code: "service_unavailable" } })),
+  ),
+  "Stripe ne peut pas ouvrir le paiement pour le moment.",
+  "Le checkout ne doit jamais afficher un objet JavaScript au client",
+);
+
 assert.deepEqual(
   PRICE_EUR,
   expectedPrices,
@@ -88,6 +106,109 @@ for (const [sku, formats] of Object.entries(expectedStripePriceIds)) {
       `Price ID Stripe divergent : ${sku}/${format}`,
     );
   }
+}
+
+const productPageExpectations = [
+  {
+    file: "brut-tradition.html",
+    sku: "brut",
+    visiblePrice: "18€",
+    totalWithDelivery: "30€",
+  },
+  {
+    file: "brut-rose.html",
+    sku: "rose",
+    visiblePrice: "20€",
+    totalWithDelivery: "32€",
+  },
+  {
+    file: "demi-sec.html",
+    sku: "demisec",
+    visiblePrice: "18€",
+    totalWithDelivery: "30€",
+  },
+];
+
+for (const file of [
+  "boutique.html",
+  "brut-tradition.html",
+  "brut-rose.html",
+  "demi-sec.html",
+  "livraison-paiement.html",
+  "cgv.html",
+]) {
+  const html = await fs.readFile(
+    new URL(`../${file}`, import.meta.url),
+    "utf8",
+  );
+  assert.doesNotMatch(
+    html,
+    /(?:2\s*à\s*5|deux\s+à\s+cinq)\s+jours\s+ouvrés/i,
+    `${file} ne doit pas annoncer un délai de livraison non validé`,
+  );
+}
+
+for (const expectation of productPageExpectations) {
+  const html = await fs.readFile(
+    new URL(`../${expectation.file}`, import.meta.url),
+    "utf8",
+  );
+  const basePrice = expectedPrices[expectation.sku][750];
+  const schemaBlocks = [
+    ...html.matchAll(
+      /<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi,
+    ),
+  ].map((match) => JSON.parse(match[1]));
+  const schemaNodes = schemaBlocks.flatMap((block) => {
+    if (Array.isArray(block)) return block;
+    return block?.["@graph"] || [block];
+  });
+  const productSchema = schemaNodes.find(
+    (block) => block?.["@type"] === "Product",
+  );
+
+  assert.ok(
+    productSchema,
+    `${expectation.file} doit contenir un schéma Product`,
+  );
+  assert.match(
+    html,
+    new RegExp(
+      `<meta content="${basePrice.toFixed(2)}" property="product:price:amount"`,
+    ),
+    `${expectation.file} doit exposer le prix 75 cl approuvé dans ses métadonnées`,
+  );
+  assert.match(
+    html,
+    new RegExp(
+      `class="product-hero-price"[\\s\\S]*?<strong>${expectation.visiblePrice}<\\/strong>`,
+    ),
+    `${expectation.file} doit afficher le prix 75 cl approuvé dans son en-tête`,
+  );
+  assert.match(
+    html,
+    new RegExp(`Ajouter au panier • ${expectation.visiblePrice}`),
+    `${expectation.file} doit afficher le prix 75 cl approuvé sur son bouton`,
+  );
+  assert.match(
+    html,
+    new RegExp(
+      `Total TTC, livraison comprise : ${expectation.totalWithDelivery}`,
+    ),
+    `${expectation.file} doit afficher le total initial avec livraison correcte`,
+  );
+
+  const actualOfferPrices = productSchema.offers
+    .map((offer) => Number(offer.price))
+    .sort((a, b) => a - b);
+  const expectedOfferPrices = Object.values(
+    expectedPrices[expectation.sku],
+  ).sort((a, b) => a - b);
+  assert.deepEqual(
+    actualOfferPrices,
+    expectedOfferPrices,
+    `${expectation.file} doit garder ses offres structurées alignées sur le catalogue`,
+  );
 }
 
 const scenarios = [

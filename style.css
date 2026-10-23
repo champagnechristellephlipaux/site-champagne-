@@ -23099,6 +23099,32 @@ figure figcaption {
   color: var(--contrast-soft);
 }
 
+.page-cuvee .product-carton-proof,
+.page-boutique .product-carton-proof {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .page-cuvee .product-carton-proof,
+  .page-boutique .product-carton-proof {
+    display: grid;
+    gap: 3px;
+    margin-top: 2px;
+    padding: 11px 12px;
+    border: 1px solid rgba(59, 40, 29, 0.18);
+    border-radius: 13px;
+    background: rgba(126, 94, 60, 0.08);
+    color: rgb(35, 25, 20);
+    font-size: 0.78rem;
+    line-height: 1.35;
+  }
+
+  .page-cuvee .product-carton-proof strong,
+  .page-boutique .product-carton-proof strong {
+    font-size: 0.88rem;
+  }
+}
+
 .page-boutique .product .seg em,
 .page-cuvee .product-buy-card .seg .seg-side em {
   border-color: rgba(255, 248, 239, 0.18);

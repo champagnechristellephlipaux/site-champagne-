@@ -14,7 +14,7 @@ import {
   equivalent75clPrice,
   estimateSelectionTotal,
 } from "./cart.js?v=20261012a";
-import { startCheckout } from "./checkout.js?v=20261012a";
+import { startCheckout } from "./checkout.js?v=20261023a";
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
@@ -157,9 +157,13 @@ function openDrawer(trigger = document.activeElement) {
   d.setAttribute("aria-hidden", "false");
   document.body.classList.add("cart-open");
   renderCart();
-  window.setTimeout(() => {
-    d.querySelector(".drawer-head [data-cart-close]")?.focus();
-  }, 0);
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      d.querySelector(".drawer-head [data-cart-close]")?.focus({
+        preventScroll: true,
+      });
+    });
+  });
 }
 
 function closeDrawer() {

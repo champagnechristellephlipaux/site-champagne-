@@ -22,6 +22,10 @@ Do not recreate a separate general release or completion skill. That responsibil
 
 Do not apply `netlify-stripe-commerce` assumptions to PrestaShop. Remove that specialist only after the legacy checkout is no longer active or maintained.
 
+## Seasonal monitoring
+
+For any recurring market, calendar or seasonal-content review, read `.agents/seasonality-playbook.md` after the product marketing context and the main project skill. Scheduled reviews must propose changes before editing public pages or publishing them.
+
 ## Brand hierarchy
 
 1. Family identity and real human relationships.
