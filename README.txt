@@ -24,6 +24,22 @@ Variables Netlify nécessaires :
 - `SITE_URL` avec l’origine publique définitive du site
 - `REVIEWS_ADMIN_TOKEN` pour la modération des avis
 
+Avis Google publics
+
+L’affichage des avis Google sur la boutique et la page `avis-clients.html`
+passe par une fonction Netlify. La clé reste côté serveur et n’est jamais
+envoyée au navigateur.
+
+Variables Netlify à renseigner pour activer cet affichage :
+
+- `GOOGLE_PLACES_API_KEY`, clé serveur autorisée à appeler Places API (New) ;
+- `GOOGLE_PLACE_ID`, identifiant Google Places de la maison ;
+- `GOOGLE_MAPS_PROFILE_URL`, facultative, pour imposer l’URL publique exacte de
+  la fiche Google Maps.
+
+Sans ces variables, le site affiche automatiquement un bouton vers la recherche
+Google Maps de la maison, sans note ni avis inventé.
+
 Variable optionnelle :
 
 - `STRIPE_PUBLISHABLE_KEY`, seulement si l’ancien checkout embarqué est

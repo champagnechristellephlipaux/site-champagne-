@@ -14,7 +14,7 @@ import {
   equivalent75clPrice,
   estimateSelectionTotal,
 } from "./cart.js?v=20261012a";
-import { startCheckout } from "./checkout.js?v=20261023a";
+import { startCheckout } from "./checkout.js?v=20261030a";
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
@@ -312,10 +312,12 @@ function updateFloatingCart(items, estimatedTotal) {
   const count = cartCount(items);
   if (!count) {
     floating.hidden = true;
+    document.body.classList.remove("has-floating-cart");
     return;
   }
 
   floating.hidden = false;
+  document.body.classList.add("has-floating-cart");
   safeText(
     "#floatingCartCount",
     `${count} ${count > 1 ? "articles" : "article"}`,

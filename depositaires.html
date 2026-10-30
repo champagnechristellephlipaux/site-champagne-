@@ -33,13 +33,13 @@
       rel="preload"
       type="font/woff2"
     />
-    <link href="style.css?v=20260923a" rel="stylesheet" />
+    <link href="style.css?v=20261030e" rel="stylesheet" />
     <link
       href="assets/css/editorial-redesign.css?v=20260701d"
       rel="stylesheet"
     />
     <link
-      href="assets/css/immersive-experience.css?v=20260924b"
+      href="assets/css/immersive-experience.css?v=20261030c"
       rel="stylesheet"
     />
     <meta
@@ -139,6 +139,7 @@
     </script>
     <script defer="" src="consent.js?v=20260923a"></script>
     <script defer src="ui.js?v=20260917a"></script>
+    <script defer src="map-loader.js?v=20261030a"></script>
   </head>
   <body class="page-depositaires">
     <header>
@@ -151,7 +152,7 @@
               class="brand-logo"
               decoding="async"
               height="204"
-              loading="lazy"
+              loading="eager"
               src="assets/logo-trans.png"
               width="242"
           /></picture>
@@ -256,18 +257,38 @@
           une quantité importante, Christelle peut vous orienter directement.
         </p>
         <div class="card pad reveal u-mt-5">
-          <div class="map-wrap">
+          <div class="map-wrap" data-map-loader>
+            <div class="map-placeholder" data-map-placeholder>
+              <span class="map-placeholder-label">Carte interactive</span>
+              <strong>Afficher les dépositaires sur Google Maps</strong>
+              <p>
+                La carte est chargée uniquement à votre demande. Vous pouvez
+                aussi ouvrir la liste en plein écran sans l’afficher ici.
+              </p>
+              <button
+                aria-controls="depositaires-map"
+                aria-expanded="false"
+                class="btn primary"
+                data-map-load
+                type="button"
+              >
+                Afficher la carte
+              </button>
+            </div>
             <iframe
               class="u-borderless"
+              data-map-src="https://www.google.com/maps/d/embed?mid=1tzSNL4XLUbeIMkjSdbJ4plD6v0SGPDxo&amp;ehbc=2E312F"
               height="450"
+              hidden
+              id="depositaires-map"
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps/d/embed?mid=1tzSNL4XLUbeIMkjSdbJ4plD6v0SGPDxo&amp;ehbc=2E312F"
               title="Carte des dépositaires — Champagne Christelle Phlipaux"
               width="100%"
             >
             </iframe>
           </div>
+          <p aria-live="polite" class="u-visually-hidden" data-map-status></p>
           <div class="u-inline-actions">
             <a class="btn" href="boutique.html">Choisir en boutique</a>
             <a

@@ -10,6 +10,18 @@ import {
 const CREATE_SESSION_ENDPOINT =
   "/.netlify/functions/create-checkout-elements-session";
 const RECORD_CONSENT_ENDPOINT = "/.netlify/functions/record-checkout-consent";
+const CHECKOUT_ERROR_FALLBACK =
+  "La page de paiement ne répond pas pour l’instant. Votre panier reste conservé.";
+const SAFE_CHECKOUT_MESSAGES = new Set([
+  "Ouvrez le paiement depuis votre panier.",
+  "Le panier n’a pas pu être lu. Rouvrez-le pour continuer.",
+  "Choisissez une cuvée avant de continuer.",
+  "Un produit du panier n’est pas reconnu. Reprenez la commande depuis la boutique.",
+  "Ce produit doit être confirmé par la maison avant paiement.",
+  "Choisissez une quantité entre 1 et 48 par format.",
+  "La page de paiement ne répond pas pour l’instant.",
+  "La session Stripe n’a pas pu être initialisée.",
+]);
 
 const state = {
   checkout: null,
@@ -161,19 +173,27 @@ function cartPayload(items) {
 async function parseResponseError(response) {
   const fallback = "La page de paiement ne répond pas pour l’instant.";
   if (response.status === 404) return fallback;
-  const text = await response.text();
+  let text = "";
+  try {
+    text = await response.text();
+  } catch (_error) {
+    return fallback;
+  }
   try {
     const data = JSON.parse(text);
-    if (typeof data?.error === "string") return data.error;
-    if (typeof data?.error?.message === "string") return data.error.message;
-    if (typeof data?.message === "string") return data.message;
-    return fallback;
-  } catch (_error) {
-    const plainText = text.trim();
-    const looksLikeMarkup = /<[^>]+>/.test(plainText);
-    return plainText && !looksLikeMarkup && plainText.length <= 180
-      ? plainText
+    const message =
+      typeof data?.error === "string"
+        ? data.error
+        : typeof data?.error?.message === "string"
+          ? data.error.message
+          : typeof data?.message === "string"
+            ? data.message
+            : "";
+    return SAFE_CHECKOUT_MESSAGES.has(message.trim())
+      ? message.trim()
       : fallback;
+  } catch (_error) {
+    return fallback;
   }
 }
 
@@ -191,7 +211,12 @@ async function createCheckoutSession(items) {
     throw new Error(await parseResponseError(response));
   }
 
-  const data = await response.json();
+  let data;
+  try {
+    data = await response.json();
+  } catch (_error) {
+    throw new Error(CHECKOUT_ERROR_FALLBACK);
+  }
   const clientSecret = data.clientSecret || data.client_secret;
   if (!data.publishableKey || !clientSecret) {
     throw new Error("La session Stripe n’a pas pu être initialisée.");
@@ -369,9 +394,9 @@ async function init() {
     setPaymentFieldsMessage(
       "Paiement Stripe indisponible pour le moment. Aucun débit n’a été lancé.",
     );
+    const message = String(error?.message || "").trim();
     showError(
-      error.message ||
-        "La page de paiement ne répond pas pour l’instant. Votre panier reste conservé.",
+      SAFE_CHECKOUT_MESSAGES.has(message) ? message : CHECKOUT_ERROR_FALLBACK,
     );
     setButtonState("Paiement indisponible");
   }

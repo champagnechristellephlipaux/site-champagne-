@@ -76,6 +76,12 @@
     Cache-Control = "public, max-age=86400"
 
 [[headers]]
+  for = "/merchant-center-feed.xml"
+  [headers.values]
+    Content-Type = "application/xml; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
   for = "/.netlify/functions/*"
   [headers.values]
     Cache-Control = "no-store"

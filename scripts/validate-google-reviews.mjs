@@ -1,9 +1,31 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
 import { createRequire } from "node:module";
+import path from "node:path";
 
 const require = createRequire(import.meta.url);
 const reviewsModule = require("../netlify/functions/google-reviews.js");
 const { handler, _test } = reviewsModule;
+const root = process.cwd();
+
+for (const file of ["boutique.html", "avis-clients.html"]) {
+  const html = fs.readFileSync(path.join(root, file), "utf8");
+  assert.match(
+    html,
+    /data-google-reviews(?:\s|>)/,
+    `${file} doit contenir le bloc d’avis Google`,
+  );
+  assert.match(
+    html,
+    /google-reviews\.js\?v=/,
+    `${file} doit charger le script d’avis Google avec une version de cache`,
+  );
+  assert.match(
+    html,
+    /data-google-reviews-disclosure/,
+    `${file} doit expliquer la provenance et le classement des avis`,
+  );
+}
 
 const previousFetch = global.fetch;
 const previousEnv = {

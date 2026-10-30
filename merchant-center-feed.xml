@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+  <channel>
+    <title>Champagne Christelle Phlipaux – produits</title>
+    <link>https://www.champagne-christelle-phlipaux.com/</link>
+    <description>Les cuvées disponibles en vente directe auprès de la maison à Channes.</description>
+    <item>
+      <g:id>brut-tradition-75cl</g:id>
+      <g:title>Champagne Brut Tradition 75 cl – Christelle Phlipaux</g:title>
+      <g:description>Champagne Brut Tradition 75 cl à 12 % vol., élaboré à Channes. Une cuvée fraîche et équilibrée pour l’apéritif et la table, vendue directement par la maison.</g:description>
+      <g:link>https://www.champagne-christelle-phlipaux.com/brut-tradition.html</g:link>
+      <g:image_link>https://www.champagne-christelle-phlipaux.com/assets/brut.png</g:image_link>
+      <g:additional_image_link>https://www.champagne-christelle-phlipaux.com/assets/brut.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>18.00 EUR</g:price>
+      <g:brand>Champagne Christelle Phlipaux</g:brand>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:google_product_category>499676</g:google_product_category>
+      <g:product_type>Champagne &gt; Brut Tradition</g:product_type>
+    </item>
+    <item>
+      <g:id>brut-rose-75cl</g:id>
+      <g:title>Champagne Brut Rosé 75 cl – Christelle Phlipaux</g:title>
+      <g:description>Champagne Brut Rosé 75 cl à 12 % vol., élaboré à Channes. Une cuvée fruitée et fraîche pour l’apéritif, un repas ou un cadeau, vendue directement par la maison.</g:description>
+      <g:link>https://www.champagne-christelle-phlipaux.com/brut-rose.html</g:link>
+      <g:image_link>https://www.champagne-christelle-phlipaux.com/assets/rose.png</g:image_link>
+      <g:additional_image_link>https://www.champagne-christelle-phlipaux.com/assets/rose.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>20.00 EUR</g:price>
+      <g:brand>Champagne Christelle Phlipaux</g:brand>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:google_product_category>499676</g:google_product_category>
+      <g:product_type>Champagne &gt; Brut Rosé</g:product_type>
+    </item>
+    <item>
+      <g:id>demi-sec-75cl</g:id>
+      <g:title>Champagne Demi-Sec 75 cl – Christelle Phlipaux</g:title>
+      <g:description>Champagne Demi-Sec 75 cl à 12 % vol., élaboré à Channes. Une cuvée ronde et fraîche pour les desserts et les accords doux, vendue directement par la maison.</g:description>
+      <g:link>https://www.champagne-christelle-phlipaux.com/demi-sec.html</g:link>
+      <g:image_link>https://www.champagne-christelle-phlipaux.com/assets/demisec.png</g:image_link>
+      <g:additional_image_link>https://www.champagne-christelle-phlipaux.com/assets/demisec.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>18.00 EUR</g:price>
+      <g:brand>Champagne Christelle Phlipaux</g:brand>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:google_product_category>499676</g:google_product_category>
+      <g:product_type>Champagne &gt; Demi-Sec</g:product_type>
+    </item>
+    <item>
+      <g:id>coffret-decouverte-3x75cl</g:id>
+      <g:title>Coffret découverte Champagne 3 × 75 cl – Christelle Phlipaux</g:title>
+      <g:description>Coffret découverte réunissant trois bouteilles de 75 cl à 12 % vol. : Brut Tradition, Brut Rosé et Demi-Sec, préparées à Channes par la maison.</g:description>
+      <g:link>https://www.champagne-christelle-phlipaux.com/coffret-decouverte-champagne.html</g:link>
+      <g:image_link>https://www.champagne-christelle-phlipaux.com/assets/coffret-decouverte-champagne-christelle-phlipaux.png</g:image_link>
+      <g:additional_image_link>https://www.champagne-christelle-phlipaux.com/assets/coffret-decouverte-champagne-christelle-phlipaux.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>56.00 EUR</g:price>
+      <g:brand>Champagne Christelle Phlipaux</g:brand>
+      <g:condition>new</g:condition>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:google_product_category>499676</g:google_product_category>
+      <g:product_type>Champagne &gt; Coffret découverte</g:product_type>
+    </item>
+  </channel>
+</rss>

@@ -58,11 +58,13 @@ const expectedStripePriceIds = {
 assert.equal(
   await parseResponseError(
     new Response(
-      JSON.stringify({ error: { message: "Paiement indisponible" } }),
+      JSON.stringify({
+        error: { message: "Choisissez une cuvée avant de continuer." },
+      }),
     ),
   ),
-  "Paiement indisponible",
-  "Le checkout doit extraire le message d'une erreur structurée",
+  "Choisissez une cuvée avant de continuer.",
+  "Le checkout doit conserver un message structuré et explicitement autorisé",
 );
 assert.equal(
   await parseResponseError(
@@ -70,6 +72,20 @@ assert.equal(
   ),
   "Stripe ne peut pas ouvrir le paiement pour le moment.",
   "Le checkout ne doit jamais afficher un objet JavaScript au client",
+);
+assert.equal(
+  await parseResponseError(
+    new Response("The requested path could not be found"),
+  ),
+  "Stripe ne peut pas ouvrir le paiement pour le moment.",
+  "Le checkout ne doit jamais afficher une réponse technique brute au client",
+);
+assert.equal(
+  await parseResponseError(
+    new Response(JSON.stringify({ error: "Internal proxy failure" })),
+  ),
+  "Stripe ne peut pas ouvrir le paiement pour le moment.",
+  "Le checkout ne doit afficher que les messages serveur explicitement autorisés",
 );
 
 assert.deepEqual(
@@ -198,16 +214,130 @@ for (const expectation of productPageExpectations) {
     `${expectation.file} doit afficher le total initial avec livraison correcte`,
   );
 
-  const actualOfferPrices = productSchema.offers
-    .map((offer) => Number(offer.price))
-    .sort((a, b) => a - b);
-  const expectedOfferPrices = Object.values(
-    expectedPrices[expectation.sku],
-  ).sort((a, b) => a - b);
+  const merchantOffers = Array.isArray(productSchema.offers)
+    ? productSchema.offers
+    : [productSchema.offers];
+  const actualOfferPrices = merchantOffers.map((offer) => Number(offer.price));
   assert.deepEqual(
     actualOfferPrices,
-    expectedOfferPrices,
-    `${expectation.file} doit garder ses offres structurées alignées sur le catalogue`,
+    [basePrice],
+    `${expectation.file} doit exposer uniquement son format 75 cl principal à Merchant`,
+  );
+}
+
+const deliveredPriceQuantities = [1, 2, 3, 4, 5, 6];
+const deliveredPriceSkus = ["brut", "demisec", "rose"];
+const boutiqueHtml = await fs.readFile(
+  new URL("../boutique.html", import.meta.url),
+  "utf8",
+);
+
+for (const quantity of deliveredPriceQuantities) {
+  const row = boutiqueHtml.match(
+    new RegExp(
+      `<tr[^>]*data-delivered-quantity="${quantity}"[^>]*>([\\s\\S]*?)<\\/tr>`,
+    ),
+  );
+  assert.ok(
+    row,
+    `La boutique doit afficher le prix livré pour ${quantity} bouteille(s)`,
+  );
+
+  for (const sku of deliveredPriceSkus) {
+    const cart = [{ sku, format: "750", qty: quantity }];
+    const expectedTotal =
+      clientCartTotals(cart).subtotal +
+      clientShippingTotals(cart).shippingTotal;
+    assert.match(
+      row[1],
+      new RegExp(
+        `data-delivered-total="${sku}"[^>]*>\\s*${expectedTotal}€\\s*<\\/td>`,
+      ),
+      `Le prix livré affiché doit rester aligné pour ${sku}, quantité ${quantity}`,
+    );
+  }
+}
+
+const discoveryCart = [
+  { sku: "coffret-decouverte", format: "coffret3", qty: 1 },
+];
+const discoveryDeliveredTotal =
+  clientCartTotals(discoveryCart).subtotal +
+  clientShippingTotals(discoveryCart).shippingTotal;
+assert.match(
+  boutiqueHtml,
+  new RegExp(`soit ${discoveryDeliveredTotal}€ livraison comprise`),
+  "La boutique doit garder le prix livré du coffret aligné sur le panier",
+);
+
+const deliveryHtml = await fs.readFile(
+  new URL("../livraison-paiement.html", import.meta.url),
+  "utf8",
+);
+for (const quantity of [1, 3, 6]) {
+  const example = deliveryHtml.match(
+    new RegExp(
+      `<article[^>]*data-delivered-example-quantity="${quantity}"[^>]*>([\\s\\S]*?)<\\/article>`,
+    ),
+  );
+  assert.ok(
+    example,
+    `La page livraison doit afficher l’exemple pour ${quantity} bouteille(s)`,
+  );
+  for (const sku of ["brut", "rose"]) {
+    const cart = [{ sku, format: "750", qty: quantity }];
+    const expectedTotal =
+      clientCartTotals(cart).subtotal +
+      clientShippingTotals(cart).shippingTotal;
+    assert.match(
+      example[1],
+      new RegExp(`${expectedTotal}€`),
+      `L’exemple livré doit rester aligné pour ${sku}, quantité ${quantity}`,
+    );
+  }
+}
+
+const giftsHtml = await fs.readFile(
+  new URL("../cadeaux.html", import.meta.url),
+  "utf8",
+);
+const roseGiftCart = [{ sku: "rose", format: "750", qty: 1 }];
+const roseGiftDeliveredTotal =
+  clientCartTotals(roseGiftCart).subtotal +
+  clientShippingTotals(roseGiftCart).shippingTotal;
+assert.match(
+  giftsHtml,
+  new RegExp(
+    `Brut Rosé revient à ${roseGiftDeliveredTotal}€ livraison comprise`,
+  ),
+  "Le prix livré du cadeau Brut Rosé doit rester aligné sur le panier",
+);
+assert.match(
+  giftsHtml,
+  new RegExp(
+    `coffret découverte revient à ${discoveryDeliveredTotal}€ livraison`,
+  ),
+  "Le prix livré du coffret cadeau doit rester aligné sur le panier",
+);
+
+const eventsHtml = await fs.readFile(
+  new URL("../evenements.html", import.meta.url),
+  "utf8",
+);
+for (const sku of deliveredPriceSkus) {
+  const eventCard = eventsHtml.match(
+    new RegExp(
+      `<article[^>]*data-event-price-sku="${sku}"[^>]*>([\\s\\S]*?)<\\/article>`,
+    ),
+  );
+  assert.ok(eventCard, `La page événements doit afficher le carton ${sku}`);
+  const cart = [{ sku, format: "750", qty: 6 }];
+  const expectedTotal =
+    clientCartTotals(cart).subtotal + clientShippingTotals(cart).shippingTotal;
+  assert.match(
+    eventCard[1],
+    new RegExp(`6 bouteilles · ${expectedTotal}€ livrés`),
+    `Le prix événement doit rester aligné pour ${sku}`,
   );
 }
 

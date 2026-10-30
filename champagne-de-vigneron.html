@@ -82,13 +82,13 @@
       rel="preload"
       type="font/woff2"
     />
-    <link href="style.css?v=20260923a" rel="stylesheet" />
+    <link href="style.css?v=20261030e" rel="stylesheet" />
     <link
       href="assets/css/editorial-redesign.css?v=20260701d"
       rel="stylesheet"
     />
     <link
-      href="assets/css/immersive-experience.css?v=20260924b"
+      href="assets/css/immersive-experience.css?v=20261030c"
       rel="stylesheet"
     />
     <script type="application/ld+json">
@@ -96,6 +96,7 @@
         {
           "@context": "https://schema.org",
           "@type": "Winery",
+          "@id": "https://www.champagne-christelle-phlipaux.com/#organization",
           "name": "Champagne Christelle Phlipaux",
           "url": "https://www.champagne-christelle-phlipaux.com/",
           "telephone": "+33 6 82 20 34 30",
@@ -169,6 +170,14 @@
                 "@type": "Answer",
                 "text": "En ligne via la boutique, ou chez nos dépositaires (page dédiée)."
               }
+            },
+            {
+              "@type": "Question",
+              "name": "Quel est le prix d’un champagne de vigneron livraison comprise ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Pour une bouteille de 75 cl livrée en France métropolitaine, le total est de 30 euros pour Brut Tradition ou Demi-Sec et de 32 euros pour Brut Rosé. Dès six bouteilles de 75 cl, la livraison est offerte."
+              }
             }
           ]
         }
@@ -188,7 +197,7 @@
               class="brand-logo"
               decoding="async"
               height="204"
-              loading="lazy"
+              loading="eager"
               src="assets/logo-trans.png"
               width="242"
           /></picture>
@@ -326,8 +335,15 @@
             Côte des Bar et à un conseil réel avant commande si besoin. Cela
             aide à choisir autrement qu’une bouteille anonyme.
           </p>
+          <p class="p">
+            Le prix réellement payé reste lui aussi lisible : prix de la cuvée,
+            frais selon la quantité et total livraison comprise. Pour six
+            bouteilles de 75 cl, la livraison est offerte : 108€ pour Brut
+            Tradition ou Demi-Sec et 120€ pour Brut Rosé.
+          </p>
           <div class="hero-cta u-mt-4">
-            <a class="btn" href="boutique.html">Choisir en boutique</a
+            <a class="btn" href="boutique.html#prix-livres"
+              >Voir les prix livraison comprise</a
             ><a class="btn" href="cuvees.html">Comparer les cuvées</a>
             <a class="btn" href="servir-conserver-champagne.html"
               >Servir et conserver</a
@@ -352,6 +368,14 @@
             <li>
               <b>Où commander vos cuvées ?</b><br />En ligne via la boutique, ou
               chez nos dépositaires (page dédiée).
+            </li>
+            <li>
+              <b
+                >Quel est le prix d’un champagne de vigneron livraison comprise
+                ?</b
+              ><br />Pour une bouteille livrée en France métropolitaine, comptez
+              30€ pour Brut Tradition ou Demi-Sec et 32€ pour Brut Rosé. Dès six
+              bouteilles de 75 cl, la livraison est offerte.
             </li>
           </ul>
         </div>

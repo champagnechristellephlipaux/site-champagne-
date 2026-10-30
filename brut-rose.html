@@ -20,7 +20,7 @@
     <link href="/site.webmanifest" rel="manifest" />
     <title>Champagne Brut Rosé de Channes | Christelle Phlipaux</title>
     <meta
-      content="Champagne Brut Rosé d’assemblage élaboré à Channes : fruit rouge, bouche fraîche et finale sèche. Vente directe depuis la propriété."
+      content="Champagne Brut Rosé élaboré à Channes : 20 € la bouteille, carton de 6 à 120 € avec livraison offerte en France métropolitaine."
       name="description"
     />
     <link
@@ -36,7 +36,7 @@
       property="og:title"
     />
     <meta
-      content="Champagne Brut Rosé de Champagne Christelle Phlipaux : une cuvée fruitée et délicate pour offrir, célébrer et accompagner une table vive, en vente directe depuis Channes."
+      content="Brut Rosé élaboré à Channes : 20 € la bouteille, carton de 6 à 120 € avec livraison offerte en France métropolitaine."
       property="og:description"
     />
     <meta
@@ -50,13 +50,14 @@
     <meta content="Bouteille de Champagne Brut Rosé" property="og:image:alt" />
     <meta content="20.00" property="product:price:amount" />
     <meta content="EUR" property="product:price:currency" />
+    <meta content="in stock" property="product:availability" />
     <meta content="summary_large_image" name="twitter:card" />
     <meta
       content="Champagne Brut Rosé | Champagne Christelle Phlipaux"
       name="twitter:title"
     />
     <meta
-      content="Champagne Brut Rosé de Champagne Christelle Phlipaux : une cuvée fruitée et délicate pour offrir, célébrer et accompagner une table vive, en vente directe depuis Channes."
+      content="Brut Rosé élaboré à Channes : 20 € la bouteille, carton de 6 à 120 € avec livraison offerte en France métropolitaine."
       name="twitter:description"
     />
     <meta
@@ -86,17 +87,17 @@
       rel="preload"
       type="font/woff2"
     />
-    <link href="style.css?v=20260923a" rel="stylesheet" />
+    <link href="style.css?v=20261030e" rel="stylesheet" />
     <link
       href="assets/css/editorial-redesign.css?v=20260701d"
       rel="stylesheet"
     />
     <link
-      href="assets/css/immersive-experience.css?v=20260924b"
+      href="assets/css/immersive-experience.css?v=20261030c"
       rel="stylesheet"
     />
     <link
-      href="assets/css/commerce-experience.css?v=20261023a"
+      href="assets/css/commerce-experience.css?v=20261029b"
       rel="stylesheet"
     />
     <script type="application/ld+json">
@@ -129,7 +130,7 @@
         {
           "@context": "https://schema.org",
           "@type": "Product",
-          "name": "Champagne Brut Rosé",
+          "name": "Champagne Brut Rosé 75 cl – Christelle Phlipaux",
           "sku": "rose",
           "brand": {
             "@type": "Brand",
@@ -140,8 +141,13 @@
           "image": [
             "https://www.champagne-christelle-phlipaux.com/assets/rose.webp"
           ],
-          "description": "Champagne Brut Rosé de la maison Christelle Phlipaux, cuvée fruitée pour les cadeaux, les célébrations, l’apéritif et les tables d’été.",
+          "description": "Bouteille de Champagne Brut Rosé 75 cl de la maison Christelle Phlipaux, élaborée à Channes et proposée en vente directe.",
           "additionalProperty": [
+            {
+              "@type": "PropertyValue",
+              "name": "Titre alcoométrique volumique",
+              "value": "12 % vol."
+            },
             {
               "@type": "PropertyValue",
               "name": "Style",
@@ -154,42 +160,26 @@
             },
             {
               "@type": "PropertyValue",
-              "name": "Formats",
-              "value": "75 cl et carton de 6 x 75 cl"
+              "name": "Format",
+              "value": "75 cl"
             }
           ],
-          "offers": [
-            {
-              "@type": "Offer",
-              "name": "Brut Rosé 75 cl",
-              "priceCurrency": "EUR",
-              "price": "20.00",
-              "url": "https://www.champagne-christelle-phlipaux.com/boutique.html#rose",
-              "itemCondition": "https://schema.org/NewCondition",
-              "hasMerchantReturnPolicy": {
-                "@id": "https://www.champagne-christelle-phlipaux.com/#return-policy"
-              },
-              "seller": {
-                "@type": "Organization",
-                "name": "Champagne Christelle Phlipaux"
-              }
+          "offers": {
+            "@type": "Offer",
+            "name": "Champagne Brut Rosé Christelle Phlipaux – 75 cl",
+            "priceCurrency": "EUR",
+            "price": "20.00",
+            "url": "https://www.champagne-christelle-phlipaux.com/brut-rose.html",
+            "availability": "https://schema.org/InStock",
+            "itemCondition": "https://schema.org/NewCondition",
+            "hasMerchantReturnPolicy": {
+              "@id": "https://www.champagne-christelle-phlipaux.com/#return-policy"
             },
-            {
-              "@type": "Offer",
-              "name": "Brut Rosé carton 6 x 75 cl",
-              "priceCurrency": "EUR",
-              "price": "120.00",
-              "url": "https://www.champagne-christelle-phlipaux.com/boutique.html#rose",
-              "itemCondition": "https://schema.org/NewCondition",
-              "hasMerchantReturnPolicy": {
-                "@id": "https://www.champagne-christelle-phlipaux.com/#return-policy"
-              },
-              "seller": {
-                "@type": "Organization",
-                "name": "Champagne Christelle Phlipaux"
-              }
+            "seller": {
+              "@type": "Organization",
+              "name": "Champagne Christelle Phlipaux"
             }
-          ]
+          }
         },
         {
           "@context": "https://schema.org",
@@ -262,7 +252,7 @@
               class="brand-logo"
               decoding="async"
               height="204"
-              loading="lazy"
+              loading="eager"
               src="assets/logo-trans.png"
               width="242"
           /></picture>
@@ -297,7 +287,7 @@
             </p>
             <div class="product-hero-buyline">
               <div class="product-hero-price">
-                <span>Bouteille 75 cl · prix TTC</span>
+                <span>Bouteille 75 cl · 12 % vol. · prix TTC</span>
                 <strong>20€</strong>
               </div>
               <a class="btn primary" href="#produits">Choisir le format</a>
@@ -328,7 +318,7 @@
             <div class="product-sale-grid">
               <div class="product-sale-head">
                 <div class="product-note">
-                  Propriété à Channes • Rosé d’assemblage
+                  Propriété à Channes • Rosé d’assemblage • 12 % vol.
                 </div>
                 <h2 class="h2 product-sale-title">
                   Commander Brut Rosé en direct
@@ -402,8 +392,8 @@
                     </div>
                   </div>
                   <div class="product-stock">
-                    <strong>Commande directe</strong
-                    ><span>Préparé à Channes</span>
+                    <strong>Disponible à la commande</strong
+                    ><span>Préparé à Channes · 12 % vol.</span>
                   </div>
                 </div>
                 <div class="variants">
@@ -610,41 +600,6 @@
               </p>
             </div>
           </div>
-        </div>
-      </section>
-      <section class="section section--flush-top">
-        <div class="container">
-          <div class="kicker">Détails complémentaires</div>
-          <details class="more">
-            <summary>Détails de la cuvée</summary>
-            <div class="more-body">
-              <p>
-                Brut Rosé est un rosé d’assemblage à ouvrir pour un cadeau, un
-                apéritif soigné ou une table d’été. Sa finale reste sèche.
-              </p>
-              <ul class="more-list">
-                <li><b>Style :</b> Rosé d’assemblage, fruité et délicat</li>
-                <li><b>Service :</b> 8 à 10°C, avec une minute d’ouverture</li>
-                <li>
-                  <b>Accords :</b> tapas, saumon, cuisine asiatique, desserts
-                  aux fruits rouges
-                </li>
-                <li><b>Formats :</b> 75 cl et carton de 6 bouteilles</li>
-              </ul>
-              <div class="notice">
-                <b>Conseil de la maison :</b> servez-le frais mais pas glacé
-                pour garder la finesse du fruit et la netteté du vin.
-              </div>
-              <div class="hero-cta u-mt-4">
-                <a class="btn" href="blog-composition.html"
-                  >Comprendre le rosé d’assemblage</a
-                >
-                <a class="btn secondary" href="cadeaux.html"
-                  >Lire les repères cadeau</a
-                >
-              </div>
-            </div>
-          </details>
         </div>
       </section>
       <section class="section section--flush-top" data-reviews-section="">
@@ -878,6 +833,6 @@
       role="status"
     ></div>
     <script src="offers.js?v=20261012a" type="module"></script>
-    <script src="cart-ui.js?v=20261023a" type="module"></script>
+    <script src="cart-ui.js?v=20261030a" type="module"></script>
   </body>
 </html>

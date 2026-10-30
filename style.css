@@ -3217,8 +3217,58 @@ details.more[open] summary::after {
 }
 
 .map-wrap iframe {
+  display: block;
   width: 100%;
+  min-height: 450px;
   border: 0;
+}
+
+.map-wrap iframe[hidden] {
+  display: none;
+}
+
+.map-placeholder {
+  display: grid;
+  min-height: 360px;
+  place-content: center;
+  justify-items: start;
+  gap: 12px;
+  padding: clamp(28px, 6vw, 72px);
+  background:
+    linear-gradient(135deg, rgba(244, 240, 232, 0.04), transparent 62%),
+    rgba(255, 255, 255, 0.012);
+}
+
+.map-placeholder[hidden] {
+  display: none;
+}
+
+.map-placeholder-label {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.map-placeholder strong {
+  max-width: 24ch;
+  color: #231914;
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 3vw, 2.2rem);
+  font-weight: 600;
+  line-height: 1.05;
+}
+
+.map-placeholder p {
+  max-width: 48rem;
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.65;
+}
+
+.map-placeholder .btn {
+  margin-top: 6px;
 }
 
 .map-wrap--home iframe {
@@ -22974,6 +23024,75 @@ footer .footer-trust span {
   border-color: rgba(255, 201, 182, 0.52);
   background: #35140e;
   color: #fff0e7;
+}
+
+.checkout-alert-message {
+  margin: 0;
+}
+
+.page-checkout-elements .checkout-alert .checkout-alert-message,
+.page-checkout-elements .checkout-alert .checkout-alert-contact span {
+  color: #fff0e7;
+}
+
+.checkout-alert-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  align-items: center;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 240, 231, 0.22);
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+}
+
+.checkout-alert-contact a {
+  color: #fff;
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.48);
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 720px) {
+  .page-cuvees .compare-cell.is-side {
+    border-top: 1px solid rgba(89, 65, 48, 0.22);
+    background: #eadfce;
+    color: #4c392c;
+  }
+
+  .page-cuvees .compare-cell.is-head {
+    background: #f0e7dc;
+    color: #3a2b22;
+  }
+
+  body.page-boutique.has-floating-cart {
+    padding-bottom: calc(82px + env(safe-area-inset-bottom));
+    scroll-padding-bottom: calc(90px + env(safe-area-inset-bottom));
+  }
+
+  .page-boutique .floating-cart {
+    right: 12px;
+    left: auto;
+    width: min(250px, calc(100% - 24px));
+  }
+
+  .page-boutique .floating-cart-btn {
+    width: 100%;
+    min-width: 0;
+    min-height: 54px;
+    padding: 9px 12px;
+  }
+
+  .page-boutique .floating-cart-label {
+    font-size: 0.8rem;
+  }
+
+  .checkout-alert-contact {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 }
 
 .home-offer-occasion,

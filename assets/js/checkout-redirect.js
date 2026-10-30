@@ -6,7 +6,7 @@ import {
   loadCart,
   shippingTotals,
 } from "../../cart.js?v=20261012a";
-import { startCheckout } from "../../checkout.js?v=20261023a";
+import { startCheckout } from "../../checkout.js?v=20261030a";
 
 const errorNode = document.querySelector("[data-checkout-error]");
 const submitButton = document.querySelector("[data-checkout-submit]");
@@ -80,10 +80,37 @@ function renderCartSummary(items) {
   );
 }
 
-function showError(message, reason = "checkout_error") {
+function renderErrorContent(message, showContact) {
+  if (!errorNode) return;
+  const text = document.createElement("p");
+  text.className = "checkout-alert-message";
+  text.textContent = message;
+  errorNode.replaceChildren(text);
+
+  if (showContact) {
+    const contact = document.createElement("div");
+    contact.className = "checkout-alert-contact";
+    const introduction = document.createElement("span");
+    introduction.textContent = "Besoin d’aide ?";
+    const phone = document.createElement("a");
+    phone.href = "tel:+33682203430";
+    phone.textContent = "Appeler la maison";
+    const email = document.createElement("a");
+    email.href = "mailto:champagne.christelle.phlipaux@gmail.com";
+    email.textContent = "Écrire un e-mail";
+    contact.append(introduction, phone, email);
+    errorNode.append(contact);
+  }
+}
+
+function showError(
+  message,
+  reason = "checkout_error",
+  showContact = reason !== "empty_cart",
+) {
   if (errorNode) {
     errorNode.hidden = false;
-    errorNode.textContent = message;
+    renderErrorContent(message, showContact);
   }
   if (submitButton) {
     submitButton.disabled = false;
@@ -100,6 +127,7 @@ window.addEventListener("checkout:issue", (event) => {
     event.detail?.message ||
       "Stripe ne peut pas ouvrir le paiement pour le moment.",
     event.detail?.reason,
+    event.detail?.showContact,
   );
 });
 

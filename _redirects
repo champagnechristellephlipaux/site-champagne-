@@ -1,5 +1,6 @@
 # Le sous-domaine technique ne doit jamais concurrencer le domaine officiel.
 https://champagnechristellephlipaux.netlify.app/* https://www.champagne-christelle-phlipaux.com/:splat 301!
+https://elegant-melomakarona-6f213a.netlify.app/* https://www.champagne-christelle-phlipaux.com/:splat 301!
 
 # Anciennes URLs WordPress conservées pour protéger le référencement.
 /portfolio/brut-tradition/ /brut-tradition.html 301!
@@ -36,6 +37,8 @@ https://champagnechristellephlipaux.netlify.app/* https://www.champagne-christel
 /demi-sec/ /demi-sec.html 301!
 /cadeaux /cadeaux.html 301!
 /cadeaux/ /cadeaux.html 301!
+/coffret-decouverte-champagne /coffret-decouverte-champagne.html 301!
+/coffret-decouverte-champagne/ /coffret-decouverte-champagne.html 301!
 /evenements /evenements.html 301!
 /evenements/ /evenements.html 301!
 /visites-degustations /visites-degustations.html 301!

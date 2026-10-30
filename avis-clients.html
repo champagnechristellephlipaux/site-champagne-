@@ -82,15 +82,16 @@
       rel="preload"
       type="font/woff2"
     />
-    <link href="style.css?v=20260923a" rel="stylesheet" />
+    <link href="style.css?v=20261030e" rel="stylesheet" />
     <link
       href="assets/css/editorial-redesign.css?v=20260701d"
       rel="stylesheet"
     />
     <link
-      href="assets/css/immersive-experience.css?v=20260924b"
+      href="assets/css/immersive-experience.css?v=20261030c"
       rel="stylesheet"
     />
+    <link href="assets/css/google-reviews.css?v=20260930a" rel="stylesheet" />
     <script type="application/ld+json">
       [
         {
@@ -176,6 +177,7 @@
     </script>
     <script defer="" src="consent.js?v=20260923a"></script>
     <script defer="" src="ui.js?v=20260917a"></script>
+    <script defer src="google-reviews.js?v=20260930a"></script>
     <script defer="" src="reviews.js?v=20260701b"></script>
     <script defer="" src="review-submit.js?v=20260923a"></script>
   </head>
@@ -190,7 +192,7 @@
               class="brand-logo"
               decoding="async"
               height="204"
-              loading="lazy"
+              loading="eager"
               src="assets/logo-trans.png"
               width="242"
           /></picture>
@@ -255,6 +257,86 @@
               </div>
             </div>
           </div>
+        </div>
+      </section>
+      <section
+        aria-labelledby="customer-google-reviews-title"
+        class="section shop-google-reviews-section"
+        id="avis-google"
+      >
+        <div class="container">
+          <div class="shop-google-reviews-intro">
+            <div>
+              <div class="kicker">Avis Google</div>
+              <h2 class="h2" id="customer-google-reviews-title">
+                Les avis publics sur la maison
+              </h2>
+              <p class="p">
+                Une sélection des avis publiés sur Google Maps. La fiche Google
+                reste accessible pour consulter l’ensemble des retours.
+              </p>
+            </div>
+            <div
+              aria-label="Résumé des avis Google"
+              class="google-reviews-summary"
+              data-google-reviews-summary
+              hidden
+            ></div>
+          </div>
+          <div
+            aria-busy="false"
+            data-google-reviews
+            data-google-reviews-limit="3"
+          >
+            <div class="google-reviews-fallback">
+              <div class="google-reviews-fallback-copy">
+                <strong>Consulter les avis Google de la maison</strong>
+                <span
+                  >Les retours restent accessibles sur Google Maps, même si leur
+                  affichage direct n’est pas disponible ici.</span
+                >
+              </div>
+              <a
+                class="btn secondary"
+                data-google-reviews-link
+                href="https://www.google.com/maps/search/?api=1&amp;query=Champagne%20Christelle%20Phlipaux%2C%204%20Rue%20de%20Villiers%2C%2010340%20Channes"
+                rel="noopener noreferrer"
+                target="_blank"
+                >Voir les avis sur Google</a
+              >
+            </div>
+          </div>
+          <p
+            aria-live="polite"
+            class="u-visually-hidden"
+            data-google-reviews-status
+          ></p>
+          <p
+            class="google-reviews-disclosure"
+            data-google-reviews-disclosure
+            hidden
+          >
+            Google Maps fournit et classe ces avis par pertinence. Aucun filtre
+            par note n’est appliqué par la maison. Les avis ne sont pas vérifiés
+            par Google, qui peut retirer les contenus non conformes. Consultez
+            les
+            <a
+              href="https://cloud.google.com/maps-platform/terms"
+              rel="noopener noreferrer"
+              target="_blank"
+              >conditions Google Maps</a
+            >,
+            <a
+              href="https://policies.google.com/privacy"
+              rel="noopener noreferrer"
+              target="_blank"
+              >la politique de confidentialité Google</a
+            >
+            et notre
+            <a href="politique-confidentialite.html"
+              >politique de confidentialité</a
+            >.
+          </p>
         </div>
       </section>
       <section class="section section--flush-top">

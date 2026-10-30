@@ -564,36 +564,8 @@
 
 .immersive-ready .page-hero-copy > *,
 .immersive-ready .home-hero-copy-panel > * {
-  opacity: 0;
-  transform: translate3d(0, 22px, 0);
-  animation: immersive-hero-enter 760ms var(--immersive-ease) forwards;
-}
-
-.immersive-ready .page-hero-copy > :nth-child(2),
-.immersive-ready .home-hero-copy-panel > :nth-child(2) {
-  animation-delay: 80ms;
-}
-
-.immersive-ready .page-hero-copy > :nth-child(3),
-.immersive-ready .home-hero-copy-panel > :nth-child(3) {
-  animation-delay: 150ms;
-}
-
-.immersive-ready .page-hero-copy > :nth-child(4),
-.immersive-ready .home-hero-copy-panel > :nth-child(4) {
-  animation-delay: 220ms;
-}
-
-.immersive-ready .page-hero-copy > :nth-child(n + 5),
-.immersive-ready .home-hero-copy-panel > :nth-child(n + 5) {
-  animation-delay: 290ms;
-}
-
-@keyframes immersive-hero-enter {
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
+  opacity: 1;
+  transform: none;
 }
 
 /* Scroll chapters */
@@ -620,16 +592,13 @@
 }
 
 .immersive-reveal-ready .immersive-reveal:not(.is-visible) {
-  opacity: 0;
-  clip-path: inset(0 0 7% 0);
-  transform: translate3d(0, 34px, 0);
+  opacity: 1;
+  clip-path: none;
+  transform: translate3d(0, 18px, 0);
 }
 
 .immersive-reveal-ready .immersive-reveal {
-  transition:
-    opacity 680ms var(--immersive-ease),
-    transform 760ms var(--immersive-ease),
-    clip-path 820ms var(--immersive-ease);
+  transition: transform 680ms var(--immersive-ease);
   transition-delay: calc(var(--reveal-order, 0) * 55ms);
 }
 
@@ -840,7 +809,7 @@
 
   .immersive-reveal-ready .immersive-reveal:not(.is-visible) {
     clip-path: none;
-    transform: translate3d(0, 22px, 0);
+    transform: translate3d(0, 14px, 0);
   }
 }
 
@@ -1261,6 +1230,10 @@ textarea,
 .page-home.immersive-site .home-offer-card:hover,
 .page-home.immersive-site .home-stockists-copy .btn.primary:hover {
   transform: none;
+}
+
+.page-home.immersive-site .home-offer-guide > span {
+  color: #78583e;
 }
 
 @media (max-width: 720px) {
@@ -3107,6 +3080,7 @@ footer .footer-trust span {
   border-color: rgba(255, 201, 182, 0.52);
   background: #35140e;
   color: #fff0e7;
+  overflow-wrap: anywhere;
 }
 
 .checkout-alert a {
@@ -3620,10 +3594,6 @@ footer .footer-trust span {
     gap: 10px;
   }
 
-  .page-home.immersive-site .home-offer-visual {
-    display: none;
-  }
-
   .page-home.immersive-site .home-offer-cues {
     gap: 0;
     padding-top: 6px;
@@ -3717,6 +3687,10 @@ footer .footer-trust span {
   }
 
   .page-home.immersive-site .home-route-card:last-child {
+    grid-column: auto;
+  }
+
+  .page-home.immersive-site .home-route-card:last-child:nth-child(odd) {
     grid-column: 1 / -1;
   }
 
