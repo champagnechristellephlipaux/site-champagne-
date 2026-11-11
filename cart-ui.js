@@ -1,4 +1,4 @@
-import { CURATED_OFFERS, PRICE_EUR } from "./shop-config.js?v=20261012a";
+import { CURATED_OFFERS, PRICE_EUR } from "./shop-config.js?v=20261110a";
 import {
   loadCart,
   addToCart,
@@ -13,8 +13,8 @@ import {
   shippingTotals,
   equivalent75clPrice,
   estimateSelectionTotal,
-} from "./cart.js?v=20261012a";
-import { startCheckout } from "./checkout.js?v=20261030a";
+} from "./cart.js?v=20261110a";
+import { startCheckout } from "./checkout.js?v=20261110a";
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));

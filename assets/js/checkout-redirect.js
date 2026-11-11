@@ -5,8 +5,8 @@ import {
   getItemMeta,
   loadCart,
   shippingTotals,
-} from "../../cart.js?v=20261012a";
-import { startCheckout } from "../../checkout.js?v=20261030a";
+} from "../../cart.js?v=20261110a";
+import { startCheckout } from "../../checkout.js?v=20261110a";
 
 const errorNode = document.querySelector("[data-checkout-error]");
 const submitButton = document.querySelector("[data-checkout-submit]");

@@ -5,7 +5,7 @@ import {
   getItemMeta,
   loadCart,
   shippingTotals,
-} from "../../cart.js?v=20261012a";
+} from "../../cart.js?v=20261110a";
 
 const CREATE_SESSION_ENDPOINT =
   "/.netlify/functions/create-checkout-elements-session";

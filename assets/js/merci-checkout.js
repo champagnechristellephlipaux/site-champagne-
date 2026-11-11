@@ -1,4 +1,4 @@
-import { clearCart, formatEuro } from "../../cart.js?v=20261012a";
+import { clearCart, formatEuro } from "../../cart.js?v=20261110a";
 
 const STATUS_ENDPOINT = "/.netlify/functions/get-checkout-session";
 const TRACKED_PURCHASES_KEY = "ccp_tracked_purchases_v1";

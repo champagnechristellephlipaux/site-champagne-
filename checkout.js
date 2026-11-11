@@ -1,4 +1,4 @@
-import { loadCart } from "./cart.js?v=20261012a";
+import { loadCart } from "./cart.js?v=20261110a";
 
 const CREATE_SESSION_ENDPOINT = "/.netlify/functions/create-checkout-session";
 const CHECKOUT_ERROR_FALLBACK =

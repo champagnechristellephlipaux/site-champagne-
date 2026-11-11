@@ -7,18 +7,18 @@ export const PRICE_EUR = {
     coffret3: 56,
   },
   brut: {
-    750: 18,
+    750: 20,
     magnum: 40,
-    carton6: 108,
+    carton6: 120,
   },
   demisec: {
-    750: 18,
+    750: 20,
     magnum: 40,
-    carton6: 108,
+    carton6: 120,
   },
   rose: {
-    750: 20,
-    carton6: 120,
+    750: 22,
+    carton6: 132,
   },
 };
 

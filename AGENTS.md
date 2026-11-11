@@ -40,11 +40,11 @@ Do not equate Champagne with black-and-gold luxury, excessive prestige language,
 
 Current website prices:
 
-- Brut 75 cl: 18 €
+- Brut 75 cl: 20 €
 - Brut magnum: 40 €
-- Brut carton of 6: 108 €
-- Rosé 75 cl: 20 €
-- Rosé carton of 6: 120 €
+- Brut carton of 6: 120 €
+- Rosé 75 cl: 22 €
+- Rosé carton of 6: 132 €
 - Demi-sec: same prices as Brut
 - Discovery box (one 75 cl bottle of each cuvée): 56 €
 - Rosé has no active magnum or 37.5 cl format

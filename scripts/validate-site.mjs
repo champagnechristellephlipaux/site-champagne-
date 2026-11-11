@@ -135,19 +135,19 @@ const merchantProducts = [
     file: "brut-tradition.html",
     sku: "brut",
     name: "Champagne Brut Tradition 75 cl – Christelle Phlipaux",
-    price: "18.00",
+    price: "20.00",
   },
   {
     file: "brut-rose.html",
     sku: "rose",
     name: "Champagne Brut Rosé 75 cl – Christelle Phlipaux",
-    price: "20.00",
+    price: "22.00",
   },
   {
     file: "demi-sec.html",
     sku: "demisec",
     name: "Champagne Demi-Sec 75 cl – Christelle Phlipaux",
-    price: "18.00",
+    price: "20.00",
   },
   {
     file: "coffret-decouverte-champagne.html",

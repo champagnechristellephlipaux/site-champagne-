@@ -30,9 +30,9 @@ const { saveOrder } = require("../netlify/functions/orders-store.js");
 
 const expectedPrices = {
   "coffret-decouverte": { coffret3: 56 },
-  brut: { 750: 18, magnum: 40, carton6: 108 },
-  demisec: { 750: 18, magnum: 40, carton6: 108 },
-  rose: { 750: 20, carton6: 120 },
+  brut: { 750: 20, magnum: 40, carton6: 120 },
+  demisec: { 750: 20, magnum: 40, carton6: 120 },
+  rose: { 750: 22, carton6: 132 },
 };
 
 const expectedStripePriceIds = {
@@ -40,18 +40,18 @@ const expectedStripePriceIds = {
     coffret3: "price_1UPd16D96OJnHwPGJP0SZlIE",
   },
   brut: {
-    750: "price_1SmWpbD96OJnHwPGXHehtam4",
+    750: "price_1UaYnFD96OJnHwPGPVhTZfn1",
     magnum: "price_1UPcvZD96OJnHwPGRx7U3ZQ5",
-    carton6: "price_1UPcw0D96OJnHwPGErK0n5vh",
+    carton6: "price_1UaYnPD96OJnHwPGm7ro6yh4",
   },
   demisec: {
-    750: "price_1UPd4lD96OJnHwPGM0vRZwRv",
+    750: "price_1UaYnQD96OJnHwPGVhe3xnIK",
     magnum: "price_1UPd5bD96OJnHwPGa1kljMhc",
-    carton6: "price_1UPd53D96OJnHwPGGKe926sS",
+    carton6: "price_1UaYnRD96OJnHwPG2B0bQ0EW",
   },
   rose: {
-    750: "price_1UPd2sD96OJnHwPG7OIsfI9o",
-    carton6: "price_1UPd3KD96OJnHwPGL1L7ifTx",
+    750: "price_1UaYnSD96OJnHwPGioBAtUFI",
+    carton6: "price_1UaYnTD96OJnHwPGpggGIQKH",
   },
 };
 
@@ -128,20 +128,20 @@ const productPageExpectations = [
   {
     file: "brut-tradition.html",
     sku: "brut",
-    visiblePrice: "18€",
-    totalWithDelivery: "30€",
-  },
-  {
-    file: "brut-rose.html",
-    sku: "rose",
     visiblePrice: "20€",
     totalWithDelivery: "32€",
   },
   {
+    file: "brut-rose.html",
+    sku: "rose",
+    visiblePrice: "22€",
+    totalWithDelivery: "34€",
+  },
+  {
     file: "demi-sec.html",
     sku: "demisec",
-    visiblePrice: "18€",
-    totalWithDelivery: "30€",
+    visiblePrice: "20€",
+    totalWithDelivery: "32€",
   },
 ];
 

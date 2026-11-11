@@ -153,11 +153,11 @@ Alcohol communication must remain responsible, adult-oriented and compliant with
 
 ## Approved current online prices
 
-- Brut 75 cl: 18 €
+- Brut 75 cl: 20 €
 - Brut magnum: 40 €
-- Brut carton of 6: 108 €
-- Rosé 75 cl: 20 €
-- Rosé carton of 6: 120 €
+- Brut carton of 6: 120 €
+- Rosé 75 cl: 22 €
+- Rosé carton of 6: 132 €
 - Demi-sec: same prices as Brut
 - Discovery box (one 75 cl bottle of each cuvée): 56 €
 

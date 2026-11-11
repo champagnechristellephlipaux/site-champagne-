@@ -23,8 +23,8 @@ const CATALOG = {
     formats: {
       750: {
         label: "75 cl",
-        priceId: "price_1SmWpbD96OJnHwPGXHehtam4",
-        unitAmount: 1800,
+        priceId: "price_1UaYnFD96OJnHwPGPVhTZfn1",
+        unitAmount: 2000,
         bottles75: 1,
         magnums: 0,
       },
@@ -37,8 +37,8 @@ const CATALOG = {
       },
       carton6: {
         label: "Carton de 6",
-        priceId: "price_1UPcw0D96OJnHwPGErK0n5vh",
-        unitAmount: 10800,
+        priceId: "price_1UaYnPD96OJnHwPGm7ro6yh4",
+        unitAmount: 12000,
         bottles75: 6,
         magnums: 0,
       },
@@ -49,8 +49,8 @@ const CATALOG = {
     formats: {
       750: {
         label: "75 cl",
-        priceId: "price_1UPd4lD96OJnHwPGM0vRZwRv",
-        unitAmount: 1800,
+        priceId: "price_1UaYnQD96OJnHwPGVhe3xnIK",
+        unitAmount: 2000,
         bottles75: 1,
         magnums: 0,
       },
@@ -63,8 +63,8 @@ const CATALOG = {
       },
       carton6: {
         label: "Carton de 6",
-        priceId: "price_1UPd53D96OJnHwPGGKe926sS",
-        unitAmount: 10800,
+        priceId: "price_1UaYnRD96OJnHwPG2B0bQ0EW",
+        unitAmount: 12000,
         bottles75: 6,
         magnums: 0,
       },
@@ -75,15 +75,15 @@ const CATALOG = {
     formats: {
       750: {
         label: "75 cl",
-        priceId: "price_1UPd2sD96OJnHwPG7OIsfI9o",
-        unitAmount: 2000,
+        priceId: "price_1UaYnSD96OJnHwPGioBAtUFI",
+        unitAmount: 2200,
         bottles75: 1,
         magnums: 0,
       },
       carton6: {
         label: "Carton de 6",
-        priceId: "price_1UPd3KD96OJnHwPGL1L7ifTx",
-        unitAmount: 12000,
+        priceId: "price_1UaYnTD96OJnHwPGpggGIQKH",
+        unitAmount: 13200,
         bottles75: 6,
         magnums: 0,
       },
