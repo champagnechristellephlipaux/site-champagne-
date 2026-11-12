@@ -4,6 +4,9 @@
 # Dependencies
 node_modules/
 
+# Generated public build
+dist/
+
 # Local Netlify state
 .netlify/
 

@@ -40,11 +40,7 @@ function getBlobsModule() {
   try {
     return require("@netlify/blobs");
   } catch (_error) {
-    try {
-      return require("netlify-cli/node_modules/@netlify/blobs");
-    } catch (_fallbackError) {
-      return null;
-    }
+    return null;
   }
 }
 
